@@ -1,0 +1,108 @@
+syntax = "proto3";
+package user_service;
+
+enum Level {
+    Beginner     = 0;
+    Advanced     = 1;
+    Intermediate = 2;
+}
+
+enum Role {
+    Subscriber = 0;
+    Instructor = 1;
+    Admin      = 2;
+}
+
+// Has password field
+message UserBase {
+    string          id                    = 1;
+    optional string firstName             = 2; 
+    optional string lastName              = 3;
+    string          nickname              = 4;
+    string          email                 = 5;
+    string          password              = 6;
+    int64           registerationDate     = 7;
+    Role            role                  = 8;
+    Level           level                 = 9;
+    string          qualifications        = 10;
+    optional string introductionBrief     = 11;
+    optional string image                 = 12;
+    int32           totalPublishedCourses = 13;
+    int32           totalStudentsEnrolled = 14;
+    int32           totalCompletedCourses = 15;
+    int32           totalEnrolledCourses  = 16;
+    float           averageReviewRatings  = 17;
+    int32           totalCredit           = 18;
+    int64           updatedAt             = 19;
+}
+
+// No password field
+message User {
+    string          id                    = 1;
+    optional string firstName             = 2; 
+    optional string lastName              = 3;
+    string          nickname              = 4;
+    string          email                 = 5;
+    int64           registerationDate     = 6;
+    Role            role                  = 7;
+    Level           level                 = 8;
+    string          qualifications        = 9;
+    optional string introductionBrief     = 10;
+    optional string image                 = 11;
+    int32           totalPublishedCourses = 12;
+    int32           totalStudentsEnrolled = 13;
+    int32           totalCompletedCourses = 14;
+    int32           totalEnrolledCourses  = 15;
+    float           averageReviewRatings  = 16;
+    int32           totalCredit           = 17;
+    int64           updatedAt             = 18;
+}
+
+message Empty {}
+
+message UserList {
+    repeated User users = 1;
+}
+
+message GetUserByIdProtoReq {
+    string id = 1;
+}
+
+message CreateUserProtoReq {
+    string nickname = 1;
+    string email    = 2;
+    string password = 3;
+}
+
+message UpdateUserProtoReq {
+    string          id                = 1;
+    optional string firstName         = 2;
+    optional string lastName          = 3;
+    optional string nickname          = 4;
+    optional string email             = 5;
+    optional string introductionBrief = 6;
+    optional string image             = 7;
+    string          password          = 8;
+    optional string newPassword       = 9;
+}
+
+message DeleteUserProtoReq {
+    string id       = 1;
+    string password = 2;
+}
+
+service UserServiceProtocol {
+    // Normal user calls
+
+    rpc GetUsersCall(Empty) returns (UserList);
+    rpc GetUserByIdCall(GetUserByIdProtoReq) returns (User);
+    rpc CreateUserCall(CreateUserProtoReq) returns (User);
+    rpc UpdateUserCall(UpdateUserProtoReq) returns (User);
+    rpc DeleteUserCall(DeleteUserProtoReq) returns (Empty);
+
+    // Admin user calls
+
+    // This command overrides a certain user by id, however it doesn't change the user id
+    rpc OverrideUserCall(UserBase) returns (UserBase);
+    rpc AdminDeleteUserCall(GetUserByIdProtoReq) returns (Empty);
+}
