@@ -2,7 +2,20 @@ syntax = "proto3";
 
 package hackathon_service;
 
-message HackathonProtoModel {
+/*paginate*/
+message PaginateProtoModel{
+    uint32 total = 1;
+    uint32 page = 2;
+    uint32 pageSize = 3;
+    uint32 totalPage = 4;
+}
+
+message PaginateProtoReq {
+    optional uint32 page = 1;
+    optional uint32 pageSize = 2;
+}
+
+message HackathonBase {
     string id = 1;
     string name = 2;
     string detail = 3; 
@@ -16,8 +29,16 @@ message HackathonProtoModel {
     int64 dueAt = 11;
 }
 /*hackthon*/
+
+
+message HackathonListProtoReq {
+    PaginateProtoReq paginate = 1;
+    optional string name = 2;
+}
+
 message HackathonListProtoRes {
-    repeated HackathonProtoModel hackathons = 1;
+    repeated HackathonBase hackathons = 1;
+    PaginateProtoModel paginate = 2; 
 }
 
 message GetHackathonByIdProtoReq {
@@ -56,18 +77,30 @@ message DeleteHackathonProtoReq {
 
 /*organize*/
 
-message OrgProtoModel {
+message OrganizeBase {
 	string id = 1;
-	string name = 2;
-	string chain = 3;
-	string organize = 4;
-	string detail = 5;
-	bool official = 6;
+	string host_id = 2; // FK to the id field of UserProtoModel
+	string hackathon_id = 3; //FK to the id field of HackthonProtoModel
+	string name = 4;
+	string short_name = 5;
+	string url = 6;
+	string logo = 7;
+	string tagline = 8;
+	string description = 9;
+	string location = 10;
+	Organize_type organize_type = 11;
+	string website_official = 12;
+	string chain_official = 13;
+	bool official = 14;
 }
 
+enum Organize_type{
+	University = 0;
+	Organize = 1;
+}
 
-message OrgListProtoRes {
-	repeated OrgProtoModel org = 1;
+message OrganizeList {
+	repeated OrganizeBase org = 1;
 }
 
 message GetOrgByIdProtoReq{
@@ -75,20 +108,34 @@ message GetOrgByIdProtoReq{
 }
 
 message CreateOrgProtoReq {
-	string name = 1;	
-	string chain = 2;
-	string organize = 3;
-	string detail = 4;
-	bool official = 5;
+	string host_id = 1; // FK to the id field of UserProtoModel
+	optional string hackathon_id = 2; //FK to the id field of HackthonProtoModel
+	string name = 3;
+	optional string short_name = 4;
+	string url = 5;
+	optional string logo = 6;
+	optional string tagline = 7;
+	optional string description = 8;
+	optional string location = 9;
+	optional string website_official = 10;
+	Organize_type organize_type = 11;
+	optional string chain_official = 12;
+	bool official = 13;
 }
 
-message UpdateOrgProtoReq {
+message UpdateOrgProtoReq{
 	string id = 1;
-	optional string name = 2;
-	optional string chain = 3;
-	optional string organize = 4;
-	optional string detail = 5;
-	optional bool official = 6;
+	optional string host_id = 2; // FK to the id field of UserProtoModel
+	optional string hackathon_id = 3; //FK to the id field of HackthonProtoModel
+	optional string name = 4;
+	optional string short_name = 5;
+	optional string url = 6;
+	optional string logo = 7;
+	optional string tagline = 8;
+	optional string description = 9;
+	optional string location = 10;
+	optional string website_official = 11;
+	optional string chain_official = 12;
 }
 
 message DeleteOrgProtoReq {
@@ -98,15 +145,16 @@ message DeleteOrgProtoReq {
 message Empty {}
 
 service HackathonServiceProtocol {
-    rpc GetHackathonCall(Empty) returns (HackathonListProtoRes);
-    rpc GetHackathonByIdCall(GetHackathonByIdProtoReq) returns (HackathonProtoModel);
-    rpc CreateHackathonCall(CreateHackathonProtoReq) returns (HackathonProtoModel);
-    rpc UpdateHackathonCall(UpdateHackathonProtoReq) returns (HackathonProtoModel);
+    rpc GetHackathonCall(HackathonListProtoReq) returns (HackathonListProtoRes);
+    rpc GetHackathonByIdCall(GetHackathonByIdProtoReq) returns (HackathonBase);
+    rpc CreateHackathonCall(CreateHackathonProtoReq) returns (HackathonBase);
+    rpc UpdateHackathonCall(UpdateHackathonProtoReq) returns (HackathonBase);
     rpc DeleteHackathonCall(DeleteHackathonProtoReq) returns (Empty);
-	rpc GetOrgsCall(Empty) returns (OrgListProtoRes);
-	rpc GetOrgByIdCall(GetOrgByIdProtoReq) returns (OrgProtoModel);
-	rpc CreateOrgCall(CreateOrgProtoReq) returns (OrgProtoModel);
-	rpc UpdateOrgCall(UpdateOrgProtoReq) returns (OrgProtoModel);
+	// Organize
+	rpc GetOrgsCall(Empty) returns (OrganizeList);
+	rpc GetOrgByIdCall(GetOrgByIdProtoReq) returns (OrganizeBase);
+	rpc CreateOrgCall(CreateOrgProtoReq) returns (OrganizeBase);
+	rpc UpdateOrgCall(UpdateOrgProtoReq) returns (OrganizeBase);
 	rpc DeleteOrgCall(DeleteOrgProtoReq) returns (Empty);
 
 }
