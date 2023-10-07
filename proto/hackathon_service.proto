@@ -92,6 +92,7 @@ message OrganizeBase {
 	string website_official = 12;
 	string chain_official = 13;
 	bool official = 14;
+	bool is_del = 15;
 }
 
 enum Organize_type{
@@ -99,8 +100,13 @@ enum Organize_type{
 	Organize = 1;
 }
 
+message OrgListProtoReq {
+    PaginateProtoReq paginate = 1;
+}
+
 message OrganizeList {
-	repeated OrganizeBase org = 1;
+	repeated OrganizeBase orgs = 1;
+    PaginateProtoModel paginate = 2; 
 }
 
 message GetOrgByIdProtoReq{
@@ -142,6 +148,14 @@ message DeleteOrgProtoReq {
 	string id = 1;
 }
 
+message RemoveOrgProtoReq {
+	string id = 1;
+}
+
+message RestoreOrgProtoReq {
+	string id = 1;
+}
+
 message Empty {}
 
 service HackathonServiceProtocol {
@@ -151,10 +165,12 @@ service HackathonServiceProtocol {
     rpc UpdateHackathonCall(UpdateHackathonProtoReq) returns (HackathonBase);
     rpc DeleteHackathonCall(DeleteHackathonProtoReq) returns (Empty);
 	// Organize
-	rpc GetOrgsCall(Empty) returns (OrganizeList);
+	rpc GetOrgsCall(OrgListProtoReq) returns (OrganizeList);
 	rpc GetOrgByIdCall(GetOrgByIdProtoReq) returns (OrganizeBase);
 	rpc CreateOrgCall(CreateOrgProtoReq) returns (OrganizeBase);
 	rpc UpdateOrgCall(UpdateOrgProtoReq) returns (OrganizeBase);
 	rpc DeleteOrgCall(DeleteOrgProtoReq) returns (Empty);
+	rpc RemoveOrgCall(RemoveOrgProtoReq) returns (Empty);
+	rpc RestoreOrgCall(RestoreOrgProtoReq) returns (Empty);
 
 }
