@@ -1,5 +1,5 @@
-syntax = "proto3"
-import "user_service.proto"
+syntax = "proto3";
+import "./user_service.proto";
 package builder_service;
 
 message BuilderProtoModel {
