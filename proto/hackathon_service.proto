@@ -124,7 +124,7 @@ message OrganizeBase {
 
 enum OrganizeType{
 	University = 0;
-	Organize = 1;
+	Organization = 1;
 }
 
 message OrgListProtoReq {
