@@ -15,21 +15,46 @@ message PaginateProtoReq {
     optional uint32 pageSize = 2;
 }
 
-message HackathonBase {
-    string id 		   = 1;
-    string name 	   = 2;
-    string detail 	   = 3; 
-    string resource    = 4;
-    string category    = 5;
-    bool   reorganizes = 6;
-    bool   status 	   = 7;
-    int64  createdAt   = 8;
-    int64  updatedAt   = 9;
-    int64  startAt 	   = 10;
-    int64  dueAt 	   = 11;
-}
 /*hackthon*/
 
+enum HackathonType {
+    Online     = 0;
+    Offline     = 1;
+    Hybrid 	   = 2;
+	BootCamp   = 3;
+}
+
+enum HackathonState {
+	Pending 	= 0;
+	Started 	= 1;
+	Submitted	= 2;
+	Ended		= 3;
+}
+
+message HackathonBase {
+    string 			id 		  		= 1;
+    string 			name 	   		= 2;
+	string 			owner 	   		= 3;
+	int64  			feeToJoin 		= 4;
+	HackathonType	hackathonType 	= 5;
+	string 			url 			= 6;
+	string 			logo 			= 7;
+	string 			tagline 		= 8;
+	string 			hackathonTag 	= 9;
+	string 			contactEmail 	= 10;
+	string 			thumbnail  		= 11;
+	bool 			isPublic 		= 12;
+	string 			description 	= 13;
+	string 			rules 			= 14;
+	string 			resource 		= 15;
+	bool   			reorganizes 	= 16; 
+	HackathonState 	state 			= 17;
+	int64 			maximumQuantity = 18;
+    int64  			createdAt   	= 19;
+    int64  			updatedAt   	= 20;
+    int64  			startAt 	   	= 21;
+    int64  			dueAt 	   		= 22;
+}
 
 message HackathonListProtoReq {
     PaginateProtoReq paginate = 1;
@@ -46,29 +71,32 @@ message GetHackathonByIdProtoReq {
 }
 
 message CreateHackathonProtoReq {
-    string name 	   = 1;
-    string detail      = 2; 
-    string resource    = 3;
-    string category    = 4;
-    bool   reorganizes = 5;
-    bool   status 	   = 6;
-    int64  createdAt   = 7;
-    int64  updatedAt   = 8;
-    int64  startAt     = 9;
-    int64  dueAt       = 10;
+    string 	name 	   	= 1;
+    int64 	feeToJoin	= 2;
 }
 
 message UpdateHackathonProtoReq {
-    string 			id 			 = 1;
-    optional string newName 	 = 2;
-    optional string newDetail 	 = 3; 
-    optional string newResource  = 4;
-    optional string newCategory  = 5;
-    optional bool   newReorganizes = 6;
-    optional bool   newStatus 	 = 7;
-    optional int64  newStartAt 	 = 8;
-    optional int64  newDueAt 	 = 9;
-    int64 			updatedAt 	 = 10;
+    string 						id 			 	= 1;
+    optional string 			name 	   		= 2;
+	optional string 			owner 	   		= 3;
+	optional int64  			feeToJoin 		= 4;
+	optional HackathonType		hackathonType 	= 5;
+	optional string 			url 			= 6;
+	optional string 			logo 			= 7;
+	optional string 			tagline 		= 8;
+	optional string 			hackathonTag 	= 9;
+	optional string 			contactEmail 	= 10;
+	optional string 			thumbnail  		= 11;
+	optional bool 				isPublic 		= 12;
+	optional string 			description 	= 13;
+	optional string 			rules 			= 14;
+	optional string 			resource 		= 15;
+	optional bool   			reorganizes 	= 16; 
+	optional HackathonState 	state 			= 17;
+	optional int64 				maximumQuantity = 18;
+    int64  						updatedAt   	= 29;
+    optional int64  			startAt 	   	= 20;
+    optional int64  			dueAt 	   		= 21;
 }
 
 message DeleteHackathonProtoReq {
