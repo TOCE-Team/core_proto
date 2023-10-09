@@ -4,7 +4,7 @@ fn main() {
     #[cfg(feature = "user")]
     tonic_build::configure()
         .out_dir("src")
-        .enum_attribute(".", "#[derive(serde::Serialize, serde::Deserialize)]")
+        .enum_attribute(".", serde_impl)
         .message_attribute(
             ".",
             "#[derive(serde::Serialize, serde::Deserialize, derive_builder::Builder)]",
