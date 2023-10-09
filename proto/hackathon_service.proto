@@ -94,9 +94,8 @@ message UpdateHackathonProtoReq {
 	optional bool   			reorganizes 	= 16; 
 	optional HackathonState 	state 			= 17;
 	optional int64 				maximumQuantity = 18;
-    int64  						updatedAt   	= 29;
-    optional int64  			startAt 	   	= 20;
-    optional int64  			dueAt 	   		= 21;
+    optional int64  			startAt 	   	= 19;
+    optional int64  			dueAt 	   		= 20;
 }
 
 message DeleteHackathonProtoReq {
