@@ -79,23 +79,23 @@ message DeleteHackathonProtoReq {
 
 message OrganizeBase {
 	string id = 1;
-	string host_id = 2; // FK to the id field of UserProtoModel
-	string hackathon_id = 3; //FK to the id field of HackthonProtoModel
+	string hostId = 2; // FK to the id field of UserProtoModel
+	string hackathonId = 3; //FK to the id field of HackthonProtoModel
 	string name = 4;
-	string short_name = 5;
+	string shortName = 5;
 	string url = 6;
 	string logo = 7;
 	string tagline = 8;
 	string description = 9;
 	string location = 10;
-	Organize_type organize_type = 11;
-	string website_official = 12;
-	string chain_official = 13;
-	bool official = 14;
-	bool is_del = 15;
+	OrganizeType organizeType = 11;
+	string websiteOfficial = 12;
+	bool official = 13;
+	bool isDel = 14;
+	int64 createdAt = 15;
 }
 
-enum Organize_type{
+enum OrganizeType{
 	University = 0;
 	Organize = 1;
 }
@@ -114,34 +114,33 @@ message GetOrgByIdProtoReq{
 }
 
 message CreateOrgProtoReq {
-	string host_id = 1; // FK to the id field of UserProtoModel
-	optional string hackathon_id = 2; //FK to the id field of HackthonProtoModel
+	string hostId = 1; // FK to the id field of UserProtoModel
+	optional string hackathonId = 2; //FK to the id field of HackthonProtoModel
 	string name = 3;
-	optional string short_name = 4;
+	optional string shortName = 4;
 	string url = 5;
 	optional string logo = 6;
 	optional string tagline = 7;
 	optional string description = 8;
 	optional string location = 9;
-	optional string website_official = 10;
-	Organize_type organize_type = 11;
-	optional string chain_official = 12;
-	bool official = 13;
+	optional string websiteOfficial = 10;
+	OrganizeType organizeType = 11;
+	bool official = 12;
+	int64 createdAt = 13;
 }
 
 message UpdateOrgProtoReq{
 	string id = 1;
-	optional string host_id = 2; // FK to the id field of UserProtoModel
-	optional string hackathon_id = 3; //FK to the id field of HackthonProtoModel
+	optional string hostId = 2; // FK to the id field of UserProtoModel
+	optional string hackathonId = 3; //FK to the id field of HackthonProtoModel
 	optional string name = 4;
-	optional string short_name = 5;
+	optional string shortName = 5;
 	optional string url = 6;
 	optional string logo = 7;
 	optional string tagline = 8;
 	optional string description = 9;
 	optional string location = 10;
-	optional string website_official = 11;
-	optional string chain_official = 12;
+	optional string websiteOfficial = 11;
 }
 
 message DeleteOrgProtoReq {
