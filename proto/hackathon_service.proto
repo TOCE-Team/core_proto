@@ -104,28 +104,27 @@ message DeleteHackathonProtoReq {
 
 /*organize*/
 
-
 message OrganizeBase {
-	string 		 id 			 = 1;
-	string 		 hostId 		 = 2; // FK to the id field of UserProtoModel
-	string 		 hackathonId 	 = 3; //FK to the id field of HackthonProtoModel
-	string 		 name 			 = 4;
-	string 		 shortName 		 = 5;
-	string 		 url 			 = 6;
-	string 		 logo 		 	 = 7;
-	string 		 tagline 		 = 8;
-	string 		 description 	 = 9;
-	string 		 location 		 = 10;
-	OrganizeType organizeType 	 = 11;
-	string 		 websiteOfficial = 12;
-	string 		 chainOfficial 	 = 13;
-	bool    	 official 		 = 14;
-	bool    	 isDel 			 = 15;
+	string id = 1;
+	string hostId = 2; // FK to the id field of UserProtoModel
+	string hackathonId = 3; //FK to the id field of HackthonProtoModel
+	string name = 4;
+	string shortName = 5;
+	string url = 6;
+	string logo = 7;
+	string tagline = 8;
+	string description = 9;
+	string location = 10;
+	OrganizeType organizeType = 11;
+	string websiteOfficial = 12;
+	bool official = 13;
+	bool isDel = 14;
+	int64 createdAt = 15;
 }
 
 enum OrganizeType{
 	University = 0;
-	Organize   = 1;
+	Organize = 1;
 }
 
 message OrgListProtoReq {
@@ -133,8 +132,8 @@ message OrgListProtoReq {
 }
 
 message OrganizeList {
-	repeated OrganizeBase orgs 	   = 1;
-    PaginateProtoModel 	  paginate = 2; 
+	repeated OrganizeBase orgs = 1;
+    PaginateProtoModel paginate = 2; 
 }
 
 message GetOrgByIdProtoReq{
@@ -142,34 +141,33 @@ message GetOrgByIdProtoReq{
 }
 
 message CreateOrgProtoReq {
-	string 			hostId 			= 1; // FK to the id field of UserProtoModel
-	optional string hackathonId		= 2; //FK to the id field of HackthonProtoModel
-	string 			name 			= 3;
-	optional string shortName 		= 4;
-	string 			url 			= 5;
-	optional string logo 			= 6;
-	optional string tagline 		= 7;
-	optional string description 	= 8;
-	optional string location 		= 9;
+	string hostId = 1; // FK to the id field of UserProtoModel
+	optional string hackathonId = 2; //FK to the id field of HackthonProtoModel
+	string name = 3;
+	optional string shortName = 4;
+	string url = 5;
+	optional string logo = 6;
+	optional string tagline = 7;
+	optional string description = 8;
+	optional string location = 9;
 	optional string websiteOfficial = 10;
-	OrganizeType 	organizeType 	= 11;
-	optional string chainOfficial 	= 12;
-	bool 			official 		= 13;
+	OrganizeType organizeType = 11;
+	bool official = 12;
+	int64 createdAt = 13;
 }
 
 message UpdateOrgProtoReq{
-	string 			id 				= 1;
-	optional string hostId 			= 2; // FK to the id field of UserProtoModel
-	optional string hackathonId 	= 3; //FK to the id field of HackthonProtoModel
-	optional string name 			= 4;
-	optional string shortName 		= 5;
-	optional string url 			= 6;
-	optional string logo 			= 7;
-	optional string tagline 		= 8;
-	optional string description 	= 9;
-	optional string location 		= 10;
+	string id = 1;
+	optional string hostId = 2; // FK to the id field of UserProtoModel
+	optional string hackathonId = 3; //FK to the id field of HackthonProtoModel
+	optional string name = 4;
+	optional string shortName = 5;
+	optional string url = 6;
+	optional string logo = 7;
+	optional string tagline = 8;
+	optional string description = 9;
+	optional string location = 10;
 	optional string websiteOfficial = 11;
-	optional string chainOfficial 	= 12;
 }
 
 message DeleteOrgProtoReq {
@@ -185,6 +183,8 @@ message RestoreOrgProtoReq {
 }
 
 message Empty {}
+
+
 
 service HackathonServiceProtocol {
     rpc GetHackathonCall(HackathonListProtoReq) 	   returns (HackathonListProtoRes);
