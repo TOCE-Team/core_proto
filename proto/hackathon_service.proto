@@ -84,14 +84,14 @@ message OrganizeBase {
 	string shortName = 4;
 	string url = 5;
 	string logo = 6;
-	string tagline = 6;
-	string description = 8;
-	string location = 9;
-	OrganizeType organizeType = 10;
-	string websiteOfficial = 11;
-	bool official = 12;
-	bool isDel = 13;
-	int64 createdAt = 14;
+	string tagline = 7;
+	string description = 9;
+	string location = 10;
+	OrganizeType organizeType = 11;
+	string websiteOfficial = 12;
+	bool official = 13;
+	bool isDel = 14;
+	int64 createdAt = 15;
 }
 
 enum OrganizeType{
