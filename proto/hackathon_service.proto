@@ -54,6 +54,7 @@ message HackathonBase {
     int64  			updatedAt   	= 20;
     int64  			startAt 	   	= 21;
     int64  			dueAt 	   		= 22;
+	string 			organizeId 		= 23;
 }
 
 message HackathonListProtoReq {
@@ -73,6 +74,7 @@ message GetHackathonByIdProtoReq {
 message CreateHackathonProtoReq {
     string 	name 	   	= 1;
     int64 	feeToJoin	= 2;
+	string 	organizeId 	= 3;
 }
 
 message UpdateHackathonProtoReq {
