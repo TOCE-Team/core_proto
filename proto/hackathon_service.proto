@@ -80,19 +80,18 @@ message DeleteHackathonProtoReq {
 message OrganizeBase {
 	string id = 1;
 	string hostId = 2; // FK to the id field of UserProtoModel
-	string hackathonId = 3; //FK to the id field of HackthonProtoModel
-	string name = 4;
-	string shortName = 5;
-	string url = 6;
-	string logo = 7;
-	string tagline = 8;
-	string description = 9;
-	string location = 10;
-	OrganizeType organizeType = 11;
-	string websiteOfficial = 12;
-	bool official = 13;
-	bool isDel = 14;
-	int64 createdAt = 15;
+	string name = 3;
+	string shortName = 4;
+	string url = 5;
+	string logo = 6;
+	string tagline = 6;
+	string description = 8;
+	string location = 9;
+	OrganizeType organizeType = 10;
+	string websiteOfficial = 11;
+	bool official = 12;
+	bool isDel = 13;
+	int64 createdAt = 14;
 }
 
 enum OrganizeType{
@@ -115,32 +114,30 @@ message GetOrgByIdProtoReq{
 
 message CreateOrgProtoReq {
 	string hostId = 1; // FK to the id field of UserProtoModel
-	optional string hackathonId = 2; //FK to the id field of HackthonProtoModel
-	string name = 3;
-	optional string shortName = 4;
-	string url = 5;
-	optional string logo = 6;
-	optional string tagline = 7;
-	optional string description = 8;
-	optional string location = 9;
-	optional string websiteOfficial = 10;
-	OrganizeType organizeType = 11;
-	bool official = 12;
-	int64 createdAt = 13;
+	string name = 2;
+	optional string shortName = 3;
+	string url = 4;
+	optional string logo = 5;
+	optional string tagline = 6;
+	optional string description = 7;
+	optional string location = 8;
+	optional string websiteOfficial = 9;
+	OrganizeType organizeType = 10;
+	bool official = 11;
+	int64 createdAt = 12;
 }
 
 message UpdateOrgProtoReq{
 	string id = 1;
 	optional string hostId = 2; // FK to the id field of UserProtoModel
-	optional string hackathonId = 3; //FK to the id field of HackthonProtoModel
-	optional string name = 4;
-	optional string shortName = 5;
-	optional string url = 6;
-	optional string logo = 7;
-	optional string tagline = 8;
-	optional string description = 9;
-	optional string location = 10;
-	optional string websiteOfficial = 11;
+	optional string name = 3;
+	optional string shortName = 4;
+	optional string url = 5;
+	optional string logo = 6;
+	optional string tagline = 7;
+	optional string description = 8;
+	optional string location = 9;
+	optional string websiteOfficial = 10;
 }
 
 message DeleteOrgProtoReq {
