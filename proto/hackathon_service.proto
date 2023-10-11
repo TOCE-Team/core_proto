@@ -72,10 +72,17 @@ message GetHackathonByIdProtoReq {
     string id = 1;
 }
 
+
 message CreateHackathonProtoReq {
     string 	name 	   	= 1;
     int64 	feeToJoin	= 2;
 	string 	organizeId 	= 3;
+}
+
+message ReCreateHackathonProtoReq {
+	string 				id 			= 1;
+    optional string 	name 	   	= 2;
+	optional int64 		feeToJoin	= 3;
 }
 
 message UpdateHackathonProtoReq {
@@ -190,6 +197,7 @@ service HackathonServiceProtocol {
     rpc GetHackathonCall(HackathonListProtoReq) 	   returns (HackathonListProtoRes);
     rpc GetHackathonByIdCall(GetHackathonByIdProtoReq) returns (HackathonBase);
     rpc CreateHackathonCall(CreateHackathonProtoReq)   returns (HackathonBase);
+	rpc ReCreateHackathonCall(ReCreateHackathonProtoReq) returns (HackathonBase);
     rpc UpdateHackathonCall(UpdateHackathonProtoReq)   returns (HackathonBase);
     rpc DeleteHackathonCall(DeleteHackathonProtoReq)   returns (Empty);
 	rpc RemoveHackathonCall(DeleteHackathonProtoReq)   returns (Empty);
