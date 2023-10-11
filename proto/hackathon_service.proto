@@ -55,6 +55,7 @@ message HackathonBase {
     int64  			startAt 	   	= 21;
     int64  			dueAt 	   		= 22;
 	string 			organizeId 		= 23;
+	bool 			is_deleted 		= 24;
 }
 
 message HackathonListProtoReq {
@@ -191,6 +192,8 @@ service HackathonServiceProtocol {
     rpc CreateHackathonCall(CreateHackathonProtoReq)   returns (HackathonBase);
     rpc UpdateHackathonCall(UpdateHackathonProtoReq)   returns (HackathonBase);
     rpc DeleteHackathonCall(DeleteHackathonProtoReq)   returns (Empty);
+	rpc RemoveHackathonCall(DeleteHackathonProtoReq)   returns (Empty);
+	rpc RestoreHackathonCall(DeleteHackathonProtoReq)   returns (Empty);
 	// Organize
 	rpc GetOrgsCall(OrgListProtoReq) 	   returns (OrganizeList);
 	rpc GetOrgByIdCall(GetOrgByIdProtoReq) returns (OrganizeBase);

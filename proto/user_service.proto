@@ -1,84 +1,61 @@
 syntax = "proto3";
 package user_service;
 
-enum Role {
-    Subscriber = 0;
-    Moderator  = 1;
-    Instructor = 2;
-    Admin      = 3;
-}
-
 enum Level {
     Beginner     = 0;
-    Junior       = 1;
+    Advanced     = 1;
     Intermediate = 2;
-    Senior       = 3;
-    Expert       = 4;
-    Leader       = 5;
-    Professor    = 6;
-    Master       = 7;
 }
 
-/*
-    Has password + isDeleted + paginationId fields
-    This model can only be used for the Admin
-*/
+enum Role {
+    Subscriber = 0;
+    Instructor = 1;
+    Admin      = 2;
+}
+
+// Has password field
 message UserBase {
-    string          id                = 1;
-    optional string firstName         = 2; 
-    optional string lastName          = 3;
-    string          nickname          = 4;
-    string          email             = 5;
-    string          password          = 6;
-    Role            role              = 7;
-    Level           level             = 8;
-    optional string introductionBrief = 9;
-    optional string image             = 10;
-    bool            isDeleted         = 11;
-    int32           totalCredit       = 12;
-    int64           createdAt         = 13;
-    int64           updatedAt         = 14;
+    string          id                    = 1;
+    optional string firstName             = 2; 
+    optional string lastName              = 3;
+    string          nickname              = 4;
+    string          email                 = 5;
+    string          password              = 6;
+    int64           registerationDate     = 7;
+    Role            role                  = 8;
+    Level           level                 = 9;
+    string          qualifications        = 10;
+    optional string introductionBrief     = 11;
+    optional string image                 = 12;
+    int32           totalPublishedCourses = 13;
+    int32           totalStudentsEnrolled = 14;
+    int32           totalCompletedCourses = 15;
+    int32           totalEnrolledCourses  = 16;
+    float           averageReviewRatings  = 17;
+    int32           totalCredit           = 18;
+    int64           updatedAt             = 19;
 }
 
-/*
-    No password + isDeleted + paginationId fields
-    Filtered User model
-*/
+// No password field
 message User {
-    string          id                = 1;
-    optional string firstName         = 2; 
-    optional string lastName          = 3;
-    string          nickname          = 4;
-    string          email             = 5;
-    Role            role              = 6;
-    Level           level             = 7;
-    optional string introductionBrief = 8;
-    optional string image             = 9;
-    int32           totalCredit       = 10;
-    int64           createdAt         = 11;
-    int64           updatedAt         = 12;
-}
-
-/*
-    No password + isDeleted + paginationId + introduction + image fields 
-    since those fields are very large to query, not very efficient to search
-    password and isDeleted is removed due to privacy
-    Include new fields such as offset and limit to do pagination
-*/
-message UserQuery {
-    optional int64  offset      = 1;
-    optional int32  limit       = 2;
-
-    optional string id          = 3;
-    optional string firstName   = 4;
-    optional string lastName    = 5;
-    optional string nickname    = 6;
-    optional string email       = 7;
-    optional Role   role        = 8;
-    optional Level  level       = 9;
-    optional int32  totalCredit = 10;
-    optional int64  createdAt   = 11;
-    optional int64  updatedAt   = 12;
+    string          id                    = 1;
+    optional string firstName             = 2; 
+    optional string lastName              = 3;
+    string          nickname              = 4;
+    string          email                 = 5;
+    int64           registerationDate     = 6;
+    Role            role                  = 7;
+    Level           level                 = 8;
+    string          qualifications        = 9;
+    optional string introductionBrief     = 10;
+    optional string image                 = 11;
+    int32           totalPublishedCourses = 12;
+    int32           totalStudentsEnrolled = 13;
+    int32           totalCompletedCourses = 14;
+    int32           totalEnrolledCourses  = 15;
+    float           averageReviewRatings  = 16;
+    int32           totalCredit           = 17;
+    int64           updatedAt             = 18;
 }
 
 message Empty {}
@@ -117,15 +94,15 @@ message DeleteUserProtoReq {
 service UserServiceProtocol {
     // Normal user calls
 
-    rpc GetUsersCall(UserQuery)              returns (UserList);
+    rpc GetUsersCall(Empty) returns (UserList);
     rpc GetUserByIdCall(GetUserByIdProtoReq) returns (User);
-    rpc CreateUserCall(CreateUserProtoReq)   returns (User);
-    rpc UpdateUserCall(UpdateUserProtoReq)   returns (User);
-    rpc DeleteUserCall(DeleteUserProtoReq)   returns (Empty);
+    rpc CreateUserCall(CreateUserProtoReq) returns (User);
+    rpc UpdateUserCall(UpdateUserProtoReq) returns (User);
+    rpc DeleteUserCall(DeleteUserProtoReq) returns (Empty);
 
     // Admin user calls
 
     // This command overrides a certain user by id, however it doesn't change the user id
-    rpc OverrideUserCall(UserBase)               returns (UserBase);
+    rpc OverrideUserCall(UserBase) returns (UserBase);
     rpc AdminDeleteUserCall(GetUserByIdProtoReq) returns (Empty);
 }
