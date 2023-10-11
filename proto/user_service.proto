@@ -25,7 +25,7 @@ enum Level {
 */
 message UserBase {
     string          id                = 1;
-    string          paginationId      = 2;
+    int64           paginationId      = 2;
     optional string firstName         = 3; 
     optional string lastName          = 4;
     string          nickname          = 5;
@@ -47,7 +47,7 @@ message UserBase {
 */
 message User {
     string          id                = 1;
-    string          paginateId        = 2;
+    int64           paginationId      = 2;
     optional string firstName         = 3; 
     optional string lastName          = 4;
     string          nickname          = 5;
@@ -93,6 +93,11 @@ message GetUserByIdProtoReq {
     string id = 1;
 }
 
+message LoginUserProtoReq {
+    string nickname = 1;
+    string password = 2;
+}
+
 message CreateUserProtoReq {
     string nickname = 1;
     string email    = 2;
@@ -119,11 +124,12 @@ message DeleteUserProtoReq {
 service UserServiceProtocol {
     // Normal user calls
 
-    rpc GetUsersCall(UserQuery)              returns (UserList);
-    rpc GetUserByIdCall(GetUserByIdProtoReq) returns (User);
-    rpc CreateUserCall(CreateUserProtoReq)   returns (User);
-    rpc UpdateUserCall(UpdateUserProtoReq)   returns (User);
-    rpc DeleteUserCall(DeleteUserProtoReq)   returns (Empty);
+    rpc GetUsersCall(UserQuery)               returns (UserList);
+    rpc GetUserByIdCall(GetUserByIdProtoReq)  returns (User);
+    rpc GetUserByLoginInfo(LoginUserProtoReq) returns (User);
+    rpc CreateUserCall(CreateUserProtoReq)    returns (User);
+    rpc UpdateUserCall(UpdateUserProtoReq)    returns (User);
+    rpc DeleteUserCall(DeleteUserProtoReq)    returns (Empty);
 
     // Admin user calls
 
