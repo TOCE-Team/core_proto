@@ -94,8 +94,12 @@ message GetUserByIdProtoReq {
 }
 
 message LoginUserProtoReq {
-    string nickname = 1;
+    string email    = 1;
     string password = 2;
+}
+
+message GetUserByEmailProtoReq {
+    string email = 1;
 }
 
 message CreateUserProtoReq {
@@ -121,15 +125,29 @@ message DeleteUserProtoReq {
     string password = 2;
 }
 
+message OAuthState {
+    string csrfState = 1;
+    string pkceCodeVerifier = 2;
+}
+
+message DeleteOAuthStateProtoReq {
+    string csrfState = 1;
+}
+
 service UserServiceProtocol {
     // Normal user calls
 
-    rpc GetUsersCall(UserQuery)               returns (UserList);
-    rpc GetUserByIdCall(GetUserByIdProtoReq)  returns (User);
-    rpc GetUserByLoginInfo(LoginUserProtoReq) returns (User);
-    rpc CreateUserCall(CreateUserProtoReq)    returns (User);
-    rpc UpdateUserCall(UpdateUserProtoReq)    returns (User);
-    rpc DeleteUserCall(DeleteUserProtoReq)    returns (Empty);
+    rpc GetUsersCall(UserQuery)                   returns (UserList);
+    rpc GetUserByIdCall(GetUserByIdProtoReq)      returns (User);
+    rpc GetUserByLoginInfoCall(LoginUserProtoReq) returns (User);
+    rpc CreateUserCall(CreateUserProtoReq)        returns (User);
+    rpc UpdateUserCall(UpdateUserProtoReq)        returns (User);
+    rpc DeleteUserCall(DeleteUserProtoReq)        returns (Empty);
+
+    // For google login
+    rpc CreateOAuthStateCall(OAuthState)               returns (OAuthState);
+    rpc GetUserByEmail(GetUserByEmailProtoReq)         returns (User);
+    rpc DeleteOAuthStateCall(DeleteOAuthStateProtoReq) returns (OAuthState);
 
     // Admin user calls
 
