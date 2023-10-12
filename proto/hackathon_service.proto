@@ -112,6 +112,42 @@ message DeleteHackathonProtoReq {
     string id = 1;
 }
 
+/* tblHackathonTags */
+message HackathonTagBase {
+	string id 			= 1;
+	string tagName 		= 2;
+	string description 	= 3;
+}
+
+message HackathonTagListRes {
+	repeated HackathonTagBase hackathonTags = 1;
+}
+
+message GetHackathonTagByIdReq {
+	string id = 1;
+}
+
+message GetHackathonTagListReq {
+	optional string tagName = 1;
+}
+
+message UpdateHackathonTagProtoReq {
+	string id 			= 1;
+	optional string tagName 		= 2;
+	optional string description 	= 3;
+}
+
+message DeleteHackathonTagProtoReq {
+	string id = 1;
+}
+
+
+message CreateHackathonTagProtoReq {
+	string tagName = 1;
+	string description = 2;
+}
+
+
 /*organize*/
 
 message OrganizeBase {
@@ -202,6 +238,15 @@ service HackathonServiceProtocol {
     rpc DeleteHackathonCall(DeleteHackathonProtoReq)   returns (Empty);
 	rpc RemoveHackathonCall(DeleteHackathonProtoReq)   returns (Empty);
 	rpc RestoreHackathonCall(DeleteHackathonProtoReq)   returns (Empty);
+	
+
+	// Hackathon_tag
+	rpc GetHackathonTagsCall(GetHackathonTagListReq) returns (HackathonTagListRes);
+	rpc GetHackathonTagByIdCall(GetHackathonTagByIdReq) returns (HackathonTagBase);
+	rpc CreateHackathonTagCall(CreateHackathonTagProtoReq) returns (HackathonTagBase);
+	rpc UpdateHackathonTagCall(UpdateHackathonTagProtoReq) returns (HackathonTagBase);
+	rpc DeleteHackathonTagCall(DeleteHackathonTagProtoReq) returns (Empty);
+
 	// Organize
 	rpc GetOrgsCall(OrgListProtoReq) 	   returns (OrganizeList);
 	rpc GetOrgByIdCall(GetOrgByIdProtoReq) returns (OrganizeBase);
