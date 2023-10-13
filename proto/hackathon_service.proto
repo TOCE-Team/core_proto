@@ -40,7 +40,7 @@ message HackathonBase {
 	string 			url 			= 6;
 	string 			logo 			= 7;
 	string 			tagline 		= 8;
-	string 			hackathonTag 	= 9;
+	repeated string hackathonTag 	= 9;
 	string 			contactEmail 	= 10;
 	string 			thumbnail  		= 11;
 	bool 			isPublic 		= 12;
@@ -94,7 +94,7 @@ message UpdateHackathonProtoReq {
 	optional string 			url 			= 6;
 	optional string 			logo 			= 7;
 	optional string 			tagline 		= 8;
-	optional string 			hackathonTag 	= 9;
+	repeated string 			hackathonTag 	= 9;
 	optional string 			contactEmail 	= 10;
 	optional string 			thumbnail  		= 11;
 	optional bool 				isPublic 		= 12;
@@ -146,6 +146,40 @@ message CreateHackathonTagProtoReq {
 	string tagName = 1;
 	string description = 2;
 }
+
+/* tblMails */
+message MailBase {
+	string 	hackathonId 	= 1;
+	int64 	timeSetting 	= 2;
+	string 	subject 		= 3;
+	string	content 		= 4;
+	bool	isSend 			= 5;
+}
+
+message GetMailByIdReq {
+	string 	hackathonId 	= 1;
+}
+
+message CreateMailProtoReq {
+	string 	hackathonId 	= 1;
+	int64 	timeSetting 	= 2;
+	string 	subject 		= 3;
+	string	content 		= 4;
+	bool	isSend 			= 5;
+}
+
+message UpdateMailProtoReq {
+	string 				hackathonId 	= 1;
+	optional int64 		timeSetting 	= 2;
+	optional string 	subject 		= 3;
+	optional string		content 		= 4;
+	optional bool		isSend 			= 5; 
+}
+
+message DeleteMailProtoReq {
+	string hackathonId = 1;
+}
+
 
 
 /*organize*/
@@ -246,6 +280,12 @@ service HackathonServiceProtocol {
 	rpc CreateHackathonTagCall(CreateHackathonTagProtoReq) returns (HackathonTagBase);
 	rpc UpdateHackathonTagCall(UpdateHackathonTagProtoReq) returns (HackathonTagBase);
 	rpc DeleteHackathonTagCall(DeleteHackathonTagProtoReq) returns (Empty);
+
+	// Hackathon_mail
+	rpc GetMailByIdCall(GetMailByIdReq) returns (MailBase);
+	rpc CreateMailCall(CreateMailProtoReq) returns (MailBase);
+	rpc UpdateMailCall(UpdateMailProtoReq) returns (MailBase);
+	rpc DeleteMailCall(DeleteMailProtoReq) returns (Empty);
 
 	// Organize
 	rpc GetOrgsCall(OrgListProtoReq) 	   returns (OrganizeList);
