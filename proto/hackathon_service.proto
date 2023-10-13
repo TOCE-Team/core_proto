@@ -4,100 +4,206 @@ package hackathon_service;
 
 /*paginate*/
 message PaginateProtoModel{
-    uint32 total = 1;
-    uint32 page = 2;
-    uint32 pageSize = 3;
+    uint32 total 	 = 1;
+    uint32 page 	 = 2;
+    uint32 pageSize  = 3;
     uint32 totalPage = 4;
 }
 
 message PaginateProtoReq {
-    optional uint32 page = 1;
+    optional uint32 page 	 = 1;
     optional uint32 pageSize = 2;
 }
 
-message HackathonBase {
-    string id = 1;
-    string name = 2;
-    string detail = 3; 
-    string resource = 4;
-    string category = 5;
-    bool reorganizes = 6;
-    bool status = 7;
-    int64 createdAt = 8;
-    int64 updatedAt = 9;
-    int64 startAt = 10;
-    int64 dueAt = 11;
-}
 /*hackthon*/
 
+enum HackathonType {
+    Online     = 0;
+    Offline     = 1;
+    Hybrid 	   = 2;
+	BootCamp   = 3;
+}
+
+enum HackathonState {
+	Pending 	= 0;
+	Started 	= 1;
+	Submitted	= 2;
+	Ended		= 3;
+}
+
+message HackathonBase {
+    string 			id 		  		= 1;
+    string 			name 	   		= 2;
+	string 			owner 	   		= 3;
+	int64  			feeToJoin 		= 4;
+	HackathonType	hackathonType 	= 5;
+	string 			url 			= 6;
+	string 			logo 			= 7;
+	string 			tagline 		= 8;
+	repeated string hackathonTag 	= 9;
+	string 			contactEmail 	= 10;
+	string 			thumbnail  		= 11;
+	bool 			isPublic 		= 12;
+	string 			description 	= 13;
+	string 			rules 			= 14;
+	string 			resource 		= 15;
+	bool   			reorganizes 	= 16; 
+	HackathonState 	state 			= 17;
+	int64 			maximumQuantity = 18;
+    int64  			createdAt   	= 19;
+    int64  			updatedAt   	= 20;
+    int64  			startAt 	   	= 21;
+    int64  			dueAt 	   		= 22;
+	string 			organizeId 		= 23;
+	bool 			is_deleted 		= 24;
+}
 
 message HackathonListProtoReq {
     PaginateProtoReq paginate = 1;
-    optional string name = 2;
+    optional string  name 	  = 2;
 }
 
 message HackathonListProtoRes {
     repeated HackathonBase hackathons = 1;
-    PaginateProtoModel paginate = 2; 
+    PaginateProtoModel     paginate   = 2; 
 }
 
 message GetHackathonByIdProtoReq {
     string id = 1;
 }
 
+
 message CreateHackathonProtoReq {
-    string name = 1;
-    string detail = 2; 
-    string resource = 3;
-    string category = 4;
-    bool reorganizes = 5;
-    bool status = 6;
-    int64 createdAt = 7;
-    int64 updatedAt = 8;
-    int64 startAt = 9;
-    int64 dueAt = 10;
+    string 	name 	   	= 1;
+    int64 	feeToJoin	= 2;
+	string 	organizeId 	= 3;
+}
+
+message ReCreateHackathonProtoReq {
+	string 				id 			= 1;
+    optional string 	name 	   	= 2;
+	optional int64 		feeToJoin	= 3;
 }
 
 message UpdateHackathonProtoReq {
-    string id = 1;
-    optional string newName = 2;
-    optional string newDetail = 3; 
-    optional string newResource = 4;
-    optional string newCategory = 5;
-    optional bool newReorganizes = 6;
-    optional bool newStatus = 7;
-    optional int64 newStartAt = 8;
-    optional int64 newDueAt = 9;
-    int64 updatedAt = 10;
+    string 						id 			 	= 1;
+    optional string 			name 	   		= 2;
+	optional string 			owner 	   		= 3;
+	optional int64  			feeToJoin 		= 4;
+	optional HackathonType		hackathonType 	= 5;
+	optional string 			url 			= 6;
+	optional string 			logo 			= 7;
+	optional string 			tagline 		= 8;
+	repeated string 			hackathonTag 	= 9;
+	optional string 			contactEmail 	= 10;
+	optional string 			thumbnail  		= 11;
+	optional bool 				isPublic 		= 12;
+	optional string 			description 	= 13;
+	optional string 			rules 			= 14;
+	optional string 			resource 		= 15;
+	optional bool   			reorganizes 	= 16; 
+	optional HackathonState 	state 			= 17;
+	optional int64 				maximumQuantity = 18;
+    optional int64  			startAt 	   	= 19;
+    optional int64  			dueAt 	   		= 20;
 }
 
 message DeleteHackathonProtoReq {
     string id = 1;
 }
 
+/* tblHackathonTags */
+message HackathonTagBase {
+	string id 			= 1;
+	string tagName 		= 2;
+	string description 	= 3;
+}
+
+message HackathonTagListRes {
+	repeated HackathonTagBase hackathonTags = 1;
+}
+
+message GetHackathonTagByIdReq {
+	string id = 1;
+}
+
+message GetHackathonTagListReq {
+	optional string tagName = 1;
+}
+
+message UpdateHackathonTagProtoReq {
+	string id 			= 1;
+	optional string tagName 		= 2;
+	optional string description 	= 3;
+}
+
+message DeleteHackathonTagProtoReq {
+	string id = 1;
+}
+
+
+message CreateHackathonTagProtoReq {
+	string tagName = 1;
+	string description = 2;
+}
+
+/* tblMails */
+message MailBase {
+	string 	hackathonId 	= 1;
+	int64 	timeSetting 	= 2;
+	string 	subject 		= 3;
+	string	content 		= 4;
+	bool	isSend 			= 5;
+}
+
+message GetMailByIdReq {
+	string 	hackathonId 	= 1;
+}
+
+message CreateMailProtoReq {
+	string 	hackathonId 	= 1;
+	int64 	timeSetting 	= 2;
+	string 	subject 		= 3;
+	string	content 		= 4;
+	bool	isSend 			= 5;
+}
+
+message UpdateMailProtoReq {
+	string 				hackathonId 	= 1;
+	optional int64 		timeSetting 	= 2;
+	optional string 	subject 		= 3;
+	optional string		content 		= 4;
+	optional bool		isSend 			= 5; 
+}
+
+message DeleteMailProtoReq {
+	string hackathonId = 1;
+}
+
+
+
 /*organize*/
 
 message OrganizeBase {
 	string id = 1;
-	string host_id = 2; // FK to the id field of UserProtoModel
-	string hackathon_id = 3; //FK to the id field of HackthonProtoModel
-	string name = 4;
-	string short_name = 5;
-	string url = 6;
-	string logo = 7;
-	string tagline = 8;
+	string hostId = 2; // FK to the id field of UserProtoModel
+	string name = 3;
+	string shortName = 4;
+	string url = 5;
+	string logo = 6;
+	string tagline = 7;
 	string description = 9;
 	string location = 10;
-	Organize_type organize_type = 11;
-	string website_official = 12;
-	string chain_official = 13;
-	bool official = 14;
-	bool is_del = 15;
+	OrganizeType organizeType = 11;
+	string websiteOfficial = 12;
+	bool official = 13;
+	bool isDel = 14;
+	int64 createdAt = 15;
 }
 
-enum Organize_type{
+enum OrganizeType{
 	University = 0;
-	Organize = 1;
+	Organization = 1;
 }
 
 message OrgListProtoReq {
@@ -114,34 +220,31 @@ message GetOrgByIdProtoReq{
 }
 
 message CreateOrgProtoReq {
-	string host_id = 1; // FK to the id field of UserProtoModel
-	optional string hackathon_id = 2; //FK to the id field of HackthonProtoModel
-	string name = 3;
-	optional string short_name = 4;
-	string url = 5;
-	optional string logo = 6;
-	optional string tagline = 7;
-	optional string description = 8;
-	optional string location = 9;
-	optional string website_official = 10;
-	Organize_type organize_type = 11;
-	optional string chain_official = 12;
-	bool official = 13;
+	string hostId = 1; // FK to the id field of UserProtoModel
+	string name = 2;
+	optional string shortName = 3;
+	string url = 4;
+	optional string logo = 5;
+	optional string tagline = 6;
+	optional string description = 7;
+	optional string location = 8;
+	optional string websiteOfficial = 9;
+	OrganizeType organizeType = 10;
+	bool official = 11;
+	int64 createdAt = 12;
 }
 
 message UpdateOrgProtoReq{
 	string id = 1;
-	optional string host_id = 2; // FK to the id field of UserProtoModel
-	optional string hackathon_id = 3; //FK to the id field of HackthonProtoModel
-	optional string name = 4;
-	optional string short_name = 5;
-	optional string url = 6;
-	optional string logo = 7;
-	optional string tagline = 8;
-	optional string description = 9;
-	optional string location = 10;
-	optional string website_official = 11;
-	optional string chain_official = 12;
+	optional string hostId = 2; // FK to the id field of UserProtoModel
+	optional string name = 3;
+	optional string shortName = 4;
+	optional string url = 5;
+	optional string logo = 6;
+	optional string tagline = 7;
+	optional string description = 8;
+	optional string location = 9;
+	optional string websiteOfficial = 10;
 }
 
 message DeleteOrgProtoReq {
@@ -158,19 +261,39 @@ message RestoreOrgProtoReq {
 
 message Empty {}
 
+
+
 service HackathonServiceProtocol {
-    rpc GetHackathonCall(HackathonListProtoReq) returns (HackathonListProtoRes);
+    rpc GetHackathonCall(HackathonListProtoReq) 	   returns (HackathonListProtoRes);
     rpc GetHackathonByIdCall(GetHackathonByIdProtoReq) returns (HackathonBase);
-    rpc CreateHackathonCall(CreateHackathonProtoReq) returns (HackathonBase);
-    rpc UpdateHackathonCall(UpdateHackathonProtoReq) returns (HackathonBase);
-    rpc DeleteHackathonCall(DeleteHackathonProtoReq) returns (Empty);
+    rpc CreateHackathonCall(CreateHackathonProtoReq)   returns (HackathonBase);
+	rpc ReCreateHackathonCall(ReCreateHackathonProtoReq) returns (HackathonBase);
+    rpc UpdateHackathonCall(UpdateHackathonProtoReq)   returns (HackathonBase);
+    rpc DeleteHackathonCall(DeleteHackathonProtoReq)   returns (Empty);
+	rpc RemoveHackathonCall(DeleteHackathonProtoReq)   returns (Empty);
+	rpc RestoreHackathonCall(DeleteHackathonProtoReq)   returns (Empty);
+	
+
+	// Hackathon_tag
+	rpc GetHackathonTagsCall(GetHackathonTagListReq) returns (HackathonTagListRes);
+	rpc GetHackathonTagByIdCall(GetHackathonTagByIdReq) returns (HackathonTagBase);
+	rpc CreateHackathonTagCall(CreateHackathonTagProtoReq) returns (HackathonTagBase);
+	rpc UpdateHackathonTagCall(UpdateHackathonTagProtoReq) returns (HackathonTagBase);
+	rpc DeleteHackathonTagCall(DeleteHackathonTagProtoReq) returns (Empty);
+
+	// Hackathon_mail
+	rpc GetMailByIdCall(GetMailByIdReq) returns (MailBase);
+	rpc CreateMailCall(CreateMailProtoReq) returns (MailBase);
+	rpc UpdateMailCall(UpdateMailProtoReq) returns (MailBase);
+	rpc DeleteMailCall(DeleteMailProtoReq) returns (Empty);
+
 	// Organize
-	rpc GetOrgsCall(OrgListProtoReq) returns (OrganizeList);
+	rpc GetOrgsCall(OrgListProtoReq) 	   returns (OrganizeList);
 	rpc GetOrgByIdCall(GetOrgByIdProtoReq) returns (OrganizeBase);
-	rpc CreateOrgCall(CreateOrgProtoReq) returns (OrganizeBase);
-	rpc UpdateOrgCall(UpdateOrgProtoReq) returns (OrganizeBase);
-	rpc DeleteOrgCall(DeleteOrgProtoReq) returns (Empty);
-	rpc RemoveOrgCall(RemoveOrgProtoReq) returns (Empty);
+	rpc CreateOrgCall(CreateOrgProtoReq)   returns (OrganizeBase);
+	rpc UpdateOrgCall(UpdateOrgProtoReq)   returns (OrganizeBase);
+	rpc DeleteOrgCall(DeleteOrgProtoReq)   returns (Empty);
+	rpc RemoveOrgCall(RemoveOrgProtoReq)   returns (Empty);
 	rpc RestoreOrgCall(RestoreOrgProtoReq) returns (Empty);
 
 }
