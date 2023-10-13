@@ -40,7 +40,7 @@ message HackathonBase {
 	string 			url 			= 6;
 	string 			logo 			= 7;
 	string 			tagline 		= 8;
-	string 			hackathonTag 	= 9;
+	repeated string hackathonTag 	= 9;
 	string 			contactEmail 	= 10;
 	string 			thumbnail  		= 11;
 	bool 			isPublic 		= 12;
@@ -94,7 +94,7 @@ message UpdateHackathonProtoReq {
 	optional string 			url 			= 6;
 	optional string 			logo 			= 7;
 	optional string 			tagline 		= 8;
-	optional string 			hackathonTag 	= 9;
+	repeated string 			hackathonTag 	= 9;
 	optional string 			contactEmail 	= 10;
 	optional string 			thumbnail  		= 11;
 	optional bool 				isPublic 		= 12;
