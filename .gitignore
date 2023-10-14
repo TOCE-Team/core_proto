@@ -1,3 +1,4 @@
 /target
 /Cargo.lock
 /src/*_service.rs
+.DS_Store

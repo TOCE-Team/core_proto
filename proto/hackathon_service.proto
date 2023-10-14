@@ -185,6 +185,8 @@ message DeleteMailProtoReq {
 
 
 /*organize*/
+
+
 message OrganizeBase {
 	string id = 1;
 	string hostId = 2; // FK to the id field of UserProtoModel

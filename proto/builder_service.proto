@@ -1,14 +1,14 @@
-syntax = "proto3"
-import "user_service.proto"
+syntax = "proto3";
+import "./user_service.proto";
 package builder_service;
 
 message BuilderProtoModel {
     string id = 1;
     string name = 2;
     string detail = 3;
-    string user_id = 4;     // Foreign key to the id field of UserProtoModel
-    string hackathon_id = 5; // Foreign key to the id field of HackathonProtoModel
-    string winning_hackathon = 6; // Foreign key to the id feild of HackathonProtoModel
+    string userId = 4;     // Foreign key to the id field of UserProtoModel
+    string hackathonId = 5; // Foreign key to the id field of HackathonProtoModel
+    string winningHackathon = 6; // Foreign key to the id feild of HackathonProtoModel
 }
 
 message BuilderListProtoRes {

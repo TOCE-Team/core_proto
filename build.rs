@@ -4,11 +4,8 @@ fn main() {
     #[cfg(feature = "user")]
     tonic_build::configure()
         .out_dir("src")
-        .enum_attribute(".", "#[derive(serde::Serialize, serde::Deserialize)]")
-        .message_attribute(
-            ".",
-            "#[derive(serde::Serialize, serde::Deserialize, derive_builder::Builder)]",
-        )
+        .type_attribute(".", serde_impl)
+        .message_attribute(".", "#[derive(sqlx::FromRow)]")
         .compile(&["proto/user_service.proto"], &["proto"])
         .expect("Couldn't compile proto files");
 
