@@ -21,6 +21,7 @@ tonic-build = { version = "0.10.0" }
 
 [features]
 default = ["all"]
-all = ["user", "hackathon"]
+all = ["user", "hackathon","category"]
 user = []
 hackathon = []
+category = []
