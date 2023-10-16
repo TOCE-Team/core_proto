@@ -263,12 +263,12 @@ message RestoreOrgProtoReq {
 }
 
 message AddModeratorProtoReq{
-	string orgId = 1;
+	string parentId = 1;
 	string moderatorId = 2;
 } 
 
 message ViewModeratorProtoReq{
-	string          			org_id      = 1;
+	string          			parentId   = 1;
 	optional int64  			offset      = 2;
     optional int32  			limit       = 3;
     optional string 			id          = 4;
