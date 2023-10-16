@@ -297,7 +297,8 @@ service HackathonServiceProtocol {
     rpc DeleteHackathonCall(DeleteHackathonProtoReq)   returns (Empty);
 	rpc RemoveHackathonCall(DeleteHackathonProtoReq)   returns (Empty);
 	rpc RestoreHackathonCall(DeleteHackathonProtoReq)   returns (Empty);
-	
+	rpc AddModeratorHackathonCall(AddModeratorProtoReq) returns (Empty);
+	rpc ViewModeratorHackathonCall(ViewModeratorProtoReq) returns (user_service.UserList);
 
 	// Hackathon_tag
 	rpc GetHackathonTagsCall(GetHackathonTagListReq) returns (HackathonTagListRes);
