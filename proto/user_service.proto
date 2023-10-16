@@ -94,7 +94,7 @@ message GetUserByIdProtoReq {
 }
 
 message LoginUserProtoReq {
-    string email    = 1;
+    string nickname = 1;
     string password = 2;
 }
 
