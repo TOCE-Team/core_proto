@@ -182,6 +182,49 @@ message DeleteMailProtoReq {
 	string hackathonId = 1;
 }
 
+/* tblRequirement */
+
+message RequirementBase {
+	string 						hackathonId 		= 1;
+	repeated string 			inviteOnly 			= 2;
+	repeated string 			occupationId 		= 3;
+	repeated user_service.Level level 				= 4;
+	int64 						teamMemberLimit 	= 5;
+	int64 						minimumTeamSize 	= 6;
+	repeated int64				countries			= 7;
+	repeated int64 				excluded_countries 	= 8;
+
+}
+
+message GetRequirementProtoReq {
+	string hackathonId = 1;
+}
+
+message CreateRequirementProtoReq {
+	string 						hackathonId 		= 1;
+	repeated string 			inviteOnly 			= 2;
+	repeated string 			occupationId 		= 3;
+	repeated user_service.Level level 				= 4;
+	int64 						teamMemberLimit 	= 5;
+	int64 						minimumTeamSize 	= 6;
+	repeated int64				countries			= 7;
+	repeated int64 				excluded_countries 	= 8;
+}
+
+message UpdateRequirementProtoReq {
+	string 						hackathonId 		= 1;
+	repeated string 			inviteOnly 			= 2;
+	repeated string 			occupationId 		= 3;
+	repeated user_service.Level level 				= 4;
+	optional int64 				teamMemberLimit 	= 5;
+	optional int64 				minimumTeamSize 	= 6;
+	repeated int64				countries			= 7;
+	repeated int64 				excluded_countries 	= 8;
+}
+
+message DeleteRequirementProtoReq {
+	string hackathonId = 1;
+}
 
 
 /*organize*/
@@ -312,6 +355,12 @@ service HackathonServiceProtocol {
 	rpc CreateMailCall(CreateMailProtoReq) returns (MailBase);
 	rpc UpdateMailCall(UpdateMailProtoReq) returns (MailBase);
 	rpc DeleteMailCall(DeleteMailProtoReq) returns (Empty);
+
+	// Hackathon_requirement
+	rpc GetRequirementByIdCall(GetRequirementProtoReq) returns (RequirementBase);
+	rpc CreateRequirementCall(CreateRequirementProtoReq) returns (RequirementBase);
+	rpc UpdateRequirementCall(UpdateRequirementProtoReq) returns (RequirementBase);
+	rpc DeleteRequirementCall(DeleteRequirementProtoReq) returns (Empty);
 
 	// Organize
 	rpc GetOrgsCall(OrgListProtoReq) 	   returns (OrganizeList);
