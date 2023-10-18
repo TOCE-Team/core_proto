@@ -2,6 +2,8 @@ syntax = "proto3";
 package  category_service;
 
 //import "util.proto";
+import public "google/protobuf/empty.proto";
+
 
 enum CategoryLevelProtoModel{
   UNSPECIFIED = 0;
@@ -55,5 +57,4 @@ service CategoryServiceProto{
   rpc CreateCategoryCall(CreateCategoryProtoReq) returns (CategoryProtoModel);
   rpc GetCategoryCall(GetCategoryProtoReq) returns (GetCategoryProtoRes);
   rpc GetAllCategoryLevel1Call(Empty) returns (CategoryProtoList);
-  rpc GetChildrenByCategoryIdCall(GetCategoryChildrenProtoReq) returns (CategoryProtoList);
 }
