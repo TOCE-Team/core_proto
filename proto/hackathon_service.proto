@@ -277,6 +277,64 @@ message DeleteTrackProtoReq {
 	string 	trackId 		= 1;
 }
 
+/* tbl_Invite */
+enum InvitationType {
+    Judge    	= 0;
+    Team     	= 1;
+	Moderator 	= 2;
+}
+enum InvitationState {
+    Waiting    	= 0;
+    Accept     	= 1;
+	Reject 		= 2;
+}
+
+message InvitationBase {
+	string 			parentId 		= 1;
+	string 			userId 			= 2;
+	string 			title 			= 3;
+	string 			message 		= 4;			
+	InvitationType 	invitationType 	= 5;
+	InvitationState state 			= 6;
+}
+
+message GetInvitationListReq {
+	optional string parentId 	= 1;   
+	optional string userId 		= 2;
+}
+
+message InvitationListRes {
+	repeated InvitationBase invitations = 1;
+}
+
+message CreateInvitationProtoReq {
+	string 			parentId 		= 1;
+	string 			userId 			= 2;
+	string 			title 			= 3;
+	string 			message 		= 4;			
+	InvitationType 	invitationType 	= 5;
+	InvitationState state 			= 6;
+}
+
+message UpdateInvitationProtoReq {
+	string 						parentId 		= 1;
+	string 						userId 			= 2;
+	optional string 			title 			= 3;
+	optional string 			message 		= 4;			
+}
+
+message ResponseInvitationProtoReq {
+	string 	parentId 		= 1;
+	string 	userId 			= 2;
+	InvitationState state 	= 3;
+}
+
+message DeleteInvitationProtoReq {
+	string 	parentId 		= 1;
+	string 	userId 			= 2;
+}
+
+
 /*organize*/
 
 
@@ -418,6 +476,13 @@ service HackathonServiceProtocol {
 	rpc CreateTrackCall(CreateTrackProtoReq) returns (TrackBase);
 	rpc UpdateTrackCall(UpdateTrackProtoReq) returns (TrackBase);
 	rpc DeleteTrackCall(DeleteTrackProtoReq) returns (Empty);
+
+	// Invitation
+	rpc GetInvitationsCall(GetInvitationListReq) returns (InvitationListRes);
+	rpc CreateInvitationCall(CreateInvitationProtoReq) returns (InvitationBase);
+	rpc UpdateInvitationCall(UpdateInvitationProtoReq) returns (InvitationBase);
+	rpc ResponseInvitationCall(ResponseInvitationProtoReq) returns (InvitationBase);
+	rpc DeleteInvitationCall(DeleteInvitationProtoReq) returns (Empty);
 
 	// Organize
 	rpc GetOrgsCall(OrgListProtoReq) 	   returns (OrganizeList);
