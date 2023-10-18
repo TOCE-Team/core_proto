@@ -133,8 +133,9 @@ message GetHackathonTagListReq {
 	optional string tagName = 1;
 }
 
+
 message UpdateHackathonTagProtoReq {
-	string id 			= 1;
+	string id 						= 1;
 	optional string tagName 		= 2;
 	optional string description 	= 3;
 }
@@ -226,6 +227,55 @@ message DeleteRequirementProtoReq {
 	string hackathonId = 1;
 }
 
+/* tblTrack */
+
+message TrackBase {
+	string 	trackId 		= 1;
+	string 	hackathonId 	= 2;
+	string 	sponsor 		= 3;
+	string 	title 			= 4;
+	string 	description		= 5;
+	string 	material 		= 6;
+	string 	url 			= 7;
+	string	certificate		= 8;
+}
+
+message GetTrackListReq {
+	optional string hackathonId = 1;
+}
+
+message GetTrackByIdReq {
+	string trackId = 1;
+}
+
+message TrackListRes {
+	repeated TrackBase tracks = 1;
+}
+
+message CreateTrackProtoReq {
+	string 	hackathonId 	= 1;
+	string 	sponsor 		= 2;
+	string 	title 			= 3;
+	string 	description		= 4;
+	string 	material 		= 5;
+	string 	url 			= 6;
+	string	certificate		= 7;
+}
+
+message UpdateTrackProtoReq {
+	string 				trackId 		= 1;
+	optional string 	hackathonId 	= 2;
+	optional string 	sponsor 		= 3;
+	optional string 	title 			= 4;
+	optional string 	description		= 5;
+	optional string 	material 		= 6;
+	optional string 	url 			= 7;
+	optional string		certificate		= 8;
+}
+
+message DeleteTrackProtoReq {
+	string 	trackId 		= 1;
+}
 
 /*organize*/
 
@@ -361,6 +411,13 @@ service HackathonServiceProtocol {
 	rpc CreateRequirementCall(CreateRequirementProtoReq) returns (RequirementBase);
 	rpc UpdateRequirementCall(UpdateRequirementProtoReq) returns (RequirementBase);
 	rpc DeleteRequirementCall(DeleteRequirementProtoReq) returns (Empty);
+
+	// Hackathon_Track
+	rpc GetTracksCall(GetTrackListReq) returns (TrackListRes);
+	rpc GetTrackByIdCall(GetTrackByIdReq) returns (TrackBase);
+	rpc CreateTrackCall(CreateTrackProtoReq) returns (TrackBase);
+	rpc UpdateTrackCall(UpdateTrackProtoReq) returns (TrackBase);
+	rpc DeleteTrackCall(DeleteTrackProtoReq) returns (Empty);
 
 	// Organize
 	rpc GetOrgsCall(OrgListProtoReq) 	   returns (OrganizeList);
