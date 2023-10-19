@@ -13,6 +13,7 @@ enum CategoryLevelProtoModel{
 message Id{
   Id value = 1;
 }
+
 message CategoryProtoModel {
   string category_id = 1;
   string name = 2;
@@ -23,6 +24,13 @@ message CategoryProtoModel {
   int64 updated_at = 7;
   bool is_del = 8;
   optional string description = 9;
+}
+
+message UpdateCategoryProtoReq {
+  string category_id = 1;
+  optional string name = 2;
+  optional string parent = 3;
+  optional string description = 4; 
 }
 
 message CreateCategoryProtoReq{
@@ -56,4 +64,5 @@ service CategoryServiceProto{
   rpc GetCategoryCall(GetCategoryProtoReq) returns (GetCategoryProtoRes);
   rpc GetAllCategoryLevel1Call(Empty) returns (CategoryProtoList);
   rpc GetChildrenByCategoryIdCall(GetCategoryChildrenProtoReq) returns (CategoryProtoList);
+  rpc UpdateCategoryCall(UpdateCategoryProtoReq) returns (CategoryProtoModel);
 }
