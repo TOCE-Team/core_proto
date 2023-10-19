@@ -313,7 +313,6 @@ message CreateInvitationProtoReq {
 	string 			title 			= 3;
 	string 			message 		= 4;			
 	InvitationType 	invitationType 	= 5;
-	InvitationState state 			= 6;
 }
 
 message UpdateInvitationProtoReq {
