@@ -333,6 +333,47 @@ message DeleteInvitationProtoReq {
 	string 	userId 			= 2;
 }
 
+/* tblJudge */
+
+message JudgeBase {
+	string 	hackathonId = 1;
+	string 	userId 		= 2;
+	string 	title 		= 3;
+	string 	photo		= 4;
+	string 	profile 	= 5;
+	string 	organize 	= 6;
+}
+
+message GetJudgeListReq {
+	string hackathonId = 1;
+	optional string userId = 2;
+}
+
+
+message JudgeListRes {
+	repeated JudgeBase judges = 1;
+}
+
+message CreateJudgeProtoReq {
+	string 	hackathonId = 1;
+	string 	userId 		= 2;
+}
+
+message UpdateJudgeProtoReq {
+	string 				hackathonId = 1;
+	string 				userId 		= 2;
+	optional string 	title 		= 3;
+	optional string 	photo 		= 4;
+	optional string 	profile		= 5;
+	optional string 	organize 	= 6;
+
+}
+
+message DeleteJudgeProtoReq {
+	string 				hackathonId = 1;
+	string 				userId 		= 2;
+}
+
 
 /*organize*/
 
@@ -482,6 +523,12 @@ service HackathonServiceProtocol {
 	rpc UpdateInvitationCall(UpdateInvitationProtoReq) returns (InvitationBase);
 	rpc ResponseInvitationCall(ResponseInvitationProtoReq) returns (InvitationBase);
 	rpc DeleteInvitationCall(DeleteInvitationProtoReq) returns (Empty);
+
+	// Judge
+	rpc GetJudgesCall(GetJudgeListReq) returns (JudgeListRes);
+	rpc CreateJudgeCall(CreateJudgeProtoReq) returns (JudgeBase);
+	rpc UpdateJudgeCall(UpdateJudgeProtoReq) returns (JudgeBase);
+	rpc DeleteJudgeCall(DeleteJudgeProtoReq) returns (Empty);
 
 	// Organize
 	rpc GetOrgsCall(OrgListProtoReq) 	   returns (OrganizeList);
