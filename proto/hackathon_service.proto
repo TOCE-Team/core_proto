@@ -277,6 +277,48 @@ message DeleteTrackProtoReq {
 	string 	trackId 		= 1;
 }
 
+/* tblPrize */
+
+message PrizeBase {
+	string 	prizeId 			= 1;
+	string 	trackId 			= 2;
+	int64 	winners_announced 	= 3;
+	string 	name 				= 4;
+	int64 	prize 				= 5;
+	string 	winner				= 6;		// fk team_id
+}
+
+message GetPrizeListReq {
+	string trackId = 1;
+	optional string name = 2;
+}
+message GetPrizeByIdReq {
+	string prizeId = 1;
+}
+
+message PrizeListRes {
+	repeated PrizeBase prizes = 1;
+}
+
+message CreatePrizeProtoReq {
+	string 	trackId 			= 1;
+	int64 	winners_announced 	= 2;
+	string 	name 				= 3;
+	int64 	prize 				= 4;
+}
+
+message UpdatePrizeProtoReq {
+	string 	prizeId 					= 1;
+	optional int64 winners_announced 	= 2;
+	optional string name 				= 3;
+	optional int64 prize 				= 4;
+	optional string winner 				= 5;
+}
+
+message DeletePrizeProtoReq {
+	string 	prizeId 		= 1;
+}
+
 /* tbl_Invite */
 enum InvitationType {
     Judge    	= 0;
@@ -516,6 +558,13 @@ service HackathonServiceProtocol {
 	rpc CreateTrackCall(CreateTrackProtoReq) returns (TrackBase);
 	rpc UpdateTrackCall(UpdateTrackProtoReq) returns (TrackBase);
 	rpc DeleteTrackCall(DeleteTrackProtoReq) returns (Empty);
+
+	// Hackathon_Prize
+	rpc GetPrizesCall(GetPrizeListReq) returns (PrizeListRes);
+	rpc GetPrizeByIdCall(GetPrizeByIdReq) returns (PrizeBase);
+	rpc CreatePrizeCall(CreatePrizeProtoReq) returns (PrizeBase);
+	rpc UpdatePrizeCall(UpdatePrizeProtoReq) returns (PrizeBase);
+	rpc DeletePrizeCall(DeletePrizeProtoReq) returns (Empty);
 
 	// Invitation
 	rpc GetInvitationsCall(GetInvitationListReq) returns (InvitationListRes);
