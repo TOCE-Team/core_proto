@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package hackathon_service;
 
+import "user_service.proto";
+
 /*paginate*/
 message PaginateProtoModel{
     uint32 total 	 = 1;
@@ -131,8 +133,9 @@ message GetHackathonTagListReq {
 	optional string tagName = 1;
 }
 
+
 message UpdateHackathonTagProtoReq {
-	string id 			= 1;
+	string id 						= 1;
 	optional string tagName 		= 2;
 	optional string description 	= 3;
 }
@@ -180,9 +183,200 @@ message DeleteMailProtoReq {
 	string hackathonId = 1;
 }
 
+/* tblRequirement */
+
+message RequirementBase {
+	string 						hackathonId 		= 1;
+	repeated string 			inviteOnly 			= 2;
+	repeated string 			occupationId 		= 3;
+	repeated user_service.Level level 				= 4;
+	int64 						teamMemberLimit 	= 5;
+	int64 						minimumTeamSize 	= 6;
+	repeated int64				countries			= 7;
+	repeated int64 				excluded_countries 	= 8;
+
+}
+
+message GetRequirementProtoReq {
+	string hackathonId = 1;
+}
+
+message CreateRequirementProtoReq {
+	string 						hackathonId 		= 1;
+	repeated string 			inviteOnly 			= 2;
+	repeated string 			occupationId 		= 3;
+	repeated user_service.Level level 				= 4;
+	int64 						teamMemberLimit 	= 5;
+	int64 						minimumTeamSize 	= 6;
+	repeated int64				countries			= 7;
+	repeated int64 				excluded_countries 	= 8;
+}
+
+message UpdateRequirementProtoReq {
+	string 						hackathonId 		= 1;
+	repeated string 			inviteOnly 			= 2;
+	repeated string 			occupationId 		= 3;
+	repeated user_service.Level level 				= 4;
+	optional int64 				teamMemberLimit 	= 5;
+	optional int64 				minimumTeamSize 	= 6;
+	repeated int64				countries			= 7;
+	repeated int64 				excluded_countries 	= 8;
+}
+
+message DeleteRequirementProtoReq {
+	string hackathonId = 1;
+}
+
+/* tblTrack */
+
+message TrackBase {
+	string 	trackId 		= 1;
+	string 	hackathonId 	= 2;
+	string 	sponsor 		= 3;
+	string 	title 			= 4;
+	string 	description		= 5;
+	string 	material 		= 6;
+	string 	url 			= 7;
+	string	certificate		= 8;
+}
+
+message GetTrackListReq {
+	optional string hackathonId = 1;
+}
+
+message GetTrackByIdReq {
+	string trackId = 1;
+}
+
+message TrackListRes {
+	repeated TrackBase tracks = 1;
+}
+
+message CreateTrackProtoReq {
+	string 	hackathonId 	= 1;
+	string 	sponsor 		= 2;
+	string 	title 			= 3;
+	string 	description		= 4;
+	string 	material 		= 5;
+	string 	url 			= 6;
+	string	certificate		= 7;
+}
+
+message UpdateTrackProtoReq {
+	string 				trackId 		= 1;
+	optional string 	hackathonId 	= 2;
+	optional string 	sponsor 		= 3;
+	optional string 	title 			= 4;
+	optional string 	description		= 5;
+	optional string 	material 		= 6;
+	optional string 	url 			= 7;
+	optional string		certificate		= 8;
+}
+
+message DeleteTrackProtoReq {
+	string 	trackId 		= 1;
+}
+
+/* tbl_Invite */
+enum InvitationType {
+    Judge    	= 0;
+    Team     	= 1;
+	Moderator 	= 2;
+}
+enum InvitationState {
+    Waiting    	= 0;
+    Accept     	= 1;
+	Reject 		= 2;
+}
+
+message InvitationBase {
+	string 			parentId 		= 1;
+	string 			userId 			= 2;
+	string 			title 			= 3;
+	string 			message 		= 4;			
+	InvitationType 	invitationType 	= 5;
+	InvitationState state 			= 6;
+}
+
+message GetInvitationListReq {
+	optional string parentId 	= 1;   
+	optional string userId 		= 2;
+}
+
+message InvitationListRes {
+	repeated InvitationBase invitations = 1;
+}
+
+message CreateInvitationProtoReq {
+	string 			parentId 		= 1;
+	string 			userId 			= 2;
+	string 			title 			= 3;
+	string 			message 		= 4;			
+	InvitationType 	invitationType 	= 5;
+}
+
+message UpdateInvitationProtoReq {
+	string 						parentId 		= 1;
+	string 						userId 			= 2;
+	optional string 			title 			= 3;
+	optional string 			message 		= 4;			
+}
+
+message ResponseInvitationProtoReq {
+	string 	parentId 		= 1;
+	string 	userId 			= 2;
+	InvitationState state 	= 3;
+}
+
+message DeleteInvitationProtoReq {
+	string 	parentId 		= 1;
+	string 	userId 			= 2;
+}
+
+/* tblJudge */
+
+message JudgeBase {
+	string 	hackathonId = 1;
+	string 	userId 		= 2;
+	string 	title 		= 3;
+	string 	photo		= 4;
+	string 	profile 	= 5;
+	string 	organize 	= 6;
+}
+
+message GetJudgeListReq {
+	string hackathonId = 1;
+	optional string userId = 2;
+}
+
+
+message JudgeListRes {
+	repeated JudgeBase judges = 1;
+}
+
+message CreateJudgeProtoReq {
+	string 	hackathonId = 1;
+	string 	userId 		= 2;
+}
+
+message UpdateJudgeProtoReq {
+	string 				hackathonId = 1;
+	string 				userId 		= 2;
+	optional string 	title 		= 3;
+	optional string 	photo 		= 4;
+	optional string 	profile		= 5;
+	optional string 	organize 	= 6;
+
+}
+
+message DeleteJudgeProtoReq {
+	string 				hackathonId = 1;
+	string 				userId 		= 2;
+}
 
 
 /*organize*/
+
 
 message OrganizeBase {
 	string id = 1;
@@ -259,6 +453,28 @@ message RestoreOrgProtoReq {
 	string id = 1;
 }
 
+message AddModeratorProtoReq{
+	string parentId = 1;
+	string moderatorId = 2;
+} 
+
+message ViewModeratorProtoReq{
+	string          			parentId   = 1;
+	optional int64  			offset      = 2;
+    optional int32  			limit       = 3;
+    optional string 			id          = 4;
+    optional string 			firstName   = 5;
+    optional string 			lastName    = 6;
+    optional string 			nickname    = 7;
+    optional string 			email       = 8;
+    optional user_service.Role  role        = 9;
+    optional user_service.Level level       = 10;
+    optional int32  			totalCredit = 11;
+    optional int64  			createdAt   = 12;
+    optional int64  			updatedAt   = 13;
+
+}
+
 message Empty {}
 
 
@@ -272,7 +488,8 @@ service HackathonServiceProtocol {
     rpc DeleteHackathonCall(DeleteHackathonProtoReq)   returns (Empty);
 	rpc RemoveHackathonCall(DeleteHackathonProtoReq)   returns (Empty);
 	rpc RestoreHackathonCall(DeleteHackathonProtoReq)   returns (Empty);
-	
+	rpc AddModeratorHackathonCall(AddModeratorProtoReq) returns (Empty);
+	rpc ViewModeratorHackathonCall(ViewModeratorProtoReq) returns (user_service.UserList);
 
 	// Hackathon_tag
 	rpc GetHackathonTagsCall(GetHackathonTagListReq) returns (HackathonTagListRes);
@@ -287,6 +504,32 @@ service HackathonServiceProtocol {
 	rpc UpdateMailCall(UpdateMailProtoReq) returns (MailBase);
 	rpc DeleteMailCall(DeleteMailProtoReq) returns (Empty);
 
+	// Hackathon_requirement
+	rpc GetRequirementByIdCall(GetRequirementProtoReq) returns (RequirementBase);
+	rpc CreateRequirementCall(CreateRequirementProtoReq) returns (RequirementBase);
+	rpc UpdateRequirementCall(UpdateRequirementProtoReq) returns (RequirementBase);
+	rpc DeleteRequirementCall(DeleteRequirementProtoReq) returns (Empty);
+
+	// Hackathon_Track
+	rpc GetTracksCall(GetTrackListReq) returns (TrackListRes);
+	rpc GetTrackByIdCall(GetTrackByIdReq) returns (TrackBase);
+	rpc CreateTrackCall(CreateTrackProtoReq) returns (TrackBase);
+	rpc UpdateTrackCall(UpdateTrackProtoReq) returns (TrackBase);
+	rpc DeleteTrackCall(DeleteTrackProtoReq) returns (Empty);
+
+	// Invitation
+	rpc GetInvitationsCall(GetInvitationListReq) returns (InvitationListRes);
+	rpc CreateInvitationCall(CreateInvitationProtoReq) returns (InvitationBase);
+	rpc UpdateInvitationCall(UpdateInvitationProtoReq) returns (InvitationBase);
+	rpc ResponseInvitationCall(ResponseInvitationProtoReq) returns (InvitationBase);
+	rpc DeleteInvitationCall(DeleteInvitationProtoReq) returns (Empty);
+
+	// Judge
+	rpc GetJudgesCall(GetJudgeListReq) returns (JudgeListRes);
+	rpc CreateJudgeCall(CreateJudgeProtoReq) returns (JudgeBase);
+	rpc UpdateJudgeCall(UpdateJudgeProtoReq) returns (JudgeBase);
+	rpc DeleteJudgeCall(DeleteJudgeProtoReq) returns (Empty);
+
 	// Organize
 	rpc GetOrgsCall(OrgListProtoReq) 	   returns (OrganizeList);
 	rpc GetOrgByIdCall(GetOrgByIdProtoReq) returns (OrganizeBase);
@@ -295,5 +538,6 @@ service HackathonServiceProtocol {
 	rpc DeleteOrgCall(DeleteOrgProtoReq)   returns (Empty);
 	rpc RemoveOrgCall(RemoveOrgProtoReq)   returns (Empty);
 	rpc RestoreOrgCall(RestoreOrgProtoReq) returns (Empty);
-
+	rpc AddModeratorCall(AddModeratorProtoReq) returns (Empty);
+	rpc ViewModeratorCall(ViewModeratorProtoReq) returns (user_service.UserList);
 }
