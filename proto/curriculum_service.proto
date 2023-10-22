@@ -37,6 +37,6 @@ message CreateCourseProtoReq {
   optional string course_brief = 5; 
 }
 
-service CurriculumServiceProto {
+service CourseServiceProto {
   rpc CreateCourseCall(CreateCourseProtoReq) returns (CourseProtoModel);
 }
