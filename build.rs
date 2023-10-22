@@ -27,6 +27,6 @@ fn main() {
   tonic_build::configure()
     .out_dir("src")
     .type_attribute(".", serde_impl)
-    .compile(&["proto/curriculum_service.proto"], &["proto"])
+    .compile(&["proto/curriculum/curriculum_service.proto"], &["proto/curriculum"])
     .expect("Couldn't compile proto files");
 }

@@ -1,0 +1,7 @@
+syntax = "proto3";
+package  curriculum_service;
+import "course_proto_model.proto";
+
+service CurriculumServiceProto {
+  rpc CreateCourseCall(CreateCourseProtoReq) returns (CourseProtoModel);
+}

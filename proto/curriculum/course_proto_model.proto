@@ -36,7 +36,3 @@ message CreateCourseProtoReq {
   int64 languages = 4;
   optional string course_brief = 5; 
 }
-
-service CurriculumServiceProto {
-  rpc CreateCourseCall(CreateCourseProtoReq) returns (CourseProtoModel);
-}
