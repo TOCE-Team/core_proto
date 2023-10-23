@@ -1,18 +1,18 @@
 fn main() {
-    let serde_impl = "#[derive(serde::Serialize, serde::Deserialize)]";
-
     #[cfg(feature = "user")]
     tonic_build::configure()
         .out_dir("src")
-        .type_attribute(".", serde_impl)
-        .message_attribute(".", "#[derive(sqlx::FromRow)]")
-        .compile(&["proto/user_service.proto"], &[""])
+        .type_attribute(
+            ".",
+            "#[derive(serde::Serialize, serde::Deserialize, sqlx::FromRow)]",
+        )
+        .compile(&["proto/user_service.proto"], &["."])
         .expect("Couldn't compile proto files");
 
     #[cfg(feature = "hackathon")]
     tonic_build::configure()
         .out_dir("src")
-        .type_attribute(".", serde_impl)
-        .compile(&["proto/hackathon_service.proto"], &[""])
+        .type_attribute(".", "#[derive(serde::Serialize, serde::Deserialize)]")
+        .compile(&["proto/hackathon_service.proto"], &["."])
         .expect("Couldn't compile proto files");
 }
