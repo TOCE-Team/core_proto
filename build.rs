@@ -6,13 +6,13 @@ fn main() {
         .out_dir("src")
         .type_attribute(".", serde_impl)
         .message_attribute(".", "#[derive(sqlx::FromRow)]")
-        .compile(&["proto/user_service.proto"], &["proto"])
+        .compile(&["proto/user_service.proto"], &[""])
         .expect("Couldn't compile proto files");
 
     #[cfg(feature = "hackathon")]
     tonic_build::configure()
         .out_dir("src")
         .type_attribute(".", serde_impl)
-        .compile(&["proto/hackathon_service.proto"], &["proto"])
+        .compile(&["proto/hackathon_service.proto"], &[""])
         .expect("Couldn't compile proto files");
 }
