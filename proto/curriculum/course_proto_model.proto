@@ -1,7 +1,7 @@
 syntax = "proto3";
 package  curriculum_service;
 
-enum StateProtoModel {
+enum ObjectStateProtoModel {
   Pending = 0;
   Active = 1;
   Deactive = 2;
@@ -16,12 +16,12 @@ enum PartnerRoleProtoModel {
 
 message CourseProtoModel {
   string course_id = 1;
-  StateProtoModel course_state = 2;
+  ObjectStateProtoModel course_state = 2;
   string course_title = 3;
   int64 course_fee = 4;
-  int64 rating = 5;
+  float rating = 5;
   string difficulty_level = 6;
-  int64 languages = 7;
+  int32 languages = 7;
   string owner = 8;
   bool is_del = 9;
   int64 created_at = 10;
@@ -33,6 +33,6 @@ message CreateCourseProtoReq {
   string course_title = 1;
   int64 course_fee = 2;
   string difficulty_level = 3;
-  int64 languages = 4;
+  int32 languages = 4;
   optional string course_brief = 5; 
 }
