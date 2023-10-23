@@ -134,6 +134,53 @@ message DeleteOAuthStateProtoReq {
     string csrfState = 1;
 }
 
+/*Team*/
+message TeamBase {
+    string 	    id 		  		= 1;
+    int64       paginationId    = 2;
+    string 		name 	   		= 3;
+	string 		description 	= 4;
+	string  	owner 			= 5;
+    int64  		createdAt   	= 6;
+    int64  		updatedAt   	= 7;
+	bool 		isDeleted 		= 8;
+}
+
+message TeamListProtoReq {
+    optional int64  offset      = 1;
+    optional int64  limit       = 2;
+    optional string name 	    = 3;
+    optional string owner       = 4;
+    optional int64  createdAt   = 5;
+    optional int64  updatedAt   = 6;
+}
+
+message TeamListProtoRes {
+    repeated TeamBase teams = 1;
+}
+
+message GetTeamByIdProtoReq {
+    string id = 1;
+}
+
+
+message CreateTeamProtoReq {
+    string 	name 	   	= 1;
+    string 	description	= 2;
+	string 	owner 	    = 3;
+}
+
+message UpdateTeamProtoReq {
+    string 			    id 			= 1;
+    optional string 	name 	   	= 2;
+	optional string 	description = 3;
+	optional string  	owner 		= 4;
+}
+
+message DeleteTeamProtoReq {
+    string id = 1;
+}
+
 service UserServiceProtocol {
     // Normal user calls
 
@@ -154,4 +201,12 @@ service UserServiceProtocol {
     // This command overrides a certain user by id, however it doesn't change the user id
     rpc OverrideUserCall(UserBase)               returns (UserBase);
     rpc AdminDeleteUserCall(GetUserByIdProtoReq) returns (Empty);
+
+    // For team
+    rpc GetTeamsCall(TeamListProtoReq)          returns (TeamListProtoRes);
+    rpc GetTeamByIdCall(GetTeamByIdProtoReq)    returns (TeamBase);
+    rpc CreateTeamCall(CreateTeamProtoReq)      returns (TeamBase);
+    rpc UpdateTeamCall(UpdateTeamProtoReq)      returns (TeamBase);
+    rpc DeleteTeamCall(DeleteTeamProtoReq)      returns (Empty);
+
 }
