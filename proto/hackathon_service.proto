@@ -324,6 +324,8 @@ enum InvitationType {
     Judge    	= 0;
     Team     	= 1;
 	Moderator 	= 2;
+	Assistant	= 3;
+	Mentor		= 4;
 }
 enum InvitationState {
     Waiting    	= 0;
@@ -338,11 +340,17 @@ message InvitationBase {
 	string 			message 		= 4;			
 	InvitationType 	invitationType 	= 5;
 	InvitationState state 			= 6;
+	int64 			deadline		= 7;
 }
 
 message GetInvitationListReq {
 	optional string parentId 	= 1;   
 	optional string userId 		= 2;
+}
+
+message GetInvitationByIdReq {
+	string parentId 	= 1;   
+	string userId 		= 2;
 }
 
 message InvitationListRes {
@@ -355,13 +363,15 @@ message CreateInvitationProtoReq {
 	string 			title 			= 3;
 	string 			message 		= 4;			
 	InvitationType 	invitationType 	= 5;
+	int64 			deadline		= 6;
 }
 
 message UpdateInvitationProtoReq {
 	string 						parentId 		= 1;
 	string 						userId 			= 2;
 	optional string 			title 			= 3;
-	optional string 			message 		= 4;			
+	optional string 			message 		= 4;	
+	optional int64 				deadline		= 5;		
 }
 
 message ResponseInvitationProtoReq {
@@ -568,6 +578,7 @@ service HackathonServiceProtocol {
 
 	// Invitation
 	rpc GetInvitationsCall(GetInvitationListReq) returns (InvitationListRes);
+	rpc GetInvitationByIdCall(GetInvitationByIdReq) returns (InvitationBase);
 	rpc CreateInvitationCall(CreateInvitationProtoReq) returns (InvitationBase);
 	rpc UpdateInvitationCall(UpdateInvitationProtoReq) returns (InvitationBase);
 	rpc ResponseInvitationCall(ResponseInvitationProtoReq) returns (InvitationBase);
