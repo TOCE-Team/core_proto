@@ -23,10 +23,10 @@ fn main() {
     .compile(&["proto/category_service.proto"], &["proto"])
     .expect("Couldn't compile proto files");
 
-  #[cfg(feature = "course")]
+  #[cfg(feature = "curriculum")]
   tonic_build::configure()
     .out_dir("src")
     .type_attribute(".", serde_impl)
-    .compile(&["proto/course_service.proto"], &["proto"])
+    .compile(&["proto/curriculum/curriculum_service.proto"], &["proto/curriculum"])
     .expect("Couldn't compile proto files");
 }

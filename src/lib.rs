@@ -10,5 +10,5 @@ pub mod hackathon_service;
 #[cfg(feature = "category")]
 pub mod category_service;
 
-#[cfg(feature = "category")]
-pub mod course_service;
+#[cfg(feature = "curriculum")]
+pub mod curriculum_service;
