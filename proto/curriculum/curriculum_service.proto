@@ -2,7 +2,21 @@ syntax = "proto3";
 package  curriculum_service;
 
 import "course_proto_model.proto";
+import "assistant_moderator_model.proto";
+
+
 
 service CurriculumServiceProto {
   rpc CreateCourseCall(CreateCourseProtoReq) returns (CourseProtoModel);
+
+
+
+  // For course assistant - moderator
+  rpc AddCourseAssistantCall(AddCourseAssistantProtoReq)            returns (CourseAssistantBase);
+	rpc GetCourseAssistantCall(GetCourseAssistantProtoReq)            returns (CourseAssistantListProRes);
+  rpc DeleteCourseAssistantCall(DeleteCourseAssistantProtoReq)      returns (Empty);
+
+  rpc AddCourseModeratorCall(AddCourseModeratorProtoReq)            returns (CourseModeratorBase);
+	rpc GetCourseModeratorCall(GetCourseModeratorProtoReq)            returns (CourseModeratorListProRes);
+  rpc DeleteCourseModeratorCall(DeleteCourseModeratorProtoReq)      returns (Empty);
 }
