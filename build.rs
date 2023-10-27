@@ -1,14 +1,6 @@
 fn main() {
   let serde_impl = "#[derive(serde::Serialize, serde::Deserialize)]";
 
-  #[cfg(feature = "user")]
-  tonic_build::configure()
-    .out_dir("src")
-    .type_attribute(".", serde_impl)
-    .message_attribute(".", "#[derive(sqlx::FromRow)]")
-    .compile(&["proto/user_service.proto"], &["proto"])
-    .expect("Couldn't compile proto files");
-
   #[cfg(feature = "hackathon")]
   tonic_build::configure()
     .out_dir("src")
@@ -23,10 +15,11 @@ fn main() {
     .compile(&["proto/category_service.proto"], &["proto"])
     .expect("Couldn't compile proto files");
 
-  #[cfg(feature = "curriculum")]
+  #[cfg(feature = "user")]
   tonic_build::configure()
     .out_dir("src")
     .type_attribute(".", serde_impl)
-    .compile(&["proto/curriculum/curriculum_service.proto"], &["proto/curriculum"])
+    .message_attribute(".", "#[derive(sqlx::FromRow)]")
+    .compile(&["proto/user_service.proto"], &["proto"])
     .expect("Couldn't compile proto files");
 }
