@@ -1,5 +1,6 @@
 syntax = "proto3";
 package user_service;
+//package curriculum_service;
 
 enum Role {
     Subscriber = 0;
