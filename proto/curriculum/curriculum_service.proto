@@ -10,7 +10,9 @@ service CurriculumServiceProto {
   rpc CreateCourseCall(CreateCourseProtoReq) returns (CourseProtoModel);
   rpc GetCourseByCourseIdCall(GetCourseByCourseIdProtoReq) returns (CourseProtoModel);
   //rpc GetAllCourseByCategoryIdCall(GetAllCourseByCategoryIdProtoReq) returns (CourseProtoModel);
-  //rpc GetCourseByCourseSlugCall(GetCourseByCourseSlugProtoReq) returns (CourseProtoModel);
+  rpc GetCourseByCourseSlugCall(GetCourseByCourseSlugProtoReq) returns (CourseProtoModel);
+  rpc UpdateCourseCall(UpdateCourseProtoReq) returns (CourseProtoModel);
+
 
 
   // For course assistant - moderator
