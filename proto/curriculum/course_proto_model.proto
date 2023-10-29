@@ -51,15 +51,15 @@ message CreateCourseProtoReq {
 
 message UpdateCourseProtoReq {
   string courseId = 1;
-  string courseTitle = 2;
-  int64 courseFee = 3;
-  string difficultyLevel = 4;
-  int64 languages = 5;
+  optional string courseTitle = 2;
+  optional int64 courseFee = 3;
+  optional string difficultyLevel = 4;
+  optional int64 languages = 5;
   optional string courseBrief = 6;
   optional bool publish = 7;
   optional string whatInclude = 8; 
   optional string expectedOutcomes = 9;
-  optional string prerequiments = 10;
+  optional string prerequisites = 10;
   optional int64 startAt = 11;
   optional int64 endAt = 12;
 }
