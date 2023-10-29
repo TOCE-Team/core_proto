@@ -332,15 +332,23 @@ enum InvitationState {
     Accept     	= 1;
 	Reject 		= 2;
 }
+enum InvitationFor {
+	Hackathon 		= 0;
+	Organize  		= 1;
+	Course 			= 2;
+	TheBootCamp 	= 3;
+}
 
 message InvitationBase {
 	string 			parentId 		= 1;
 	string 			userId 			= 2;
-	string 			title 			= 3;
-	string 			message 		= 4;			
-	InvitationType 	invitationType 	= 5;
-	InvitationState state 			= 6;
-	int64 			deadline		= 7;
+	string 			inviteKey 		= 3;
+	string 			title 			= 4;
+	string 			message 		= 5;	
+	InvitationFor	inviteFor    	= 6;
+	InvitationType 	invitationType 	= 7;
+	InvitationState state 			= 8;
+	int64 			deadline		= 9;
 }
 
 message GetInvitationListReq {
@@ -353,6 +361,10 @@ message GetInvitationByIdReq {
 	string userId 		= 2;
 }
 
+message GetInvitationByKeyReq {
+	string inviteKey 	= 1;   
+}
+
 message InvitationListRes {
 	repeated InvitationBase invitations = 1;
 }
@@ -363,7 +375,8 @@ message CreateInvitationProtoReq {
 	string 			title 			= 3;
 	string 			message 		= 4;			
 	InvitationType 	invitationType 	= 5;
-	int64 			deadline		= 6;
+	InvitationFor	inviteFor    	= 6;
+	int64 			deadline		= 7;
 }
 
 message UpdateInvitationProtoReq {
@@ -579,6 +592,7 @@ service HackathonServiceProtocol {
 	// Invitation
 	rpc GetInvitationsCall(GetInvitationListReq) returns (InvitationListRes);
 	rpc GetInvitationByIdCall(GetInvitationByIdReq) returns (InvitationBase);
+	rpc GetInvitationByKeyCall(GetInvitationByKeyReq) returns (InvitationBase);
 	rpc CreateInvitationCall(CreateInvitationProtoReq) returns (InvitationBase);
 	rpc UpdateInvitationCall(UpdateInvitationProtoReq) returns (InvitationBase);
 	rpc ResponseInvitationCall(ResponseInvitationProtoReq) returns (InvitationBase);
