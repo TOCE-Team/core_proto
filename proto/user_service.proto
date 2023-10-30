@@ -1,5 +1,6 @@
 syntax = "proto3";
 package user_service;
+//package curriculum_service;
 
 enum Role {
     Subscriber = 0;
@@ -181,6 +182,28 @@ message DeleteTeamProtoReq {
     string id = 1;
 }
 
+message CourseTeamBase {
+    string courseId     = 1;
+    string teamId       = 2;
+    int64 expiredTime   = 3;
+}
+
+message CreateCourseTeamProtoReq {
+    string courseId     = 1;
+    string teamId       = 2;
+    int64 expiredTime   = 3;
+}
+
+message GetCourseTeamProtoReq {
+    string courseId             = 1;
+    optional string teamId      = 2;
+}
+
+message DeleteCourseTeamProtoReq {
+    string courseId     = 1;
+    string teamId       = 2;
+}
+
 message AddTeamMemberProtoReq{
 	string teamId = 1;
 	string userId = 2;
@@ -235,6 +258,11 @@ service UserServiceProtocol {
     rpc CreateTeamCall(CreateTeamProtoReq)                  returns (TeamBase);
     rpc UpdateTeamCall(UpdateTeamProtoReq)                  returns (TeamBase);
     rpc DeleteTeamCall(DeleteTeamProtoReq)                  returns (Empty);
+
+    rpc GetCourseTeamCall(GetCourseTeamProtoReq)                returns (TeamListProtoRes);
+    rpc CreateCourseTeamCall(CreateCourseTeamProtoReq)          returns (CourseTeamBase);
+    rpc DeleteCourseTeamCall(DeleteCourseTeamProtoReq)          returns (Empty);
+
     rpc AddTeamMemberCall(AddTeamMemberProtoReq)            returns (Empty);
 	rpc GetTeamMemberCall(GetTeamMemberProtoReq)            returns (UserList);
     rpc DeleteTeamMemberCall(DeleteTeamMemberProtoReq)      returns (Empty);

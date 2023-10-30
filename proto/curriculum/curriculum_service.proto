@@ -1,0 +1,43 @@
+syntax = "proto3";
+package  curriculum_service;
+
+import "course_proto_model.proto";
+import "assistant_moderator_model.proto";
+import "form_model.proto";
+import "section_proto_model.proto";
+
+
+service CurriculumServiceProto {
+  // Coure
+  rpc CreateCourseCall(CreateCourseProtoReq) returns (CourseProtoModel);
+  rpc GetCourseByCourseIdCall(GetCourseByCourseIdProtoReq) returns (CourseProtoModel);
+  //rpc GetAllCourseByCategoryIdCall(GetAllCourseByCategoryIdProtoReq) returns (CourseProtoModel);
+  rpc GetCourseByCourseSlugCall(GetCourseByCourseSlugProtoReq) returns (CourseProtoModel);
+  rpc UpdateCourseCall(UpdateCourseProtoReq) returns (CourseProtoModel);
+
+  // Section
+  rpc CreateSectionCall(CreateSectionProtoReq) returns (SectionProtoModel);
+  rpc GetSectionByCourseIdAndSectionIdCall(GetSectionByCoureIdAndSectionIdProtoReq) returns (SectionProtoModel);
+  rpc UpdateSectionCall(UpdateSectionProtoReq) returns (SectionProtoModel);
+  rpc GetAllSectionInCourseByCourseIdCall(GetAllSectionInCourseByCoureIdProtoReq) returns (SectionList);
+
+
+  // For course assistant - moderator
+  rpc AddCourseAssistantCall(AddCourseAssistantProtoReq)            returns (CourseAssistantBase);
+	rpc GetCourseAssistantCall(GetCourseAssistantProtoReq)            returns (CourseAssistantListProRes);
+  rpc DeleteCourseAssistantCall(DeleteCourseAssistantProtoReq)      returns (Empty);
+
+  rpc AddCourseModeratorCall(AddCourseModeratorProtoReq)            returns (CourseModeratorBase);
+	rpc GetCourseModeratorCall(GetCourseModeratorProtoReq)            returns (CourseModeratorListProRes);
+  rpc DeleteCourseModeratorCall(DeleteCourseModeratorProtoReq)      returns (Empty);
+
+  // Form 
+  rpc GetFormByIdCall(GetFormByIdProtoReq)                                   returns (FormProtoModel);
+  rpc CreateFormCall(CreateFormProtoReq)                                     returns (FormProtoModel);
+  rpc AddShortTextToFormCall(CreateFormShortTextProtoReq)                    returns (FormProtoModel);
+  rpc AddParagraphToFormCall(CreateFormParagraphProtoReq)                    returns (FormProtoModel);
+  rpc AddMultichoiceToFormCall(CreateFormMultichoiceProtoReq)                returns (FormProtoModel);
+  rpc AddMultichoiceItemToMultichoiceCall(CreateFormMultichoiceItemProtoReq) returns (FormProtoModel);
+  rpc AddDropdownToFormCall(CreateFormDropdownProtoReq)                      returns (FormProtoModel);
+  rpc AddDropdownItemToDropdownCall(CreateFormDropdownItemProtoReq)          returns (FormProtoModel);
+}

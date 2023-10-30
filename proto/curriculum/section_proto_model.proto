@@ -1,0 +1,47 @@
+syntax = "proto3";
+package  curriculum_service;
+
+import "course_proto_model.proto";
+
+message SectionProtoModel {
+  string sectionId = 1;
+  string owner = 2;
+  ObjectStateProtoModel sectionState = 3;
+  string sectionTitle = 4;
+  optional string sectionBrief = 5;
+  int64 sectionPrice = 6;
+  float rating = 7;
+  bool is_del = 8;
+  int64 created_at = 9;
+  int64 updated_at = 10;
+}
+
+message CreateSectionProtoReq {
+  string sectionTitle = 1;
+  optional string sectionBrief = 2;
+  int64 sectionPrice = 3;
+  string courseId = 4;
+}
+
+message UpdateSectionProtoReq {
+  optional string sectionTitle = 1;
+  optional string sectionBrief = 2;
+  optional int64 sectionPrice = 3;
+  string sectionId = 4;
+}
+
+message GetSectionByCoureIdAndSectionIdProtoReq {
+  string  courseId = 1;
+  string  sectionId = 2;
+}
+
+message GetAllSectionInCourseByCoureIdProtoReq {
+  string  courseId = 1;
+}
+
+message SectionList {
+  repeated SectionProtoModel  sectionList = 1;
+}
+
+
+
