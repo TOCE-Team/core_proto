@@ -2,16 +2,22 @@ syntax = "proto3";
 package  curriculum_service;
 
 message AssignmentProtoModel {
-	string assignment_id = 1;
-	string owner_id = 2;
-	string grader_id = 3;
-	int64 start_at = 4;
-	int64 end_at = 5;
+	string assignmentId = 1;
+	string ownerId = 2;
+	string graderId = 3;
+	int64 startAt = 4;
+	int64 endAt = 5;
 }
 
 message CreateAssignmentProtoReq {
-	string owner_id = 1;
-	string grader_id = 2; 
-	int64 start_at = 3;
-	int64 end_at = 4;
+	string ownerId = 1;
+	string graderId = 2; 
+	int64 startAt = 3;
+	int64 endAt = 4;
 }
+
+message AddQuizProtoReq {
+	string assignmentId = 1;
+	string quizId = 2;
+}
+
