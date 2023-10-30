@@ -6,6 +6,8 @@ import "assistant_moderator_model.proto";
 import "form_model.proto";
 import "section_proto_model.proto";
 import "lesson_proto_model.proto";
+import "assignments_model.proto";
+
 
 service CurriculumServiceProto {
   // Coure
@@ -29,11 +31,10 @@ service CurriculumServiceProto {
 
   // For course assistant - moderator
   rpc AddCourseAssistantCall(AddCourseAssistantProtoReq)            returns (CourseAssistantBase);
-	rpc GetCourseAssistantCall(GetCourseAssistantProtoReq)            returns (CourseAssistantListProRes);
+  rpc GetCourseAssistantCall(GetCourseAssistantProtoReq)            returns (CourseAssistantListProRes);
   rpc DeleteCourseAssistantCall(DeleteCourseAssistantProtoReq)      returns (Empty);
-
   rpc AddCourseModeratorCall(AddCourseModeratorProtoReq)            returns (CourseModeratorBase);
-	rpc GetCourseModeratorCall(GetCourseModeratorProtoReq)            returns (CourseModeratorListProRes);
+  rpc GetCourseModeratorCall(GetCourseModeratorProtoReq)            returns (CourseModeratorListProRes);
   rpc DeleteCourseModeratorCall(DeleteCourseModeratorProtoReq)      returns (Empty);
 
   // Form 
@@ -45,4 +46,7 @@ service CurriculumServiceProto {
   rpc AddMultichoiceItemToMultichoiceCall(CreateFormMultichoiceItemProtoReq) returns (FormProtoModel);
   rpc AddDropdownToFormCall(CreateFormDropdownProtoReq)                      returns (FormProtoModel);
   rpc AddDropdownItemToDropdownCall(CreateFormDropdownItemProtoReq)          returns (FormProtoModel);
+
+  // For assignment
+  rpc CreateAssignmentCall(CreateAssignmentProtoReq) returns (AssignmentProtoModel);
 }
