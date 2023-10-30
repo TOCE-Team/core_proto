@@ -5,6 +5,7 @@ import "course_proto_model.proto";
 import "assistant_moderator_model.proto";
 import "form_model.proto";
 import "section_proto_model.proto";
+import "assignments_model.proto";
 
 
 service CurriculumServiceProto {
