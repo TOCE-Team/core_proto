@@ -1,0 +1,62 @@
+syntax = "proto3";
+package  curriculum_service;
+
+import "course_proto_model.proto";
+
+message LessonProtoModel {
+  string lessonId = 1;
+  string owner = 2;
+  ObjectStateProtoModel lessonState = 3;
+  string lessonTitle = 4;
+  optional string lessonContent = 5;
+  optional string lessonVideo = 6;
+  optional string materials = 7;
+  bool is_del = 8;
+  optional int64 start_at = 9;
+  optional int64 end_at = 10;
+  int64 created_at = 11;
+  int64 updated_at = 12;
+}
+
+message CreateLessonProtoReq {
+  string lessonTitle = 1;
+  optional string lessonContent = 2;
+  optional string lessonVideo = 3;
+  optional string materials = 4;
+  optional int64 start_at = 5;
+  optional int64 end_at = 6;
+  string courseId = 7;
+  string sectionId = 8;
+}
+
+message UpdateLessonProtoReq {
+  optional string lessonTitle = 1;
+  optional string lessonContent = 2;
+  optional string lessonVideo = 3;
+  optional string materials = 4;
+  optional int64 start_at = 5;
+  optional int64 end_at = 6;
+  string courseId = 7;
+  string sectionId = 8;
+  string lessonId = 9;
+}
+
+message GetLessonProtoReq {
+  string  courseId = 1;
+  string  sectionId = 2;
+  string  lessonId = 3;
+}
+
+message GetAllLessonBySectionIdProtoReq {
+  string  courseId = 1;
+  string  sectionId = 2;
+}
+
+message GetAllLessonByCourseIdProtoReq {
+  string  courseId = 1;
+}
+
+message LessonProtoList {
+  repeated LessonProtoModel lessonList = 1;
+}
+
