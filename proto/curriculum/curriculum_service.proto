@@ -37,4 +37,7 @@ service CurriculumServiceProto {
   // For assignment
   rpc CreateAssignmentCall(CreateAssignmentProtoReq) returns (AssignmentProtoModel);
   rpc AddQuizToAssignmentCall(AddQuizProtoReq) returns (Empty);
+  rpc AddGraderToAssignmentCall(AddGraderProtoReq) returns (Empty);
+  rpc ViewGraderCall(ViewGraderProtoReq) returns (GraderListId);
+  rpc AddRequirmentToAssignmentCall(AddRequirmentProtoReq) returns (Empty);
 }

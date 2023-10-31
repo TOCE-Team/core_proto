@@ -1,6 +1,7 @@
 syntax = "proto3";
 package  curriculum_service;
 
+
 message AssignmentProtoModel {
 	string assignmentId = 1;
 	string ownerId = 2;
@@ -21,3 +22,34 @@ message AddQuizProtoReq {
 	string quizId = 2;
 }
 
+message AddGraderProtoReq{
+	string assignmentId = 1;
+	string graderId = 2;
+} 
+
+message ViewGraderProtoReq {
+	string assignmentId   = 1;
+}
+
+message GraderListId {
+	repeated string ids = 1;
+}
+
+enum UserLevel {	
+  Beginner = 0;
+  Junior = 1;
+  Intermediate = 2;
+  Senior = 3;
+  Expert = 4;
+  Leader = 5;
+  Professor = 6;
+  Master = 7;
+}
+
+message AddRequirmentProtoReq {
+	string assignmentId = 1;
+	repeated string occupationId = 2;
+	UserLevel level = 3; 
+	uint32 teamMemberLimit = 4; 
+	uint32 minimumTeamSize = 5;
+}
