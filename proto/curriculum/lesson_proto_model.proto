@@ -11,11 +11,11 @@ message LessonProtoModel {
   optional string lessonContent = 5;
   optional string lessonVideo = 6;
   optional string materials = 7;
-  bool is_del = 8;
-  optional int64 start_at = 9;
-  optional int64 end_at = 10;
-  int64 created_at = 11;
-  int64 updated_at = 12;
+  bool isDel = 8;
+  optional int64 startAt = 9;
+  optional int64 endAt = 10;
+  int64 createdAt = 11;
+  int64 updatedAt = 12;
 }
 
 message CreateLessonProtoReq {
@@ -27,6 +27,7 @@ message CreateLessonProtoReq {
   optional int64 end_at = 6;
   string courseId = 7;
   string sectionId = 8;
+  string ownerId = 9;
 }
 
 message UpdateLessonProtoReq {
@@ -34,8 +35,8 @@ message UpdateLessonProtoReq {
   optional string lessonContent = 2;
   optional string lessonVideo = 3;
   optional string materials = 4;
-  optional int64 start_at = 5;
-  optional int64 end_at = 6;
+  optional int64 startAt = 5;
+  optional int64 endAt = 6;
   string courseId = 7;
   string sectionId = 8;
   string lessonId = 9;
