@@ -7,6 +7,7 @@ import "form_model.proto";
 import "section_proto_model.proto";
 import "lesson_proto_model.proto";
 import "assignments_model.proto";
+import "quiz_model.proto";
 
 
 service CurriculumServiceProto {
@@ -48,6 +49,27 @@ service CurriculumServiceProto {
   rpc AddDropdownToFormCall(CreateFormDropdownProtoReq)                      returns (FormProtoModel);
   rpc AddDropdownItemToDropdownCall(CreateFormDropdownItemProtoReq)          returns (FormProtoModel);
 
+  // Quiz
+  rpc GetQuizBankByIdCall(GetQuizBankByIdProtoReq)      returns(QuizBankProtoModel);
+  rpc GetQuizBankListCall(GetQuizBankListProtoReq)      returns(GetQuizBankListProtoRes);
+  rpc CreateQuizBankCall(CreateQuizBankProtoReq)        returns(QuizBankProtoModel);
+  rpc UpdateQuizBankCall(UpdateQuizBankProtoReq)        returns(QuizBankProtoModel);
+  rpc DeleteQuizBankCall(DeleteQuizBankProtoReq)        returns(Empty);
+
+  rpc GetQuizByIdCall(GetQuizByIdProtoReq)              returns(QuizProtoModel);
+  rpc GetQuizListCall(GetQuizListProtoReq)              returns(GetQuizListProtoRes);
+  rpc CreateQuizCall(CreateQuizProtoReq)                returns(QuizProtoModel);
+  rpc UpdateQuizCall(UpdateQuizProtoReq)                returns(QuizProtoModel);
+  rpc DeleteQuizCall(DeleteQuizProtoReq)                returns(Empty);
+
+  rpc CreateQuizSetCall(CreateQuizSetProtoReq)          returns(QuizSetProtoModel);
+  rpc GetQuizSetByIdCall(GetQuizSetByIdProtoReq)        returns(QuizSetProtoModel);
+  rpc GetQuizSetListCall(GetQuizSetListProtoReq)        returns(GetQuizListProtoRes);
+  rpc DeleteQuizSetCall(DeleteQuizSetProtoReq)          returns(Empty);
   // For assignment
   rpc CreateAssignmentCall(CreateAssignmentProtoReq) returns (AssignmentProtoModel);
+  rpc AddQuizToAssignmentCall(AddQuizProtoReq) returns (Empty);
+  rpc AddGraderToAssignmentCall(AddGraderProtoReq) returns (Empty);
+  rpc ViewGraderCall(ViewGraderProtoReq) returns (GraderListId);
+  rpc AddRequirmentToAssignmentCall(AddRequirmentProtoReq) returns (Empty);
 }
