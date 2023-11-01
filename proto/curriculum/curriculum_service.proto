@@ -4,8 +4,9 @@ package  curriculum_service;
 import "course_proto_model.proto";
 import "assistant_moderator_model.proto";
 import "form_model.proto";
-import "assignments_model.proto";
 import "section_proto_model.proto";
+import "lesson_proto_model.proto";
+import "assignments_model.proto";
 import "quiz_model.proto";
 
 
@@ -15,6 +16,7 @@ service CurriculumServiceProto {
   rpc GetCourseByCourseIdCall(GetCourseByCourseIdProtoReq) returns (CourseProtoModel);
   //rpc GetAllCourseByCategoryIdCall(GetAllCourseByCategoryIdProtoReq) returns (CourseProtoModel);
   rpc GetCourseByCourseSlugCall(GetCourseByCourseSlugProtoReq) returns (CourseProtoModel);
+  rpc GetOwnerCall(GetOwnerReq) returns (GetOwnerRes);
   rpc UpdateCourseCall(UpdateCourseProtoReq) returns (CourseProtoModel);
 
   // Section
@@ -23,6 +25,12 @@ service CurriculumServiceProto {
   rpc UpdateSectionCall(UpdateSectionProtoReq) returns (SectionProtoModel);
   rpc GetAllSectionInCourseByCourseIdCall(GetAllSectionInCourseByCoureIdProtoReq) returns (SectionList);
 
+  //lesson
+  rpc CreateLessonCall(CreateLessonProtoReq) returns (LessonProtoModel);
+  rpc UpdateLessonCall(UpdateLessonProtoReq) returns (LessonProtoModel);
+  rpc GetLessonCall(GetLessonProtoReq) returns (LessonProtoModel);
+  rpc GetAllLessonBySectionIdCall(GetAllLessonBySectionIdProtoReq) returns (LessonProtoList);
+  rpc AddLessonCall(AddLessonProtoReq) returns (AddLessonProtoRes);
 
   // For course assistant - moderator
   rpc AddCourseAssistantCall(AddCourseAssistantProtoReq)            returns (CourseAssistantBase);
