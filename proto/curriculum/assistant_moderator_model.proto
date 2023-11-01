@@ -1,12 +1,6 @@
 syntax = "proto3";
 package  curriculum_service;
 
-
-message Empty {
-
-}
-
-
 // For Assistant
 message CourseAssistantBase {
     string course_id    = 1;
