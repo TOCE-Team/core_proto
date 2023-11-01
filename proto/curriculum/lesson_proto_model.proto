@@ -42,6 +42,16 @@ message UpdateLessonProtoReq {
   string lessonId = 9;
 }
 
+message AddLessonProtoReq{
+  string lessonId = 1;
+  string courseId = 2;
+  string sectionId = 3;
+}
+
+message AddLessonProtoRes{
+  string lessonId = 1;
+}
+
 message GetLessonProtoReq {
   string  courseId = 1;
   string  sectionId = 2;

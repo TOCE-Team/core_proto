@@ -30,6 +30,7 @@ service CurriculumServiceProto {
   rpc UpdateLessonCall(UpdateLessonProtoReq) returns (LessonProtoModel);
   rpc GetLessonCall(GetLessonProtoReq) returns (LessonProtoModel);
   rpc GetAllLessonBySectionIdCall(GetAllLessonBySectionIdProtoReq) returns (LessonProtoList);
+  rpc AddLessonCall(AddLessonProtoReq) returns (AddLessonProtoRes);
 
   // For course assistant - moderator
   rpc AddCourseAssistantCall(AddCourseAssistantProtoReq)            returns (CourseAssistantBase);
