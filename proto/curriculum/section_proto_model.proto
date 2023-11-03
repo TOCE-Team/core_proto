@@ -11,9 +11,9 @@ message SectionProtoModel {
   optional string sectionBrief = 5;
   int64 sectionPrice = 6;
   float rating = 7;
-  bool is_del = 8;
-  int64 created_at = 9;
-  int64 updated_at = 10;
+  bool isDel = 8;
+  int64 createdAt = 9;
+  int64 updatedAt = 10;
 }
 
 message CreateSectionProtoReq {
@@ -21,6 +21,7 @@ message CreateSectionProtoReq {
   optional string sectionBrief = 2;
   int64 sectionPrice = 3;
   string courseId = 4;
+  string ownerId = 5;
 }
 
 message UpdateSectionProtoReq {
@@ -28,6 +29,7 @@ message UpdateSectionProtoReq {
   optional string sectionBrief = 2;
   optional int64 sectionPrice = 3;
   string sectionId = 4;
+  string CourseId = 5;
 }
 
 message GetSectionByCoureIdAndSectionIdProtoReq {
