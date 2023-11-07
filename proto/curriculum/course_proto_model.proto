@@ -7,6 +7,12 @@ enum ObjectStateProtoModel {
   Deactive = 2;
 }
 
+enum ObjectTypeProtoModel {
+  Course = 0;
+  Section = 1;
+  Lesson = 2;
+}
+
 enum PartnerRoleProtoModel {
   Owner = 0;
   Assistant = 1;
@@ -47,6 +53,7 @@ message CreateCourseProtoReq {
   optional string prerequisites = 8;
   optional int64 startAt = 9;
   optional int64 endAt = 10; 
+  string owner = 11;
 }
 
 message UpdateCourseProtoReq {
@@ -74,4 +81,13 @@ message GetAllCourseByCategoryIdProtoReq{
 
 message GetCourseByCourseSlugProtoReq{
   string slug = 1;
+}
+
+message GetOwnerReq{
+  string check_id = 1;
+  ObjectTypeProtoModel object_type = 2;
+}
+
+message GetOwnerRes{
+  string owner_id = 1;
 }
