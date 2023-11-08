@@ -1,0 +1,19 @@
+syntax = "proto3";
+package  tracking_service;
+
+message TrackingProtoModel{
+    string          id                = 1;
+    string          userId            = 2;
+    bool            isDeleted         = 3;
+    int64           createdAt         = 4;
+    int64           updatedAt         = 5;
+}
+
+message GetTrackingByIdProtoReq {
+    string  id  = 1;
+}
+
+service TrackingServiceProto {
+  rpc GetTrackingByIdCall(GetTrackingByIdProtoReq) returns (TrackingProtoModel);
+
+}
