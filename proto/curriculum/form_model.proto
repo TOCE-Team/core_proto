@@ -106,46 +106,45 @@ message CreateFormDropdownItemProtoReq {
 
 message UpdateFormProtoReq {
   string id                 = 1;
-  string userId             = 2;
-  optional string formTitle = 3;
-  optional string formBrief = 4;
+  optional string formTitle = 2;
+  optional string formBrief = 3;
 }
 
 message UpdateFormShortTextProtoReq {
-  string formId            = 1;
+  string id                = 1;
   optional int32  position = 2;
   optional string title    = 3;
   optional string input    = 4;
 }
 
 message UpdateFormParagraphProtoReq {
-  string formId            = 1;
+  string id                = 1;
   optional int32  position = 2;
   optional string title    = 3;
   optional string input    = 4;
 }
 
 message UpdateFormMultichoiceProtoReq {
-  string formId            = 1;
+  string id                = 1;
   optional int32  position = 2;
   optional string title    = 3;
 }
 
 message UpdateFormMultichoiceItemProtoReq {
-  string formMultichoiceId     = 1;
+  string id                    = 1;
   optional int32  itemPosition = 2;
   optional string itemTitle    = 3;
   optional bool   checked      = 4;
 }
 
 message UpdateFormDropdownProtoReq {
-  string formId            = 1;
+  string id                = 1;
   optional int32  position = 2;
   optional string title    = 3;
 }
 
 message UpdateFormDropdownItemProtoReq {
-  string formDropdownId        = 1;
+  string id                    = 1;
   optional int32  itemPosition = 2;
   optional string itemTitle    = 3;
 }
@@ -155,31 +154,25 @@ message DeleteFormById {
 }
 
 message DeleteShortTextById {
-  string id     = 1;
-  string formId = 2;
+  string id = 1;
 }
 
 message DeleteParagraphById {
-  string id     = 1;
-  string formId = 2;
+  string id = 1;
 }
 
 message DeleteMultichoiceById {
-  string id     = 1;
-  string formId = 2;
+  string id = 1;
 }
 
 message DeleteMultichoiceItemById {
-  string id                = 1;
-  string formMultichoiceId = 2;
+  string id = 1;
 }
 
 message DeleteDropdownById {
-  string id     = 1;
-  string formId = 2;
+  string id = 1;
 }
 
 message DeleteDropdownItemById {
-  string id             = 1;
-  string formDropdownId = 2;
+  string id = 1;
 }
