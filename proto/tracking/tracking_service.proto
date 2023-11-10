@@ -1,5 +1,6 @@
 syntax = "proto3";
 package  tracking_service;
+import "enrollment_course.proto";
 
 message TrackingProtoModel{
     string          id                = 1;
@@ -13,7 +14,30 @@ message GetTrackingByIdProtoReq {
     string  id  = 1;
 }
 
+message Empty{}
+
 service TrackingServiceProto {
-  rpc GetTrackingByIdCall(GetTrackingByIdProtoReq) returns (TrackingProtoModel);
+    rpc GetTrackingByIdCall(GetTrackingByIdProtoReq) returns (TrackingProtoModel);
+
+    // Tracking Work
+    rpc GetTrackingWorkCall(GetTrackingWorkProtoReq) returns (TrackingWorkProtoModel);
+    rpc CreateTrackingWorkCall(CreateTrackingWorkProtoReq) returns (TrackingWorkProtoModel);
+    rpc DeleteTrackingWorkCall(DeleteTrackingWorkProtoReq) returns (Empty);
+
+    // Course
+    rpc GetEnrollmentCourseCall(GetEnrollmentCourseProtoReq) returns (GetEnrollmentCourseProtoRes);
+    rpc CreateEnrollmentCourseCall(CreateEnrollmentCourseProtoReq) returns(EnrollmentCourseProtoModel);
+    //rpc UpdateEnrollmentCourseCall(UpdateEnrollmentCourseProtoReq) returns(EnrollmentCourseProtoModel);
+    rpc DeleteEnrollmentCourseCall(DeleteEnrollmentCourseProtoReq) returns(Empty);
+    rpc GetTrackingWorkCourseCall(GetTrackingWorkCourseProtoReq) returns (GetTrackingWorkProtoRes);
+    //rpc CreateTrackingWorkCourseCall(CreateTrackingWorkCourseProtoReq) returns (TrackingWorkProtoModel);
+
+    // Section
+    rpc GetEnrollmentSectionCall(GetEnrollmentSectionProtoReq) returns (GetEnrollmentSectionProtoRes);
+    rpc CreateEnrollmentSectionCall(CreateEnrollmentSectionProtoReq) returns(EnrollmentSectionProtoModel);
+    //rpc UpdateEnrollmentSectionCall(UpdateEnrollmentSectionProtoReq) returns(EnrollmentSectionProtoModel);
+    rpc DeleteEnrollmentSectionCall(DeleteEnrollmentSectionProtoReq) returns(Empty);
+    rpc GetTrackingWorkSectionCall(GetTrackingWorkSectionProtoReq) returns (GetTrackingWorkProtoRes);
+    //rpc CreateTrackingWorkSectionCall(CreateTrackingWorkSectionProtoReq) returns (TrackingWorkProtoModel);
 
 }

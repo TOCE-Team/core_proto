@@ -1,0 +1,144 @@
+syntax = "proto3";
+package  tracking_service;
+
+message TrackingWorkProtoModel {
+    string  id              = 1;
+    int64   started_at      = 2;
+    int64   ended_at        = 3;
+    bool    completed       = 4;
+}
+
+message GetTrackingWorkProtoReq {
+    string id   = 1;
+}
+
+message GetTrackingWorkProtoRes {
+    repeated TrackingWorkProtoModel tracking_work = 1;
+}
+
+message CreateTrackingWorkProtoReq {
+    int64   started_at       = 1;
+    int64   ended_at         = 2;
+    bool    completed        = 3;
+}
+
+message DeleteTrackingWorkProtoReq {
+    string id = 1;
+}
+
+
+message EnrollmentCourseProtoModel {
+    string  id              = 1;
+    string  user_id         = 2;
+    string  course_id       = 3;
+    bool    completed       = 4;
+    int64   grade           = 5;
+    bool    isDeleted       = 6;
+    int64   createdAt       = 7;
+    int64   updatedAt       = 8;
+    int64   paginationId    = 9;
+}
+
+message GetTrackingWorkCourseProtoReq {
+    string user_id          = 1;
+    string course_id        = 2;
+    optional int64 offset   = 3;
+    optional int64 limit    = 4;
+}
+
+message GetEnrollmentCourseProtoReq{
+    optional string id          = 1;
+    optional string user_id     = 2;
+    optional string course_id   = 3;
+    optional bool   completed   = 4;
+    optional int64 offset       = 5;
+    optional int64 limit        = 6;
+}
+
+message GetEnrollmentCourseProtoRes{
+    repeated EnrollmentCourseProtoModel enrollment_course = 1;
+}
+
+message CreateEnrollmentCourseProtoReq {
+    string  user_id     = 1;
+    string  course_id   = 2;
+    bool    completed   = 3;
+    int64   grade       = 4;
+}
+
+message CreateTrackingWorkCourseProtoReq {
+    string  user_id    = 1;
+    string  course_id  = 2;
+    int64   started_at = 3;
+    int64   ended_at   = 4;
+}
+
+
+message UpdateEnrollmentCourseProtoReq {
+    string  user_id                 = 1;
+    string  course_id               = 2;
+    optional bool    completed      = 3;
+    optional int64   grade          = 4;
+}
+
+message DeleteEnrollmentCourseProtoReq {
+    string id = 1;
+}
+
+
+message EnrollmentSectionProtoModel {
+    string  id              = 1;
+    string  user_id         = 2;
+    string  section_id      = 3;
+    bool    completed       = 4;
+    int64   grade           = 5;
+    bool    isDeleted       = 6;
+    int64   createdAt       = 7;
+    int64   updatedAt       = 8;
+    int64   paginationId    = 9;
+}
+
+
+message GetTrackingWorkSectionProtoReq {
+    string user_id          = 1;
+    string section_id       = 2;
+    optional int64 offset   = 3;
+    optional int64 limit    = 4;
+}
+
+message GetEnrollmentSectionProtoReq{
+    optional string id          = 1;
+    optional string user_id     = 2;
+    optional string section_id  = 3;
+    optional bool   completed   = 4;
+    optional int64 offset       = 5;
+    optional int64 limit        = 6;
+}
+
+message GetEnrollmentSectionProtoRes{
+    repeated EnrollmentSectionProtoModel enrollment_section = 1;
+}
+
+message CreateEnrollmentSectionProtoReq {
+    string  user_id     = 1;
+    string  section_id  = 2;
+    bool    completed   = 3;
+    int64   grade       = 4;
+}
+message CreateTrackingWorkSectionProtoReq {
+    string  user_id     = 1;
+    string  section_id  = 2;
+    int64   started_at  = 3;
+    int64   ended_at    = 4;
+}
+
+message UpdateEnrollmentSectionProtoReq {
+    string  user_id                 = 1;
+    string  section_id              = 2;
+    optional bool    completed      = 3;
+    optional int64   grade          = 4;
+}
+
+message DeleteEnrollmentSectionProtoReq {
+    string id = 1;
+}
