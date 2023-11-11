@@ -142,3 +142,66 @@ message UpdateEnrollmentSectionProtoReq {
 message DeleteEnrollmentSectionProtoReq {
     string id = 1;
 }
+
+// Lesson 
+message EnrollmentLessonProtoModel {
+    string  id              = 1;
+    string  user_id         = 2;
+    string  lesson_id       = 3;
+    bool    completed       = 4;
+    int64   grade           = 5;
+    bool    isDeleted       = 6;
+    int64   createdAt       = 7;
+    int64   updatedAt       = 8;
+    int64   paginationId      = 9;
+}
+
+message GetTrackingWorkLessonProtoReq {
+    string user_id          = 1;
+    string lesson_id        = 2;
+    optional int64 offset   = 3;
+    optional int64 limit    = 4;
+}
+
+message GetEnrollmentLessonProtoReq{
+    optional string id          = 1;
+    optional string user_id     = 2;
+    optional string lesson_id   = 3;
+    optional bool   completed   = 4;
+    optional int64 offset       = 5;
+    optional int64 limit        = 6;
+}
+
+message GetEnrollmentLessonProtoRes{
+    repeated EnrollmentLessonProtoModel enrollment_lesson = 1;
+}
+
+message CreateEnrollmentLessonProtoReq {
+    string  user_id     = 1;
+    string  lesson_id   = 2;
+    bool    completed   = 3;
+    int64   grade       = 4;
+}
+
+message CreateTrackingWorkLessonProtoReq {
+    string  user_id    = 1;
+    string  lesson_id  = 2;
+    int64   started_at = 3;
+    int64   ended_at   = 4;
+}
+
+
+message UpdateEnrollmentLessonProtoReq {
+    string  user_id                 = 1;
+    string  lesson_id               = 2;
+    optional bool    completed      = 3;
+    optional int64   grade          = 4;
+}
+
+message DeleteEnrollmentLessonProtoReq {
+    string id = 1;
+}
+
+
+
+

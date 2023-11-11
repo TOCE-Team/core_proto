@@ -40,4 +40,11 @@ service TrackingServiceProto {
     rpc GetTrackingWorkSectionCall(GetTrackingWorkSectionProtoReq) returns (GetTrackingWorkProtoRes);
     //rpc CreateTrackingWorkSectionCall(CreateTrackingWorkSectionProtoReq) returns (TrackingWorkProtoModel);
 
+	// Lesson
+	rpc GetEnrollmentLessonCall(GetEnrollmentLessonProtoReq) returns (GetEnrollmentLessonProtoRes);
+	rpc CreateEnrollmentLessonCall(CreateEnrollmentLessonProtoReq) returns (EnrollmentLessonProtoModel);
+	rpc DeleteEnrollmentLessonCall(DeleteEnrollmentLessonProtoReq) returns (Empty);
+	
+	rpc GetTrackingWorkLessonCall(GetTrackingWorkLessonProtoReq) returns (GetTrackingWorkProtoRes);
+	
 }
