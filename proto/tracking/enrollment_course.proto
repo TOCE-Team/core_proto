@@ -202,6 +202,65 @@ message DeleteEnrollmentLessonProtoReq {
     string id = 1;
 }
 
+// Assignment 
+message EnrollmentAssignmentProtoModel {
+    string  id              = 1;
+    string  user_id         = 2;
+    string  assignment_id   = 3;
+    bool    completed       = 4;
+    int64   grade           = 5;
+    bool    isDeleted       = 6;
+    int64   createdAt       = 7;
+    int64   updatedAt       = 8;
+    int64   paginationId      = 9;
+}
+
+message GetTrackingWorkAssignmentProtoReq {
+    string user_id          = 1;
+    string assignment_id    = 2;
+    optional int64 offset   = 3;
+    optional int64 limit    = 4;
+}
+
+message GetEnrollmentAssignmentProtoReq{
+    optional string id            	= 1;
+    optional string user_id       	= 2;
+    optional string assignment_id 	= 3;
+    optional bool   completed     	= 4;
+    optional int64 offset         	= 5;
+    optional int64 limit          	= 6;
+}
+
+message GetEnrollmentAssignmentProtoRes{
+    repeated EnrollmentAssignmentProtoModel enrollment_assignment = 1;
+}
+
+message CreateEnrollmentAssignmentProtoReq {
+    string  user_id     	= 1;
+    string  assignment_id   = 2;
+    bool    completed   	= 3;
+    int64   grade       	= 4;
+}
+
+message CreateTrackingWorkAssignmentProtoReq {
+    string  user_id    		= 1;
+    string  assignment_id   = 2;
+    int64   started_at 		= 3;
+    int64   ended_at        = 4;
+}
+
+
+message UpdateEnrollmentAssignmentProtoReq {
+    string  user_id                 = 1;
+    string  assignment_id           = 2;
+    optional bool completed         = 3;
+    optional int64 grade            = 4;
+}
+
+message DeleteEnrollmentAssignmentProtoReq {
+    string id = 1;
+}
+
 
 
 
