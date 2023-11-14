@@ -91,3 +91,7 @@ message GetOwnerReq{
 message GetOwnerRes{
   string owner_id = 1;
 }
+
+message GetAllCoursesRes{
+  repeated CourseProtoModel courses = 1;
+}
