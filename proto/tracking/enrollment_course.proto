@@ -3,13 +3,14 @@ package  tracking_service;
 
 message TrackingWorkProtoModel {
     string  id              = 1;
-    int64   started_at      = 2;
-    int64   ended_at        = 3;
-    bool    completed       = 4;
+    string  parent_id       = 2;
+    int64   started_at      = 3;
+    int64   ended_at        = 4;
+    bool    completed       = 5;
 }
 
 message GetTrackingWorkProtoReq {
-    string id   = 1;
+    string parent_id   = 1;
 }
 
 message GetTrackingWorkProtoRes {
@@ -17,9 +18,10 @@ message GetTrackingWorkProtoRes {
 }
 
 message CreateTrackingWorkProtoReq {
-    int64   started_at       = 1;
-    int64   ended_at         = 2;
-    bool    completed        = 3;
+    string  parent_id        = 1;
+    int64   started_at       = 2;
+    int64   ended_at         = 3;
+    bool    completed        = 4;
 }
 
 message DeleteTrackingWorkProtoReq {
@@ -71,6 +73,7 @@ message CreateTrackingWorkCourseProtoReq {
     string  course_id  = 2;
     int64   started_at = 3;
     int64   ended_at   = 4;
+    bool    completed  = 5;
 }
 
 
@@ -130,6 +133,7 @@ message CreateTrackingWorkSectionProtoReq {
     string  section_id  = 2;
     int64   started_at  = 3;
     int64   ended_at    = 4;
+    bool    completed  = 5;
 }
 
 message UpdateEnrollmentSectionProtoReq {

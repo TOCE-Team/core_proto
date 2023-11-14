@@ -27,18 +27,18 @@ service TrackingServiceProto {
     // Course
     rpc GetEnrollmentCourseCall(GetEnrollmentCourseProtoReq) returns (GetEnrollmentCourseProtoRes);
     rpc CreateEnrollmentCourseCall(CreateEnrollmentCourseProtoReq) returns(EnrollmentCourseProtoModel);
-    //rpc UpdateEnrollmentCourseCall(UpdateEnrollmentCourseProtoReq) returns(EnrollmentCourseProtoModel);
+    rpc UpdateEnrollmentCourseCall(UpdateEnrollmentCourseProtoReq) returns(EnrollmentCourseProtoModel);
     rpc DeleteEnrollmentCourseCall(DeleteEnrollmentCourseProtoReq) returns(Empty);
     rpc GetTrackingWorkCourseCall(GetTrackingWorkCourseProtoReq) returns (GetTrackingWorkProtoRes);
-    //rpc CreateTrackingWorkCourseCall(CreateTrackingWorkCourseProtoReq) returns (TrackingWorkProtoModel);
+    rpc CreateTrackingWorkCourseCall(CreateTrackingWorkCourseProtoReq) returns (TrackingWorkProtoModel);
 
     // Section
     rpc GetEnrollmentSectionCall(GetEnrollmentSectionProtoReq) returns (GetEnrollmentSectionProtoRes);
     rpc CreateEnrollmentSectionCall(CreateEnrollmentSectionProtoReq) returns(EnrollmentSectionProtoModel);
-    //rpc UpdateEnrollmentSectionCall(UpdateEnrollmentSectionProtoReq) returns(EnrollmentSectionProtoModel);
+    rpc UpdateEnrollmentSectionCall(UpdateEnrollmentSectionProtoReq) returns(EnrollmentSectionProtoModel);
     rpc DeleteEnrollmentSectionCall(DeleteEnrollmentSectionProtoReq) returns(Empty);
     rpc GetTrackingWorkSectionCall(GetTrackingWorkSectionProtoReq) returns (GetTrackingWorkProtoRes);
-    //rpc CreateTrackingWorkSectionCall(CreateTrackingWorkSectionProtoReq) returns (TrackingWorkProtoModel);
+    rpc CreateTrackingWorkSectionCall(CreateTrackingWorkSectionProtoReq) returns (TrackingWorkProtoModel);
 
 	// Lesson
 	rpc GetEnrollmentLessonCall(GetEnrollmentLessonProtoReq) returns (GetEnrollmentLessonProtoRes);
