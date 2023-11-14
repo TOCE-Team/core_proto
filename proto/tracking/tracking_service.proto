@@ -44,7 +44,12 @@ service TrackingServiceProto {
 	rpc GetEnrollmentLessonCall(GetEnrollmentLessonProtoReq) returns (GetEnrollmentLessonProtoRes);
 	rpc CreateEnrollmentLessonCall(CreateEnrollmentLessonProtoReq) returns (EnrollmentLessonProtoModel);
 	rpc DeleteEnrollmentLessonCall(DeleteEnrollmentLessonProtoReq) returns (Empty);
-	
 	rpc GetTrackingWorkLessonCall(GetTrackingWorkLessonProtoReq) returns (GetTrackingWorkProtoRes);
+	// Assignment
+	rpc GetEnrollmentAssignmentCall(GetEnrollmentAssignmentProtoReq) returns (GetEnrollmentAssignmentProtoRes);
+	rpc CreateEnrollmentAssignmentCall(CreateEnrollmentAssignmentProtoReq) returns (EnrollmentAssignmentProtoModel);
+	rpc DeleteEnrollmentAssignmentCall(DeleteEnrollmentAssignmentProtoReq) returns (Empty);
+	rpc GetTrackingWorkAssignmentCall(GetTrackingWorkAssignmentProtoReq) returns (GetTrackingWorkProtoRes);
+
 	
 }
