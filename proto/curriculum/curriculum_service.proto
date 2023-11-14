@@ -9,6 +9,7 @@ import "lesson_proto_model.proto";
 import "assignments_model.proto";
 import "quiz_model.proto";
 
+message Empty {}
 
 service CurriculumServiceProto {
   // Coure
@@ -18,6 +19,7 @@ service CurriculumServiceProto {
   rpc GetCourseByCourseSlugCall(GetCourseByCourseSlugProtoReq) returns (CourseProtoModel);
   rpc GetOwnerCall(GetOwnerReq) returns (GetOwnerRes);
   rpc UpdateCourseCall(UpdateCourseProtoReq) returns (CourseProtoModel);
+  rpc GetAllCoursesCall(Empty) returns (GetAllCoursesRes);
 
   // Section
   rpc CreateSectionCall(CreateSectionProtoReq) returns (SectionProtoModel);
@@ -33,22 +35,22 @@ service CurriculumServiceProto {
   rpc AddLessonCall(AddLessonProtoReq) returns (AddLessonProtoRes);
 
   // For course assistant - moderator
-  rpc AddCourseAssistantCall(AddCourseAssistantProtoReq)            returns (CourseAssistantBase);
-  rpc GetCourseAssistantCall(GetCourseAssistantProtoReq)            returns (CourseAssistantListProRes);
-  rpc DeleteCourseAssistantCall(DeleteCourseAssistantProtoReq)      returns (Empty);
-  rpc AddCourseModeratorCall(AddCourseModeratorProtoReq)            returns (CourseModeratorBase);
-  rpc GetCourseModeratorCall(GetCourseModeratorProtoReq)            returns (CourseModeratorListProRes);
-  rpc DeleteCourseModeratorCall(DeleteCourseModeratorProtoReq)      returns (Empty);
+  rpc AddCourseAssistantCall(AddCourseAssistantProtoReq)       returns (CourseAssistantBase);
+  rpc GetCourseAssistantCall(GetCourseAssistantProtoReq)       returns (CourseAssistantListProRes);
+  rpc DeleteCourseAssistantCall(DeleteCourseAssistantProtoReq) returns (Empty);
+  rpc AddCourseModeratorCall(AddCourseModeratorProtoReq)       returns (CourseModeratorBase);
+  rpc GetCourseModeratorCall(GetCourseModeratorProtoReq)       returns (CourseModeratorListProRes);
+  rpc DeleteCourseModeratorCall(DeleteCourseModeratorProtoReq) returns (Empty);
 
   // Form 
   rpc GetFormByIdCall(GetFormByIdProtoReq)                                   returns (FormProtoModel);
-  rpc CreateFormCall(CreateFormProtoReq)                                     returns (FormProtoModel);
-  rpc AddShortTextToFormCall(CreateFormShortTextProtoReq)                    returns (FormProtoModel);
-  rpc AddParagraphToFormCall(CreateFormParagraphProtoReq)                    returns (FormProtoModel);
-  rpc AddMultichoiceToFormCall(CreateFormMultichoiceProtoReq)                returns (FormProtoModel);
-  rpc AddMultichoiceItemToMultichoiceCall(CreateFormMultichoiceItemProtoReq) returns (FormProtoModel);
-  rpc AddDropdownToFormCall(CreateFormDropdownProtoReq)                      returns (FormProtoModel);
-  rpc AddDropdownItemToDropdownCall(CreateFormDropdownItemProtoReq)          returns (FormProtoModel);
+  rpc CreateFormCall(CreateFormProtoReq)                                     returns (Empty);
+  rpc AddShortTextToFormCall(CreateFormShortTextProtoReq)                    returns (Empty);
+  rpc AddParagraphToFormCall(CreateFormParagraphProtoReq)                    returns (Empty);
+  rpc AddMultichoiceToFormCall(CreateFormMultichoiceProtoReq)                returns (Empty);
+  rpc AddMultichoiceItemToMultichoiceCall(CreateFormMultichoiceItemProtoReq) returns (Empty);
+  rpc AddDropdownToFormCall(CreateFormDropdownProtoReq)                      returns (Empty);
+  rpc AddDropdownItemToDropdownCall(CreateFormDropdownItemProtoReq)          returns (Empty);
 
   // Quiz
   rpc GetQuizBankByIdCall(GetQuizBankByIdProtoReq)      returns(QuizBankProtoModel);
@@ -67,6 +69,7 @@ service CurriculumServiceProto {
   rpc GetQuizSetByIdCall(GetQuizSetByIdProtoReq)        returns(QuizSetProtoModel);
   rpc GetQuizSetListCall(GetQuizSetListProtoReq)        returns(GetQuizListProtoRes);
   rpc DeleteQuizSetCall(DeleteQuizSetProtoReq)          returns(Empty);
+  
   // For assignment
   // CRUD assignment
   rpc CreateAssignmentCall(CreateAssignmentProtoReq) returns (AssignmentProtoModel);

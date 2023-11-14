@@ -103,3 +103,76 @@ message CreateFormDropdownItemProtoReq {
   int32  itemPosition   = 2;
   string itemTitle      = 3;
 }
+
+message UpdateFormProtoReq {
+  string id                 = 1;
+  optional string formTitle = 2;
+  optional string formBrief = 3;
+}
+
+message UpdateFormShortTextProtoReq {
+  string id                = 1;
+  optional int32  position = 2;
+  optional string title    = 3;
+  optional string input    = 4;
+}
+
+message UpdateFormParagraphProtoReq {
+  string id                = 1;
+  optional int32  position = 2;
+  optional string title    = 3;
+  optional string input    = 4;
+}
+
+message UpdateFormMultichoiceProtoReq {
+  string id                = 1;
+  optional int32  position = 2;
+  optional string title    = 3;
+}
+
+message UpdateFormMultichoiceItemProtoReq {
+  string id                    = 1;
+  optional int32  itemPosition = 2;
+  optional string itemTitle    = 3;
+  optional bool   checked      = 4;
+}
+
+message UpdateFormDropdownProtoReq {
+  string id                = 1;
+  optional int32  position = 2;
+  optional string title    = 3;
+}
+
+message UpdateFormDropdownItemProtoReq {
+  string id                    = 1;
+  optional int32  itemPosition = 2;
+  optional string itemTitle    = 3;
+}
+
+message DeleteFormById {
+  string id = 1;
+}
+
+message DeleteShortTextById {
+  string id = 1;
+}
+
+message DeleteParagraphById {
+  string id = 1;
+}
+
+message DeleteMultichoiceById {
+  string id = 1;
+}
+
+message DeleteMultichoiceItemById {
+  string id = 1;
+}
+
+message DeleteDropdownById {
+  string id = 1;
+}
+
+message DeleteDropdownItemById {
+  string id = 1;
+}
