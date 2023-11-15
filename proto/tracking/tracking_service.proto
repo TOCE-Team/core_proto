@@ -51,5 +51,9 @@ service TrackingServiceProto {
 	rpc DeleteEnrollmentAssignmentCall(DeleteEnrollmentAssignmentProtoReq) returns (Empty);
 	rpc GetTrackingWorkAssignmentCall(GetTrackingWorkAssignmentProtoReq) returns (GetTrackingWorkProtoRes);
 
-	
+    // Video
+    rpc GetEnrollmentVideoCall(GetEnrollmentVideoProtoReq) returns (GetEnrollmentVideoProtoRes);
+    rpc CreateEnrollmentVideoCall(CreateEnrollmentVideoProtoReq) returns(EnrollmentVideoProtoModel);
+    rpc UpdateEnrollmentVideoCall(UpdateEnrollmentVideoProtoReq) returns(EnrollmentVideoProtoModel);
+    rpc DeleteEnrollmentVideoCall(DeleteEnrollmentVideoProtoReq) returns(Empty);
 }
