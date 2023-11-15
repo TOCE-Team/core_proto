@@ -192,6 +192,7 @@ message CreateTrackingWorkLessonProtoReq {
     string  lesson_id  = 2;
     int64   started_at = 3;
     int64   ended_at   = 4;
+    bool    completed  = 5;
 }
 
 
@@ -251,6 +252,7 @@ message CreateTrackingWorkAssignmentProtoReq {
     string  assignment_id   = 2;
     int64   started_at 		= 3;
     int64   ended_at        = 4;
+    bool    completed       = 5;
 }
 
 
