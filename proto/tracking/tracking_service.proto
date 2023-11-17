@@ -40,22 +40,27 @@ service TrackingServiceProto {
     rpc GetTrackingWorkSectionCall(GetTrackingWorkSectionProtoReq) returns (GetTrackingWorkProtoRes);
     rpc CreateTrackingWorkSectionCall(CreateTrackingWorkSectionProtoReq) returns (TrackingWorkProtoModel);
 
-	// Lesson
-	rpc GetEnrollmentLessonCall(GetEnrollmentLessonProtoReq) returns (GetEnrollmentLessonProtoRes);
-	rpc CreateEnrollmentLessonCall(CreateEnrollmentLessonProtoReq) returns (EnrollmentLessonProtoModel);
-	rpc DeleteEnrollmentLessonCall(DeleteEnrollmentLessonProtoReq) returns (Empty);
-	rpc GetTrackingWorkLessonCall(GetTrackingWorkLessonProtoReq) returns (GetTrackingWorkProtoRes);
-	rpc UpdateEnrollmentLessonCall(UpdateEnrollmentLessonProtoReq) returns(EnrollmentLessonProtoModel);
+    // Lesson
+    rpc GetEnrollmentLessonCall(GetEnrollmentLessonProtoReq) returns (GetEnrollmentLessonProtoRes);
+    rpc CreateEnrollmentLessonCall(CreateEnrollmentLessonProtoReq) returns (EnrollmentLessonProtoModel);
+    rpc DeleteEnrollmentLessonCall(DeleteEnrollmentLessonProtoReq) returns (Empty);
+    rpc GetTrackingWorkLessonCall(GetTrackingWorkLessonProtoReq) returns (GetTrackingWorkProtoRes);
+    rpc UpdateEnrollmentLessonCall(UpdateEnrollmentLessonProtoReq) returns(EnrollmentLessonProtoModel);
     rpc CreateTrackingWorkLessonCall(CreateTrackingWorkLessonProtoReq) returns (TrackingWorkProtoModel);
 
 
-	// Assignment
-	rpc GetEnrollmentAssignmentCall(GetEnrollmentAssignmentProtoReq) returns (GetEnrollmentAssignmentProtoRes);
-	rpc CreateEnrollmentAssignmentCall(CreateEnrollmentAssignmentProtoReq) returns (EnrollmentAssignmentProtoModel);
-	rpc DeleteEnrollmentAssignmentCall(DeleteEnrollmentAssignmentProtoReq) returns (Empty);
-	rpc GetTrackingWorkAssignmentCall(GetTrackingWorkAssignmentProtoReq) returns (GetTrackingWorkProtoRes);
-	rpc UpdateEnrollmentAssignmentCall(UpdateEnrollmentAssignmentProtoReq) returns(EnrollmentAssignmentProtoModel);
-	rpc CreateTrackingWorkAssignmentCall(CreateTrackingWorkAssignmentProtoReq) returns (TrackingWorkProtoModel);
+    // Assignment
+    rpc GetEnrollmentAssignmentCall(GetEnrollmentAssignmentProtoReq) returns (GetEnrollmentAssignmentProtoRes);
+    rpc CreateEnrollmentAssignmentCall(CreateEnrollmentAssignmentProtoReq) returns (EnrollmentAssignmentProtoModel);
+    rpc DeleteEnrollmentAssignmentCall(DeleteEnrollmentAssignmentProtoReq) returns (Empty);
+    rpc GetTrackingWorkAssignmentCall(GetTrackingWorkAssignmentProtoReq) returns (GetTrackingWorkProtoRes);
+    rpc UpdateEnrollmentAssignmentCall(UpdateEnrollmentAssignmentProtoReq) returns(EnrollmentAssignmentProtoModel);
+    rpc CreateTrackingWorkAssignmentCall(CreateTrackingWorkAssignmentProtoReq) returns (TrackingWorkProtoModel);
 
+    // User track
+    rpc GetUserTrackCall(GetUserTrackProtoReq) returns (GetUserTrackProtoRes);
+    rpc GetUserTrackByIdCall(GetUserTrackByIdProtoReq) returns (UserTrackProtoModel);
+    rpc CreateUserTrackCall(CreateUserTrackProtoReq) returns (UserTrackProtoModel);
+    rpc DeleteUserTrackCall(DeleteUserTrackProtoReq) returns (Empty);
 	
 }
