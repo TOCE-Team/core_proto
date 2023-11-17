@@ -5,10 +5,7 @@ message TrackingWorkProtoModel {
     string  id              = 1;
     string  parent_id       = 2;
     int64   started_at      = 3;
-    int64   ended_at        = 4;
-    bool    completed       = 5;
-}
-
+    int64   ended_at        = 4; bool    completed       = 5;}
 message GetTrackingWorkProtoReq {
     string parent_id   = 1;
 }
@@ -305,51 +302,6 @@ message DeleteUserTrackProtoReq {
 }
 
 
-
-// Video
-
-message EnrollmentVideoProtoModel {
-    string  id              = 1;
-    string  user_id         = 2;
-    string  video_id        = 3;
-    int64   time_viewed     = 4;
-    int64   quantity        = 5;
-    bool    isDeleted       = 6;
-    int64   createdAt       = 7;
-    int64   updatedAt       = 8;
-    int64   paginationId    = 9;
-}
-
-
-message GetEnrollmentVideoProtoReq{
-    optional string id          = 1;
-    optional string user_id     = 2;
-    optional string video_id    = 3;
-    optional int64 offset       = 4;
-    optional int64 limit        = 5;
-}
-
-message GetEnrollmentVideoProtoRes{
-    repeated EnrollmentVideoProtoModel enrollment_video = 1;
-}
-
-message CreateEnrollmentVideoProtoReq {
-    string  user_id         = 1;
-    string  video_id        = 2;
-    int64   time_viewed     = 3;
-    int64   quantity        = 4;
-}
-
-message UpdateEnrollmentVideoProtoReq {
-    string           user_id        = 1;
-    string           video_id       = 2;
-    optional int64   time_viewed    = 3;
-    optional int64   quantity       = 4;
-}
-
-message DeleteEnrollmentVideoProtoReq {
-    string id = 1;
-}
 
 
 
