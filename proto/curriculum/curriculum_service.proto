@@ -71,9 +71,15 @@ service CurriculumServiceProto {
   rpc DeleteQuizSetCall(DeleteQuizSetProtoReq)          returns(Empty);
   
   // For assignment
-  rpc CreateAssignmentCall(CreateAssignmentProtoReq)        returns (AssignmentProtoModel);
-  rpc AddQuizToAssignmentCall(AddQuizProtoReq)              returns (Empty);
-  rpc AddGraderToAssignmentCall(AddGraderProtoReq)          returns (Empty);
-  rpc ViewGraderCall(ViewGraderProtoReq)                    returns (GraderListId);
-  rpc AddRequirmentToAssignmentCall(AddRequirmentProtoReq)  returns (Empty);
+  // CRUD assignment
+  rpc CreateAssignmentCall(CreateAssignmentProtoReq) returns (AssignmentProtoModel);
+  rpc GetAssignmentsCall(AssignmentQuery) returns (AssignmentList);
+  rpc GetAssignmentByIdCall(GetAssignmentByIdProtoReq) returns (AssignmentProtoModel);
+  rpc UpdateAssignmentCall(UpdateAssignmentProtoReq) returns (AssignmentProtoModel);
+  rpc DeleteAssignmentCall(DeleteAssignmentProtoReq) returns (Empty);
+
+  rpc AddQuizToAssignmentCall(AddQuizProtoReq) returns (Empty);
+  rpc AddGraderToAssignmentCall(AddGraderProtoReq) returns (Empty);
+  rpc ViewGraderCall(ViewGraderProtoReq) returns (GraderListId);
+  rpc AddRequirmentToAssignmentCall(AddRequirmentProtoReq) returns (Empty);
 }

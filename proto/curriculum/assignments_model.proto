@@ -5,16 +5,39 @@ package  curriculum_service;
 message AssignmentProtoModel {
 	string assignmentId = 1;
 	string ownerId = 2;
-	string graderId = 3;
-	int64 startAt = 4;
-	int64 endAt = 5;
+	int64 startAt = 3;
+	int64 endAt = 4;
 }
 
 message CreateAssignmentProtoReq {
 	string ownerId = 1;
-	string graderId = 2; 
 	int64 startAt = 3;
 	int64 endAt = 4;
+}
+
+message AssignmentList {
+	repeated AssignmentProtoModel assignments = 1;
+}
+
+message GetAssignmentByIdProtoReq{
+	string assignmentId = 1;
+}
+
+message AssignmentQuery {
+    optional int64  offset       = 1;
+    optional int32  limit        = 2;
+    optional int64  startAt      = 3;
+    optional int64  endAt        = 4;
+}
+
+message UpdateAssignmentProtoReq{
+	string assignmentId    = 1;
+	optional int64 startAt = 2;
+	optional int64 endAt   = 3;
+}
+
+message DeleteAssignmentProtoReq {
+	string assignmentId = 1;
 }
 
 message AddQuizProtoReq {

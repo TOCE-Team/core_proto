@@ -1,0 +1,71 @@
+syntax = "proto3";
+package  tracking_service;
+import "enrollment_course.proto";
+
+message TrackingProtoModel{
+    string          id                = 1;
+    string          userId            = 2;
+    bool            isDeleted         = 3;
+    int64           createdAt         = 4;
+    int64           updatedAt         = 5;
+}
+
+message GetTrackingByIdProtoReq {
+    string  id  = 1;
+}
+
+message Empty{}
+
+service TrackingServiceProto {
+    rpc GetTrackingByIdCall(GetTrackingByIdProtoReq) returns (TrackingProtoModel);
+
+    // Tracking Work
+    rpc GetTrackingWorkCall(GetTrackingWorkProtoReq) returns (TrackingWorkProtoModel);
+    rpc CreateTrackingWorkCall(CreateTrackingWorkProtoReq) returns (TrackingWorkProtoModel);
+    rpc DeleteTrackingWorkCall(DeleteTrackingWorkProtoReq) returns (Empty);
+
+    // Course
+    rpc GetEnrollmentCourseCall(GetEnrollmentCourseProtoReq) returns (GetEnrollmentCourseProtoRes);
+    rpc CreateEnrollmentCourseCall(CreateEnrollmentCourseProtoReq) returns(EnrollmentCourseProtoModel);
+    rpc UpdateEnrollmentCourseCall(UpdateEnrollmentCourseProtoReq) returns(EnrollmentCourseProtoModel);
+    rpc DeleteEnrollmentCourseCall(DeleteEnrollmentCourseProtoReq) returns(Empty);
+    rpc GetTrackingWorkCourseCall(GetTrackingWorkCourseProtoReq) returns (GetTrackingWorkProtoRes);
+    rpc CreateTrackingWorkCourseCall(CreateTrackingWorkCourseProtoReq) returns (TrackingWorkProtoModel);
+
+    // Section
+    rpc GetEnrollmentSectionCall(GetEnrollmentSectionProtoReq) returns (GetEnrollmentSectionProtoRes);
+    rpc CreateEnrollmentSectionCall(CreateEnrollmentSectionProtoReq) returns(EnrollmentSectionProtoModel);
+    rpc UpdateEnrollmentSectionCall(UpdateEnrollmentSectionProtoReq) returns(EnrollmentSectionProtoModel);
+    rpc DeleteEnrollmentSectionCall(DeleteEnrollmentSectionProtoReq) returns(Empty);
+    rpc GetTrackingWorkSectionCall(GetTrackingWorkSectionProtoReq) returns (GetTrackingWorkProtoRes);
+    rpc CreateTrackingWorkSectionCall(CreateTrackingWorkSectionProtoReq) returns (TrackingWorkProtoModel);
+
+    // Lesson
+    rpc GetEnrollmentLessonCall(GetEnrollmentLessonProtoReq) returns (GetEnrollmentLessonProtoRes);
+    rpc CreateEnrollmentLessonCall(CreateEnrollmentLessonProtoReq) returns (EnrollmentLessonProtoModel);
+    rpc DeleteEnrollmentLessonCall(DeleteEnrollmentLessonProtoReq) returns (Empty);
+    rpc GetTrackingWorkLessonCall(GetTrackingWorkLessonProtoReq) returns (GetTrackingWorkProtoRes);
+    rpc UpdateEnrollmentLessonCall(UpdateEnrollmentLessonProtoReq) returns(EnrollmentLessonProtoModel);
+    rpc CreateTrackingWorkLessonCall(CreateTrackingWorkLessonProtoReq) returns (TrackingWorkProtoModel);
+
+
+    // Assignment
+    rpc GetEnrollmentAssignmentCall(GetEnrollmentAssignmentProtoReq) returns (GetEnrollmentAssignmentProtoRes);
+    rpc CreateEnrollmentAssignmentCall(CreateEnrollmentAssignmentProtoReq) returns (EnrollmentAssignmentProtoModel);
+    rpc DeleteEnrollmentAssignmentCall(DeleteEnrollmentAssignmentProtoReq) returns (Empty);
+    rpc GetTrackingWorkAssignmentCall(GetTrackingWorkAssignmentProtoReq) returns (GetTrackingWorkProtoRes);
+    rpc UpdateEnrollmentAssignmentCall(UpdateEnrollmentAssignmentProtoReq) returns(EnrollmentAssignmentProtoModel);
+    rpc CreateTrackingWorkAssignmentCall(CreateTrackingWorkAssignmentProtoReq) returns (TrackingWorkProtoModel);
+
+    // Video
+    rpc GetEnrollmentVideoCall(GetEnrollmentVideoProtoReq) returns (GetEnrollmentVideoProtoRes);
+    rpc CreateEnrollmentVideoCall(CreateEnrollmentVideoProtoReq) returns(EnrollmentVideoProtoModel);
+    rpc UpdateEnrollmentVideoCall(UpdateEnrollmentVideoProtoReq) returns(EnrollmentVideoProtoModel);
+    rpc DeleteEnrollmentVideoCall(DeleteEnrollmentVideoProtoReq) returns(Empty);
+    // User track
+    rpc GetUserTrackCall(GetUserTrackProtoReq) returns (GetUserTrackProtoRes);
+    rpc GetUserTrackByIdCall(GetUserTrackByIdProtoReq) returns (UserTrackProtoModel);
+    rpc CreateUserTrackCall(CreateUserTrackProtoReq) returns (UserTrackProtoModel);
+    rpc DeleteUserTrackCall(DeleteUserTrackProtoReq) returns (Empty);
+	
+}
