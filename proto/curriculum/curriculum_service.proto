@@ -20,6 +20,7 @@ service CurriculumServiceProto {
   rpc GetOwnerCall(GetOwnerReq) returns (GetOwnerRes);
   rpc UpdateCourseCall(UpdateCourseProtoReq) returns (CourseProtoModel);
   rpc GetAllCoursesCall(Empty) returns (GetAllCoursesRes);
+  rpc GetCourseSectionsAndLessonsCall(GetCourseSectionsAndLessonsReq) returns (GetCourseSectionsAndLessonsRes);
 
   // Section
   rpc CreateSectionCall(CreateSectionProtoReq) returns (SectionProtoModel);
