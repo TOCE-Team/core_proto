@@ -95,3 +95,22 @@ message GetOwnerRes{
 message GetAllCoursesRes{
   repeated CourseProtoModel courses = 1;
 }
+
+message CourseSectionsAndLessonsProto{
+  string section_id = 1;
+  string section_title = 2;
+  repeated CourseLessonsProto lesson_list = 3;
+}
+
+message CourseLessonsProto{
+  string lesson_id = 1;
+  string lesson_title = 2;
+}
+
+message GetCourseSectionsAndLessonsRes{
+  repeated CourseSectionsAndLessonsProto course_detail = 1; 
+}
+
+message GetCourseSectionsAndLessonsReq{
+  string course_id = 1;
+}
