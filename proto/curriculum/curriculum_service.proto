@@ -8,6 +8,7 @@ import "section_proto_model.proto";
 import "lesson_proto_model.proto";
 import "assignments_model.proto";
 import "quiz_model.proto";
+import "comment_model.proto";
 
 message Empty {}
 
@@ -83,4 +84,12 @@ service CurriculumServiceProto {
   rpc AddGraderToAssignmentCall(AddGraderProtoReq) returns (Empty);
   rpc ViewGraderCall(ViewGraderProtoReq) returns (GraderListId);
   rpc AddRequirmentToAssignmentCall(AddRequirmentProtoReq) returns (Empty);
+
+  // For Comment 
+  rpc CreateCommentCall(CreateCommentProtoReq) returns (CommentProtoModel);
+  rpc GetListCommentCall(GetListCommentProtoReq) returns (ListComment);
+  rpc UpdateCommentCall(UpdateCommentProtoReq) returns (CommentProtoModel);
+  rpc DeleteCommentCall(DeleteCommentProtoReq) returns (Empty);
+
+ 
 }

@@ -1,0 +1,65 @@
+syntax = "proto3";
+package curriculum_service;
+
+message CommentProtoModel {
+	string id        = 1;
+	string parentId  = 2;
+	string postId    = 3;
+	string userId    = 4;
+    string content   = 5;
+    int32 reaction   = 6;
+    int64 created_at = 7;
+    int64 deleted_at = 8;
+    int64 updated_at = 9;
+    bool is_deleted  = 10;
+}
+
+message ListComment {
+	repeated CommentProtoModel comments = 1;
+}
+
+message GetListCommentProtoReq {
+	string parentId = 1;
+	int64 offset = 2; 
+	int64 limit = 3;
+}
+
+message CreateCommentProtoReq {
+	string parentId = 1;
+	string postId   = 2;
+	string content  = 3;
+	string userId   = 4;
+}
+
+message UpdateCommentProtoReq {
+	string commentId       = 1;
+	string updated_content = 2;
+}
+
+message DeleteCommentProtoReq {
+	string commentId = 1;
+}
+
+message PostProtoModel {
+	string id         = 1;
+	string userId     = 2;
+	string title      = 3;
+	string content    = 4;
+	string created_at = 5;
+}
+
+message CreatePostProtoReq {
+	string userId  = 1;
+	string title   = 2;
+	string content = 3;
+}
+
+message UpdatePostProtoReq {
+	string commentId        = 1;
+	optional string title   = 2;
+	optional string content = 3;
+}
+
+message DeletePostProtoReq {
+	string commentId = 1;
+}
