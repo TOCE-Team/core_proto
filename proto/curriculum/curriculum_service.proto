@@ -86,10 +86,19 @@ service CurriculumServiceProto {
   rpc AddRequirmentToAssignmentCall(AddRequirmentProtoReq) returns (Empty);
 
   // For Comment 
-  rpc CreateCommentCall(CreateCommentProtoReq) returns (CommentProtoModel);
-  rpc GetListCommentCall(GetListCommentProtoReq) returns (ListComment);
+  rpc AddCommentToPostCall(AddCommentToPostProtoReq) returns (CommentProtoModel);
+  rpc AddCommentToCommentCall(AddCommentToCommentProtoReq) returns (CommentProtoModel);
+  rpc UpVoteCommentCall(VoteCommentProtoReq) returns (Empty);
+  rpc DownVoteCommentCall(VoteCommentProtoReq) returns (Empty);
+  rpc GetCommentPostCall(GetCommentPostProtoReq) returns (ListCommentTreeNodeProtoModel);
   rpc UpdateCommentCall(UpdateCommentProtoReq) returns (CommentProtoModel);
   rpc DeleteCommentCall(DeleteCommentProtoReq) returns (Empty);
-
+  rpc GetCommentByIdCall(GetCommentByIdProtoReq) returns (CommentProtoModel);
+  /// post
+  rpc GetListPostCall(PostQuery) returns (ListPost);
+  rpc CreatePostCall(CreatePostProtoReq) returns (PostProtoModel);
+  rpc UpdatePostCall(UpdatePostProtoReq) returns (PostProtoModel);
+  rpc DeletePostCall(DeletePostProtoReq) returns (Empty);
+  rpc GetPostByIdCall(GetPostByIdProtoReq) returns (PostProtoModel);
  
 }
