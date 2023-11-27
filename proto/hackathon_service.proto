@@ -336,7 +336,7 @@ enum InvitationFor {
 	Hackathon 		= 0;
 	Organize  		= 1;
 	Course 			= 2;
-	TheBootCamp 	= 3;
+	Boot_Camp 		= 3;
 }
 
 message InvitationBase {
