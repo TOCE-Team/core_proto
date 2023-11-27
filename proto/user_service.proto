@@ -231,6 +231,60 @@ message DeleteTeamMemberProtoReq{
 	string userId = 2;
 }
 
+// Email
+enum EmailType {
+    Invite       = 0;
+    Notify       = 1;
+}
+
+message EmailBase {
+    string 	    id 		  		= 1;
+    int64       paginationId    = 2;
+    EmailType 	email_type 	   	= 3;
+	string  	subject 		= 4;
+    string      header          = 5;
+    string      body            = 6;
+    int64  		createdAt   	= 7;
+    int64  		updatedAt   	= 8;
+	bool 		isDeleted 		= 9;
+}
+
+message EmailListProtoReq {
+    optional int64      offset      = 1;
+    optional int64      limit       = 2;
+    optional EmailType  email_type   = 3;
+    optional int64      createdAt   = 4;
+    optional int64      updatedAt   = 5;
+}
+
+message EmailListProtoRes {
+    repeated EmailBase emails = 1;
+}
+
+message GetEmailByIdProtoReq {
+    string id = 1;
+}
+
+message CreateEmailProtoReq {
+    EmailType 	email_type 	   	= 1;
+	string  	subject 		= 2;
+    string      header          = 3;
+    string      body            = 4;
+}
+
+message UpdateEmailProtoReq {
+    string 			    id 			    = 1;
+    optional EmailType  email_type 	   	= 2;
+	optional string  	subject 		= 3;
+    optional string     header          = 4;
+    optional string     body            = 5;
+}
+
+message DeleteEmailProtoReq {
+    string id = 1;
+}
+
+
 service UserServiceProtocol {
     // Normal user calls
 
@@ -268,5 +322,13 @@ service UserServiceProtocol {
     rpc DeleteTeamMemberCall(DeleteTeamMemberProtoReq)      returns (Empty);
     rpc RemoveTeamMemberCall(DeleteTeamMemberProtoReq)      returns (Empty);
 	rpc RestoreTeamMemberCall(DeleteTeamMemberProtoReq)     returns (Empty);
+
+    // Email
+    rpc GetEmailsCall(EmailListProtoReq)                      returns (EmailListProtoRes);
+    rpc GetEmailByIdCall(GetEmailByIdProtoReq)                returns (EmailBase);
+    rpc CreateEmailCall(CreateEmailProtoReq)                  returns (EmailBase);
+    rpc UpdateEmailCall(UpdateEmailProtoReq)                  returns (EmailBase);
+    rpc DeleteEmailCall(DeleteEmailProtoReq)                  returns (Empty);
+
 
 }
