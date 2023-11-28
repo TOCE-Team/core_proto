@@ -3,7 +3,7 @@ package curriculum_service;
 
 message CommentProtoModel {
 	string id        = 1;
-	string parentId  = 2;
+	optional string parentId  = 2;
 	string postId    = 3;
 	string userId    = 4;
     string content   = 5;
