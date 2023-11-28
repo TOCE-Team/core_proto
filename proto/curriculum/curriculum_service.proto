@@ -44,6 +44,11 @@ service CurriculumServiceProto {
   rpc GetCourseModeratorCall(GetCourseModeratorProtoReq)       returns (CourseModeratorListProRes);
   rpc DeleteCourseModeratorCall(DeleteCourseModeratorProtoReq) returns (Empty);
 
+  rpc AddCourseManagementCall(AddCourseManagementProtoReq)       returns (CourseManagementBase);
+  rpc GetCourseManagementCall(GetCourseManagementProtoReq)       returns (CourseManagementListProRes);
+  rpc UpdateCourseManagementCall(UpdateCourseManagementProtoReq) returns (CourseManagementBase);
+  rpc DeleteCourseManagementCall(DeleteCourseManagementProtoReq) returns (Empty);
+
   // Form 
   rpc GetFormByIdCall(GetFormByIdProtoReq)                                   returns (FormProtoModel);
   rpc CreateFormCall(CreateFormProtoReq)                                     returns (Empty);
