@@ -1,0 +1,110 @@
+syntax = "proto3";
+package curriculum_service;
+
+message CommentProtoModel {
+	string id        = 1;
+	optional string parentId  = 2;
+	string postId    = 3;
+	string userId    = 4;
+    string content   = 5;
+    int32 score      = 6;
+    int64 createdAt = 7;
+    int64 deletedAt = 8;
+    int64 updatedAt = 9;
+    bool isDeleted  = 10;
+}
+
+message CommentTreeNodeProtoModel {
+	CommentProtoModel comment = 1;
+	string userId = 2;
+	string parentId = 3;
+	repeated CommentTreeNodeProtoModel children = 4;
+}
+
+message AddCommentToPostProtoReq {
+	string postId   = 1;
+	string content  = 2;
+	string userId   = 3;
+}
+
+message AddCommentToCommentProtoReq {
+	string parentId = 1;
+	string postId   = 2;
+	string content  = 3;
+	string userId   = 4;
+}
+
+message VoteCommentProtoReq {
+	string commentId = 1;
+	string postId   = 2;
+	string content  = 3;
+	string userId   = 4;
+}
+message PostQuery {
+    optional int64  offset       = 1;
+    optional int32  limit        = 2;
+    optional int64  startAt      = 3;
+    optional int64  endAt        = 4;
+}
+
+message ListCommentTreeNodeProtoModel {
+	repeated CommentTreeNodeProtoModel commentTree = 1;
+}
+message GetCommentPostProtoReq {
+	string postId = 1;
+}
+
+message UpdateCommentProtoReq {
+	string commentId       = 1;
+	string updatedContent = 2;
+}
+
+message DeleteCommentProtoReq {
+	string commentId = 1;
+}
+
+message ListPost {
+	repeated PostProtoModel posts = 1;
+}
+
+
+message DeletePostProtoReq {
+	string postId = 1;
+}
+
+message GetPostByIdProtoReq {
+	string postId = 1;
+}
+
+message GetCommentByIdProtoReq {
+	string commentId = 1;
+	string postId = 2;
+}
+
+message GetListCommentProtoReq {
+	string parentId = 1;
+	int64 offset = 2; 
+	int64 limit = 3;
+}
+
+message PostProtoModel {
+	string id         = 1;
+	string userId     = 2;
+	string title      = 3;
+	string content    = 4;
+	int64 created_at = 5;
+}
+
+message CreatePostProtoReq {
+	string userId  = 1;
+	string title   = 2;
+	string content = 3;
+}
+
+message UpdatePostProtoReq {
+	string postId           = 1;
+	string title   = 2;
+	string content = 3;
+}
+
+
