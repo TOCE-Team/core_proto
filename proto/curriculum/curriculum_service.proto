@@ -106,4 +106,8 @@ service CurriculumServiceProto {
   rpc DeletePostCall(DeletePostProtoReq) returns (Empty);
   rpc GetPostByIdCall(GetPostByIdProtoReq) returns (PostProtoModel);
  
+  rpc AddPostToCourseCall(AddPostCourseProtoReq) returns (Empty);
+  rpc AddPostToLessonCall(AddPostLessonProtoReq) returns (Empty);
+  rpc AddPostToSectionCall(AddPostSectionProtoReq) returns (Empty);
+  rpc AddPostToAssignmentCall(AddPostAssignmentProtoReq) returns (Empty);
 }

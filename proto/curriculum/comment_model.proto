@@ -2,8 +2,7 @@ syntax = "proto3";
 package curriculum_service;
 
 message CommentProtoModel {
-	string id        = 1;
-	optional string parentId  = 2;
+	string id        = 1; optional string parentId  = 2;
 	string postId    = 3;
 	string userId    = 4;
     string content   = 5;
@@ -107,4 +106,22 @@ message UpdatePostProtoReq {
 	string content = 3;
 }
 
+message AddPostCourseProtoReq {
+	string postId = 1;
+	string courseId = 2;
+}
 
+message AddPostLessonProtoReq {
+	string postId = 1;
+	string lessonId = 2;
+}
+
+message AddPostSectionProtoReq {
+	string postId = 1;
+	string sectionId = 2;
+}
+
+message AddPostAssignmentProtoReq {
+	string postId = 1;
+	string assignmentId = 2;
+}
