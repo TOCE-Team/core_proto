@@ -92,6 +92,14 @@ message GetOwnerRes{
   string owner_id = 1;
 }
 
+message GetAllCoursesReq {
+  optional string                 courseTitle     = 1;
+  optional ObjectStateProtoModel  courseState     = 2;
+  optional string                 owner           = 3;
+  optional int32                  languages       = 4;
+  optional string                 difficultyLevel = 5;
+}
+
 message GetAllCoursesRes{
   repeated CourseProtoModel courses = 1;
 }
