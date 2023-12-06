@@ -1,0 +1,98 @@
+syntax = "proto3";
+package  curriculum_service;
+
+
+message AssignmentProtoModel {
+	string assignmentId = 1;
+	string courseId = 2;
+	string ownerId = 3;
+	string title = 4;
+	string description = 5;
+	bool publish = 6;
+	repeated string notes = 7;
+	int64 startAt = 8;
+	int64 endAt = 9;
+}
+
+message CreateAssignmentProtoReq {
+	string courseId = 1;
+	string ownerId = 2;
+	string title = 3;
+	string description = 4;
+	bool publish = 5;
+	repeated string notes = 6;
+	int64 startAt = 7;
+	int64 endAt = 8;
+}
+
+message AssignmentList {
+	repeated AssignmentProtoModel assignments = 1;
+}
+
+message GetAssignmentByIdProtoReq{
+	string assignmentId = 1;
+}
+
+message AssignmentQuery {
+    optional int64  offset       = 1;
+    optional int32  limit        = 2;
+    optional int64  startAt      = 3;
+    optional int64  endAt        = 4;
+}
+
+message UpdateAssignmentProtoReq{
+	string assignmentId    = 1;
+	optional string title = 2;
+	optional string description = 3;
+	optional bool publish = 4;
+	repeated string notes = 5;
+	optional int64 startAt = 6;
+	optional int64 endAt   = 7;
+}
+
+message DeleteAssignmentProtoReq {
+	string assignmentId = 1;
+}
+
+message AddQuizProtoReq {
+	string assignmentId = 1;
+	string quizId = 2;
+}
+
+message AddGraderProtoReq{
+	string assignmentId = 1;
+	string graderId = 2;
+} 
+
+message ViewGraderProtoReq {
+	string assignmentId   = 1;
+}
+
+message GraderListId {
+	repeated string ids = 1;
+}
+
+enum UserLevel {	
+  Beginner = 0;
+  Junior = 1;
+  Intermediate = 2;
+  Senior = 3;
+  Expert = 4;
+  Leader = 5;
+  Professor = 6;
+  Master = 7;
+}
+
+message AddRequirmentProtoReq {
+	string assignmentId = 1;
+	repeated string occupationId = 2;
+	UserLevel level = 3; 
+	uint32 teamMemberLimit = 4; 
+	uint32 minimumTeamSize = 5;
+	string material = 6;
+}
+
+message UpdateAssignmentRequirmentProtoReq {
+	string assignmentId = 1;
+	string material = 2;
+}

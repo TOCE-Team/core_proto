@@ -1,0 +1,124 @@
+syntax = "proto3";
+package  curriculum_service;
+
+enum ObjectStateProtoModel {
+  Pending = 0;
+  Active = 1;
+  Deactive = 2;
+}
+
+enum ObjectTypeProtoModel {
+  Course = 0;
+  Section = 1;
+  Lesson = 2;
+}
+
+enum PartnerRoleProtoModel {
+  Owner = 0;
+  Assistant = 1;
+  Teacher = 2;
+  Grader = 3;
+}
+
+message CourseProtoModel {
+  string courseId = 1;
+  ObjectStateProtoModel courseState = 2;
+  string courseTitle = 3;
+  string slug = 4;
+  int64 courseFee = 5;
+  float rating = 6;
+  string difficultyLevel = 7;
+  int32 languages = 8;
+  string owner = 9;
+  bool isDel = 10;
+  optional bool publish = 11;
+  optional string whatInclude = 12; 
+  optional string expectedOutcomes = 13;
+  optional string prerequisites = 14;
+  optional int64 startAt = 15;
+  optional int64 endAt = 16;
+  int64 createdAt = 17;
+  int64 updatedAt = 18;
+  optional string courseBrief = 19;
+}
+
+message CreateCourseProtoReq {
+  string courseTitle = 1;
+  int64 courseFee = 2;
+  string difficultyLevel = 3;
+  int32 languages = 4;
+  optional string courseBrief = 5; 
+  optional string whatInclude = 6;
+  optional string expectedOutcomes = 7;
+  optional string prerequisites = 8;
+  optional int64 startAt = 9;
+  optional int64 endAt = 10; 
+  string owner = 11;
+}
+
+message UpdateCourseProtoReq {
+  string courseId = 1;
+  optional string courseTitle = 2;
+  optional int64 courseFee = 3;
+  optional string difficultyLevel = 4;
+  optional int64 languages = 5;
+  optional string courseBrief = 6;
+  optional bool publish = 7;
+  optional string whatInclude = 8; 
+  optional string expectedOutcomes = 9;
+  optional string prerequisites = 10;
+  optional int64 startAt = 11;
+  optional int64 endAt = 12;
+}
+
+message GetCourseByCourseIdProtoReq{
+  string course_id = 1;
+}
+
+message GetAllCourseByCategoryIdProtoReq{
+  string category_id = 1;
+}
+
+message GetCourseByCourseSlugProtoReq{
+  string slug = 1;
+}
+
+message GetOwnerReq{
+  string check_id = 1;
+  ObjectTypeProtoModel object_type = 2;
+}
+
+message GetOwnerRes{
+  string owner_id = 1;
+}
+
+message GetAllCoursesReq {
+  optional string                 courseTitle     = 1;
+  optional ObjectStateProtoModel  courseState     = 2;
+  optional string                 owner           = 3;
+  optional int32                  languages       = 4;
+  optional string                 difficultyLevel = 5;
+}
+
+message GetAllCoursesRes{
+  repeated CourseProtoModel courses = 1;
+}
+
+message CourseSectionsAndLessonsProto{
+  string section_id = 1;
+  string section_title = 2;
+  repeated CourseLessonsProto lesson_list = 3;
+}
+
+message CourseLessonsProto{
+  string lesson_id = 1;
+  string lesson_title = 2;
+}
+
+message GetCourseSectionsAndLessonsRes{
+  repeated CourseSectionsAndLessonsProto course_detail = 1; 
+}
+
+message GetCourseSectionsAndLessonsReq{
+  string course_id = 1;
+}

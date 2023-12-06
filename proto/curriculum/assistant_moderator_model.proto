@@ -1,0 +1,91 @@
+syntax = "proto3";
+package  curriculum_service;
+
+enum ManagementRoleProtoModel {
+    _Assistant      = 0;
+    _Moderator      = 1;
+    _Supervisor     = 2;
+}
+
+// For Assistant
+message CourseAssistantBase {
+    string course_id    = 1;
+	string userId       = 2;
+}
+
+message AddCourseAssistantProtoReq{
+	string course_id    = 1;
+	string userId       = 2;
+} 
+
+message GetCourseAssistantProtoReq {
+	string course_id    = 1;
+}
+
+message CourseAssistantListProRes {
+    repeated CourseAssistantBase assistants = 1;
+}
+
+message DeleteCourseAssistantProtoReq{
+    string course_id    = 1;
+	string userId       = 2;
+}
+
+// For moderator
+
+message CourseModeratorBase {
+    string course_id    = 1;
+	string userId       = 2;
+}
+
+message AddCourseModeratorProtoReq{
+	string course_id    = 1;
+	string userId       = 2;
+} 
+
+message GetCourseModeratorProtoReq {
+	string course_id    = 1;
+}
+
+message CourseModeratorListProRes {
+    repeated CourseModeratorBase moderators = 1;
+}
+
+message DeleteCourseModeratorProtoReq{
+    string course_id    = 1;
+	string userId       = 2;
+}
+
+// Management
+message CourseManagementBase {
+    string 						course_id	= 1;
+	string 						userId  	= 2;
+	ManagementRoleProtoModel 	role 		= 3;
+}
+
+message AddCourseManagementProtoReq{
+	string 						course_id   = 1;
+	string 						userId      = 2;
+	ManagementRoleProtoModel 	role 		= 3;
+} 
+
+message GetCourseManagementProtoReq {
+	string 						course_id   = 1;
+	ManagementRoleProtoModel 	role 		= 2;
+}
+
+message CourseManagementListProRes {
+    repeated CourseManagementBase managements = 1;
+}
+
+message UpdateCourseManagementProtoReq{
+    string 						course_id 	= 1;
+	string 						userId    	= 2;
+	ManagementRoleProtoModel 	role 		= 3;
+}
+
+message DeleteCourseManagementProtoReq{
+    string 						course_id 	= 1;
+	string 						userId    	= 2;
+	//ManagementRoleProtoModel 	role 		= 3;
+}

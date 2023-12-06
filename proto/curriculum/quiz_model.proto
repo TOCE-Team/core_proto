@@ -1,0 +1,159 @@
+syntax = "proto3";
+package  curriculum_service;
+
+enum QuizTypeProtoModel {
+    MultiChoice                         = 0;
+    ShortAnswer                         = 1;
+    TrueFalse                           = 2;
+    DragAndDrop                         = 3;
+    Sorting                             = 4;
+    WordScramble                        = 5;
+    FillInTheBlanks                     = 6;
+    NumberPuzzles                       = 7;
+    MatchingGame                        = 8;
+    EssayQuestions                      = 9;
+    ClassificationQuestions             = 10;
+    ImageVideoBasedQuestions            = 11;
+    AudioBasedMultipleChoiceQuestions   = 12;
+    ImageDragAndDrop                    = 13;
+    SequentialOrderQuestions            = 14;
+}
+
+message QuizBankProtoModel {
+    string id           = 1;
+    string name         = 2;
+    string description  = 3;
+    int64  createdAt    = 4;
+    int64  updatedAt    = 5;
+    bool   is_deleted   = 6;
+    bool   is_public    = 7;
+    string owner        = 8;
+}
+
+message CreateQuizBankProtoReq {
+    string name         = 1;
+    string description  = 2;
+    bool   is_public    = 3;
+    string owner        = 4;
+}
+
+message GetQuizBankByIdProtoReq {
+    string id           = 1;
+}
+
+message GetQuizBankListProtoReq {
+    optional string name       = 1;
+    optional bool   is_public  = 2;
+    optional string owner      = 3;
+}
+
+message GetQuizBankListProtoRes {
+    repeated QuizBankProtoModel quiz_banks = 1;
+}
+
+message UpdateQuizBankProtoReq {
+    string            id          = 1;
+    optional string   name        = 2;
+    optional string   description = 3;
+    optional bool     is_public   = 4;
+}
+
+message DeleteQuizBankProtoReq {
+    string id           = 1;
+}
+
+// Quiz
+
+message QuizProtoModel {
+    string              quiz_id         = 1;
+    string              title           = 2;
+    QuizTypeProtoModel  quiz_type       = 3;
+    string              description     = 4;
+    string              hint            = 5;
+    string              question        = 6;
+    optional string     single_answer   = 7;
+    optional string     single_result   = 8;
+    repeated string     multi_answer    = 9;
+    repeated string     multi_result    = 10;
+    int64               createdAt       = 11;
+    int64               updatedAt       = 12;
+    bool                is_deleted      = 13;
+    int64               paginationId    = 14;
+    bool                is_public       = 15;
+    string              owner           = 16;
+}
+
+message CreateQuizProtoReq {
+    string              title           = 1;
+    QuizTypeProtoModel  quiz_type       = 2;
+    string              description     = 3;
+    string              hint            = 4;
+    string              question        = 5;
+    optional string     single_answer   = 6;
+    optional string     single_result   = 7;
+    repeated string     multi_answer    = 8;
+    repeated string     multi_result    = 9;
+    bool                is_public       = 10;
+    string              owner           = 11;
+}
+
+message GetQuizByIdProtoReq {
+    string  quiz_id  = 1;
+}
+
+message GetQuizListProtoReq {
+    optional int64              offset      = 1;
+    optional int64              limit       = 2;
+    optional string             title       = 3;
+    optional QuizTypeProtoModel quiz_type   = 4;
+    optional bool               is_public   = 5;
+    optional string             owner       = 6;
+}
+
+message GetQuizListProtoRes {
+    repeated QuizProtoModel quizzes = 1;
+}
+
+message UpdateQuizProtoReq {
+    string                          quiz_id         = 1;
+    optional string                 title           = 2;
+    optional QuizTypeProtoModel     quiz_type       = 3;
+    optional string                 description     = 4;
+    optional string                 hint            = 5;
+    optional string                 question        = 6;
+    optional string                 single_answer   = 7;
+    optional string                 single_result   = 8;
+    repeated string                 multi_answer    = 9;
+    repeated string                 multi_result    = 10;
+    optional bool                   is_public       = 11;
+}
+
+message DeleteQuizProtoReq {
+    string  quiz_id  = 1;
+}
+
+// Quiz set 
+message QuizSetProtoModel {
+    string quiz_set_id      = 1;
+    string quiz_bank_id     = 2;
+	string quiz_id          = 3;
+}
+
+message CreateQuizSetProtoReq{
+	string quiz_bank_id     = 1;
+	string quiz_id          = 2;
+} 
+
+message GetQuizSetByIdProtoReq {
+	string quiz_set_id    = 1;
+}
+
+message GetQuizSetListProtoReq {
+    string          quiz_bank_id    = 1;
+    optional int64  offset          = 2;
+    optional int64  limit           = 3;
+}
+
+message DeleteQuizSetProtoReq{
+    string quiz_set_id = 1;
+}
