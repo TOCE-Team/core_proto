@@ -182,16 +182,15 @@ message CreateQuizTestProtoReq {
 
 message UpdateQuizTestProtoReq {
     string quiz_test_id         = 1;
-    optional string parent_id   = 2;
-    optional string name        = 3;
-    optional string description = 4;
+    optional string name        = 2;
+    optional string description = 3;
 }
 
 message DeleteQuizTestProtoReq {
     string quiz_test_id     = 1;
 }
 
-message SetQuizTestProtoModel{
+message QuizTestSetProtoModel{
     string quiz_test_id = 1;
     string quiz_id      = 2;
     int32 score         = 3;
@@ -221,19 +220,19 @@ message QuizTestBaseList {
     repeated QuizTestBaseModel quizzes = 1;
 }
 
-message GetSetQuizTestProtoReq{
+message GetQuizTestSetProtoReq{
     string                      quiz_test_id    = 1;
     optional int32              score           = 2;
     optional QuizTypeProtoModel quiz_type       = 3;
 }
 
-message CreateSetQuizTestProtoReq{
+message CreateQuizTestSetProtoReq{
     string quiz_test_id = 1;
     string quiz_id      = 2;
     int32 score         = 3; 
 }
 
-message DeleteSetQuizTestProtoReq{
+message DeleteQuizTestSetProtoReq{
     string quiz_test_id = 1;
     string quiz_id      = 2;
 }
