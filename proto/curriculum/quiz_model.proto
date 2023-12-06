@@ -157,3 +157,87 @@ message GetQuizSetListProtoReq {
 message DeleteQuizSetProtoReq{
     string quiz_set_id = 1;
 }
+
+
+// Quiz test
+message QuizTestProtoModel {
+    string quiz_test_id     = 1;
+    string parent_id        = 2;
+    string name             = 3;
+    string description      = 4;
+    int64  createdAt        = 5;
+    int64  updatedAt        = 6;
+    bool   is_deleted       = 7;
+}
+
+message GetQuizTestProtoReq{
+    string quiz_test_id = 1;
+}
+
+message CreateQuizTestProtoReq {
+    string parent_id    = 1;
+    string name         = 2;
+    string description  = 3;
+}
+
+message UpdateQuizTestProtoReq {
+    string quiz_test_id         = 1;
+    optional string parent_id   = 2;
+    optional string name        = 3;
+    optional string description = 4;
+}
+
+message DeleteQuizTestProtoReq {
+    string quiz_test_id     = 1;
+}
+
+message SetQuizTestProtoModel{
+    string quiz_test_id = 1;
+    string quiz_id      = 2;
+    int32 score         = 3;
+}
+
+message QuizTestBaseModel {
+    string              quiz_id         = 1;
+    string              title           = 2;
+    QuizTypeProtoModel  quiz_type       = 3;
+    string              description     = 4;
+    string              hint            = 5;
+    string              question        = 6;
+    optional string     single_answer   = 7;
+    optional string     single_result   = 8;
+    repeated string     multi_answer    = 9;
+    repeated string     multi_result    = 10;
+    int64               createdAt       = 11;
+    int64               updatedAt       = 12;
+    bool                is_deleted      = 13;
+    int64               paginationId    = 14;
+    bool                is_public       = 15;
+    string              owner           = 16;
+    int32               score           = 17;
+}
+
+message QuizTestBaseList {
+    repeated QuizTestBaseModel quizzes = 1;
+}
+
+message GetSetQuizTestProtoReq{
+    string                      quiz_test_id    = 1;
+    optional int32              score           = 2;
+    optional QuizTypeProtoModel quiz_type       = 3;
+}
+
+message CreateSetQuizTestProtoReq{
+    string quiz_test_id = 1;
+    string quiz_id      = 2;
+    int32 score         = 3; 
+}
+
+message DeleteSetQuizTestProtoReq{
+    string quiz_test_id = 1;
+    string quiz_id      = 2;
+}
+
+
+
+
