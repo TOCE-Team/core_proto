@@ -100,6 +100,7 @@ service CurriculumServiceProto {
   rpc AddGraderToAssignmentCall(AddGraderProtoReq) returns (Empty);
   rpc ViewGraderCall(ViewGraderProtoReq) returns (GraderListId);
   rpc AddRequirmentToAssignmentCall(AddRequirmentProtoReq) returns (Empty);
+  rpc UpdateRequirmentCall(UpdateAssignmentRequirmentProtoReq) returns (Empty);
 
   // For Comment 
   rpc AddCommentToPostCall(AddCommentToPostProtoReq) returns (CommentProtoModel);

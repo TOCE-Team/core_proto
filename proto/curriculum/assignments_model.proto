@@ -4,15 +4,25 @@ package  curriculum_service;
 
 message AssignmentProtoModel {
 	string assignmentId = 1;
-	string ownerId = 2;
-	int64 startAt = 3;
-	int64 endAt = 4;
+	string courseId = 2;
+	string ownerId = 3;
+	string title = 4;
+	string description = 5;
+	bool publish = 6;
+	repeated string notes = 7;
+	int64 startAt = 8;
+	int64 endAt = 9;
 }
 
 message CreateAssignmentProtoReq {
-	string ownerId = 1;
-	int64 startAt = 3;
-	int64 endAt = 4;
+	string courseId = 1;
+	string ownerId = 2;
+	string title = 3;
+	string description = 4;
+	bool publish = 5;
+	repeated string notes = 6;
+	int64 startAt = 7;
+	int64 endAt = 8;
 }
 
 message AssignmentList {
@@ -32,8 +42,12 @@ message AssignmentQuery {
 
 message UpdateAssignmentProtoReq{
 	string assignmentId    = 1;
-	optional int64 startAt = 2;
-	optional int64 endAt   = 3;
+	optional string title = 2;
+	optional string description = 3;
+	optional bool publish = 4;
+	repeated string notes = 5;
+	optional int64 startAt = 6;
+	optional int64 endAt   = 7;
 }
 
 message DeleteAssignmentProtoReq {
@@ -75,4 +89,10 @@ message AddRequirmentProtoReq {
 	UserLevel level = 3; 
 	uint32 teamMemberLimit = 4; 
 	uint32 minimumTeamSize = 5;
+	string material = 6;
+}
+
+message UpdateAssignmentRequirmentProtoReq {
+	string assignmentId = 1;
+	string material = 2;
 }
