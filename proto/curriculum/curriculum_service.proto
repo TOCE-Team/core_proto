@@ -21,6 +21,8 @@ service CurriculumServiceProto {
   rpc UpdateCourseCall(UpdateCourseProtoReq) returns (CourseProtoModel);
   rpc GetAllCoursesCall(Empty) returns (GetAllCoursesRes);
   rpc GetCourseSectionsAndLessonsCall(GetCourseSectionsAndLessonsReq) returns (GetCourseSectionsAndLessonsRes);
+  rpc RegisterBootcampCall(RegisterBootcampProtoReq) returns (RegisterBootcampProtoRes);
+  rpc GetAllStudentInCourseCall(GetAllStudentInCourseProtoReq) returns (GetAllStudentInCourseProtoRes);
 
   // Section
   rpc CreateSectionCall(CreateSectionProtoReq) returns (SectionProtoModel);
