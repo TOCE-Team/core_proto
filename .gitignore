@@ -3,3 +3,5 @@
 /src/*_service.rs
 .DS_Store
 *~
+.#*
+
