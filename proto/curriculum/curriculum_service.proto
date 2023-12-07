@@ -85,7 +85,10 @@ service CurriculumServiceProto {
   rpc GetQuizTestSetCall(GetQuizTestSetProtoReq)        returns(QuizTestBaseList);
   rpc CreateQuizTestSetCall(CreateQuizTestSetProtoReq)  returns(QuizTestSetProtoModel);
   rpc DeleteQuizTestSetCall(DeleteQuizTestSetProtoReq)  returns(Empty);
-  
+
+  rpc GetQuizSubmissionByIdCall(GetQuizSubmissionByIdProtoReq)  returns(QuizSubmissionProtoModel);
+  rpc CreateQuizSubmissionCall(CreateQuizSubmissionProtoReq)    returns(QuizSubmissionProtoModel);
+  rpc DeleteQuizSubmissionCall(DeleteQuizSubmissionProtoReq)    returns(Empty);
 
   
   // For assignment
