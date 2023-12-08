@@ -97,6 +97,11 @@ message CreateQuizProtoReq {
     string              owner           = 11;
 }
 
+message ReCreateQuizProtoReq {
+    string  quiz_id = 1; 
+    string  owner   = 2;
+}
+
 message GetQuizByIdProtoReq {
     string  quiz_id  = 1;
 }
@@ -157,3 +162,149 @@ message GetQuizSetListProtoReq {
 message DeleteQuizSetProtoReq{
     string quiz_set_id = 1;
 }
+
+
+// Quiz test
+message QuizTestProtoModel {
+    string quiz_test_id     = 1;
+    string parent_id        = 2;
+    string name             = 3;
+    string description      = 4;
+    int64  createdAt        = 5;
+    int64  updatedAt        = 6;
+    bool   is_deleted       = 7;
+}
+
+
+message GetQuizTestProtoReq{
+    string quiz_test_id = 1;
+}
+
+message GetQuizTestListReq{
+    string parent_id = 1;
+}
+
+message GetQuizTestListRes{
+    repeated QuizTestProtoModel quiz_tests = 1;
+}
+
+message CreateQuizTestProtoReq {
+    string parent_id    = 1;
+    string name         = 2;
+    string description  = 3;
+}
+
+message UpdateQuizTestProtoReq {
+    string quiz_test_id         = 1;
+    optional string name        = 2;
+    optional string description = 3;
+}
+
+message DeleteQuizTestProtoReq {
+    string quiz_test_id     = 1;
+}
+
+message QuizTestSetProtoModel{
+    string quiz_test_id = 1;
+    string quiz_id      = 2;
+    int32 score         = 3;
+}
+
+message QuizTestBaseModel {
+    string              quiz_id         = 1;
+    string              title           = 2;
+    QuizTypeProtoModel  quiz_type       = 3;
+    string              description     = 4;
+    string              hint            = 5;
+    string              question        = 6;
+    optional string     single_answer   = 7;
+    optional string     single_result   = 8;
+    repeated string     multi_answer    = 9;
+    repeated string     multi_result    = 10;
+    int64               createdAt       = 11;
+    int64               updatedAt       = 12;
+    bool                is_deleted      = 13;
+    int64               paginationId    = 14;
+    bool                is_public       = 15;
+    string              owner           = 16;
+    int32               score           = 17;
+}
+
+message QuizTestBaseList {
+    repeated QuizTestBaseModel quizzes = 1;
+}
+
+message GetQuizTestSetProtoReq{
+    string                      quiz_test_id    = 1;
+    optional int32              score           = 2;
+    optional QuizTypeProtoModel quiz_type       = 3;
+}
+
+message CreateQuizTestSetProtoReq{
+    string quiz_test_id = 1;
+    string quiz_id      = 2;
+    int32 score         = 3; 
+}
+
+message DeleteQuizTestSetProtoReq{
+    string quiz_test_id = 1;
+    string quiz_id      = 2;
+}
+
+
+// Quiz submission
+
+message QuizInfoProtoModel {
+    string              quiz_id             = 1;
+    string              title               = 2;
+    QuizTypeProtoModel  quiz_type           = 3;
+    string              description         = 4;
+    string              hint                = 5;
+    string              question            = 6;
+    optional string     single_answer       = 7;
+    optional string     single_result       = 8;
+    optional string     single_user_answer  = 9;
+    repeated string     multi_answer        = 10;
+    repeated string     multi_result        = 11;
+    repeated string     multi_user_answer   = 12;
+    int32               score               = 13;
+}
+
+message QuizSubmissionProtoModel{
+    string id                               = 1;
+    string quiz_test_id                     = 2;
+    string user_id                          = 3;
+    int32 score_total                       = 4;
+    int64 startedAt                         = 5;
+    int64 endedAt                           = 6;
+    bool  is_deleted                        = 7;
+    repeated QuizInfoProtoModel quiz_info   = 8;
+}
+
+message GetQuizSubmissionByIdProtoReq{
+    string id   = 1;
+}
+
+message GetQuizSubmissionListReq{
+    string quiz_test_id = 1; 
+}
+
+message GetQuizSubmissionListRes{
+    repeated QuizSubmissionProtoModel quiz_submissions = 1;
+}
+
+message CreateQuizSubmissionProtoReq{
+    string quiz_test_id                     = 1;
+    string user_id                          = 2;
+    int64 startedAt                         = 3;
+    int64 endedAt                           = 4;
+    repeated QuizInfoProtoModel quiz_info   = 5;
+}
+
+message DeleteQuizSubmissionProtoReq{
+    string id = 1;
+}
+
+
+
+

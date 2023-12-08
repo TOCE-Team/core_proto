@@ -71,6 +71,7 @@ service CurriculumServiceProto {
   rpc GetQuizByIdCall(GetQuizByIdProtoReq)              returns(QuizProtoModel);
   rpc GetQuizListCall(GetQuizListProtoReq)              returns(GetQuizListProtoRes);
   rpc CreateQuizCall(CreateQuizProtoReq)                returns(QuizProtoModel);
+  rpc ReCreateQuizCall(ReCreateQuizProtoReq)                returns(QuizProtoModel);
   rpc UpdateQuizCall(UpdateQuizProtoReq)                returns(QuizProtoModel);
   rpc DeleteQuizCall(DeleteQuizProtoReq)                returns(Empty);
 
@@ -78,6 +79,22 @@ service CurriculumServiceProto {
   rpc GetQuizSetByIdCall(GetQuizSetByIdProtoReq)        returns(QuizSetProtoModel);
   rpc GetQuizSetListCall(GetQuizSetListProtoReq)        returns(GetQuizListProtoRes);
   rpc DeleteQuizSetCall(DeleteQuizSetProtoReq)          returns(Empty);
+
+  rpc GetQuizTestCall(GetQuizTestProtoReq)              returns(QuizTestProtoModel);
+  rpc GetQuizTestListCall(GetQuizTestListReq)           returns(GetQuizTestListRes);
+  rpc CreateQuizTestCall(CreateQuizTestProtoReq)        returns(QuizTestProtoModel);
+  rpc UpdateQuizTestCall(UpdateQuizTestProtoReq)        returns(QuizTestProtoModel);
+  rpc DeleteQuizTestCall(DeleteQuizTestProtoReq)        returns(Empty);
+
+  rpc GetQuizTestSetCall(GetQuizTestSetProtoReq)        returns(QuizTestBaseList);
+  rpc CreateQuizTestSetCall(CreateQuizTestSetProtoReq)  returns(QuizTestSetProtoModel);
+  rpc DeleteQuizTestSetCall(DeleteQuizTestSetProtoReq)  returns(Empty);
+
+  rpc GetQuizSubmissionByIdCall(GetQuizSubmissionByIdProtoReq)  returns(QuizSubmissionProtoModel);
+  rpc GetQuizSubmissionListCall(GetQuizSubmissionListReq)       returns(GetQuizSubmissionListRes);
+  rpc CreateQuizSubmissionCall(CreateQuizSubmissionProtoReq)    returns(QuizSubmissionProtoModel);
+  rpc DeleteQuizSubmissionCall(DeleteQuizSubmissionProtoReq)    returns(Empty);
+
   
   // For assignment
   // CRUD assignment
