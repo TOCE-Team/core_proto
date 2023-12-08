@@ -97,6 +97,11 @@ message CreateQuizProtoReq {
     string              owner           = 11;
 }
 
+message ReCreateQuizProtoReq {
+    string  quiz_id = 1; 
+    string  owner   = 2;
+}
+
 message GetQuizByIdProtoReq {
     string  quiz_id  = 1;
 }
@@ -170,8 +175,17 @@ message QuizTestProtoModel {
     bool   is_deleted       = 7;
 }
 
+
 message GetQuizTestProtoReq{
     string quiz_test_id = 1;
+}
+
+message GetQuizTestListReq{
+    string parent_id = 1;
+}
+
+message GetQuizTestListRes{
+    repeated QuizTestProtoModel quiz_tests = 1;
 }
 
 message CreateQuizTestProtoReq {
@@ -269,6 +283,14 @@ message QuizSubmissionProtoModel{
 
 message GetQuizSubmissionByIdProtoReq{
     string id   = 1;
+}
+
+message GetQuizSubmissionListReq{
+    string quiz_test_id = 1; 
+}
+
+message GetQuizSubmissionListRes{
+    repeated QuizSubmissionProtoModel quiz_submissions = 1;
 }
 
 message CreateQuizSubmissionProtoReq{
