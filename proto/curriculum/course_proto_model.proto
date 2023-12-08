@@ -20,6 +20,11 @@ enum PartnerRoleProtoModel {
   Grader = 3;
 }
 
+enum CourseTypeProto {
+  NormalCourse = 0;
+  BootCamp = 1;
+}
+
 message CourseProtoModel {
   string courseId = 1;
   ObjectStateProtoModel courseState = 2;
@@ -40,6 +45,8 @@ message CourseProtoModel {
   int64 createdAt = 17;
   int64 updatedAt = 18;
   optional string courseBrief = 19;
+  CourseTypeProto courseType = 20;
+  optional string thumbnail = 21;
 }
 
 message CreateCourseProtoReq {
@@ -54,6 +61,8 @@ message CreateCourseProtoReq {
   optional int64 startAt = 9;
   optional int64 endAt = 10; 
   string owner = 11;
+  CourseTypeProto courseType = 12;
+  optional string thumbnail = 13;
 }
 
 message UpdateCourseProtoReq {
@@ -121,4 +130,41 @@ message GetCourseSectionsAndLessonsRes{
 
 message GetCourseSectionsAndLessonsReq{
   string course_id = 1;
+}
+
+message RegisterBootcampProtoReq{
+  string course_id = 1;
+  string student_id = 2;
+  optional string user_public_key = 3;
+  optional string student_name = 4;
+  optional string student_email = 5;
+  optional string student_phone_number = 6;
+  optional string languages_skill = 7;
+  optional string user_level = 8;
+  optional string programming_experience = 9;
+  optional string blockchain_experience = 10;
+}
+
+message RegisterBootcampProtoRes{
+  bool successfull = 1;
+}
+
+message GetAllStudentInCourseProtoReq{
+  string course_id = 1;
+}
+
+message BootcampStudentsProto{
+  string student_id = 1;
+  optional string user_public_key = 2;
+  optional string student_name = 3;
+  optional string student_email = 4;
+  optional string student_phone_number = 5;
+  optional string languages_skill = 6;
+  optional string user_level = 7;
+  optional string programming_experience = 8;
+  optional string blockchain_experience = 9;
+}
+
+message GetAllStudentInCourseProtoRes{
+  repeated BootcampStudentsProto students = 1;
 }
