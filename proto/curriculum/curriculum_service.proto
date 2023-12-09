@@ -110,6 +110,8 @@ service CurriculumServiceProto {
   rpc AddRequirmentToAssignmentCall(AddRequirmentProtoReq) returns (Empty);
   rpc UpdateRequirmentCall(UpdateAssignmentRequirmentProtoReq) returns (Empty);
 
+  rpc UploadSubmissionCall(AssignmentSubmissionProtoModel) returns (AssignmentSubmissionProtoModel);
+
   // For Comment 
   rpc AddCommentToPostCall(AddCommentToPostProtoReq) returns (CommentProtoModel);
   rpc AddCommentToCommentCall(AddCommentToCommentProtoReq) returns (CommentProtoModel);
@@ -130,4 +132,9 @@ service CurriculumServiceProto {
   rpc AddPostToLessonCall(AddPostLessonProtoReq) returns (Empty);
   rpc AddPostToSectionCall(AddPostSectionProtoReq) returns (Empty);
   rpc AddPostToAssignmentCall(AddPostAssignmentProtoReq) returns (Empty);
+
+  rpc CreateScoreCall(CreateScoreProtoReq) returns (ScoreProtoModel);
+  rpc DeleteScoreCall(DeleteScoreProtoReq) returns (Empty);
+  rpc QueryScoreCall(ScoreQuery) returns (ScoreList);
+  rpc GetQuizByAssignmentCall(GetQuizByAssignmentIdProtoReq) returns (GetQuizListProtoRes);
 }
