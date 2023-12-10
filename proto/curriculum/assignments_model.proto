@@ -12,6 +12,8 @@ message AssignmentProtoModel {
 	repeated string notes = 7;
 	int64 startAt = 8;
 	int64 endAt = 9;
+	int64 createdAt = 10;
+	int64 updatedAt = 11;
 }
 
 message CreateAssignmentProtoReq {
