@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package builder_service;
+
+import "user_service.proto";
+
+message BuilderProtoModel {
+    string id = 1;
+    string name = 2;
+    string detail = 3;
+    string userId = 4;     // Foreign key to the id field of UserProtoModel
+    string hackathonId = 5; // Foreign key to the id field of HackathonProtoModel
+    string winningHackathon = 6; // Foreign key to the id feild of HackathonProtoModel
+}
+
+message BuilderListProtoRes {
+    repeated BuilderProtoModel builders = 1;
+}
+
+message GetBuilderByIdProtoReq {
+    string id = 1;
+}
+
+message CreateBuilderProtoReq {
+    string name = 1;
+    string detail = 2;
+    string userId = 3;
+    string hackathonId = 4;
+    string winningHackathon = 5;
+}
+
+message Empty {}
+
+message UpdateBuilderProtoReq {
+    string id = 1;
+    string newName = 2;
+    string newDetail = 3;
+    string newUserId = 4;
+    string newHackathonId = 5;
+    string newWinningHackathon = 6;
+}
+
+message DeleteBuilderProtoReq {
+    string id = 1;
+}
+
+service BuilderServiceProtocol {
+    rpc GetBuilderCall(Empty) returns (BuilderListProtoRes);
+    rpc GetBuilderByIdCall(GetBuilderByIdProtoReq) returns (BuilderProtoModel);
+    rpc CreateBuilderCall(CreateBuilderProtoReq) returns (BuilderProtoModel);
+    rpc UpdateBuilderCall(UpdateBuilderProtoReq) returns (BuilderProtoModel);
+    rpc DeleteBuilderCall(DeleteBuilderProtoReq) returns (BuilderProtoModel);
+
+}
