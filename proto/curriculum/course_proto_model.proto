@@ -63,6 +63,7 @@ message CreateCourseProtoReq {
   string owner = 11;
   CourseTypeProto courseType = 12;
   optional string thumbnail = 13;
+  string courseId = 14;
 }
 
 message UpdateCourseProtoReq {
