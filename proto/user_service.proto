@@ -135,6 +135,44 @@ message DeleteOAuthStateProtoReq {
     string csrfState = 1;
 }
 
+/* UserInformation */
+message UserInformationBase {
+    string user_id                       = 1;
+    optional string job_title            = 2;
+    optional string location             = 3;
+    optional string company              = 4;
+    optional string bio                  = 5; 
+    optional string job_type             = 6;
+    optional int32 year_of_experience    = 7;
+    optional string industry             = 8;
+    optional int64 birthday              = 9;
+    optional string organization         = 10;
+    optional string education_level      = 11;
+    optional string education            = 12;
+    repeated string social_link          = 13;
+}
+
+message GetUserInformationProtoReq{
+    string user_id  = 1;
+}
+
+message UpdateUserInformationProtoReq{
+    string user_id                       = 1;
+    optional string job_title            = 2;
+    optional string location             = 3;
+    optional string company              = 4;
+    optional string bio                  = 5; 
+    optional string job_type             = 6;
+    optional int32 year_of_experience    = 7;
+    optional string industry             = 8;
+    optional int64 birthday              = 9;
+    optional string organization         = 10;
+    optional string education_level      = 11;
+    optional string education            = 12;
+    repeated string social_link          = 13;
+}
+
+
 /*Team*/
 message TeamBase {
     string 	    id 		  		= 1;
@@ -305,6 +343,11 @@ service UserServiceProtocol {
     // This command overrides a certain user by id, however it doesn't change the user id
     rpc OverrideUserCall(UserBase)               returns (UserBase);
     rpc AdminDeleteUserCall(GetUserByIdProtoReq) returns (Empty);
+
+    // User Information
+    //rpc CreateUserInformationCall(CreateUserInformationProtoReq)   returns (UserInformationBase);
+    rpc GetUserInformationCall(GetUserInformationProtoReq)         returns (UserInformationBase);
+    rpc UpdateUserInformationCall(UpdateUserInformationProtoReq)   returns (UserInformationBase);
 
     // For team
     rpc GetTeamsCall(TeamListProtoReq)                      returns (TeamListProtoRes);
