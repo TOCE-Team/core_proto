@@ -130,8 +130,6 @@ message CreateScoreProtoReq {
 
 }
 
-
-
 message DeleteScoreProtoReq {
 	string scoreId = 1;
 }
