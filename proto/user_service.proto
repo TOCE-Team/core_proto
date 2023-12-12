@@ -322,6 +322,11 @@ message DeleteEmailProtoReq {
     string id = 1;
 }
 
+message UpdateRoleUserProtoReq {
+	string id = 1;
+	Role role = 2;
+}
+
 
 service UserServiceProtocol {
     // Normal user calls
@@ -372,6 +377,7 @@ service UserServiceProtocol {
     rpc CreateEmailCall(CreateEmailProtoReq)                  returns (EmailBase);
     rpc UpdateEmailCall(UpdateEmailProtoReq)                  returns (EmailBase);
     rpc DeleteEmailCall(DeleteEmailProtoReq)                  returns (Empty);
-
+	
+	rpc UpdateRoleUserCall(UpdateRoleUserProtoReq)            returns (User);
 
 }
