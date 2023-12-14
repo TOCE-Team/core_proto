@@ -144,6 +144,9 @@ message RegisterBootcampProtoReq{
   optional string user_level = 8;
   optional string programming_experience = 9;
   optional string blockchain_experience = 10;
+  optional string payment_method = 11;
+  optional string network = 12;
+  optional int64 amount = 13;
 }
 
 message RegisterBootcampProtoRes{
