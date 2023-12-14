@@ -22,7 +22,7 @@ message CategoryProtoModel {
   CategoryLevelProtoModel level = 5;
   int64 created_at = 6;
   int64 updated_at = 7;
-  bool is_del = 8;
+  bool is_deleted = 8;
   optional string description = 9;
 }
 
