@@ -24,12 +24,16 @@ service CurriculumServiceProto {
   rpc GetCourseSectionsAndLessonsCall(GetCourseSectionsAndLessonsReq) returns (GetCourseSectionsAndLessonsRes);
   rpc RegisterBootcampCall(RegisterBootcampProtoReq) returns (RegisterBootcampProtoRes);
   rpc GetAllStudentInCourseCall(GetAllStudentInCourseProtoReq) returns (GetAllStudentInCourseProtoRes);
+  rpc DeleteCourseCall(DeleteCourseProtoReq) returns (Empty);
+  rpc RestoreCourseCall(RestoreCourseProtoReq) returns (Empty);
 
   // Section
   rpc CreateSectionCall(CreateSectionProtoReq) returns (SectionProtoModel);
   rpc GetSectionByCourseIdAndSectionIdCall(GetSectionByCoureIdAndSectionIdProtoReq) returns (SectionProtoModel);
   rpc UpdateSectionCall(UpdateSectionProtoReq) returns (SectionProtoModel);
   rpc GetAllSectionInCourseByCourseIdCall(GetAllSectionInCourseByCoureIdProtoReq) returns (SectionList);
+  rpc DeleteSectionCall(DeleteSectionProtoReq) returns (Empty);
+  rpc RestoreSectionCall(RestoreSectionProtoReq) returns (Empty);
 
   //lesson
   rpc CreateLessonCall(CreateLessonProtoReq) returns (LessonProtoModel);
@@ -37,6 +41,8 @@ service CurriculumServiceProto {
   rpc GetLessonCall(GetLessonProtoReq) returns (LessonProtoModel);
   rpc GetAllLessonBySectionIdCall(GetAllLessonBySectionIdProtoReq) returns (LessonProtoList);
   rpc AddLessonCall(AddLessonProtoReq) returns (AddLessonProtoRes);
+  rpc DeleteLessonCall(DeleteLessonProtoReq) returns (Empty);
+  rpc RestoreLessonCall(RestoreLessonProtoReq) returns (Empty);
 
   // For course assistant - moderator
   rpc AddCourseAssistantCall(AddCourseAssistantProtoReq)       returns (CourseAssistantBase);
