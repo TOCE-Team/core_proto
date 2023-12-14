@@ -35,7 +35,7 @@ message CourseProtoModel {
   string difficultyLevel = 7;
   int32 languages = 8;
   string owner = 9;
-  bool isDel = 10;
+  bool isDeleted = 10;
   optional bool publish = 11;
   optional string whatInclude = 12; 
   optional string expectedOutcomes = 13;
@@ -168,4 +168,12 @@ message BootcampStudentsProto{
 
 message GetAllStudentInCourseProtoRes{
   repeated BootcampStudentsProto students = 1;
+}
+
+message DeleteCourseProtoReq {
+  string course_id = 1;
+}
+
+message RestoreCourseProtoReq {
+  string course_id = 1;
 }

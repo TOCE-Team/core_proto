@@ -59,10 +59,22 @@ message GetCategoryProtoRes {
 message CategoryProtoList {
     repeated GetCategoryProtoRes categories = 1;
 }
+
+message DeleteCategoryProtoReq {
+  string category_id = 1;
+}
+
+
+message RestoreCategoryProtoReq {
+  string category_id = 1;
+}
+
 service CategoryServiceProto{
   rpc CreateCategoryCall(CreateCategoryProtoReq) returns (CategoryProtoModel);
   rpc GetCategoryCall(GetCategoryProtoReq) returns (GetCategoryProtoRes);
   rpc GetAllCategoryLevel1Call(Empty) returns (CategoryProtoList);
   rpc GetChildrenByCategoryIdCall(GetCategoryChildrenProtoReq) returns (CategoryProtoList);
   rpc UpdateCategoryCall(UpdateCategoryProtoReq) returns (CategoryProtoModel);
+  rpc DeleteCategoryCall(DeleteCategoryProtoReq) returns (Empty);
+  rpc RestoreCategoryCall(RestoreCategoryProtoReq) returns (Empty);
 }
