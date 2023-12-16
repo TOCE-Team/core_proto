@@ -130,8 +130,6 @@ message CreateScoreProtoReq {
 
 }
 
-
-
 message DeleteScoreProtoReq {
 	string scoreId = 1;
 }
@@ -143,6 +141,7 @@ message ScoreQuery {
     optional string graderId    = 4;
 	optional string assignmentId = 5;
 	optional int32 score = 6;
+	optional string title = 7;
 }
 
 message GetQuizByAssignmentIdProtoReq {

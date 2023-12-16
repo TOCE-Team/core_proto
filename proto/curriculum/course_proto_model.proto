@@ -22,7 +22,7 @@ enum PartnerRoleProtoModel {
 
 enum CourseTypeProto {
   NormalCourse = 0;
-  BootCamp = 1;
+  Bootcamp = 1;
 }
 
 message CourseProtoModel {
@@ -35,7 +35,7 @@ message CourseProtoModel {
   string difficultyLevel = 7;
   int32 languages = 8;
   string owner = 9;
-  bool isDel = 10;
+  bool isDeleted = 10;
   optional bool publish = 11;
   optional string whatInclude = 12; 
   optional string expectedOutcomes = 13;
@@ -144,9 +144,16 @@ message RegisterBootcampProtoReq{
   optional string user_level = 8;
   optional string programming_experience = 9;
   optional string blockchain_experience = 10;
-  optional string payment_method = 11;
-  optional string network = 12;
-  optional int64 amount = 13;
+  PurchaseCourseProtoReq purchase_info = 11;
+}
+
+message PurchaseCourseProtoReq{
+  string course_id = 1;
+  string student_id = 2;
+  optional string payment_method = 3;
+  optional string network = 4;
+  optional int64 amount = 5;
+  optional string transaction = 6;
 }
 
 message RegisterBootcampProtoRes{
@@ -169,6 +176,49 @@ message BootcampStudentsProto{
   optional string blockchain_experience = 9;
 }
 
-message GetAllStudentInCourseProtoRes{
+message GetAllStudentInBootcampProtoRes{
   repeated BootcampStudentsProto students = 1;
 }
+
+message DeleteCourseProtoReq {
+  string course_id = 1;
+}
+
+message RestoreCourseProtoReq {
+  string course_id = 1;
+}
+
+//  get all purchased course by user id
+message PurchasedCourseByUserProto {
+  string courseId = 1;
+  ObjectStateProtoModel courseState = 2;
+  string courseTitle = 3;
+  string slug = 4;
+  int64 courseFee = 5;
+  float rating = 6;
+  string difficultyLevel = 7;
+  int32 languages = 8;
+  string owner = 9;
+  bool isDeleted = 10;
+  optional bool publish = 11;
+  optional string whatInclude = 12; 
+  optional string expectedOutcomes = 13;
+  optional string prerequisites = 14;
+  optional int64 startAt = 15;
+  optional int64 endAt = 16;
+  int64 createdAt = 17;
+  int64 updatedAt = 18;
+  optional string courseBrief = 19;
+  CourseTypeProto courseType = 20;
+  optional string thumbnail = 21;
+  bool is_completed = 22;
+}
+
+message GetAllPurchasedCourseByUserIdRes{
+  repeated PurchasedCourseByUserProto purchased_course = 1;
+}
+
+message GetAllPurchasedCourseByUserIdReq{
+  string user_id = 1;
+}
+

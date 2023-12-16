@@ -39,6 +39,7 @@ message EnrollmentCourseProtoModel {
     int64   paginationId    = 9;
 }
 
+
 message GetTrackingWorkCourseProtoReq {
     string user_id          = 1;
     string course_id        = 2;
