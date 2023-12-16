@@ -23,9 +23,10 @@ service CurriculumServiceProto {
   rpc GetAllCoursesCall(GetAllCoursesReq) returns (GetAllCoursesRes);
   rpc GetCourseSectionsAndLessonsCall(GetCourseSectionsAndLessonsReq) returns (GetCourseSectionsAndLessonsRes);
   rpc RegisterBootcampCall(RegisterBootcampProtoReq) returns (RegisterBootcampProtoRes);
-  rpc GetAllStudentInCourseCall(GetAllStudentInCourseProtoReq) returns (GetAllStudentInCourseProtoRes);
+  rpc GetAllStudentInBootcampCall(GetAllStudentInCourseProtoReq) returns (GetAllStudentInBootcampProtoRes);
   rpc DeleteCourseCall(DeleteCourseProtoReq) returns (Empty);
   rpc RestoreCourseCall(RestoreCourseProtoReq) returns (Empty);
+  rpc GetAllPurchasedCourseByUserIdCall(GetAllPurchasedCourseByUserIdReq) returns (GetAllPurchasedCourseByUserIdRes);
 
   // Section
   rpc CreateSectionCall(CreateSectionProtoReq) returns (SectionProtoModel);
