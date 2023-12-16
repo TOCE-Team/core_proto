@@ -26,6 +26,20 @@ message DeleteTrackingWorkProtoReq {
     string id = 1;
 }
 
+message CourseProgressProtoModel {
+    string  user_id         = 1;
+    string  course_id       = 2;
+    bool    completed       = 3;
+    int64   grade           = 4;
+    int64   total_mission   = 5;
+    int64   total_done      = 6;
+}
+
+message GetCourseProgressByIdProtoReq {
+    string  user_id         = 1;
+    string  course_id       = 2;
+}
+
 
 message EnrollmentCourseProtoModel {
     string  id              = 1;
