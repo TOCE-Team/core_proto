@@ -47,6 +47,7 @@ message CourseProtoModel {
   optional string courseBrief = 19;
   CourseTypeProto courseType = 20;
   optional string thumbnail = 21;
+  string network = 22;
 }
 
 message CreateCourseProtoReq {
@@ -64,6 +65,7 @@ message CreateCourseProtoReq {
   CourseTypeProto courseType = 12;
   optional string thumbnail = 13;
   string courseId = 14;
+  string network = 15;
 }
 
 message UpdateCourseProtoReq {
@@ -79,6 +81,7 @@ message UpdateCourseProtoReq {
   optional string prerequisites = 10;
   optional int64 startAt = 11;
   optional int64 endAt = 12;
+  optional string network = 13;
 }
 
 message GetCourseByCourseIdProtoReq{
