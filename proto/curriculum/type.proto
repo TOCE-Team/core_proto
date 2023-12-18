@@ -1,0 +1,9 @@
+syntax = "proto3";
+package  curriculum_service;
+
+enum LessonTypeProto {
+  Video = 0;
+  Assignment = 1;
+  CodeExercise = 2;
+  Quiz = 3;
+}

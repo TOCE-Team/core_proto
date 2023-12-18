@@ -1,6 +1,8 @@
 syntax = "proto3";
 package  curriculum_service;
 
+import "type.proto";
+
 enum ObjectStateProtoModel {
   Pending = 0;
   Active = 1;
@@ -120,9 +122,12 @@ message CourseSectionsAndLessonsProto{
   repeated CourseLessonsProto lesson_list = 3;
 }
 
+
 message CourseLessonsProto{
   string lesson_id = 1;
   string lesson_title = 2;
+  LessonTypeProto lesson_type = 3;
+  string material = 4;
 }
 
 message GetCourseSectionsAndLessonsRes{
