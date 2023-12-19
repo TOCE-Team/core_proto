@@ -126,6 +126,7 @@ message DeleteUserProtoReq {
     string password = 2;
 }
 
+
 message OAuthState {
     string csrfState = 1;
     string pkceCodeVerifier = 2;
@@ -348,6 +349,7 @@ service UserServiceProtocol {
     // This command overrides a certain user by id, however it doesn't change the user id
     rpc OverrideUserCall(UserBase)               returns (UserBase);
     rpc AdminDeleteUserCall(GetUserByIdProtoReq) returns (Empty);
+    rpc RestoreUserCall(GetUserByIdProtoReq) returns (Empty);
 
     // User Information
     //rpc CreateUserInformationCall(CreateUserInformationProtoReq)   returns (UserInformationBase);

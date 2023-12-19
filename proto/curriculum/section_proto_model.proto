@@ -11,7 +11,7 @@ message SectionProtoModel {
   optional string sectionBrief = 5;
   int64 sectionPrice = 6;
   float rating = 7;
-  bool isDel = 8;
+  bool isDeleted = 8;
   int64 createdAt = 9;
   int64 updatedAt = 10;
 }
@@ -44,6 +44,16 @@ message GetAllSectionInCourseByCoureIdProtoReq {
 message SectionList {
   repeated SectionProtoModel  sectionList = 1;
 }
+
+message DeleteSectionProtoReq {
+  string section_id = 1;
+}
+
+message RestoreSectionProtoReq {
+  string section_id = 1;
+}
+
+
 
 
 

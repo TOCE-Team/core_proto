@@ -14,7 +14,7 @@ message LessonProtoModel {
   optional string lessonContent = 5;
   optional string lessonVideo = 6;
   optional string materials = 7;
-  bool isDel = 8;
+  bool isDeleted = 8;
   optional int64 startAt = 9;
   optional int64 endAt = 10;
   int64 createdAt = 11;
@@ -76,3 +76,10 @@ message LessonProtoList {
   repeated LessonProtoModel lessonList = 1;
 }
 
+message DeleteLessonProtoReq {
+  string lesson_id = 1;
+}
+
+message RestoreLessonProtoReq {
+  string lesson_id = 1;
+}

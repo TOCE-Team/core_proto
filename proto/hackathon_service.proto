@@ -456,7 +456,7 @@ message OrganizeBase {
 	OrganizeType organizeType = 11;
 	string websiteOfficial = 12;
 	bool official = 13;
-	bool isDel = 14;
+	bool is_deleted = 14;
 	int64 createdAt = 15;
 }
 
