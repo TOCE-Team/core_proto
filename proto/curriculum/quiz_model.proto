@@ -234,6 +234,22 @@ message QuizTestBaseList {
     repeated QuizTestBaseModel quizzes = 1;
 }
 
+message CreateQuizAndAddToTestProtoReq{
+    string              quiz_test_id    = 1;
+    int32               score           = 2;
+    string              title           = 3;
+    QuizTypeProtoModel  quiz_type       = 4;
+    string              description     = 5;
+    string              hint            = 6;
+    string              question        = 7;
+    optional string     single_answer   = 8;
+    optional string     single_result   = 9;
+    repeated string     multi_answer    = 10;
+    repeated string     multi_result    = 11;
+    bool                is_public       = 12;
+    string              owner           = 13;
+}
+
 message GetQuizTestSetProtoReq{
     string                      quiz_test_id    = 1;
     optional int32              score           = 2;
