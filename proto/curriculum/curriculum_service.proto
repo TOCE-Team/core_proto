@@ -115,8 +115,8 @@ service CurriculumServiceProto {
   rpc AddQuizToAssignmentCall(AddQuizProtoReq) returns (Empty);
   rpc AddGraderToAssignmentCall(AddGraderProtoReq) returns (Empty);
   rpc ViewGraderCall(ViewGraderProtoReq) returns (GraderListId);
-  rpc AddRequirmentToAssignmentCall(AddRequirmentProtoReq) returns (Empty);
-  rpc UpdateRequirmentCall(UpdateAssignmentRequirmentProtoReq) returns (Empty);
+  rpc AddRequirementToAssignmentCall(AddRequirementProtoReq) returns (Empty);
+  rpc UpdateRequirementCall(UpdateAssignmentRequirementProtoReq) returns (Empty);
 
   rpc UploadSubmissionCall(AssignmentSubmissionProtoModel) returns (AssignmentSubmissionProtoModel);
 

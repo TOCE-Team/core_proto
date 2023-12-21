@@ -102,6 +102,7 @@ message LoginUserProtoReq {
 message LoginWalletUserProtoReq {
 	string walletId = 1;
 	string network = 2;
+	string accountId = 3;
 }
 
 message GetUserByEmailProtoReq {
@@ -112,6 +113,9 @@ message CreateUserProtoReq {
     string nickname = 1;
     string email    = 2;
     string password = 3;
+}
+message CreateWalletUserProtoReq {
+	string id = 1;
 }
 
 message UpdateUserProtoReq {
@@ -340,7 +344,8 @@ message GetUserByWalletIdProtoReq {
 message WalletUser {
 	string Id   = 1;
 	string walletId = 2;
-	string network = 3;
+	string accountId = 3;
+	string network = 4;
 }
 
 service UserServiceProtocol {
@@ -355,6 +360,7 @@ service UserServiceProtocol {
 	rpc CreateUserWalletLoginCall(LoginWalletUserProtoReq)    returns (WalletUser);
 	rpc GetUserByWalletIdCall(GetUserByWalletIdProtoReq) returns(WalletUser);
 	rpc GetWalletUserByIdCall(GetUserByIdProtoReq) returns(WalletUser);
+    rpc CreateUserWalletCall(CreateWalletUserProtoReq)        returns (User);
 
     // For google login
     rpc CreateOAuthStateCall(OAuthState)               returns (OAuthState);
