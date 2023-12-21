@@ -2,13 +2,9 @@ syntax = "proto3";
 package  curriculum_service;
 
 import "course_proto_model.proto";
+import "type.proto";
 
-enum LessonTypeProto {
-  Video = 0;
-  Assignment = 1;
-  CodeExercise = 2;
-  Quiz = 3;
-}
+
 
 message LessonProtoModel {
   string lessonId = 1;

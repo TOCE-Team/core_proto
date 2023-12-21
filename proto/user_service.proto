@@ -101,6 +101,11 @@ message LoginUserProtoReq {
     string password = 2;
 }
 
+message LoginWalletUserProtoReq {
+	string walletId = 1;
+	string network = 2;
+}
+
 message GetUserByEmailProtoReq {
     string email = 1;
 }
@@ -187,6 +192,7 @@ message TeamBase {
     int64  		createdAt   	= 6;
     int64  		updatedAt   	= 7;
 	bool 		isDeleted 		= 8;
+  optional string logo = 9;
 }
 
 message TeamListProtoReq {
@@ -206,11 +212,19 @@ message GetTeamByIdProtoReq {
     string id = 1;
 }
 
+message GetTeamOwnerByUserIdProtoReq {
+    string user_id = 1;
+}
+message GetUserTeamParticipationsProtoReq{
+  string user_id = 1;
+} 
 
 message CreateTeamProtoReq {
-    string 	name 	   	= 1;
-    string 	description	= 2;
-	string 	owner 	    = 3;
+  string team_id = 1;
+    string 	name 	   	= 2;
+    string 	description	= 3;
+	string 	owner 	    = 4;
+  optional string logo = 5;
 }
 
 message UpdateTeamProtoReq {
@@ -218,6 +232,7 @@ message UpdateTeamProtoReq {
     optional string 	name 	   	= 2;
 	optional string 	description = 3;
 	optional string  	owner 		= 4;
+  optional string logo = 5;
 }
 
 message DeleteTeamProtoReq {
@@ -331,6 +346,15 @@ message UpdateRoleUserProtoReq {
 	Role role = 2;
 }
 
+message GetUserByWalletIdProtoReq {
+	string walletId = 1;
+}
+
+message WalletUser {
+	string Id   = 1;
+	string walletId = 2;
+	string network = 3;
+}
 
 service UserServiceProtocol {
     // Normal user calls
@@ -341,6 +365,9 @@ service UserServiceProtocol {
     rpc CreateUserCall(CreateUserProtoReq)        returns (User);
     rpc UpdateUserCall(UpdateUserProtoReq)        returns (User);
     rpc DeleteUserCall(DeleteUserProtoReq)        returns (Empty);
+	rpc CreateUserWalletLoginCall(LoginWalletUserProtoReq)    returns (WalletUser);
+	rpc GetUserByWalletIdCall(GetUserByWalletIdProtoReq) returns(WalletUser);
+	rpc GetWalletUserByIdCall(GetUserByIdProtoReq) returns(WalletUser);
 
     // For google login
     rpc CreateOAuthStateCall(OAuthState)               returns (OAuthState);
@@ -375,7 +402,9 @@ service UserServiceProtocol {
     rpc DeleteTeamMemberCall(DeleteTeamMemberProtoReq)      returns (Empty);
     rpc RemoveTeamMemberCall(DeleteTeamMemberProtoReq)      returns (Empty);
 	rpc RestoreTeamMemberCall(DeleteTeamMemberProtoReq)     returns (Empty);
-
+  rpc GetTeamOwnerByUserIdCall(GetTeamOwnerByUserIdProtoReq)     returns (TeamListProtoRes);
+  rpc GetUserTeamParticipationsCall(GetUserTeamParticipationsProtoReq)     returns (TeamListProtoRes);
+  
     // Email
     rpc GetEmailsCall(EmailListProtoReq)                      returns (EmailListProtoRes);
     rpc GetEmailByIdCall(GetEmailByIdProtoReq)                returns (EmailBase);
