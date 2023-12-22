@@ -85,7 +85,7 @@ enum UserLevel {
   Master = 7;
 }
 
-message AddRequirmentProtoReq {
+message AddRequirementProtoReq {
 	string assignmentId = 1;
 	repeated string occupationId = 2;
 	UserLevel level = 3; 
@@ -94,7 +94,7 @@ message AddRequirmentProtoReq {
 	string material = 6;
 }
 
-message UpdateAssignmentRequirmentProtoReq {
+message UpdateAssignmentRequirementProtoReq {
 	string assignmentId = 1;
 	string material = 2;
 }
