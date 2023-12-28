@@ -81,6 +81,8 @@ message QuizProtoModel {
     int64               paginationId    = 14;
     bool                is_public       = 15;
     string              owner           = 16;
+    optional int64      time_for_quiz   = 17;
+    optional int64      maximum_times   = 18;
 }
 
 message CreateQuizProtoReq {
@@ -95,6 +97,8 @@ message CreateQuizProtoReq {
     repeated string     multi_result    = 9;
     bool                is_public       = 10;
     string              owner           = 11;
+    optional int64      time_for_quiz   = 12;
+    optional int64      maximum_times   = 13;
 }
 
 message ReCreateQuizProtoReq {
@@ -131,6 +135,8 @@ message UpdateQuizProtoReq {
     repeated string                 multi_answer    = 9;
     repeated string                 multi_result    = 10;
     optional bool                   is_public       = 11;
+    optional int64                  time_for_quiz   = 12;
+    optional int64                  maximum_times   = 13;
 }
 
 message DeleteQuizProtoReq {
@@ -145,8 +151,8 @@ message QuizSetProtoModel {
 }
 
 message CreateQuizSetProtoReq{
-	string quiz_bank_id     = 1;
-	string quiz_id          = 2;
+	string quiz_bank_id    = 1;
+	string quiz_id         = 2;
 } 
 
 message GetQuizSetByIdProtoReq {
@@ -170,9 +176,14 @@ message QuizTestProtoModel {
     string parent_id        = 2;
     string name             = 3;
     string description      = 4;
-    int64  createdAt        = 5;
-    int64  updatedAt        = 6;
-    bool   is_deleted       = 7;
+    int64 time_for_test     = 5;
+    int64 maximum_times     = 6;
+    bool disable            = 7;
+    int64 startedAt         = 8;
+    int64 endedAt           = 9;
+    int64  createdAt        = 10;
+    int64  updatedAt        = 11;
+    bool   is_deleted       = 12;
 }
 
 
@@ -189,15 +200,25 @@ message GetQuizTestListRes{
 }
 
 message CreateQuizTestProtoReq {
-    string parent_id    = 1;
-    string name         = 2;
-    string description  = 3;
+    string parent_id        = 1;
+    string name             = 2;
+    string description      = 3;
+    int64 time_for_test     = 4;
+    int64 maximum_times     = 5;
+    bool disable            = 6;
+    int64 startedAt         = 7;
+    int64 endedAt           = 8;
 }
 
 message UpdateQuizTestProtoReq {
-    string quiz_test_id         = 1;
-    optional string name        = 2;
-    optional string description = 3;
+    string quiz_test_id             = 1;
+    optional string name            = 2;
+    optional string description     = 3;
+    optional int64 time_for_test    = 4;
+    optional int64 maximum_times    = 5;
+    optional bool disable           = 6;
+    optional int64 startedAt        = 7;
+    optional int64 endedAt          = 8;
 }
 
 message DeleteQuizTestProtoReq {
@@ -248,6 +269,8 @@ message CreateQuizAndAddToTestProtoReq{
     repeated string     multi_result    = 11;
     bool                is_public       = 12;
     string              owner           = 13;
+    optional int64      time_for_quiz   = 14;
+    optional int64      maximum_times   = 15;
 }
 
 message GetQuizTestSetProtoReq{
