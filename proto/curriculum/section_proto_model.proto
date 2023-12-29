@@ -22,6 +22,7 @@ message CreateSectionProtoReq {
   int64 sectionPrice = 3;
   string courseId = 4;
   string ownerId = 5;
+  int32 section_index = 6;
 }
 
 message UpdateSectionProtoReq {
@@ -30,6 +31,7 @@ message UpdateSectionProtoReq {
   optional int64 sectionPrice = 3;
   string sectionId = 4;
   string CourseId = 5;
+  optional int32 section_index = 6;
 }
 
 message GetSectionByCoureIdAndSectionIdProtoReq {

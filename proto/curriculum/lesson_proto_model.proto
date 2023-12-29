@@ -20,6 +20,7 @@ message LessonProtoModel {
   int64 createdAt = 11;
   int64 updatedAt = 12;
   LessonTypeProto lesson_type = 13;
+  optional string thumbnail = 14;
 }
 
 message CreateLessonProtoReq {
@@ -33,6 +34,8 @@ message CreateLessonProtoReq {
   string sectionId = 8;
   string ownerId = 9;
   LessonTypeProto lesson_type = 10;
+  optional string thumbnail = 11;
+  int32 lesson_index = 12;
 }
 
 message UpdateLessonProtoReq {
@@ -45,6 +48,8 @@ message UpdateLessonProtoReq {
   string courseId = 7;
   string sectionId = 8;
   string lessonId = 9;
+  optional string thumbnail = 10;
+  optional int32 lesson_index = 11;
 }
 
 message AddLessonProtoReq{
