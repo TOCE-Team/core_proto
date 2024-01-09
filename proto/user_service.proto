@@ -118,7 +118,7 @@ message GetUserByEmailProtoReq {
 }
 
 message CreateUserProtoReq {
-    string username = 1;
+    optional string username = 1;
     string email    = 2;
     string password = 3;
 }
