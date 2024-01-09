@@ -174,9 +174,10 @@ message UserInformationBase {
     optional string major_field          = 14;
     optional string know_through         = 15;
     optional string want_to_learn        = 16;
-    bool     isDeleted                   = 17;
-    int64    createdAt                   = 18;
-    int64    updatedAt                   = 19;
+    optional string career_path          = 17;
+    bool     isDeleted                   = 18;
+    int64    createdAt                   = 19;
+    int64    updatedAt                   = 20;
 }
 
 message GetUserInformationProtoReq{
@@ -200,6 +201,7 @@ message UpdateUserInformationProtoReq{
     optional string major_field          = 14;
     optional string know_through         = 15;
     optional string want_to_learn        = 16;
+    optional string career_path          = 17;
 }
 
 
