@@ -152,10 +152,10 @@ message RegisterBootcampProtoReq{
   optional string user_level = 8;
   optional string programming_experience = 9;
   optional string blockchain_experience = 10;
-  PurchaseCourseProtoReq purchase_info = 11;
+  EnrollmentCourseProtoReq purchase_info = 11;
 }
 
-message PurchaseCourseProtoReq{
+message EnrollmentCourseProtoReq{
   string course_id = 1;
   string student_id = 2;
   optional string payment_method = 3;
