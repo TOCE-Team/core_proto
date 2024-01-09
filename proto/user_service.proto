@@ -421,6 +421,11 @@ message DeleteCollectingFeedbackProtoReq {
     string id = 1;
 }
 
+message UpdateEmailUserProtoReq {
+	string id = 1;
+	string email = 2;
+}
+
 service UserServiceProtocol {
     // Normal user calls
 
@@ -434,6 +439,7 @@ service UserServiceProtocol {
 	rpc GetUserByWalletIdCall(GetUserByWalletIdProtoReq) returns(WalletUser);
 	rpc GetWalletUserByIdCall(GetUserByIdProtoReq) returns(WalletUser);
     rpc CreateUserWalletCall(CreateWalletUserProtoReq)        returns (User);
+	rpc UpdateEmailUserCall(UpdateEmailUserProtoReq) returns (User);
 
     // For google login
     rpc CreateOAuthStateCall(OAuthState)               returns (OAuthState);
