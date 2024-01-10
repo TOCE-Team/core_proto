@@ -426,6 +426,187 @@ message UpdateEmailUserProtoReq {
 	string email = 2;
 }
 
+
+/* tbl_Invite */
+enum InvitationType {
+    _Judge    	= 0;
+    _Team     	= 1;
+	_Moderator 	= 2;
+	_Assistant	= 3;
+	_Mentor		= 4;
+}
+enum InvitationState {
+    _Waiting    	= 0;
+    _Accept     	= 1;
+	_Reject 		= 2;
+}
+enum InvitationFor {
+	_Hackathon 		= 0;
+	_Organize  		= 1;
+	_Course 			= 2;
+	_BootCamp 		= 3;
+}
+
+message InvitationBase {
+	string 			parentId 		= 1;
+	string 			userId 			= 2;
+	string 			inviteKey 		= 3;
+	string 			title 			= 4;
+	string 			message 		= 5;	
+	InvitationFor	inviteFor    	= 6;
+	InvitationType 	invitationType 	= 7;
+	InvitationState state 			= 8;
+	int64 			deadline		= 9;
+}
+
+message GetInvitationListReq {
+	optional string parentId 	= 1;   
+	optional string userId 		= 2;
+}
+
+message GetInvitationByIdReq {
+	string parentId 	= 1;   
+	string userId 		= 2;
+}
+
+message GetInvitationByKeyReq {
+	string inviteKey 	= 1;   
+}
+
+message InvitationListRes {
+	repeated InvitationBase invitations = 1;
+}
+
+message CreateInvitationProtoReq {
+	string 			parentId 		= 1;
+	string 			userId 			= 2;
+	string 			title 			= 3;
+	string 			message 		= 4;			
+	InvitationType 	invitationType 	= 5;
+	InvitationFor	inviteFor    	= 6;
+	int64 			deadline		= 7;
+}
+
+message UpdateInvitationProtoReq {
+	string 						parentId 		= 1;
+	string 						userId 			= 2;
+	optional string 			title 			= 3;
+	optional string 			message 		= 4;	
+	optional int64 				deadline		= 5;		
+}
+
+message ResponseInvitationProtoReq {
+	string 	parentId 		= 1;
+	string 	userId 			= 2;
+	InvitationState state 	= 3;
+}
+
+message DeleteInvitationProtoReq {
+	string 	parentId 		= 1;
+	string 	userId 			= 2;
+}
+
+/*organize*/
+
+
+message OrganizeBase {
+	string          id                  = 1;
+	string          hostId              = 2; // FK to the id field of UserProtoModel
+	string          name                = 3;
+	string          shortName           = 4;
+	string          url                 = 5;
+	string          logo                = 6;
+	string          tagline             = 7;
+	string          description         = 9;
+	string          location            = 10;
+	OrganizeType    organizeType        = 11;
+	string          websiteOfficial     = 12;
+	bool            official            = 13;
+	bool            is_deleted          = 14;
+	int64           createdAt           = 15;
+    int64           paginationId        = 16;
+}
+
+enum OrganizeType{
+	University      = 0;
+	Organization    = 1;
+}
+
+message OrgListProtoReq {
+    optional int64  offset      = 1;
+    optional int32  limit       = 2;
+}
+
+message OrganizeList {
+	repeated OrganizeBase orgs = 1;
+}
+
+message GetOrgByIdProtoReq{
+	string id = 1;
+}
+
+message CreateOrgProtoReq {
+	string hostId = 1; // FK to the id field of UserProtoModel
+	string name = 2;
+	optional string shortName = 3;
+	string url = 4;
+	optional string logo = 5;
+	optional string tagline = 6;
+	optional string description = 7;
+	optional string location = 8;
+	optional string websiteOfficial = 9;
+	OrganizeType organizeType = 10;
+	bool official = 11;
+	int64 createdAt = 12;
+}
+
+message UpdateOrgProtoReq{
+	string id = 1;
+	optional string hostId = 2; // FK to the id field of UserProtoModel
+	optional string name = 3;
+	optional string shortName = 4;
+	optional string url = 5;
+	optional string logo = 6;
+	optional string tagline = 7;
+	optional string description = 8;
+	optional string location = 9;
+	optional string websiteOfficial = 10;
+}
+
+message DeleteOrgProtoReq {
+	string id = 1;
+}
+
+message RemoveOrgProtoReq {
+	string id = 1;
+}
+
+message RestoreOrgProtoReq {
+	string id = 1;
+}
+
+message AddModeratorProtoReq{
+	string parentId = 1;
+	string moderatorId = 2;
+} 
+
+message ViewModeratorProtoReq{
+	string          			parentId   = 1;
+	optional int64  			offset      = 2;
+    optional int32  			limit       = 3;
+    optional string 			id          = 4;
+    optional string 			firstName   = 5;
+    optional string 			lastName    = 6;
+    optional string 			nickname    = 7;
+    optional string 			email       = 8;
+    optional Role               role        = 9;
+    optional Level              level       = 10;
+    optional int32  			totalCredit = 11;
+    optional int64  			createdAt   = 12;
+    optional int64  			updatedAt   = 13;
+
+}
+
 service UserServiceProtocol {
     // Normal user calls
 
@@ -474,8 +655,8 @@ service UserServiceProtocol {
     rpc DeleteTeamMemberCall(DeleteTeamMemberProtoReq)      returns (Empty);
     rpc RemoveTeamMemberCall(DeleteTeamMemberProtoReq)      returns (Empty);
 	rpc RestoreTeamMemberCall(DeleteTeamMemberProtoReq)     returns (Empty);
-  rpc GetTeamOwnerByUserIdCall(GetTeamOwnerByUserIdProtoReq)     returns (TeamListProtoRes);
-  rpc GetUserTeamParticipationsCall(GetUserTeamParticipationsProtoReq)     returns (TeamListProtoRes);
+    rpc GetTeamOwnerByUserIdCall(GetTeamOwnerByUserIdProtoReq)     returns (TeamListProtoRes);
+    rpc GetUserTeamParticipationsCall(GetUserTeamParticipationsProtoReq)     returns (TeamListProtoRes);
   
     // Email
     rpc GetEmailsCall(EmailListProtoReq)                      returns (EmailListProtoRes);
@@ -493,4 +674,23 @@ service UserServiceProtocol {
     rpc CreateCollectingFeedbackCall(CreateCollectingFeedbackProtoReq)      returns (CollectingFeedbackBase);
     rpc DeleteCollectingFeedbackCall(DeleteCollectingFeedbackProtoReq)      returns(Empty);
 
+    // Invitation
+	rpc GetInvitationsCall(GetInvitationListReq) returns (InvitationListRes);
+	rpc GetInvitationByIdCall(GetInvitationByIdReq) returns (InvitationBase);
+	rpc GetInvitationByKeyCall(GetInvitationByKeyReq) returns (InvitationBase);
+	rpc CreateInvitationCall(CreateInvitationProtoReq) returns (InvitationBase);
+	rpc UpdateInvitationCall(UpdateInvitationProtoReq) returns (InvitationBase);
+	rpc ResponseInvitationCall(ResponseInvitationProtoReq) returns (InvitationBase);
+	rpc DeleteInvitationCall(DeleteInvitationProtoReq) returns (Empty);
+
+    // Organize
+	rpc GetOrgsCall(OrgListProtoReq) 	   returns (OrganizeList);
+	rpc GetOrgByIdCall(GetOrgByIdProtoReq) returns (OrganizeBase);
+	rpc CreateOrgCall(CreateOrgProtoReq)   returns (OrganizeBase);
+	rpc UpdateOrgCall(UpdateOrgProtoReq)   returns (OrganizeBase);
+	rpc DeleteOrgCall(DeleteOrgProtoReq)   returns (Empty);
+	rpc RemoveOrgCall(RemoveOrgProtoReq)   returns (Empty);
+	rpc RestoreOrgCall(RestoreOrgProtoReq) returns (Empty);
+	rpc AddModeratorCall(AddModeratorProtoReq) returns (Empty);
+	rpc ViewModeratorCall(ViewModeratorProtoReq) returns (UserList);
 }
