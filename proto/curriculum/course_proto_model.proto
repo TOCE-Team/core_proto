@@ -113,6 +113,12 @@ message GetAllCoursesReq {
   optional string                 owner           = 3;
   optional int32                  languages       = 4;
   optional string                 difficultyLevel = 5;
+  optional bool                   publish         = 6;
+  optional bool                   isDeleted       = 7;
+  optional string                 slug            = 8;
+  optional int64                  courseFee       = 9;
+  optional CourseTypeProto        courseType      = 10;
+  optional string                 network         = 11;
 }
 
 message GetAllCoursesRes{
