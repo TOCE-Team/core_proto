@@ -128,7 +128,9 @@ message GetAllCoursesRes{
 message CourseSectionsAndLessonsProto{
   string section_id = 1;
   string section_title = 2;
-  repeated CourseLessonsProto lesson_list = 3;
+  bool section_completed = 3; 
+  optional string next_section = 4;
+  repeated CourseLessonsProto lesson_list = 5;
 }
 
 
@@ -136,7 +138,10 @@ message CourseLessonsProto{
   string lesson_id = 1;
   string lesson_title = 2;
   LessonTypeProto lesson_type = 3;
-  string material = 4;
+  optional string materials = 4;
+  optional int32 video_duration = 5;
+  optional string next_lesson = 6;
+  bool lesson_completed = 7;
 }
 
 message GetCourseSectionsAndLessonsRes{
@@ -145,20 +150,13 @@ message GetCourseSectionsAndLessonsRes{
 
 message GetCourseSectionsAndLessonsReq{
   string course_id = 1;
+  string user_id = 2;
 }
 
 message RegisterBootcampProtoReq{
   string course_id = 1;
   string student_id = 2;
-  optional string user_public_key = 3;
-  optional string student_name = 4;
-  optional string student_email = 5;
-  optional string student_phone_number = 6;
-  optional string languages_skill = 7;
-  optional string user_level = 8;
-  optional string programming_experience = 9;
-  optional string blockchain_experience = 10;
-  EnrollmentCourseProtoReq purchase_info = 11;
+  EnrollmentCourseProtoReq purchase_info = 3; 
 }
 
 message EnrollmentCourseProtoReq{
@@ -166,7 +164,7 @@ message EnrollmentCourseProtoReq{
   string student_id = 2;
   optional string payment_method = 3;
   optional string network = 4;
-  optional int64 amount = 5;
+  optional uint64 amount = 5;
   optional string transaction = 6;
 }
 
