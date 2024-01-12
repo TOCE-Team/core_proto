@@ -5,8 +5,37 @@ import "course_proto_model.proto";
 import "type.proto";
 
 message QuizVideoProtoModel {
-  int64           time = 1;
-  repeated string quizzes = 2;
+  string          quiz_video_id = 1;
+  string          lesson_id     = 2;
+  int64           time          = 3;
+  repeated string quizzes       = 4;
+  bool            isDeleted     = 5;
+  int64           createdAt     = 6;
+  int64           updatedAt     = 7;
+}
+
+message GetQuizVideoProtoReq {
+  string          lesson_id     = 1;
+}
+
+message GetQuizVideoProtoRes {
+  repeated QuizVideoProtoModel  quiz_video   = 1;
+}
+
+message CreateQuizVideoProtoReq {
+  string          lesson_id     = 1;
+  int64           time          = 2;
+  repeated string quizzes       = 3;
+}
+
+message UpdateQuizVideoProtoReq {
+  string          quiz_video_id = 1;
+  optional int64  time          = 2;
+  repeated string quizzes       = 3;
+}
+
+message DeleteQuizVideoProtoReq {
+  string    quiz_video_id     = 1;
 }
 
 message LessonProtoModel {
@@ -24,7 +53,7 @@ message LessonProtoModel {
   int64 updatedAt = 12;
   LessonTypeProto lesson_type = 13;
   optional string thumbnail = 14;
-  //QuizVideoProtoModel quiz_video 
+  //repeated QuizVideoProtoModel quiz_video  = 15;
 }
 
 message CreateLessonProtoReq {
