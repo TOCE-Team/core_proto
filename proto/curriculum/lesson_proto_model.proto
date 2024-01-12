@@ -4,7 +4,10 @@ package  curriculum_service;
 import "course_proto_model.proto";
 import "type.proto";
 
-
+message QuizVideoProtoModel {
+  int64           time = 1;
+  repeated string quizzes = 2;
+}
 
 message LessonProtoModel {
   string lessonId = 1;
@@ -21,6 +24,7 @@ message LessonProtoModel {
   int64 updatedAt = 12;
   LessonTypeProto lesson_type = 13;
   optional string thumbnail = 14;
+  //QuizVideoProtoModel quiz_video 
 }
 
 message CreateLessonProtoReq {
