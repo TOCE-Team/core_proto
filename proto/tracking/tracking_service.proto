@@ -32,6 +32,7 @@ service TrackingServiceProto {
     rpc GetTrackingWorkCourseCall(GetTrackingWorkCourseProtoReq) returns (GetTrackingWorkProtoRes);
     rpc CreateTrackingWorkCourseCall(CreateTrackingWorkCourseProtoReq) returns (TrackingWorkProtoModel);
     rpc GetCourseProgressByIdCall(GetCourseProgressByIdProtoReq) returns(CourseProgressProtoModel); 
+    rpc GetEnrollmentCourseExistCall(GetEnrollmentCourseExistProtoReq) returns(GetEnrollmentCourseExistProtoRes);
 
     // Section
     rpc GetEnrollmentSectionCall(GetEnrollmentSectionProtoReq) returns (GetEnrollmentSectionProtoRes);
