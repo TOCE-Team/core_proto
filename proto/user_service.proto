@@ -557,7 +557,6 @@ message CreateOrgProtoReq {
 	optional string websiteOfficial = 9;
 	OrganizeType organizeType = 10;
 	bool official = 11;
-	int64 createdAt = 12;
 }
 
 message UpdateOrgProtoReq{
