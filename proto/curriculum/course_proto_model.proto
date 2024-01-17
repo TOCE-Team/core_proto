@@ -39,7 +39,7 @@ message CourseProtoModel {
   string owner = 9;
   bool isDeleted = 10;
   optional bool publish = 11;
-  optional string whatInclude = 12; 
+  optional string whatInclude = 12;
   optional string expectedOutcomes = 13;
   optional string prerequisites = 14;
   optional int64 startAt = 15;
@@ -50,6 +50,9 @@ message CourseProtoModel {
   CourseTypeProto courseType = 20;
   optional string thumbnail = 21;
   string network = 22;
+  int32 total_student = 23;
+  int32 total_lesson = 24;
+  int32 total_duration = 25;
 }
 
 message CreateCourseProtoReq {
@@ -57,12 +60,12 @@ message CreateCourseProtoReq {
   int64 courseFee = 2;
   string difficultyLevel = 3;
   int32 languages = 4;
-  optional string courseBrief = 5; 
+  optional string courseBrief = 5;
   optional string whatInclude = 6;
   optional string expectedOutcomes = 7;
   optional string prerequisites = 8;
   optional int64 startAt = 9;
-  optional int64 endAt = 10; 
+  optional int64 endAt = 10;
   string owner = 11;
   CourseTypeProto courseType = 12;
   optional string thumbnail = 13;
@@ -78,7 +81,7 @@ message UpdateCourseProtoReq {
   optional int64 languages = 5;
   optional string courseBrief = 6;
   optional bool publish = 7;
-  optional string whatInclude = 8; 
+  optional string whatInclude = 8;
   optional string expectedOutcomes = 9;
   optional string prerequisites = 10;
   optional int64 startAt = 11;
@@ -128,7 +131,7 @@ message GetAllCoursesRes{
 message CourseSectionsAndLessonsProto{
   string section_id = 1;
   string section_title = 2;
-  bool section_completed = 3; 
+  bool section_completed = 3;
   optional string next_section = 4;
   repeated CourseLessonsProto lesson_list = 5;
 }
@@ -145,7 +148,7 @@ message CourseLessonsProto{
 }
 
 message GetCourseSectionsAndLessonsRes{
-  repeated CourseSectionsAndLessonsProto course_detail = 1; 
+  repeated CourseSectionsAndLessonsProto course_detail = 1;
 }
 
 message GetCourseSectionsAndLessonsReq{
@@ -156,7 +159,7 @@ message GetCourseSectionsAndLessonsReq{
 message RegisterBootcampProtoReq{
   string course_id = 1;
   string student_id = 2;
-  EnrollmentCourseProtoReq purchase_info = 3; 
+  EnrollmentCourseProtoReq purchase_info = 3;
 }
 
 message EnrollmentCourseProtoReq{
@@ -213,7 +216,7 @@ message PurchasedCourseByUserProto {
   string owner = 9;
   bool isDeleted = 10;
   optional bool publish = 11;
-  optional string whatInclude = 12; 
+  optional string whatInclude = 12;
   optional string expectedOutcomes = 13;
   optional string prerequisites = 14;
   optional int64 startAt = 15;
@@ -233,4 +236,3 @@ message GetAllPurchasedCourseByUserIdRes{
 message GetAllPurchasedCourseByUserIdReq{
   string user_id = 1;
 }
-
