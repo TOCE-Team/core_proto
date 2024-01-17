@@ -234,3 +234,31 @@ message GetAllPurchasedCourseByUserIdReq{
   string user_id = 1;
 }
 
+// sponsor of Course
+
+message CourseSponsorProtoModel {
+  string    organize_id       = 1;
+  string    course_id         = 2;
+  bool      isDeleted         = 3;
+  int64     createdAt         = 4;
+  int64     updatedAt         = 5;
+}
+
+message GetCourseSponsorProtoReq {
+  string             course_id      = 1;
+  optional string    organize_id    = 2;
+}
+
+message GetCourseSponsorProtoRes {
+  repeated CourseSponsorProtoModel sponsors = 1;
+}
+
+message CreateCourseSponsorProtoReq {
+  string    organize_id        = 1;
+  string    course_id         = 2;
+}
+
+message DeleteCourseSponsorProtoReq {
+  string organize_id       = 1;
+  string course_id    = 2;
+}

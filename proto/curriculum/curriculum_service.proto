@@ -28,6 +28,11 @@ service CurriculumServiceProto {
   rpc RestoreCourseCall(RestoreCourseProtoReq) returns (Empty);
   rpc GetAllPurchasedCourseByUserIdCall(GetAllPurchasedCourseByUserIdReq) returns (GetAllPurchasedCourseByUserIdRes);
 
+  // Sponsor
+  rpc GetCourseSponsorCall(GetCourseSponsorProtoReq) returns(GetCourseSponsorProtoRes);
+  rpc CreateCourseSponsorCall(CreateCourseSponsorProtoReq) returns(CourseSponsorProtoModel);
+  rpc DeleteCourseSponsorCall(DeleteCourseSponsorProtoReq) returns(Empty);
+
   // Section
   rpc CreateSectionCall(CreateSectionProtoReq) returns (SectionProtoModel);
   rpc GetSectionByCourseIdAndSectionIdCall(GetSectionByCoureIdAndSectionIdProtoReq) returns (SectionProtoModel);
