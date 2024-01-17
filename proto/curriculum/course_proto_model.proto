@@ -50,9 +50,9 @@ message CourseProtoModel {
   CourseTypeProto courseType = 20;
   optional string thumbnail = 21;
   string network = 22;
-  int32 total_student = 23;
-  int32 total_lesson = 24;
-  int32 total_duration = 25;
+  optional int32 total_student = 23;
+  optional int32 total_lesson = 24;
+  optional int32 total_duration = 25;
 }
 
 
