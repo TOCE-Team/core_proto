@@ -53,6 +53,7 @@ message CourseProtoModel {
   optional int32 total_student = 23;
   optional int32 total_lesson = 24;
   optional int32 total_duration = 25;
+  optional string overview = 26;
 }
 
 
@@ -72,6 +73,7 @@ message CreateCourseProtoReq {
   optional string thumbnail = 13;
   string courseId = 14;
   string network = 15;
+  optional string overview = 16;
 }
 
 message UpdateCourseProtoReq {
@@ -88,6 +90,7 @@ message UpdateCourseProtoReq {
   optional int64 startAt = 11;
   optional int64 endAt = 12;
   optional string network = 13;
+  optional string overview = 14;
 }
 
 message GetCourseByCourseIdProtoReq{
@@ -236,6 +239,35 @@ message GetAllPurchasedCourseByUserIdRes{
 
 message GetAllPurchasedCourseByUserIdReq{
   string user_id = 1;
+}
+
+// sponsor of Course
+
+message CourseSponsorProtoModel {
+  string    organize_id       = 1;
+  string    course_id         = 2;
+  bool      isDeleted         = 3;
+  int64     createdAt         = 4;
+  int64     updatedAt         = 5;
+}
+
+message GetCourseSponsorProtoReq {
+  string             course_id      = 1;
+  optional string    organize_id    = 2;
+}
+
+message GetCourseSponsorProtoRes {
+  repeated CourseSponsorProtoModel sponsors = 1;
+}
+
+message CreateCourseSponsorProtoReq {
+  string    organize_id        = 1;
+  string    course_id         = 2;
+}
+
+message DeleteCourseSponsorProtoReq {
+  string organize_id       = 1;
+  string course_id    = 2;
 }
 
 message RatingProtoModel {
