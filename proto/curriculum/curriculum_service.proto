@@ -158,4 +158,9 @@ service CurriculumServiceProto {
   rpc DeleteScoreCall(DeleteScoreProtoReq) returns (Empty);
   rpc QueryScoreCall(ScoreQuery) returns (ScoreList);
   rpc GetQuizByAssignmentCall(GetQuizByAssignmentIdProtoReq) returns (GetQuizListProtoRes);
+
+  rpc GetAllRatingByCourseCall(GetAllRatingByCourseIdProtoReq) returns (RatingList);
+  rpc DeleteRatingCall(DeleteRatingProtoReq) returns (Empty);
+  rpc CreateRatingCall(CreateRatingProtoReq) returns (RatingProtoModel);
+  rpc UpdateRatingCall(UpdateRatingProtoReq) returns (RatingProtoModel);
 }
