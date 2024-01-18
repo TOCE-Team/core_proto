@@ -14,7 +14,7 @@ message Empty {}
 
 service CurriculumServiceProto {
   // Coure
-  rpc CreateCourseCall(CreateCourseProtoReq) returns (CourseProtoModel);
+  rpc CreateCourseCall(CreateCourseProtoReq) returns (CreateCourseProtoRes);
   rpc GetCourseByCourseIdCall(GetCourseByCourseIdProtoReq) returns (CourseProtoModel);
   //rpc GetAllCourseByCategoryIdCall(GetAllCourseByCategoryIdProtoReq) returns (CourseProtoModel);
   rpc GetCourseByCourseSlugCall(GetCourseByCourseSlugProtoReq) returns (CourseProtoModel);
@@ -23,13 +23,23 @@ service CurriculumServiceProto {
   rpc GetAllCoursesCall(GetAllCoursesReq) returns (GetAllCoursesRes);
   rpc GetCourseSectionsAndLessonsCall(GetCourseSectionsAndLessonsReq) returns (GetCourseSectionsAndLessonsRes);
   rpc RegisterBootcampCall(RegisterBootcampProtoReq) returns (RegisterBootcampProtoRes);
-  rpc GetAllStudentInCourseCall(GetAllStudentInCourseProtoReq) returns (GetAllStudentInCourseProtoRes);
+  rpc GetAllStudentInBootcampCall(GetAllStudentInCourseProtoReq) returns (GetAllStudentInBootcampProtoRes);
+  rpc DeleteCourseCall(DeleteCourseProtoReq) returns (Empty);
+  rpc RestoreCourseCall(RestoreCourseProtoReq) returns (Empty);
+  rpc GetAllPurchasedCourseByUserIdCall(GetAllPurchasedCourseByUserIdReq) returns (GetAllPurchasedCourseByUserIdRes);
+
+  // Sponsor
+  rpc GetCourseSponsorCall(GetCourseSponsorProtoReq) returns(GetCourseSponsorProtoRes);
+  rpc CreateCourseSponsorCall(CreateCourseSponsorProtoReq) returns(CourseSponsorProtoModel);
+  rpc DeleteCourseSponsorCall(DeleteCourseSponsorProtoReq) returns(Empty);
 
   // Section
   rpc CreateSectionCall(CreateSectionProtoReq) returns (SectionProtoModel);
   rpc GetSectionByCourseIdAndSectionIdCall(GetSectionByCoureIdAndSectionIdProtoReq) returns (SectionProtoModel);
   rpc UpdateSectionCall(UpdateSectionProtoReq) returns (SectionProtoModel);
   rpc GetAllSectionInCourseByCourseIdCall(GetAllSectionInCourseByCoureIdProtoReq) returns (SectionList);
+  rpc DeleteSectionCall(DeleteSectionProtoReq) returns (Empty);
+  rpc RestoreSectionCall(RestoreSectionProtoReq) returns (Empty);
 
   //lesson
   rpc CreateLessonCall(CreateLessonProtoReq) returns (LessonProtoModel);
@@ -37,6 +47,14 @@ service CurriculumServiceProto {
   rpc GetLessonCall(GetLessonProtoReq) returns (LessonProtoModel);
   rpc GetAllLessonBySectionIdCall(GetAllLessonBySectionIdProtoReq) returns (LessonProtoList);
   rpc AddLessonCall(AddLessonProtoReq) returns (AddLessonProtoRes);
+  rpc DeleteLessonCall(DeleteLessonProtoReq) returns (Empty);
+  rpc RestoreLessonCall(RestoreLessonProtoReq) returns (Empty);
+
+  // QuizVideo
+  rpc GetQuizVideoCall(GetQuizVideoProtoReq) returns (GetQuizVideoProtoRes);
+  rpc CreateQuizVideoCall(CreateQuizVideoProtoReq) returns (QuizVideoProtoModel);
+  rpc UpdateQuizVideoCall(UpdateQuizVideoProtoReq) returns (QuizVideoProtoModel);
+  rpc DeleteQuizVideoCall(DeleteQuizVideoProtoReq) returns (Empty);
 
   // For course assistant - moderator
   rpc AddCourseAssistantCall(AddCourseAssistantProtoReq)       returns (CourseAssistantBase);
@@ -51,7 +69,7 @@ service CurriculumServiceProto {
   rpc UpdateCourseManagementCall(UpdateCourseManagementProtoReq) returns (CourseManagementBase);
   rpc DeleteCourseManagementCall(DeleteCourseManagementProtoReq) returns (Empty);
 
-  // Form 
+  // Form
   rpc GetFormByIdCall(GetFormByIdProtoReq)                                   returns (FormProtoModel);
   rpc CreateFormCall(CreateFormProtoReq)                                     returns (Empty);
   rpc AddShortTextToFormCall(CreateFormShortTextProtoReq)                    returns (Empty);
@@ -71,14 +89,34 @@ service CurriculumServiceProto {
   rpc GetQuizByIdCall(GetQuizByIdProtoReq)              returns(QuizProtoModel);
   rpc GetQuizListCall(GetQuizListProtoReq)              returns(GetQuizListProtoRes);
   rpc CreateQuizCall(CreateQuizProtoReq)                returns(QuizProtoModel);
+  rpc ReCreateQuizCall(ReCreateQuizProtoReq)                returns(QuizProtoModel);
   rpc UpdateQuizCall(UpdateQuizProtoReq)                returns(QuizProtoModel);
   rpc DeleteQuizCall(DeleteQuizProtoReq)                returns(Empty);
 
-  rpc CreateQuizSetCall(CreateQuizSetProtoReq)          returns(QuizSetProtoModel);
+  rpc CreateQuizSetCall(CreateQuizSetProtoReq)          returns(Empty);
   rpc GetQuizSetByIdCall(GetQuizSetByIdProtoReq)        returns(QuizSetProtoModel);
   rpc GetQuizSetListCall(GetQuizSetListProtoReq)        returns(GetQuizListProtoRes);
+  rpc GetQuizSetRandomCall(GetQuizSetRandomReq)         returns(GetQuizListProtoRes);
   rpc DeleteQuizSetCall(DeleteQuizSetProtoReq)          returns(Empty);
-  
+
+  rpc GetQuizTestCall(GetQuizTestProtoReq)              returns(QuizTestProtoModel);
+  rpc GetQuizTestListCall(GetQuizTestListReq)           returns(GetQuizTestListRes);
+  rpc CreateQuizTestCall(CreateQuizTestProtoReq)        returns(QuizTestProtoModel);
+  rpc UpdateQuizTestCall(UpdateQuizTestProtoReq)        returns(QuizTestProtoModel);
+  rpc DeleteQuizTestCall(DeleteQuizTestProtoReq)        returns(Empty);
+
+  rpc GetQuizTestSetCall(GetQuizTestSetProtoReq)        returns(QuizTestBaseList);
+  rpc CreateQuizAndAddToTestCall(CreateQuizAndAddToTestProtoReq) returns(Empty);
+  rpc CreateQuizTestSetCall(CreateQuizTestSetProtoReq)  returns(Empty);
+  rpc CreateQuizTestSetRandomCall(CreateQuizTestSetRandomReq) returns(Empty);
+  rpc DeleteQuizTestSetCall(DeleteQuizTestSetProtoReq)  returns(Empty);
+
+  rpc GetQuizSubmissionByIdCall(GetQuizSubmissionByIdProtoReq)  returns(QuizSubmissionProtoModel);
+  rpc GetQuizSubmissionListCall(GetQuizSubmissionListReq)       returns(GetQuizSubmissionListRes);
+  rpc CreateQuizSubmissionCall(CreateQuizSubmissionProtoReq)    returns(QuizSubmissionProtoModel);
+  rpc DeleteQuizSubmissionCall(DeleteQuizSubmissionProtoReq)    returns(Empty);
+
+
   // For assignment
   // CRUD assignment
   rpc CreateAssignmentCall(CreateAssignmentProtoReq) returns (AssignmentProtoModel);
@@ -90,10 +128,12 @@ service CurriculumServiceProto {
   rpc AddQuizToAssignmentCall(AddQuizProtoReq) returns (Empty);
   rpc AddGraderToAssignmentCall(AddGraderProtoReq) returns (Empty);
   rpc ViewGraderCall(ViewGraderProtoReq) returns (GraderListId);
-  rpc AddRequirmentToAssignmentCall(AddRequirmentProtoReq) returns (Empty);
-  rpc UpdateRequirmentCall(UpdateAssignmentRequirmentProtoReq) returns (Empty);
+  rpc AddRequirementToAssignmentCall(AddRequirementProtoReq) returns (Empty);
+  rpc UpdateRequirementCall(UpdateAssignmentRequirementProtoReq) returns (Empty);
 
-  // For Comment 
+  rpc UploadSubmissionCall(AssignmentSubmissionProtoModel) returns (AssignmentSubmissionProtoModel);
+
+  // For Comment
   rpc AddCommentToPostCall(AddCommentToPostProtoReq) returns (CommentProtoModel);
   rpc AddCommentToCommentCall(AddCommentToCommentProtoReq) returns (CommentProtoModel);
   rpc UpVoteCommentCall(VoteCommentProtoReq) returns (Empty);
@@ -108,9 +148,19 @@ service CurriculumServiceProto {
   rpc UpdatePostCall(UpdatePostProtoReq) returns (PostProtoModel);
   rpc DeletePostCall(DeletePostProtoReq) returns (Empty);
   rpc GetPostByIdCall(GetPostByIdProtoReq) returns (PostProtoModel);
- 
+
   rpc AddPostToCourseCall(AddPostCourseProtoReq) returns (Empty);
   rpc AddPostToLessonCall(AddPostLessonProtoReq) returns (Empty);
   rpc AddPostToSectionCall(AddPostSectionProtoReq) returns (Empty);
   rpc AddPostToAssignmentCall(AddPostAssignmentProtoReq) returns (Empty);
+
+  rpc CreateScoreCall(CreateScoreProtoReq) returns (ScoreProtoModel);
+  rpc DeleteScoreCall(DeleteScoreProtoReq) returns (Empty);
+  rpc QueryScoreCall(ScoreQuery) returns (ScoreList);
+  rpc GetQuizByAssignmentCall(GetQuizByAssignmentIdProtoReq) returns (GetQuizListProtoRes);
+
+  rpc GetAllRatingByCourseCall(GetAllRatingByCourseIdProtoReq) returns (RatingList);
+  rpc DeleteRatingCall(DeleteRatingProtoReq) returns (Empty);
+  rpc CreateRatingCall(CreateRatingProtoReq) returns (RatingProtoModel);
+  rpc UpdateRatingCall(UpdateRatingProtoReq) returns (RatingProtoModel);
 }

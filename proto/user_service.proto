@@ -29,8 +29,8 @@ message UserBase {
     int64           paginationId      = 2;
     optional string firstName         = 3; 
     optional string lastName          = 4;
-    string          nickname          = 5;
-    string          email             = 6;
+    string          username          = 5;
+    string email                      = 6;
     string          password          = 7;
     Role            role              = 8;
     Level           level             = 9;
@@ -40,6 +40,9 @@ message UserBase {
     int32           totalCredit       = 13;
     int64           createdAt         = 14;
     int64           updatedAt         = 15;
+    optional string thumbnail         = 16;
+    bool            official          = 17; 
+    bool            is_active         = 18;
 }
 
 /*
@@ -51,8 +54,8 @@ message User {
     int64           paginationId      = 2;
     optional string firstName         = 3; 
     optional string lastName          = 4;
-    string          nickname          = 5;
-    string          email             = 6;
+    string          username          = 5;
+    optional string email             = 6;
     Role            role              = 7;
     Level           level             = 8;
     optional string introductionBrief = 9;
@@ -60,6 +63,9 @@ message User {
     int32           totalCredit       = 11;
     int64           createdAt         = 12;
     int64           updatedAt         = 13;
+    optional string thumbnail         = 14;
+    bool            official          = 15; 
+    bool            is_active         = 16;
 }
 
 /*
@@ -75,13 +81,15 @@ message UserQuery {
     optional string id          = 3;
     optional string firstName   = 4;
     optional string lastName    = 5;
-    optional string nickname    = 6;
+    optional string username    = 6;
     optional string email       = 7;
     optional Role   role        = 8;
     optional Level  level       = 9;
     optional int32  totalCredit = 10;
     optional int64  createdAt   = 11;
     optional int64  updatedAt   = 12;
+    optional bool official      = 13; 
+    optional bool is_active     = 14;
 }
 
 message Empty {}
@@ -95,8 +103,14 @@ message GetUserByIdProtoReq {
 }
 
 message LoginUserProtoReq {
-    string nickname = 1;
+    string username = 1;
     string password = 2;
+}
+
+message LoginWalletUserProtoReq {
+	string walletId = 1;
+	string network = 2;
+	string accountId = 3;
 }
 
 message GetUserByEmailProtoReq {
@@ -104,27 +118,34 @@ message GetUserByEmailProtoReq {
 }
 
 message CreateUserProtoReq {
-    string nickname = 1;
+    optional string username = 1;
     string email    = 2;
     string password = 3;
+}
+message CreateWalletUserProtoReq {
+	string id = 1;
 }
 
 message UpdateUserProtoReq {
     string          id                = 1;
     optional string firstName         = 2;
     optional string lastName          = 3;
-    optional string nickname          = 4;
+    optional string username          = 4;
     optional string email             = 5;
     optional string introductionBrief = 6;
     optional string image             = 7;
     string          password          = 8;
     optional string newPassword       = 9;
+    optional string thumbnail         = 10;
+    optional bool   official          = 11;
+    optional bool   is_active         = 12; 
 }
 
 message DeleteUserProtoReq {
     string id       = 1;
     string password = 2;
 }
+
 
 message OAuthState {
     string csrfState = 1;
@@ -134,6 +155,55 @@ message OAuthState {
 message DeleteOAuthStateProtoReq {
     string csrfState = 1;
 }
+
+/* UserInformation */
+message UserInformationBase {
+    string user_id                       = 1;
+    optional string job_title            = 2;
+    optional string location             = 3;
+    optional string company              = 4;
+    optional string bio                  = 5; 
+    optional string job_type             = 6;
+    optional int32 year_of_experience    = 7;
+    optional string industry             = 8;
+    optional int64 birthday              = 9;
+    optional string organization         = 10;
+    optional string education_level      = 11;
+    optional string education            = 12;
+    repeated string social_link          = 13;
+    optional string major_field          = 14;
+    optional string know_through         = 15;
+    optional string want_to_learn        = 16;
+    optional string career_path          = 17;
+    bool     isDeleted                   = 18;
+    int64    createdAt                   = 19;
+    int64    updatedAt                   = 20;
+}
+
+message GetUserInformationProtoReq{
+    string user_id  = 1;
+}
+
+message UpdateUserInformationProtoReq{
+    string user_id                       = 1;
+    optional string job_title            = 2;
+    optional string location             = 3;
+    optional string company              = 4;
+    optional string bio                  = 5; 
+    optional string job_type             = 6;
+    optional int32 year_of_experience    = 7;
+    optional string industry             = 8;
+    optional int64 birthday              = 9;
+    optional string organization         = 10;
+    optional string education_level      = 11;
+    optional string education            = 12;
+    repeated string social_link          = 13;
+    optional string major_field          = 14;
+    optional string know_through         = 15;
+    optional string want_to_learn        = 16;
+    optional string career_path          = 17;
+}
+
 
 /*Team*/
 message TeamBase {
@@ -145,6 +215,7 @@ message TeamBase {
     int64  		createdAt   	= 6;
     int64  		updatedAt   	= 7;
 	bool 		isDeleted 		= 8;
+  optional string logo = 9;
 }
 
 message TeamListProtoReq {
@@ -164,11 +235,19 @@ message GetTeamByIdProtoReq {
     string id = 1;
 }
 
+message GetTeamOwnerByUserIdProtoReq {
+    string user_id = 1;
+}
+message GetUserTeamParticipationsProtoReq{
+  string user_id = 1;
+} 
 
 message CreateTeamProtoReq {
-    string 	name 	   	= 1;
-    string 	description	= 2;
-	string 	owner 	    = 3;
+  string team_id = 1;
+    string 	name 	   	= 2;
+    string 	description	= 3;
+	string 	owner 	    = 4;
+  optional string logo = 5;
 }
 
 message UpdateTeamProtoReq {
@@ -176,6 +255,7 @@ message UpdateTeamProtoReq {
     optional string 	name 	   	= 2;
 	optional string 	description = 3;
 	optional string  	owner 		= 4;
+  optional string logo = 5;
 }
 
 message DeleteTeamProtoReq {
@@ -216,7 +296,7 @@ message GetTeamMemberProtoReq {
     optional string 			id          = 4;
     optional string 			firstName   = 5;
     optional string 			lastName    = 6;
-    optional string 			nickname    = 7;
+    optional string 			username    = 7;
     optional string 			email       = 8;
     optional Role               role        = 9;
     optional Level              level       = 10;
@@ -284,6 +364,252 @@ message DeleteEmailProtoReq {
     string id = 1;
 }
 
+message UpdateRoleUserProtoReq {
+	string id = 1;
+	Role role = 2;
+}
+
+message GetUserByWalletIdProtoReq {
+	string walletId = 1;
+}
+
+message WalletUser {
+	string Id   = 1;
+	string walletId = 2;
+	string network = 3;
+}
+
+message CollectingFeedbackBase {
+    string      id                      = 1;
+    string      typeOfQuestion          = 2;
+    string      subject                 = 3;
+    string      detail                  = 4;
+    string      yourName                = 5;
+    string      yourEmail               = 6;
+    repeated    string attachments      = 7;
+    bool        isDeleted               = 8;
+    int64       createdAt               = 9;
+    int64       updatedAt               = 10;
+    int64       paginationId            = 11;
+}
+
+message GetCollectingFeedbackByIdProtoReq {
+    string id = 1;
+}
+
+message GetCollectingFeedbackListProtoReq {
+    optional string id                 = 1;
+    optional string typeOfQuestion     = 2;
+    optional int64 offset              = 3;
+    optional int32 limit               = 4;
+}
+
+message GetCollectingFeedbackListProtoRes {
+    repeated CollectingFeedbackBase feedbacks = 1;
+}
+
+message CreateCollectingFeedbackProtoReq {
+    string      typeOfQuestion          = 1;
+    string      subject                 = 2;
+    string      detail                  = 3;
+    string      yourName                = 4;
+    string      yourEmail               = 5;
+    repeated    string attachments      = 6;
+}
+
+message DeleteCollectingFeedbackProtoReq {
+    string id = 1;
+}
+
+message UpdateEmailUserProtoReq {
+	string id = 1;
+	string email = 2;
+}
+
+
+/* tbl_Invite */
+enum InvitationType {
+    _Judge    	= 0;
+    _Team     	= 1;
+	_Moderator 	= 2;
+	_Assistant	= 3;
+	_Mentor		= 4;
+}
+enum InvitationState {
+    _Waiting    	= 0;
+    _Accept     	= 1;
+	_Reject 		= 2;
+}
+enum InvitationFor {
+	_Hackathon 		= 0;
+	_Organize  		= 1;
+	_Course 			= 2;
+	_BootCamp 		= 3;
+}
+
+message InvitationBase {
+	string 			parentId 		= 1;
+	string 			userId 			= 2;
+	string 			inviteKey 		= 3;
+	string 			title 			= 4;
+	string 			message 		= 5;	
+	InvitationFor	inviteFor    	= 6;
+	InvitationType 	invitationType 	= 7;
+	InvitationState state 			= 8;
+	int64 			deadline		= 9;
+}
+
+message GetInvitationListReq {
+	optional string parentId 	= 1;   
+	optional string userId 		= 2;
+}
+
+message GetInvitationByIdReq {
+	string parentId 	= 1;   
+	string userId 		= 2;
+}
+
+message GetInvitationByKeyReq {
+	string inviteKey 	= 1;   
+}
+
+message InvitationListRes {
+	repeated InvitationBase invitations = 1;
+}
+
+message CreateInvitationProtoReq {
+	string 			parentId 		= 1;
+	string 			userId 			= 2;
+	string 			title 			= 3;
+	string 			message 		= 4;			
+	InvitationType 	invitationType 	= 5;
+	InvitationFor	inviteFor    	= 6;
+	int64 			deadline		= 7;
+}
+
+message UpdateInvitationProtoReq {
+	string 						parentId 		= 1;
+	string 						userId 			= 2;
+	optional string 			title 			= 3;
+	optional string 			message 		= 4;	
+	optional int64 				deadline		= 5;		
+}
+
+message ResponseInvitationProtoReq {
+	string 	parentId 		= 1;
+	string 	userId 			= 2;
+	InvitationState state 	= 3;
+}
+
+message DeleteInvitationProtoReq {
+	string 	parentId 		= 1;
+	string 	userId 			= 2;
+}
+
+/*organize*/
+
+
+message OrganizeBase {
+	string          id                  = 1;
+	string          hostId              = 2; // FK to the id field of UserProtoModel
+	string          name                = 3;
+	string          shortName           = 4;
+	string          url                 = 5;
+	string          logo                = 6;
+	string          tagline             = 7;
+	string          description         = 9;
+	string          location            = 10;
+	OrganizeType    organizeType        = 11;
+	string          websiteOfficial     = 12;
+	bool            official            = 13;
+	bool            is_deleted          = 14;
+	int64           createdAt           = 15;
+    int64           paginationId        = 16;
+}
+
+enum OrganizeType{
+	University      = 0;
+	Organization    = 1;
+}
+
+message OrgListProtoReq {
+    optional int64  offset      = 1;
+    optional int32  limit       = 2;
+}
+
+message OrganizeList {
+	repeated OrganizeBase orgs = 1;
+}
+
+message GetOrgByIdProtoReq{
+	string id = 1;
+}
+
+message CreateOrgProtoReq {
+	string hostId = 1; // FK to the id field of UserProtoModel
+	string name = 2;
+	optional string shortName = 3;
+	string url = 4;
+	optional string logo = 5;
+	optional string tagline = 6;
+	optional string description = 7;
+	optional string location = 8;
+	optional string websiteOfficial = 9;
+	OrganizeType organizeType = 10;
+	bool official = 11;
+}
+
+message UpdateOrgProtoReq{
+	string id = 1;
+	optional string hostId = 2; // FK to the id field of UserProtoModel
+	optional string name = 3;
+	optional string shortName = 4;
+	optional string url = 5;
+	optional string logo = 6;
+	optional string tagline = 7;
+	optional string description = 8;
+	optional string location = 9;
+	optional string websiteOfficial = 10;
+}
+
+message DeleteOrgProtoReq {
+	string id = 1;
+}
+
+message RemoveOrgProtoReq {
+	string id = 1;
+}
+
+message RestoreOrgProtoReq {
+	string id = 1;
+}
+
+message AddModeratorProtoReq{
+	string parentId = 1;
+	string moderatorId = 2;
+} 
+
+message ViewModeratorProtoReq{
+	string          			parentId   = 1;
+	optional int64  			offset      = 2;
+    optional int32  			limit       = 3;
+    optional string 			id          = 4;
+    optional string 			firstName   = 5;
+    optional string 			lastName    = 6;
+    optional string 			nickname    = 7;
+    optional string 			email       = 8;
+    optional Role               role        = 9;
+    optional Level              level       = 10;
+    optional int32  			totalCredit = 11;
+    optional int64  			createdAt   = 12;
+    optional int64  			updatedAt   = 13;
+
+}
+
+message SendEmailForUserProtoReq{
+    string user_id  = 1;
+    string email    = 2;
+}
 
 service UserServiceProtocol {
     // Normal user calls
@@ -294,6 +620,12 @@ service UserServiceProtocol {
     rpc CreateUserCall(CreateUserProtoReq)        returns (User);
     rpc UpdateUserCall(UpdateUserProtoReq)        returns (User);
     rpc DeleteUserCall(DeleteUserProtoReq)        returns (Empty);
+	rpc CreateUserWalletLoginCall(LoginWalletUserProtoReq)    returns (WalletUser);
+	rpc GetUserByWalletIdCall(GetUserByWalletIdProtoReq) returns(WalletUser);
+	rpc GetWalletUserByIdCall(GetUserByIdProtoReq) returns(WalletUser);
+    rpc CreateUserWalletCall(CreateWalletUserProtoReq)        returns (User);
+	rpc UpdateEmailUserCall(UpdateEmailUserProtoReq) returns (User);
+    rpc SendEmailForUserCall(SendEmailForUserProtoReq) returns (Empty);
 
     // For google login
     rpc CreateOAuthStateCall(OAuthState)               returns (OAuthState);
@@ -305,6 +637,12 @@ service UserServiceProtocol {
     // This command overrides a certain user by id, however it doesn't change the user id
     rpc OverrideUserCall(UserBase)               returns (UserBase);
     rpc AdminDeleteUserCall(GetUserByIdProtoReq) returns (Empty);
+    rpc RestoreUserCall(GetUserByIdProtoReq) returns (Empty);
+
+    // User Information
+    //rpc CreateUserInformationCall(CreateUserInformationProtoReq)   returns (UserInformationBase);
+    rpc GetUserInformationCall(GetUserInformationProtoReq)         returns (UserInformationBase);
+    rpc UpdateUserInformationCall(UpdateUserInformationProtoReq)   returns (UserInformationBase);
 
     // For team
     rpc GetTeamsCall(TeamListProtoReq)                      returns (TeamListProtoRes);
@@ -322,13 +660,42 @@ service UserServiceProtocol {
     rpc DeleteTeamMemberCall(DeleteTeamMemberProtoReq)      returns (Empty);
     rpc RemoveTeamMemberCall(DeleteTeamMemberProtoReq)      returns (Empty);
 	rpc RestoreTeamMemberCall(DeleteTeamMemberProtoReq)     returns (Empty);
-
+    rpc GetTeamOwnerByUserIdCall(GetTeamOwnerByUserIdProtoReq)     returns (TeamListProtoRes);
+    rpc GetUserTeamParticipationsCall(GetUserTeamParticipationsProtoReq)     returns (TeamListProtoRes);
+  
     // Email
     rpc GetEmailsCall(EmailListProtoReq)                      returns (EmailListProtoRes);
     rpc GetEmailByIdCall(GetEmailByIdProtoReq)                returns (EmailBase);
     rpc CreateEmailCall(CreateEmailProtoReq)                  returns (EmailBase);
     rpc UpdateEmailCall(UpdateEmailProtoReq)                  returns (EmailBase);
     rpc DeleteEmailCall(DeleteEmailProtoReq)                  returns (Empty);
+	
+	rpc UpdateRoleUserCall(UpdateRoleUserProtoReq)            returns (User);
 
 
+    // CollectingFeedback 
+    rpc GetCollectingFeedbackByIdCall(GetCollectingFeedbackByIdProtoReq)    returns (CollectingFeedbackBase);
+    rpc GetCollectingFeedbackListCall(GetCollectingFeedbackListProtoReq)    returns (GetCollectingFeedbackListProtoRes);
+    rpc CreateCollectingFeedbackCall(CreateCollectingFeedbackProtoReq)      returns (CollectingFeedbackBase);
+    rpc DeleteCollectingFeedbackCall(DeleteCollectingFeedbackProtoReq)      returns(Empty);
+
+    // Invitation
+	rpc GetInvitationsCall(GetInvitationListReq) returns (InvitationListRes);
+	rpc GetInvitationByIdCall(GetInvitationByIdReq) returns (InvitationBase);
+	rpc GetInvitationByKeyCall(GetInvitationByKeyReq) returns (InvitationBase);
+	rpc CreateInvitationCall(CreateInvitationProtoReq) returns (InvitationBase);
+	rpc UpdateInvitationCall(UpdateInvitationProtoReq) returns (InvitationBase);
+	rpc ResponseInvitationCall(ResponseInvitationProtoReq) returns (InvitationBase);
+	rpc DeleteInvitationCall(DeleteInvitationProtoReq) returns (Empty);
+
+    // Organize
+	rpc GetOrgsCall(OrgListProtoReq) 	   returns (OrganizeList);
+	rpc GetOrgByIdCall(GetOrgByIdProtoReq) returns (OrganizeBase);
+	rpc CreateOrgCall(CreateOrgProtoReq)   returns (OrganizeBase);
+	rpc UpdateOrgCall(UpdateOrgProtoReq)   returns (OrganizeBase);
+	rpc DeleteOrgCall(DeleteOrgProtoReq)   returns (Empty);
+	rpc RemoveOrgCall(RemoveOrgProtoReq)   returns (Empty);
+	rpc RestoreOrgCall(RestoreOrgProtoReq) returns (Empty);
+	rpc AddModeratorCall(AddModeratorProtoReq) returns (Empty);
+	rpc ViewModeratorCall(ViewModeratorProtoReq) returns (UserList);
 }

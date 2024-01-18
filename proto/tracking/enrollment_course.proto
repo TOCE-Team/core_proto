@@ -12,7 +12,8 @@ message TrackingWorkProtoModel {
 message GetTrackingWorkProtoReq {
     string parent_id   = 1;
 }
-message GetTrackingWorkProtoRes {repeated TrackingWorkProtoModel tracking_work = 1;
+message GetTrackingWorkProtoRes {
+    repeated TrackingWorkProtoModel tracking_work = 1;
 }
 
 message CreateTrackingWorkProtoReq {
@@ -26,6 +27,27 @@ message DeleteTrackingWorkProtoReq {
     string id = 1;
 }
 
+message CourseProgressProtoModel {
+    string  user_id         = 1;
+    string  course_id       = 2;
+    bool    completed       = 3;
+    int64   grade           = 4;
+    int64   total_mission   = 5;
+    int64   total_done      = 6;
+}
+
+message GetCourseProgressByIdProtoReq {
+    string  user_id         = 1;
+    string  course_id       = 2;
+}
+
+message GetEnrollmentCourseExistProtoReq {
+    string  user_id         = 1;
+    string  course_id       = 2;
+}
+message GetEnrollmentCourseExistProtoRes {
+    bool is_purchased = 1;
+}
 
 message EnrollmentCourseProtoModel {
     string  id              = 1;
@@ -39,6 +61,7 @@ message EnrollmentCourseProtoModel {
     int64   paginationId    = 9;
 }
 
+
 message GetTrackingWorkCourseProtoReq {
     string user_id          = 1;
     string course_id        = 2;
@@ -46,7 +69,7 @@ message GetTrackingWorkCourseProtoReq {
     optional int64 limit    = 4;
 }
 
-message GetEnrollmentCourseProtoReq{
+message GetEnrollmentCourseProtoReq {
     optional string id          = 1;
     optional string user_id     = 2;
     optional string course_id   = 3;

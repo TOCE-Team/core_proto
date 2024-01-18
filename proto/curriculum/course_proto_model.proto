@@ -1,6 +1,8 @@
 syntax = "proto3";
 package  curriculum_service;
 
+import "type.proto";
+
 enum ObjectStateProtoModel {
   Pending = 0;
   Active = 1;
@@ -22,7 +24,7 @@ enum PartnerRoleProtoModel {
 
 enum CourseTypeProto {
   NormalCourse = 0;
-  BootCamp = 1;
+  Bootcamp = 1;
 }
 
 message CourseProtoModel {
@@ -35,9 +37,9 @@ message CourseProtoModel {
   string difficultyLevel = 7;
   int32 languages = 8;
   string owner = 9;
-  bool isDel = 10;
+  bool isDeleted = 10;
   optional bool publish = 11;
-  optional string whatInclude = 12; 
+  optional string whatInclude = 12;
   optional string expectedOutcomes = 13;
   optional string prerequisites = 14;
   optional int64 startAt = 15;
@@ -47,22 +49,31 @@ message CourseProtoModel {
   optional string courseBrief = 19;
   CourseTypeProto courseType = 20;
   optional string thumbnail = 21;
+  string network = 22;
+  optional int32 total_student = 23;
+  optional int32 total_lesson = 24;
+  optional int32 total_duration = 25;
+  optional string overview = 26;
 }
+
 
 message CreateCourseProtoReq {
   string courseTitle = 1;
   int64 courseFee = 2;
   string difficultyLevel = 3;
   int32 languages = 4;
-  optional string courseBrief = 5; 
+  optional string courseBrief = 5;
   optional string whatInclude = 6;
   optional string expectedOutcomes = 7;
   optional string prerequisites = 8;
   optional int64 startAt = 9;
-  optional int64 endAt = 10; 
+  optional int64 endAt = 10;
   string owner = 11;
   CourseTypeProto courseType = 12;
   optional string thumbnail = 13;
+  string courseId = 14;
+  string network = 15;
+  optional string overview = 16;
 }
 
 message UpdateCourseProtoReq {
@@ -73,11 +84,13 @@ message UpdateCourseProtoReq {
   optional int64 languages = 5;
   optional string courseBrief = 6;
   optional bool publish = 7;
-  optional string whatInclude = 8; 
+  optional string whatInclude = 8;
   optional string expectedOutcomes = 9;
   optional string prerequisites = 10;
   optional int64 startAt = 11;
   optional int64 endAt = 12;
+  optional string network = 13;
+  optional string overview = 14;
 }
 
 message GetCourseByCourseIdProtoReq{
@@ -107,6 +120,12 @@ message GetAllCoursesReq {
   optional string                 owner           = 3;
   optional int32                  languages       = 4;
   optional string                 difficultyLevel = 5;
+  optional bool                   publish         = 6;
+  optional bool                   isDeleted       = 7;
+  optional string                 slug            = 8;
+  optional int64                  courseFee       = 9;
+  optional CourseTypeProto        courseType      = 10;
+  optional string                 network         = 11;
 }
 
 message GetAllCoursesRes{
@@ -116,33 +135,44 @@ message GetAllCoursesRes{
 message CourseSectionsAndLessonsProto{
   string section_id = 1;
   string section_title = 2;
-  repeated CourseLessonsProto lesson_list = 3;
+  bool section_completed = 3;
+  optional string next_section = 4;
+  repeated CourseLessonsProto lesson_list = 5;
 }
+
 
 message CourseLessonsProto{
   string lesson_id = 1;
   string lesson_title = 2;
+  LessonTypeProto lesson_type = 3;
+  optional string materials = 4;
+  optional int32 video_duration = 5;
+  optional string next_lesson = 6;
+  bool lesson_completed = 7;
 }
 
 message GetCourseSectionsAndLessonsRes{
-  repeated CourseSectionsAndLessonsProto course_detail = 1; 
+  repeated CourseSectionsAndLessonsProto course_detail = 1;
 }
 
 message GetCourseSectionsAndLessonsReq{
   string course_id = 1;
+  string user_id = 2;
 }
 
 message RegisterBootcampProtoReq{
   string course_id = 1;
   string student_id = 2;
-  optional string user_public_key = 3;
-  optional string student_name = 4;
-  optional string student_email = 5;
-  optional string student_phone_number = 6;
-  optional string languages_skill = 7;
-  optional string user_level = 8;
-  optional string programming_experience = 9;
-  optional string blockchain_experience = 10;
+  EnrollmentCourseProtoReq purchase_info = 3;
+}
+
+message EnrollmentCourseProtoReq{
+  string course_id = 1;
+  string student_id = 2;
+  optional string payment_method = 3;
+  optional string network = 4;
+  optional uint64 amount = 5;
+  optional string transaction = 6;
 }
 
 message RegisterBootcampProtoRes{
@@ -165,6 +195,117 @@ message BootcampStudentsProto{
   optional string blockchain_experience = 9;
 }
 
-message GetAllStudentInCourseProtoRes{
+message GetAllStudentInBootcampProtoRes{
   repeated BootcampStudentsProto students = 1;
+}
+
+message DeleteCourseProtoReq {
+  string course_id = 1;
+}
+
+message RestoreCourseProtoReq {
+  string course_id = 1;
+}
+
+//  get all purchased course by user id
+message PurchasedCourseByUserProto {
+  string courseId = 1;
+  ObjectStateProtoModel courseState = 2;
+  string courseTitle = 3;
+  string slug = 4;
+  int64 courseFee = 5;
+  float rating = 6;
+  string difficultyLevel = 7;
+  int32 languages = 8;
+  string owner = 9;
+  bool isDeleted = 10;
+  optional bool publish = 11;
+  optional string whatInclude = 12;
+  optional string expectedOutcomes = 13;
+  optional string prerequisites = 14;
+  optional int64 startAt = 15;
+  optional int64 endAt = 16;
+  int64 createdAt = 17;
+  int64 updatedAt = 18;
+  optional string courseBrief = 19;
+  CourseTypeProto courseType = 20;
+  optional string thumbnail = 21;
+  bool is_completed = 22;
+}
+
+message GetAllPurchasedCourseByUserIdRes{
+  repeated PurchasedCourseByUserProto purchased_course = 1;
+}
+
+message GetAllPurchasedCourseByUserIdReq{
+  string user_id = 1;
+}
+
+// sponsor of Course
+
+message CourseSponsorProtoModel {
+  string    organize_id       = 1;
+  string    course_id         = 2;
+  bool      isDeleted         = 3;
+  int64     createdAt         = 4;
+  int64     updatedAt         = 5;
+}
+
+message GetCourseSponsorProtoReq {
+  string             course_id      = 1;
+  optional string    organize_id    = 2;
+}
+
+message GetCourseSponsorProtoRes {
+  repeated CourseSponsorProtoModel sponsors = 1;
+}
+
+message CreateCourseSponsorProtoReq {
+  string    organize_id        = 1;
+  string    course_id         = 2;
+}
+
+message DeleteCourseSponsorProtoReq {
+  string organize_id       = 1;
+  string course_id    = 2;
+}
+
+message RatingProtoModel {
+  string rating_id = 1;
+  string course_id = 2;
+  string user_id   = 3;
+  string content   = 4;
+  int32  score     = 5;
+}
+
+message GetAllRatingByCourseIdProtoReq {
+  string course_id = 1;
+}
+
+message RatingList {
+  repeated RatingProtoModel ratings = 1;
+}
+
+message DeleteRatingProtoReq {
+  string rating_id = 1;
+}
+
+message CreateRatingProtoReq {
+  string course_id = 1;
+  string user_id   = 2;
+  optional string content   = 3;
+  int32  score     = 4;
+}
+
+message UpdateRatingProtoReq {
+  string rating_id = 1;
+  string user_id = 2;
+  optional string content = 3;
+  optional int32 score  = 4;
+}
+
+message CreateCourseProtoRes {
+  string courseTitle = 1;
+  string courseId = 2;
+  bool successfull = 3;
 }
