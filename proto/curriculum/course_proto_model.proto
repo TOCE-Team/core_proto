@@ -303,3 +303,9 @@ message UpdateRatingProtoReq {
   optional string content = 3;
   optional int32 score  = 4;
 }
+
+message CreateCourseProtoRes {
+  string courseTitle = 1;
+  string courseId = 2;
+  bool successfull = 3;
+}
