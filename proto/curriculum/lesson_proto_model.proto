@@ -91,6 +91,13 @@ message UpdateLessonProtoReq {
   optional int32 lesson_index = 11;
 }
 
+message UpdateLessonProtoRes {
+  string lessonId = 1;
+  string sectionId = 2;
+  string CourseId = 3;
+  bool successfull = 4;
+}
+
 message AddLessonProtoReq{
   string lessonId = 1;
   string courseId = 2;

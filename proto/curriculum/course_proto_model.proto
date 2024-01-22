@@ -93,6 +93,11 @@ message UpdateCourseProtoReq {
   optional string overview = 14;
 }
 
+message UpdateCourseProtoRes{
+  string courseId = 1;
+  bool successfull = 2;
+}
+
 message GetCourseByCourseIdProtoReq{
   string course_id = 1;
 }
@@ -138,8 +143,9 @@ message CourseSectionsAndLessonsProto{
   bool section_completed = 3;
   optional string next_section = 4;
   repeated CourseLessonsProto lesson_list = 5;
+  optional int64 start_at = 6;
+  int32 section_index = 7;
 }
-
 
 message CourseLessonsProto{
   string lesson_id = 1;
@@ -149,6 +155,7 @@ message CourseLessonsProto{
   optional int32 video_duration = 5;
   optional string next_lesson = 6;
   bool lesson_completed = 7;
+  int32 lesson_index = 8;
 }
 
 message GetCourseSectionsAndLessonsRes{
