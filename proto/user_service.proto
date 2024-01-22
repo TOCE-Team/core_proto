@@ -515,7 +515,7 @@ message OrganizeBase {
 	string          name                = 3;
 	string          shortName           = 4;
 	string          url                 = 5;
-	string          logo                = 6;
+	optional string  logo               = 6;
 	string          tagline             = 7;
 	string          description         = 9;
 	string          location            = 10;
