@@ -14,8 +14,14 @@ message QuizVideoProtoModel {
   int64           updatedAt     = 7;
 }
 
+message CreateQuizVideoMapUserProtoReq {
+  string          quiz_video_id     = 1;
+  string          user_id           = 2;   
+}
+
 message GetQuizVideoProtoReq {
   string          lesson_id     = 1;
+  optional string user_id       = 2;         
 }
 
 message GetQuizVideoProtoRes {
@@ -83,6 +89,13 @@ message UpdateLessonProtoReq {
   string lessonId = 9;
   optional string thumbnail = 10;
   optional int32 lesson_index = 11;
+}
+
+message UpdateLessonProtoRes {
+  string lessonId = 1;
+  string sectionId = 2;
+  string CourseId = 3;
+  bool successfull = 4;
 }
 
 message AddLessonProtoReq{
