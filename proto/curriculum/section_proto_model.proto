@@ -14,6 +14,8 @@ message SectionProtoModel {
   bool isDeleted = 8;
   int64 createdAt = 9;
   int64 updatedAt = 10;
+  optional int64 startAt = 11;
+  optional int64 endAt = 12;
 }
 
 message CreateSectionProtoReq {
@@ -23,6 +25,8 @@ message CreateSectionProtoReq {
   string courseId = 4;
   string ownerId = 5;
   int32 section_index = 6;
+  optional int64 startAt = 7;
+  optional int64 endAt = 8;
 }
 
 message UpdateSectionProtoReq {
@@ -32,6 +36,14 @@ message UpdateSectionProtoReq {
   string sectionId = 4;
   string CourseId = 5;
   optional int32 section_index = 6;
+  optional int64 start_at = 7;
+  optional int64 end_at = 8;
+}
+
+message UpdateSectionProtoRes {
+  string sectionId = 1;
+  string CourseId = 2;
+  bool successfull = 3;
 }
 
 message GetSectionByCoureIdAndSectionIdProtoReq {
@@ -54,8 +66,3 @@ message DeleteSectionProtoReq {
 message RestoreSectionProtoReq {
   string section_id = 1;
 }
-
-
-
-
-
