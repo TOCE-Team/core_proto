@@ -55,6 +55,7 @@ service CurriculumServiceProto {
   rpc CreateQuizVideoCall(CreateQuizVideoProtoReq) returns (QuizVideoProtoModel);
   rpc UpdateQuizVideoCall(UpdateQuizVideoProtoReq) returns (QuizVideoProtoModel);
   rpc DeleteQuizVideoCall(DeleteQuizVideoProtoReq) returns (Empty);
+  rpc CreateQuizVideoMapUserCall(CreateQuizVideoMapUserProtoReq) returns (Empty);
 
   // For course assistant - moderator
   rpc AddCourseAssistantCall(AddCourseAssistantProtoReq)       returns (CourseAssistantBase);
