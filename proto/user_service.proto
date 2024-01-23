@@ -92,6 +92,30 @@ message UserQuery {
     optional bool is_active     = 14;
 }
 
+message GetNumberOfUsersRoleRes {
+    int64 totalSubscriber = 1;
+    int64 totalModerator  = 2;
+    int64 totalInstructor = 3;
+    int64 totalAdmin      = 4;
+}
+
+message GetNumberOfUsersLevelRes {
+    int64 totalBeginner     = 1;
+    int64 totalJunior       = 2;
+    int64 totalIntermediate = 3;
+    int64 totalSenior       = 4;
+    int64 totalExpert       = 5;
+    int64 totalLeader       = 6;
+    int64 totalProfessor    = 7;
+    int64 totalMaster       = 8;
+}
+
+message GetNumberOfUsersProtoRes {
+    int64                      totalUser       = 1;
+    //GetNumberOfUsersRoleRes    totalUserRole   = 2;
+    //GetNumberOfUsersLevelRes   totalUserLevel  = 3;
+}
+
 message Empty {}
 
 message UserList {
@@ -626,6 +650,8 @@ service UserServiceProtocol {
     rpc CreateUserWalletCall(CreateWalletUserProtoReq)        returns (User);
 	rpc UpdateEmailUserCall(UpdateEmailUserProtoReq) returns (User);
     rpc SendEmailForUserCall(SendEmailForUserProtoReq) returns (Empty);
+    
+    rpc GetNumberOfUsersCall(Empty) returns (GetNumberOfUsersProtoRes);
 
     // For google login
     rpc CreateOAuthStateCall(OAuthState)               returns (OAuthState);
