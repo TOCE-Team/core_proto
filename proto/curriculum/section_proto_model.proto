@@ -55,8 +55,17 @@ message GetAllSectionInCourseByCoureIdProtoReq {
   string  courseId = 1;
 }
 
+message GetAllSectionInCourseByCoureIdProtoRes {
+  string sectionId = 1;
+  string sectionTitle = 2;
+  string sectionIndex = 3;
+  optional string section_brief = 4;
+  optional int64 start_at = 5;
+  optional int32 section_duration = 6;
+}
+
 message SectionList {
-  repeated SectionProtoModel  sectionList = 1;
+  repeated GetAllSectionInCourseByCoureIdProtoRes  sectionList = 1;
 }
 
 message DeleteSectionProtoReq {
