@@ -1,0 +1,42 @@
+syntax = "proto3";
+package  curriculum_service;
+
+enum ManagementRoleProtoModel {
+    _Assistant      = 0;
+    _Moderator      = 1;
+    _Supervisor     = 2;
+	_CoInstructor	= 3;
+}
+// Management
+message CourseManagementBase {
+    string 						course_id	= 1;
+	string 						userId  	= 2;
+	ManagementRoleProtoModel 	role 		= 3;
+}
+
+message AddCourseManagementProtoReq{
+	string 						course_id   = 1;
+	string 						userId      = 2;
+	ManagementRoleProtoModel 	role 		= 3;
+} 
+
+message GetCourseManagementProtoReq {
+	string 						course_id   		= 1;
+	optional ManagementRoleProtoModel 	role 		= 2;
+}
+
+message CourseManagementListProRes {
+    repeated CourseManagementBase managements = 1;
+}
+
+message UpdateCourseManagementProtoReq{
+    string 						course_id 	= 1;
+	string 						userId    	= 2;
+	ManagementRoleProtoModel 	role 		= 3;
+}
+
+message DeleteCourseManagementProtoReq{
+    string 						course_id 	= 1;
+	string 						userId    	= 2;
+	//ManagementRoleProtoModel 	role 		= 3;
+}

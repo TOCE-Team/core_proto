@@ -92,6 +92,30 @@ message UserQuery {
     optional bool is_active     = 14;
 }
 
+message GetNumberOfUsersRoleRes {
+    int64 totalSubscriber = 1;
+    int64 totalModerator  = 2;
+    int64 totalInstructor = 3;
+    int64 totalAdmin      = 4;
+}
+
+message GetNumberOfUsersLevelRes {
+    int64 totalBeginner     = 1;
+    int64 totalJunior       = 2;
+    int64 totalIntermediate = 3;
+    int64 totalSenior       = 4;
+    int64 totalExpert       = 5;
+    int64 totalLeader       = 6;
+    int64 totalProfessor    = 7;
+    int64 totalMaster       = 8;
+}
+
+message GetNumberOfUsersProtoRes {
+    int64                      totalUser       = 1;
+    //GetNumberOfUsersRoleRes    totalUserRole   = 2;
+    //GetNumberOfUsersLevelRes   totalUserLevel  = 3;
+}
+
 message Empty {}
 
 message UserList {
@@ -515,7 +539,7 @@ message OrganizeBase {
 	string          name                = 3;
 	string          shortName           = 4;
 	string          url                 = 5;
-	string          logo                = 6;
+	optional string  logo               = 6;
 	string          tagline             = 7;
 	string          description         = 9;
 	string          location            = 10;
@@ -546,7 +570,7 @@ message GetOrgByIdProtoReq{
 }
 
 message CreateOrgProtoReq {
-	string hostId = 1; // FK to the id field of UserProtoModel
+	string userId = 1; // FK to the id field of UserProtoModel
 	string name = 2;
 	optional string shortName = 3;
 	string url = 4;
@@ -611,6 +635,10 @@ message SendEmailForUserProtoReq{
     string email    = 2;
 }
 
+message NumberOfUser{
+	int64 total = 1;
+}
+
 service UserServiceProtocol {
     // Normal user calls
 
@@ -626,6 +654,8 @@ service UserServiceProtocol {
     rpc CreateUserWalletCall(CreateWalletUserProtoReq)        returns (User);
 	rpc UpdateEmailUserCall(UpdateEmailUserProtoReq) returns (User);
     rpc SendEmailForUserCall(SendEmailForUserProtoReq) returns (Empty);
+    
+    rpc GetNumberOfUsersCall(Empty) returns (GetNumberOfUsersProtoRes);
 
     // For google login
     rpc CreateOAuthStateCall(OAuthState)               returns (OAuthState);
