@@ -1,6 +1,9 @@
 syntax = "proto3";
 package  tracking_service;
+
 import "enrollment_course.proto";
+import "tracking_management.proto";
+
 
 message TrackingProtoModel{
     string          id                = 1;
@@ -31,7 +34,7 @@ service TrackingServiceProto {
     rpc DeleteEnrollmentCourseCall(DeleteEnrollmentCourseProtoReq) returns(Empty);
     rpc GetTrackingWorkCourseCall(GetTrackingWorkCourseProtoReq) returns (GetTrackingWorkProtoRes);
     rpc CreateTrackingWorkCourseCall(CreateTrackingWorkCourseProtoReq) returns (TrackingWorkProtoModel);
-    rpc GetCourseProgressByIdCall(GetCourseProgressByIdProtoReq) returns(CourseProgressProtoModel); 
+    rpc GetCourseProgressByIdCall(GetCourseProgressByIdProtoReq) returns(CourseProgressProtoModel);
     rpc GetEnrollmentCourseExistCall(GetEnrollmentCourseExistProtoReq) returns(GetEnrollmentCourseExistProtoRes);
 
     // Section
@@ -69,5 +72,7 @@ service TrackingServiceProto {
     rpc GetUserTrackByIdCall(GetUserTrackByIdProtoReq) returns (UserTrackProtoModel);
     rpc CreateUserTrackCall(CreateUserTrackProtoReq) returns (UserTrackProtoModel);
     rpc DeleteUserTrackCall(DeleteUserTrackProtoReq) returns (Empty);
-	
+
+    // Course process report
+    rpc CourseProcessReportCall(CourseProcessReportReq) returns (CourseProcessReportRes);
 }
