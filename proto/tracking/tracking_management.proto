@@ -1,0 +1,19 @@
+syntax = "proto3";
+package  tracking_service;
+
+message CourseProcessReportProto {
+    string user_id = 1;
+    bool course_completed = 2;
+    int32 total_section = 3;
+    int32 total_section_completed = 4;
+    int32 total_lesson = 5;
+    int32 total_lesson_completed = 6;
+}
+
+message CourseProcessReportReq {
+    string course_id   = 1;
+}
+
+message CourseProcessReportRes {
+    repeated  CourseProcessReportProto report = 1;
+}

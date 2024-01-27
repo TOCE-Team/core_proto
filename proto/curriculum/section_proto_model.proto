@@ -58,7 +58,7 @@ message GetAllSectionInCourseByCoureIdProtoReq {
 message GetAllSectionInCourseByCoureIdProtoRes {
   string sectionId = 1;
   string sectionTitle = 2;
-  string sectionIndex = 3;
+  int32 sectionIndex = 3;
   optional string section_brief = 4;
   optional int64 start_at = 5;
   optional int32 section_duration = 6;
