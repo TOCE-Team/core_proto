@@ -9,6 +9,7 @@ import "lesson_proto_model.proto";
 import "assignments_model.proto";
 import "quiz_model.proto";
 import "comment_model.proto";
+import "affiliate_model.proto";
 
 message Empty {}
 
@@ -158,4 +159,41 @@ service CurriculumServiceProto {
   rpc DeleteRatingCall(DeleteRatingProtoReq) returns (Empty);
   rpc CreateRatingCall(CreateRatingProtoReq) returns (RatingProtoModel);
   rpc UpdateRatingCall(UpdateRatingProtoReq) returns (RatingProtoModel);
+
+
+  // AffiliateProtoModel
+
+  rpc GetAffiliateListCall(GetAffiliateListProtoReq) returns(GetAffiliateListProtoRes);
+  rpc GetAffiliateByIdCall(GetAffiliateByIdProtoReq) returns(AffiliateProtoModel);
+  rpc CreateAffiliateCall(CreateAffiliateProtoReq) returns(AffiliateProtoModel);
+  rpc UpdateAffiliateCall(UpdateAffiliateProtoReq) returns(AffiliateProtoModel);
+  rpc DeleteAffiliateCall(DeleteAffiliateProtoReq) returns(Empty);
+
+  //AffiliatePerformanceProtoModel
+
+  rpc GetAffiliatePerformanceByIdCall(GetAffiliatePerformanceByIdProtoReq) returns(AffiliatePerformanceProtoModel);
+  rpc UpdateAffiliatePerformanceCall(UpdateAffiliatePerformanceProtoReq) returns(AffiliatePerformanceProtoModel);
+
+  //AffiliateCouponProtoModel
+
+  rpc GetAffiliateCouponListCall(GetAffiliateCouponListProtoReq) returns(GetAffiliateCouponListProtoRes);
+  rpc GetAffiliateCouponByIdCall(GetAffiliateCouponByIdProtoReq) returns(AffiliateCouponProtoModel);
+  rpc CreateAffiliateCouponCall(CreateAffiliateCouponProtoReq) returns(AffiliateCouponProtoModel);
+  rpc UpdateAffiliateCouponCall(UpdateAffiliateCouponProtoReq) returns(AffiliateCouponProtoModel);
+  rpc DeleteAffiliateCouponCall(DeleteAffiliateCouponProtoReq) returns(Empty);
+
+  // AffiliateReferralProtoModel
+  rpc GetAffiliateReferralByIdCall(GetAffiliateReferralByIdProtoReq) returns(GetAffiliateReferralByIdProtoRes);
+  rpc CreateAffiliateReferralCall(CreateAffiliateReferralProtoReq) returns(AffiliateReferralProtoModel);
+
+  // AffiliateCampaignProtoModel
+  rpc GetAffiliateCampaignListCall(GetAffiliateCampaignListProtoReq) returns(GetAffiliateCampaignListProtoRes);
+  rpc GetAffiliateCampaignByIdCall(GetAffiliateCampaignByIdProtoReq) returns(AffiliateCampaignProtoModel);
+  rpc CreateAffiliateCampaignCall(CreateAffiliateCampaignProtoReq) returns(AffiliateCampaignProtoModel);
+  rpc UpdateAffiliateCampaignCall(UpdateAffiliateCampaignProtoReq) returns(AffiliateCampaignProtoModel);
+  rpc DeleteAffiliateCampaignCall(DeleteAffiliateCampaignProtoReq) returns(Empty);
+
+  // Coupon used
+  rpc GetAffiliateCouponUsedByIdCall(GetAffiliateCouponUsedByIdProtoReq) returns(GetAffiliateCouponUsedByIdProtoRes);
+  rpc CreateAffiliateCouponUsedCall(CreateAffiliateCouponUsedProtoReq) returns(AffiliateCouponUsedProtoModel);
 }
