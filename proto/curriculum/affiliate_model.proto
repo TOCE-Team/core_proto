@@ -1,0 +1,230 @@
+syntax = "proto3";
+package  curriculum_service;
+
+
+
+message AffiliateProtoModel {
+    string affiliate_id                     = 1;
+    string user_id                          = 2;
+    string course_id                        = 3;
+    optional string campaign_id             = 4;
+    optional string coupon_id               = 5;
+    string affiliate_code                   = 6;
+    int64 invoice_amount_paid               = 7;
+    int64 commission                        = 8;
+    int64 started_at                        = 9;
+    int64 expired_time                      = 19;
+    bool  isDeleted                         = 11;
+    int64 createdAt                         = 12;
+    int64 updatedAt                         = 13;
+    optional string agency                  = 14;
+    int64 numberOfRegister                  = 15;
+}
+
+message GetAffiliateByIdProtoReq {
+    string affiliate_id                     = 1;
+}
+
+message GetAffiliateListProtoReq {
+    optional string affiliate_id            = 1;
+    optional string user_id                 = 2;
+    optional string course_id               = 3;
+    optional string campaign_id             = 4;
+    optional string coupon_id               = 5;
+    optional string affiliate_code          = 6;
+    optional string agency                  = 7;
+    optional int64  offset                  = 8;
+    optional int64  limit                   = 9;
+}
+
+message GetAffiliateListProtoRes {
+    repeated AffiliateProtoModel affiliates     = 1;
+}
+
+message CreateAffiliateProtoReq {
+    string user_id                          = 1;
+    string course_id                        = 2;
+    optional string campaign_id             = 3;
+    optional string coupon_id               = 4;
+    int64 invoice_amount_paid               = 5;
+    int64 commission                        = 6;
+    int64 started_at                        = 7;
+    int64 expired_time                      = 8;
+    optional string agency                  = 9;
+}
+
+message UpdateAffiliateProtoReq  {
+    string affiliate_id                              = 1;
+    optional string user_id                          = 2;
+    optional string course_id                        = 3;
+    optional string campaign_id                      = 4;
+    optional string coupon_id                        = 5;
+    optional string affiliate_code                   = 6;
+    optional int64 invoice_amount_paid               = 7;
+    optional int64 started_at                        = 8;
+    optional int64 expired_time                      = 9;
+    optional string agency                           = 10;
+}
+
+message DeleteAffiliateProtoReq {
+    string affiliate_id     = 1;
+}
+
+message AffiliatePerformanceProtoModel {
+    string affiliate_id     = 1;
+    int64 clicks            = 2;
+    int64 cookies           = 3;
+    int64 conversions       = 4;   //How many conversions happened
+    int64 earnings          = 5;
+    bool  isDeleted         = 6;
+    int64 createdAt         = 7;
+    int64 updatedAt         = 8;
+}
+
+message GetAffiliatePerformanceByIdProtoReq {
+    string affiliate_id     = 1;
+}
+
+message GetAffiliatePerformanceByIdProtoRes {
+    repeated AffiliatePerformanceProtoModel performances = 1;
+}
+
+message UpdateAffiliatePerformanceProtoReq {
+    string affiliate_id              = 1;
+    optional int64 clicks            = 2;
+    optional int64 cookies           = 3;
+    optional int64 conversions       = 4;   //How many conversions happened
+    optional int64 earnings          = 5;   // Total earnings of affiliate
+}
+
+message AffiliateCouponProtoModel {
+    string coupon_id        = 1;
+    int64  available_at     = 2;
+    int64 expired_time      = 3;
+    int64 limit             = 4;
+    int64 quantity_used     = 5;
+    string coupon_code      = 6;
+    int64 discount          = 7;
+    bool  isDeleted         = 8;
+    int64 createdAt         = 9;
+    int64 updatedAt         = 10;
+    bool is_available       = 11;
+}
+
+message GetAffiliateCouponByIdProtoReq {
+    string coupon_id        = 1;
+}
+
+message GetAffiliateCouponListProtoReq {
+    optional string coupon_id            = 1;
+    optional string coupon_code          = 2;
+    optional int64  offset               = 3;
+    optional int64  limit                = 4;
+}
+
+message GetAffiliateCouponListProtoRes {
+    repeated AffiliateCouponProtoModel coupons     = 1;
+}
+
+
+message CreateAffiliateCouponProtoReq {
+    int64  available_at     = 1;
+    int64 expired_time      = 2;
+    int64 limit             = 3;
+    int64 discount          = 4;
+}
+
+message UpdateAffiliateCouponProtoReq {
+    string coupon_id                 = 1;
+    optional int64  available_at     = 2;
+    optional int64 expired_time      = 3;
+    optional int64 limit             = 4;
+    optional int64 coupon_code       = 5;
+    optional int64 discount          = 6;
+}
+
+message DeleteAffiliateCouponProtoReq {
+    string coupon_id        = 1;
+}
+
+
+message AffiliateReferralProtoModel {
+    string user_id          = 1;
+    string affiliate_id     = 2;
+    int64 register_at       = 3;
+}
+
+message GetAffiliateReferralByIdProtoReq {
+    string affiliate_id     = 1;
+}
+
+message GetAffiliateReferralByIdProtoRes {
+    repeated AffiliateReferralProtoModel refs  = 1;
+}
+
+message CreateAffiliateReferralProtoReq {
+    string user_id          = 1;
+    string affiliate_id     = 2;
+}
+
+message AffiliateCampaignProtoModel {
+    string campaign_id      = 1;
+    string name             = 2;
+    int64 started_at        = 3;
+    int64 ended_at          = 4;
+    bool  isDeleted         = 5;
+    int64 createdAt         = 6;
+    int64 updatedAt         = 7;
+}
+
+message GetAffiliateCampaignByIdProtoReq {
+    string campaign_id      = 1;
+}
+
+message GetAffiliateCampaignListProtoReq {
+    optional string campaign_id      = 1;
+    optional string name             = 2;
+    optional int64  offset           = 3;
+    optional int64  limit            = 4;
+}
+
+message GetAffiliateCampaignListProtoRes {
+    repeated AffiliateCampaignProtoModel campaigns      = 1;
+}
+
+message CreateAffiliateCampaignProtoReq {
+    string name             = 1;
+    int64 started_at        = 2;
+    int64 ended_at          = 3;
+}
+
+message UpdateAffiliateCampaignProtoReq {
+    string campaign_id               = 1;
+    optional string name             = 2;
+    optional int64 started_at        = 3;
+    optional int64 ended_at          = 4;
+}
+
+message DeleteAffiliateCampaignProtoReq {
+    string campaign_id               = 1;
+}
+
+// coupon used 
+message AffiliateCouponUsedProtoModel {
+    string user_id          = 1;
+    string coupon_id     = 2;
+    int64 used_at       = 3;
+}
+
+message GetAffiliateCouponUsedByIdProtoReq {
+    string coupon_id     = 1;
+}
+
+message GetAffiliateCouponUsedByIdProtoRes {
+    repeated AffiliateCouponUsedProtoModel coupon_used  = 1;
+}
+
+message CreateAffiliateCouponUsedProtoReq {
+    string user_id          = 1;
+    string coupon_id     = 2;
+}
