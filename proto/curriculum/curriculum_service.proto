@@ -3,7 +3,6 @@ package  curriculum_service;
 
 import "course_proto_model.proto";
 import "course_management_model.proto";
-import "form_model.proto";
 import "section_proto_model.proto";
 import "lesson_proto_model.proto";
 import "assignments_model.proto";
@@ -63,16 +62,6 @@ service CurriculumServiceProto {
   rpc GetCourseManagementCall(GetCourseManagementProtoReq)       returns (CourseManagementListProRes);
   rpc UpdateCourseManagementCall(UpdateCourseManagementProtoReq) returns (CourseManagementBase);
   rpc DeleteCourseManagementCall(DeleteCourseManagementProtoReq) returns (Empty);
-
-  // Form
-  rpc GetFormByIdCall(GetFormByIdProtoReq)                                   returns (FormProtoModel);
-  rpc CreateFormCall(CreateFormProtoReq)                                     returns (Empty);
-  rpc AddShortTextToFormCall(CreateFormShortTextProtoReq)                    returns (Empty);
-  rpc AddParagraphToFormCall(CreateFormParagraphProtoReq)                    returns (Empty);
-  rpc AddMultichoiceToFormCall(CreateFormMultichoiceProtoReq)                returns (Empty);
-  rpc AddMultichoiceItemToMultichoiceCall(CreateFormMultichoiceItemProtoReq) returns (Empty);
-  rpc AddDropdownToFormCall(CreateFormDropdownProtoReq)                      returns (Empty);
-  rpc AddDropdownItemToDropdownCall(CreateFormDropdownItemProtoReq)          returns (Empty);
 
   // Quiz
   rpc GetQuizBankByIdCall(GetQuizBankByIdProtoReq)      returns(QuizBankProtoModel);

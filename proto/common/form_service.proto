@@ -1,7 +1,16 @@
 syntax = "proto3";
-package  curriculum_service;
+package  common_service;
 
-message FormProtoModel {
+message FormProtoRes {
+    string id = 1;
+    string user_id = 2;
+    string form_title = 3;
+	string form_brief = 4;
+    int64 created_at = 5;
+	int64 updated_at = 6;
+}
+
+message GetFormProtoModel {
   string                             id              = 1;
   string                             userId          = 2;
   string                             formTitle       = 3;
@@ -69,20 +78,27 @@ message CreateFormShortTextProtoReq {
   string formId   = 1;
   int32  position = 2;
   string title    = 3;
-  string input    = 4;
+//  string input    = 4;
 }
 
 message CreateFormParagraphProtoReq {
   string formId   = 1;
   int32  position = 2;
   string title    = 3;
-  string input    = 4;
+//  string input    = 4;
 }
 
 message CreateFormMultichoiceProtoReq {
   string formId   = 1;
   int32  position = 2;
   string title    = 3;
+}
+
+message FormMultichoiceProtoRes {
+  string id       = 1;
+  string formId   = 2;
+  int32  position = 3;
+  string title    = 4;
 }
 
 message CreateFormMultichoiceItemProtoReq {
@@ -96,6 +112,13 @@ message CreateFormDropdownProtoReq {
   string formId   = 1;
   int32  position = 2;
   string title    = 3;
+}
+
+message FormDropdownProtoRes {
+  string id       = 1;
+  string formId   = 2;
+  int32  position = 3;
+  string title    = 4;
 }
 
 message CreateFormDropdownItemProtoReq {
@@ -175,4 +198,19 @@ message DeleteDropdownById {
 
 message DeleteDropdownItemById {
   string id = 1;
+}
+
+message Empty {}
+
+
+service CommonServiceProto {
+  // Form
+  rpc GetFormByIdCall(GetFormByIdProtoReq)                                   returns (GetFormProtoModel);
+  rpc CreateFormCall(CreateFormProtoReq)                                     returns (FormProtoRes);
+  rpc AddShortTextToFormCall(CreateFormShortTextProtoReq)                    returns (Empty);
+  rpc AddParagraphToFormCall(CreateFormParagraphProtoReq)                    returns (Empty);
+  rpc AddMultichoiceToFormCall(CreateFormMultichoiceProtoReq)                returns (FormMultichoiceProtoRes);
+  rpc AddMultichoiceItemToMultichoiceCall(CreateFormMultichoiceItemProtoReq) returns (Empty);
+  rpc AddDropdownToFormCall(CreateFormDropdownProtoReq)                      returns (FormDropdownProtoRes);
+  rpc AddDropdownItemToDropdownCall(CreateFormDropdownItemProtoReq)          returns (Empty);
 }
