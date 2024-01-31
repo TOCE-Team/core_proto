@@ -145,6 +145,7 @@ message CourseSectionsAndLessonsProto{
   repeated CourseLessonsProto lesson_list = 5;
   optional int64 start_at = 6;
   int32 section_index = 7;
+  ObjectStateProtoModel section_state = 8;
 }
 
 message CourseLessonsProto{
@@ -156,6 +157,7 @@ message CourseLessonsProto{
   optional string next_lesson = 6;
   bool lesson_completed = 7;
   int32 lesson_index = 8;
+  ObjectStateProtoModel lesson_state = 9;
 }
 
 message GetCourseSectionsAndLessonsRes{
