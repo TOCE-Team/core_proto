@@ -27,14 +27,14 @@ message FormShortTextProtoModel {
   string id       = 1;
   int32  position = 2;
   string title    = 3;
-  string input    = 4;
+  optional string input    = 4;
 }
 
 message FormParagraphProtoModel {
   string id       = 1;
   int32  position = 2;
   string title    = 3;
-  string input    = 4;
+  optional string input    = 4;
 }
 
 message FormMultichoiceProtoModel {
