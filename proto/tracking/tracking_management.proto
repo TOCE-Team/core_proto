@@ -13,7 +13,7 @@ message CourseProcessReportProto {
 }
 
 message CourseProcessReportReq {
-    string course_id   = 1;
+    string course_id = 1;
     optional int32 offset = 2;
     optional int32 limit = 3;
 }
