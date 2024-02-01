@@ -17,6 +17,7 @@ enum QuizTypeProtoModel {
     AudioBasedMultipleChoiceQuestions   = 12;
     ImageDragAndDrop                    = 13;
     SequentialOrderQuestions            = 14;
+    SingleChoice                        = 15;
 }
 
 message QuizBankProtoModel {
@@ -68,8 +69,8 @@ message QuizProtoModel {
     string              quiz_id         = 1;
     string              title           = 2;
     QuizTypeProtoModel  quiz_type       = 3;
-    string              description     = 4;
-    string              hint            = 5;
+    optional string     description     = 4;
+    optional string     hint            = 5;
     string              question        = 6;
     optional string     single_answer   = 7;
     optional string     single_result   = 8;
@@ -88,8 +89,8 @@ message QuizProtoModel {
 message CreateQuizProtoReq {
     string              title           = 1;
     QuizTypeProtoModel  quiz_type       = 2;
-    string              description     = 3;
-    string              hint            = 4;
+    optional string     description     = 3;
+    optional string     hint            = 4;
     string              question        = 5;
     optional string     single_answer   = 6;
     optional string     single_result   = 7;
@@ -241,8 +242,8 @@ message QuizTestBaseModel {
     string              quiz_id         = 1;
     string              title           = 2;
     QuizTypeProtoModel  quiz_type       = 3;
-    string              description     = 4;
-    string              hint            = 5;
+    optional string     description     = 4;
+    optional string     hint            = 5;
     string              question        = 6;
     optional string     single_answer   = 7;
     optional string     single_result   = 8;
@@ -266,8 +267,8 @@ message CreateQuizAndAddToTestProtoReq{
     int32               score           = 2;
     string              title           = 3;
     QuizTypeProtoModel  quiz_type       = 4;
-    string              description     = 5;
-    string              hint            = 6;
+    optional string     description     = 5;
+    optional string     hint            = 6;
     string              question        = 7;
     optional string     single_answer   = 8;
     optional string     single_result   = 9;
@@ -311,8 +312,8 @@ message QuizInfoProtoModel {
     string              quiz_id             = 1;
     string              title               = 2;
     QuizTypeProtoModel  quiz_type           = 3;
-    string              description         = 4;
-    string              hint                = 5;
+    optional string     description         = 4;
+    optional string     hint                = 5;
     string              question            = 6;
     optional string     single_answer       = 7;
     optional string     single_result       = 8;

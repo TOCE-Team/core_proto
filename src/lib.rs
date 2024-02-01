@@ -15,3 +15,6 @@ pub mod curriculum_service;
 
 #[cfg(feature = "tracking")]
 pub mod tracking_service;
+
+#[cfg(feature = "common")]
+pub mod common_service;
