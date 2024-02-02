@@ -42,7 +42,7 @@ service CurriculumServiceProto {
   rpc RestoreSectionCall(RestoreSectionProtoReq) returns (Empty);
 
   //lesson
-  rpc CreateLessonCall(CreateLessonProtoReq) returns (LessonProtoModel);
+  rpc CreateLessonCall(CreateLessonProtoReq) returns (CreateLessonProtoRes);
   rpc UpdateLessonCall(UpdateLessonProtoReq) returns (UpdateLessonProtoRes);
   rpc GetLessonCall(GetLessonProtoReq) returns (LessonProtoModel);
   rpc GetAllLessonBySectionIdCall(GetAllLessonBySectionIdProtoReq) returns (LessonProtoList);
@@ -58,7 +58,7 @@ service CurriculumServiceProto {
   rpc CreateQuizVideoMapUserCall(CreateQuizVideoMapUserProtoReq) returns (Empty);
 
   // For course management
-  
+
   rpc AddCourseManagementCall(AddCourseManagementProtoReq)       returns (CourseManagementBase);
   rpc GetCourseManagementCall(GetCourseManagementProtoReq)       returns (CourseManagementListProRes);
   rpc UpdateCourseManagementCall(UpdateCourseManagementProtoReq) returns (CourseManagementBase);
