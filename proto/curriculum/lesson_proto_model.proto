@@ -16,12 +16,12 @@ message QuizVideoProtoModel {
 
 message CreateQuizVideoMapUserProtoReq {
   string          quiz_video_id     = 1;
-  string          user_id           = 2;   
+  string          user_id           = 2;
 }
 
 message GetQuizVideoProtoReq {
   string          lesson_id     = 1;
-  optional string user_id       = 2;         
+  optional string user_id       = 2;
 }
 
 message GetQuizVideoProtoRes {
@@ -59,6 +59,7 @@ message LessonProtoModel {
   int64 updatedAt = 12;
   LessonTypeProto lesson_type = 13;
   optional string thumbnail = 14;
+  optional string next_lesson = 15;
   //repeated QuizVideoProtoModel quiz_video  = 15;
 }
 
@@ -75,6 +76,12 @@ message CreateLessonProtoReq {
   LessonTypeProto lesson_type = 10;
   optional string thumbnail = 11;
   int32 lesson_index = 12;
+}
+
+message CreateLessonProtoRes {
+  string lessonTitle = 1;
+  string lessonId = 2;
+  bool sucessfull = 3;
 }
 
 message UpdateLessonProtoReq {

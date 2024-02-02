@@ -3,15 +3,19 @@ package  tracking_service;
 
 message CourseProcessReportProto {
     string user_id = 1;
-    bool course_completed = 2;
-    int32 total_section = 3;
-    int32 total_section_completed = 4;
-    int32 total_lesson = 5;
-    int32 total_lesson_completed = 6;
+    optional string username = 2;
+    optional string image = 3;
+    bool course_completed = 4;
+    int32 total_section = 5;
+    int32 total_section_completed = 6;
+    int32 total_lesson = 7;
+    int32 total_lesson_completed = 8;
 }
 
 message CourseProcessReportReq {
-    string course_id   = 1;
+    string course_id = 1;
+    optional int32 offset = 2;
+    optional int32 limit = 3;
 }
 
 message CourseProcessReportRes {
