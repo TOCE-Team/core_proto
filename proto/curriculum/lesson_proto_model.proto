@@ -78,6 +78,12 @@ message CreateLessonProtoReq {
   int32 lesson_index = 12;
 }
 
+message CreateLessonProtoRes {
+  string lessonTitle = 1;
+  string lessonId = 2;
+  bool sucessfull = 3;
+}
+
 message UpdateLessonProtoReq {
   optional string lessonTitle = 1;
   optional string lessonContent = 2;
