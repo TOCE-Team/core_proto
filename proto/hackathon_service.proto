@@ -366,6 +366,172 @@ message Empty {}
 
 
 
+
+//// Form 
+enum FormQuestionTypeProtoModel {
+    MultiChoice                         = 0;
+    ShortText                         	= 1;
+    TrueFalse                           = 2;
+    Dropdown                         	= 3;
+    SingleChoice                        = 4;
+    Paragraph                        	= 5;
+}
+
+message FormProtoModel {
+    string form_id           		= 1;
+    optional string name         	= 2;
+	string title 			 		= 3;
+    optional string description  	= 4;
+	optional string course_id 		= 5;
+    int64  createdAt    			= 6;
+    int64  updatedAt    			= 7;
+    bool   is_deleted   			= 8;
+}
+
+message CreateFormProtoReq {
+    optional string name         = 1;
+	string title 			     = 2;
+    optional string description  = 3;
+	optional string course_id 	 = 4;
+
+}
+
+message GetFormByIdProtoReq {
+    string form_id           = 1;
+}
+
+message GetFormByIdProtoRes {
+    FormProtoModel form_info           			= 1;
+	repeated FormQuestionProtoModel questions 	= 2;
+}
+
+message GetFormListProtoReq {
+	optional string form_id    = 1;
+    optional string name       = 2;
+	optional string title 	   = 3;
+	optional string course_id  = 4;
+	optional int64  offset     = 5;
+    optional int64  limit      = 6;
+}
+
+message GetFormListProtoRes {
+    repeated FormProtoModel forms = 1;
+}
+
+message UpdateFormProtoReq {
+    string            form_id     = 1;
+    optional string   name        = 2;
+	optional string   title		  = 3;
+    optional string   description = 4;
+}
+
+message DeleteFormProtoReq {
+    string form_id           = 1;
+}
+
+// FormQuestion
+
+message FormQuestionProtoModel {
+    string              question_id        		= 1;
+    string              title              		= 2;
+    FormQuestionTypeProtoModel  question_type   = 3;
+    optional string     description     		= 4;
+    string              question        		= 5;
+    repeated string     answer   				= 6;
+    int64               createdAt       		= 7;
+    int64               updatedAt       		= 8;
+    bool                is_deleted     		 	= 9;
+    int64               paginationId    		= 10;
+	string 				form_id 				= 11;
+	int64 				question_index			= 12;
+	bool 				is_required 			= 13;
+}
+
+message CreateFormQuestionProtoReq {
+    string              title           			= 1;
+    FormQuestionTypeProtoModel  question_type       = 2;
+    optional string     description     			= 3;
+    string              question        			= 4;
+    repeated string     answer   					= 5;
+	string 				form_id 					= 6;
+	int64 				question_index				= 7;
+	optional bool 		is_required 				= 8;
+}
+
+message GetFormQuestionByIdProtoReq {
+    string  question_id  = 1;
+}
+
+
+message UpdateFormQuestionProtoReq {
+    string                          question_id         	= 1;
+    optional string                 title           		= 2;
+    optional FormQuestionTypeProtoModel     question_type   = 3;
+    optional string                 description     		= 4;
+    optional string                 question        		= 5;
+    repeated string                 answer   				= 6;
+	optional int64 					question_index			= 7;
+	optional bool 					is_required 			= 8;
+}
+
+message DeleteFormQuestionProtoReq {
+    string  question_id  = 1;
+}
+
+
+// submission
+
+message FormQuestionSubmissionProtoModel {
+    string              question_id        		= 1;
+    string              title              		= 2;
+    FormQuestionTypeProtoModel  question_type   = 3;
+    optional string     description     		= 4;
+    string              question        		= 5;
+    repeated string     answer   				= 6;
+	repeated string		user_answer 			= 7;
+    int64               createdAt       		= 8;
+    int64               updatedAt       		= 9;
+    bool                is_deleted     		 	= 10;
+    int64               paginationId    		= 11;
+	string 				form_id 				= 12;
+	int64 				question_index			= 13;
+	bool 				is_required 			= 14;
+}
+
+message FormSubmissionProtoModel{
+    string id                               					= 1;
+    string form_id                     							= 2;
+    string user_id                          					= 3;
+    repeated FormQuestionSubmissionProtoModel form_questions   	= 4;
+	int64  paginationId    										= 5;
+    int64  createdAt    										= 6;
+    int64  updatedAt    										= 7;
+    bool   is_deleted   										= 8;
+
+}
+
+message GetFormSubmissionByIdProtoReq{
+    string id   = 1;
+}
+
+message GetFormSubmissionListReq{
+    string form_id = 1; 
+}
+
+message GetFormSubmissionListRes{
+    repeated FormSubmissionProtoModel form_submissions = 1;
+}
+
+message CreateFormSubmissionProtoReq{
+    string form_id                     							= 1;
+    string user_id                          					= 2;
+    repeated FormQuestionSubmissionProtoModel form_questions   	= 3;
+}
+
+message DeleteFormSubmissionProtoReq{
+    string id = 1;
+}
+
 service HackathonServiceProtocol {
     rpc GetHackathonCall(HackathonListProtoReq) 	   returns (HackathonListProtoRes);
     rpc GetHackathonByIdCall(GetHackathonByIdProtoReq) returns (HackathonBase);
@@ -417,4 +583,21 @@ service HackathonServiceProtocol {
 	rpc UpdateJudgeCall(UpdateJudgeProtoReq) returns (JudgeBase);
 	rpc DeleteJudgeCall(DeleteJudgeProtoReq) returns (Empty);
 
+
+	// Form 
+	rpc CreateFormCall(CreateFormProtoReq) returns (FormProtoModel);
+	rpc GetFormByIdCall(GetFormByIdProtoReq) returns (GetFormByIdProtoRes);
+	rpc GetFormListCall(GetFormListProtoReq) returns (GetFormListProtoRes);
+	rpc UpdateFormCall(UpdateFormProtoReq) returns (FormProtoModel);
+	rpc DeleteFormCall(DeleteFormProtoReq) returns (Empty);
+
+	rpc CreateFormQuestionCall(CreateFormQuestionProtoReq) returns (FormQuestionProtoModel);
+	rpc GetFormQuestionByIdCall(GetFormQuestionByIdProtoReq) returns (FormQuestionProtoModel);
+	rpc UpdateFormQuestionCall(UpdateFormQuestionProtoReq) returns (FormQuestionProtoModel);
+	rpc DeleteFormQuestionCall(DeleteFormQuestionProtoReq) returns (Empty);
+
+	rpc GetFormSubmissionByIdCall(GetFormSubmissionByIdProtoReq) returns(FormSubmissionProtoModel);
+	rpc GetFormSubmissionListCall(GetFormSubmissionListReq) returns (GetFormSubmissionListRes);
+	rpc CreateFormSubmissionCall(CreateFormSubmissionProtoReq) returns(FormSubmissionProtoModel);
+	rpc DeleteFormSubmissionCall(DeleteFormSubmissionProtoReq) returns(Empty);
 }
