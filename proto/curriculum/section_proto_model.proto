@@ -24,7 +24,7 @@ message CreateSectionProtoReq {
   int64 sectionPrice = 3;
   string courseId = 4;
   string ownerId = 5;
-  int32 section_index = 6;
+  optional int32 section_index = 6;
   optional int64 startAt = 7;
   optional int64 endAt = 8;
 }

@@ -75,7 +75,7 @@ message CreateLessonProtoReq {
   string ownerId = 9;
   LessonTypeProto lesson_type = 10;
   optional string thumbnail = 11;
-  int32 lesson_index = 12;
+  optional int32 lesson_index = 12;
 }
 
 message CreateLessonProtoRes {
