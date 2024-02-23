@@ -375,6 +375,7 @@ enum FormQuestionTypeProtoModel {
     Dropdown                         	= 3;
     SingleChoice                        = 4;
     Paragraph                        	= 5;
+	FileUpload							= 6;
 }
 
 message FormProtoModel {
@@ -454,7 +455,7 @@ message CreateFormQuestionProtoReq {
     string              question        			= 4;
     repeated string     answer   					= 5;
 	string 				form_id 					= 6;
-	int64 				question_index				= 7;
+	optional int64 		question_index				= 7;
 	optional bool 		is_required 				= 8;
 }
 
@@ -464,14 +465,15 @@ message GetFormQuestionByIdProtoReq {
 
 
 message UpdateFormQuestionProtoReq {
-    string                          question_id         	= 1;
-    optional string                 title           		= 2;
-    optional FormQuestionTypeProtoModel     question_type   = 3;
-    optional string                 description     		= 4;
-    optional string                 question        		= 5;
-    repeated string                 answer   				= 6;
-	optional int64 					question_index			= 7;
-	optional bool 					is_required 			= 8;
+	string 							form_id					= 1;
+    string                          question_id         	= 2;
+    optional string                 title           		= 3;
+    optional FormQuestionTypeProtoModel     question_type   = 4;
+    optional string                 description     		= 5;
+    optional string                 question        		= 6;
+    repeated string                 answer   				= 7;
+	optional int64 					question_index			= 8;
+	optional bool 					is_required 			= 9;
 }
 
 message DeleteFormQuestionProtoReq {
@@ -530,6 +532,23 @@ message CreateFormSubmissionProtoReq{
 
 message DeleteFormSubmissionProtoReq{
     string id = 1;
+}
+
+message LessonFormsProtoModel {
+	optional string form_id 		= 1;
+}
+
+message GetLessonFormsProtoReq {
+	string lesson_id 	= 1;
+}
+
+message CreateLessonFormsProtoReq {
+	string lesson_id  	= 1;
+	string form_id 		= 2;
+}
+
+message DeleteLessonFormsProtoReq {
+	string lesson_id 	= 1;
 }
 
 service HackathonServiceProtocol {
@@ -600,4 +619,8 @@ service HackathonServiceProtocol {
 	rpc GetFormSubmissionListCall(GetFormSubmissionListReq) returns (GetFormSubmissionListRes);
 	rpc CreateFormSubmissionCall(CreateFormSubmissionProtoReq) returns(FormSubmissionProtoModel);
 	rpc DeleteFormSubmissionCall(DeleteFormSubmissionProtoReq) returns(Empty);
+
+	rpc GetLessonFormsCall(GetLessonFormsProtoReq) returns(LessonFormsProtoModel);
+	rpc CreateLessonFormsCall(CreateLessonFormsProtoReq) returns(Empty);
+	rpc DeleteLessonFormsCall(DeleteLessonFormsProtoReq) returns(Empty);
 }
