@@ -517,7 +517,10 @@ message GetFormSubmissionByIdProtoReq{
 }
 
 message GetFormSubmissionListReq{
-    string form_id = 1; 
+    string form_id 				= 1; 
+	optional string user_id 	= 2;
+	optional int64  offset    	= 3;
+    optional int64  limit      	= 4;
 }
 
 message GetFormSubmissionListRes{
