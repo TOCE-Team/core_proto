@@ -57,4 +57,12 @@ fn main() {
         .message_attribute(".", "#[derive(sqlx::FromRow)]")
         .compile(&["proto/common/form_service.proto"], &["proto"])
         .expect("Couldn't compile proto files");
+
+    #[cfg(feature = "mail")]
+    tonic_build::configure()
+        .out_dir("src")
+        .type_attribute(".", serde_impl)
+        .message_attribute(".", "#[derive(sqlx::FromRow)]")
+        .compile(&["proto/mail/mail_service.proto"], &["proto"])
+        .expect("Couldn't compile proto files");
 }

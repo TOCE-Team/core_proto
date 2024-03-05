@@ -1,0 +1,15 @@
+syntax = "proto3";
+package mail_service;
+
+message Empty {}
+
+service MailServiceProtocol {
+
+    //rpc SendLoginEmail(Empty)                       returns (Empty);
+    //rpc SendInvitationEmail(Empty)                  returns (Empty);
+    //rpc SendMultiRecipients(Empty)                  returns (Empty);
+    //rpc SendMultiEmails(Empty)                      returns (Empty);
+    //rpc SendSuccessfulRegistrationEmail(Empty)      returns (Empty);
+    //rpc SendVerifyGoogleEmail(Empty)                returns (Empty);
+    //rpc TestEmail(Empty)                               returns (Empty);
+}
