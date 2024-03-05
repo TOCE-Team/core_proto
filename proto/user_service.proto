@@ -165,6 +165,11 @@ message UpdateUserProtoReq {
     optional bool   is_active         = 12; 
 }
 
+message UpdateNewPasswordProtoReq {
+    string user_id      = 1;
+    string new_password = 2;
+}
+
 message DeleteUserProtoReq {
     string id       = 1;
     string password = 2;
@@ -654,6 +659,7 @@ service UserServiceProtocol {
     rpc CreateUserWalletCall(CreateWalletUserProtoReq)        returns (User);
 	rpc UpdateEmailUserCall(UpdateEmailUserProtoReq) returns (User);
     rpc SendEmailForUserCall(SendEmailForUserProtoReq) returns (Empty);
+    rpc UpdateNewPasswordCall(UpdateNewPasswordProtoReq) returns (Empty);
     
     rpc GetNumberOfUsersCall(Empty) returns (GetNumberOfUsersProtoRes);
 

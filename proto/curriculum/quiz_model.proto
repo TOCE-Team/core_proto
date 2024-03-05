@@ -84,6 +84,7 @@ message QuizProtoModel {
     string              owner           = 16;
     optional int64      time_for_quiz   = 17;
     optional int64      maximum_times   = 18;
+    optional string      question_image  = 19;
 }
 
 message CreateQuizProtoReq {
@@ -100,6 +101,7 @@ message CreateQuizProtoReq {
     string              owner           = 11;
     optional int64      time_for_quiz   = 12;
     optional int64      maximum_times   = 13;
+    optional string     question_image  = 14;
 }
 
 message ReCreateQuizProtoReq {
@@ -138,6 +140,7 @@ message UpdateQuizProtoReq {
     optional bool                   is_public       = 11;
     optional int64                  time_for_quiz   = 12;
     optional int64                  maximum_times   = 13;
+    optional string                 question_image  = 14;
 }
 
 message DeleteQuizProtoReq {
@@ -199,7 +202,12 @@ message GetQuizTestProtoReq{
 }
 
 message GetQuizTestListReq{
-    string parent_id = 1;
+    string                  parent_id       = 1;
+    optional string         quiz_test_id    = 2;
+    optional string         name            = 3;
+    optional bool           disable         = 4;
+    optional int64          offset          = 5;
+    optional int64          limit           = 6;
 }
 
 message GetQuizTestListRes{
@@ -278,6 +286,7 @@ message CreateQuizAndAddToTestProtoReq{
     string              owner           = 13;
     optional int64      time_for_quiz   = 14;
     optional int64      maximum_times   = 15;
+    optional string     question_image  = 16;
 }
 
 message GetQuizTestSetProtoReq{
@@ -322,6 +331,7 @@ message QuizInfoProtoModel {
     repeated string     multi_result        = 11;
     repeated string     multi_user_answer   = 12;
     int32               score               = 13;
+    optional string     question_image      = 14;
 }
 
 message QuizSubmissionProtoModel{
