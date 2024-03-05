@@ -446,6 +446,7 @@ message FormQuestionProtoModel {
 	string 				form_id 				= 11;
 	int64 				question_index			= 12;
 	bool 				is_required 			= 13;
+	bool 				is_other_answer			= 14;
 }
 
 message CreateFormQuestionProtoReq {
@@ -457,6 +458,7 @@ message CreateFormQuestionProtoReq {
 	string 				form_id 					= 6;
 	optional int64 		question_index				= 7;
 	optional bool 		is_required 				= 8;
+	optional bool 		is_other_answer				= 9;
 }
 
 message GetFormQuestionByIdProtoReq {
@@ -474,6 +476,7 @@ message UpdateFormQuestionProtoReq {
     repeated string                 answer   				= 7;
 	optional int64 					question_index			= 8;
 	optional bool 					is_required 			= 9;
+	optional bool 					is_other_answer			= 10;
 }
 
 message DeleteFormQuestionProtoReq {
@@ -498,6 +501,7 @@ message FormQuestionSubmissionProtoModel {
 	string 				form_id 				= 12;
 	int64 				question_index			= 13;
 	bool 				is_required 			= 14;
+	optional string 	other_answer			= 15;
 }
 
 message FormSubmissionProtoModel{

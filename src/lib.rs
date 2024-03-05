@@ -18,3 +18,6 @@ pub mod tracking_service;
 
 #[cfg(feature = "common")]
 pub mod common_service;
+
+#[cfg(feature = "mail")]
+pub mod mail_service;
