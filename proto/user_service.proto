@@ -650,7 +650,83 @@ message NumberOfUser{
 	int64 total = 1;
 }
 
+
+enum PaymentType {
+  Crypto = 0;
+  Fiat = 1;
+}
+
+message PaymentProtoModel {
+  string paymentId = 1; 
+  string userId = 2; 
+  PaymentType paymentType = 3;
+  string title = 4;
+  string network = 5; 
+  string qrCode = 6;
+  string address = 7;
+  string notes = 8; 
+  int64 createdAt = 9;
+  int64 updatedAt = 10;
+}
+
+message CreatePaymentProtoReq {
+  string userId = 1; 
+  PaymentType paymentType = 2;
+  string title = 3;
+  string network = 4; 
+  string qrCode = 5;
+  string address = 6;
+  string notes = 7; 
+}
+
+message PaymentQuery {
+    optional int64  offset      = 1;
+    optional int32  limit       = 2;
+    optional string userId      = 3;
+    optional PaymentType paymentType = 4;
+    optional string title       = 5;
+    optional string network     = 6;
+    optional string qrCode      = 7;
+    optional string address     = 8;
+    optional string notes       = 9;
+    optional int64  createdAt   = 10;
+    optional int64  updatedAt   = 11;
+}
+
+message GetPaymentIdProtoReq{
+	string paymentId = 1;
+}
+
+message DeletePaymentProtoReq{
+	string paymentId = 1;
+}
+
+message UpdatePaymentProtoReq {
+  string paymentId = 1; 
+  optional string userId = 2; 
+  optional PaymentType paymentType = 3;
+  optional string title = 4;
+  optional string network = 5; 
+  optional string qrCode = 6;
+  optional string address = 7;
+  optional string notes = 8; 
+}
+
+message ListPayment {
+	repeated PaymentProtoModel payments = 1;
+}
+
+
+
+
 service UserServiceProtocol {
+	// Payment 
+	rpc GetPaymentListCall(PaymentQuery)         returns (ListPayment);
+	rpc UpdatePaymentCall(UpdatePaymentProtoReq) returns (PaymentProtoModel);
+	rpc GetPaymentByIdCall(GetPaymentIdProtoReq) returns (PaymentProtoModel);
+	rpc DeletePaymentCall(DeletePaymentProtoReq) returns (Empty);
+	rpc CreatePaymentCall(CreatePaymentProtoReq) returns (PaymentProtoModel);
+
     // Normal user calls
 
     rpc GetUsersCall(UserQuery)                   returns (UserList);
