@@ -154,6 +154,7 @@ service CurriculumServiceProto {
 
   rpc GetAffiliateListCall(GetAffiliateListProtoReq) returns(GetAffiliateListProtoRes);
   rpc GetAffiliateByIdCall(GetAffiliateByIdProtoReq) returns(AffiliateProtoModel);
+  rpc GetAffiliateByUserCall(GetAffiliateByUserProtoReq) returns(AffiliateProtoModel);
   rpc CreateAffiliateCall(CreateAffiliateProtoReq) returns(AffiliateProtoModel);
   rpc UpdateAffiliateCall(UpdateAffiliateProtoReq) returns(AffiliateProtoModel);
   rpc DeleteAffiliateCall(DeleteAffiliateProtoReq) returns(Empty);

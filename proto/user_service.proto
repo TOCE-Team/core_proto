@@ -644,6 +644,76 @@ message NumberOfUser{
 	int64 total = 1;
 }
 
+
+// User Affiliate 
+
+message UserAffiliateProtoModel {
+    string user_id                  = 1;
+    string referral_code            = 2;
+    optional string referred_by     = 3;
+    int64 points                    = 4;
+    int64 referral_l1               = 5;
+    int64 referral_l2               = 6;
+    int64 referral_l3               = 7;
+    bool is_referred                = 8;
+    bool is_deleted                 = 9;
+    int64  paginationId             = 10;
+    int64  createdAt                = 11;
+    int64  updatedAt                = 12;
+}
+
+message UserReferralDetailProtoRes {
+    string user_id              = 1;
+    string username             = 2;
+    optional string firstName   = 3; 
+    optional string lastName    = 4;
+    int64  points               = 5;
+    int64 referral_l1           = 6;
+    int64 referral_l2           = 7;
+    int64 referral_l3           = 8; 
+    bool is_active              = 9;
+}
+
+message GetUserAffiliateProtoReq {
+    string id_or_code      = 1;
+}
+
+message GetUserReferralOfUserProtoReq {
+    string id_or_code           = 1;
+    optional int64 offset        = 2;
+    optional int64 limit         = 3;
+}
+
+message GetUserReferralOfUserProtoRes {
+    repeated UserReferralDetailProtoRes refs = 1;
+}
+
+message GetTopUserReferralProtoReq {
+    optional int64 offset        = 1;
+    optional int64 limit         = 2;
+}
+
+message GetTopUserReferralProtoRes {
+    repeated UserReferralDetailProtoRes users = 1;
+}
+
+message CreateUserAffiliateProtoReq {
+    string user_id                  = 1;
+    bool is_referred                = 2;
+    optional string referred_code   = 3;
+}
+
+message UpdateUserAffiliateProtoReq {
+    string user_id                  = 1;
+    optional string referred_code   = 2;
+    optional int64 points           = 3;
+    optional int64 referral_l1      = 4;
+    optional int64 referral_l2      = 5;
+    optional int64 referral_l3      = 6;
+    optional bool is_referred       = 7;
+}
+
+
 service UserServiceProtocol {
     // Normal user calls
 
@@ -734,4 +804,12 @@ service UserServiceProtocol {
 	rpc RestoreOrgCall(RestoreOrgProtoReq) returns (Empty);
 	rpc AddModeratorCall(AddModeratorProtoReq) returns (Empty);
 	rpc ViewModeratorCall(ViewModeratorProtoReq) returns (UserList);
+
+    // User Affiliate
+
+    rpc GetUserAffiliateCall(GetUserAffiliateProtoReq) returns(UserAffiliateProtoModel);
+    rpc GetUserReferralOfUserCall(GetUserReferralOfUserProtoReq) returns(GetUserReferralOfUserProtoRes);
+    rpc GetTopUserReferralCall(GetTopUserReferralProtoReq) returns(GetTopUserReferralProtoRes);
+    rpc CreateUserAffiliateCall(CreateUserAffiliateProtoReq) returns(UserAffiliateProtoModel);
+    rpc UpdateUserAffiliateCall(UpdateUserAffiliateProtoReq) returns(UserAffiliateProtoModel);
 }
