@@ -676,7 +676,7 @@ message CreatePaymentProtoReq {
   string network = 4; 
   string qrCode = 5;
   string address = 6;
-  string notes = 7; 
+  optional string notes = 7; 
 }
 
 message PaymentQuery {
