@@ -42,18 +42,20 @@ message CourseProtoModel {
   optional string whatInclude = 12;
   optional string expectedOutcomes = 13;
   optional string prerequisites = 14;
-  optional int64 startAt = 15;
-  optional int64 endAt = 16;
-  int64 createdAt = 17;
-  int64 updatedAt = 18;
-  optional string courseBrief = 19;
-  CourseTypeProto courseType = 20;
-  optional string thumbnail = 21;
-  string network = 22;
-  optional int32 total_student = 23;
-  optional int32 total_lesson = 24;
-  optional int32 total_duration = 25;
-  optional string overview = 26;
+  optional string videoIntroduction = 15;
+  optional int64 startAt = 16;
+  optional int64 endAt = 17;
+  int64 createdAt = 18;
+  int64 updatedAt = 19;
+  optional string courseBrief = 29;
+  CourseTypeProto courseType = 21;
+  optional string thumbnail = 22;
+  string network = 23;
+  optional int32 total_student = 24;
+  optional int32 total_lesson = 25;
+  optional int32 total_duration = 26;
+  optional string overview = 27;
+  optional string point = 28;
 }
 
 
@@ -74,6 +76,8 @@ message CreateCourseProtoReq {
   string courseId = 14;
   string network = 15;
   optional string overview = 16;
+  optional string videoIntroduction = 17;
+  optional string point = 18;
 }
 
 message UpdateCourseProtoReq {
@@ -91,6 +95,8 @@ message UpdateCourseProtoReq {
   optional int64 endAt = 12;
   optional string network = 13;
   optional string overview = 14;
+  optional string videoIntroduction = 15;
+  optional string point = 16;
 }
 
 message UpdateCourseProtoRes{

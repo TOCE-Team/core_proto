@@ -31,18 +31,19 @@ message UserBase {
     optional string lastName          = 4;
     string          username          = 5;
     string email                      = 6;
-    string          password          = 7;
-    Role            role              = 8;
-    Level           level             = 9;
-    optional string introductionBrief = 10;
-    optional string image             = 11;
-    bool            isDeleted         = 12;
-    int32           totalCredit       = 13;
-    int64           createdAt         = 14;
-    int64           updatedAt         = 15;
-    optional string thumbnail         = 16;
-    bool            official          = 17; 
-    bool            is_active         = 18;
+    optional string phone             = 7;
+    string          password          = 8;
+    Role            role              = 9;
+    Level           level             = 10;
+    optional string introductionBrief = 11;
+    optional string image             = 12;
+    bool            isDeleted         = 13;
+    int32           totalCredit       = 14;
+    int64           createdAt         = 15;
+    int64           updatedAt         = 16;
+    optional string thumbnail         = 17;
+    bool            official          = 18; 
+    bool            is_active         = 19;
 }
 
 /*
@@ -56,16 +57,17 @@ message User {
     optional string lastName          = 4;
     string          username          = 5;
     optional string email             = 6;
-    Role            role              = 7;
-    Level           level             = 8;
-    optional string introductionBrief = 9;
-    optional string image             = 10;
-    int32           totalCredit       = 11;
-    int64           createdAt         = 12;
-    int64           updatedAt         = 13;
-    optional string thumbnail         = 14;
-    bool            official          = 15; 
-    bool            is_active         = 16;
+    optional string phone             = 7;
+    Role            role              = 8;
+    Level           level             = 9;
+    optional string introductionBrief = 10;
+    optional string image             = 11;
+    int32           totalCredit       = 12;
+    int64           createdAt         = 13;
+    int64           updatedAt         = 14;
+    optional string thumbnail         = 15;
+    bool            official          = 16; 
+    bool            is_active         = 17;
 }
 
 /*
@@ -83,13 +85,14 @@ message UserQuery {
     optional string lastName    = 5;
     optional string username    = 6;
     optional string email       = 7;
-    optional Role   role        = 8;
-    optional Level  level       = 9;
-    optional int32  totalCredit = 10;
-    optional int64  createdAt   = 11;
-    optional int64  updatedAt   = 12;
-    optional bool official      = 13; 
-    optional bool is_active     = 14;
+    optional string phone       = 8;
+    optional Role   role        = 9;
+    optional Level  level       = 10;
+    optional int32  totalCredit = 11;
+    optional int64  createdAt   = 12;
+    optional int64  updatedAt   = 13;
+    optional bool official      = 14; 
+    optional bool is_active     = 15;
 }
 
 message GetNumberOfUsersRoleRes {
@@ -156,13 +159,14 @@ message UpdateUserProtoReq {
     optional string lastName          = 3;
     optional string username          = 4;
     optional string email             = 5;
-    optional string introductionBrief = 6;
-    optional string image             = 7;
-    string          password          = 8;
-    optional string newPassword       = 9;
-    optional string thumbnail         = 10;
-    optional bool   official          = 11;
-    optional bool   is_active         = 12; 
+    optional string phone             = 6;
+    optional string introductionBrief = 7;
+    optional string image             = 8;
+    string          password          = 9;
+    optional string newPassword       = 10;
+    optional string thumbnail         = 11;
+    optional bool   official          = 12;
+    optional bool   is_active         = 13; 
 }
 
 message UpdateNewPasswordProtoReq {
@@ -327,11 +331,12 @@ message GetTeamMemberProtoReq {
     optional string 			lastName    = 6;
     optional string 			username    = 7;
     optional string 			email       = 8;
-    optional Role               role        = 9;
-    optional Level              level       = 10;
-    optional int32  			totalCredit = 11;
-    optional int64  			createdAt   = 12;
-    optional int64  			updatedAt   = 13;
+    optional string 			phone       = 9;
+    optional Role               role        = 10;
+    optional Level              level       = 11;
+    optional int32  			totalCredit = 12;
+    optional int64  			createdAt   = 13;
+    optional int64  			updatedAt   = 14;
 
 }
 
@@ -627,11 +632,12 @@ message ViewModeratorProtoReq{
     optional string 			lastName    = 6;
     optional string 			nickname    = 7;
     optional string 			email       = 8;
-    optional Role               role        = 9;
-    optional Level              level       = 10;
-    optional int32  			totalCredit = 11;
-    optional int64  			createdAt   = 12;
-    optional int64  			updatedAt   = 13;
+    optional string 			phone       = 9;
+    optional Role               role        = 10;
+    optional Level              level       = 11;
+    optional int32  			totalCredit = 12;
+    optional int64  			createdAt   = 13;
+    optional int64  			updatedAt   = 14;
 
 }
 
@@ -644,7 +650,83 @@ message NumberOfUser{
 	int64 total = 1;
 }
 
+
+enum PaymentType {
+  Crypto = 0;
+  Fiat = 1;
+}
+
+message PaymentProtoModel {
+  string paymentId = 1; 
+  string userId = 2; 
+  PaymentType paymentType = 3;
+  string title = 4;
+  string network = 5; 
+  string qrCode = 6;
+  string address = 7;
+  string notes = 8; 
+  int64 createdAt = 9;
+  int64 updatedAt = 10;
+}
+
+message CreatePaymentProtoReq {
+  string userId = 1; 
+  PaymentType paymentType = 2;
+  string title = 3;
+  string network = 4; 
+  string qrCode = 5;
+  string address = 6;
+  optional string notes = 7; 
+}
+
+message PaymentQuery {
+    optional int64  offset      = 1;
+    optional int32  limit       = 2;
+    optional string userId      = 3;
+    optional PaymentType paymentType = 4;
+    optional string title       = 5;
+    optional string network     = 6;
+    optional string qrCode      = 7;
+    optional string address     = 8;
+    optional string notes       = 9;
+    optional int64  createdAt   = 10;
+    optional int64  updatedAt   = 11;
+}
+
+message GetPaymentIdProtoReq{
+	string paymentId = 1;
+}
+
+message DeletePaymentProtoReq{
+	string paymentId = 1;
+}
+
+message UpdatePaymentProtoReq {
+  string paymentId = 1; 
+  optional string userId = 2; 
+  optional PaymentType paymentType = 3;
+  optional string title = 4;
+  optional string network = 5; 
+  optional string qrCode = 6;
+  optional string address = 7;
+  optional string notes = 8; 
+}
+
+message ListPayment {
+	repeated PaymentProtoModel payments = 1;
+}
+
+
+
+
 service UserServiceProtocol {
+	// Payment 
+	rpc GetPaymentListCall(PaymentQuery)         returns (ListPayment);
+	rpc UpdatePaymentCall(UpdatePaymentProtoReq) returns (PaymentProtoModel);
+	rpc GetPaymentByIdCall(GetPaymentIdProtoReq) returns (PaymentProtoModel);
+	rpc DeletePaymentCall(DeletePaymentProtoReq) returns (Empty);
+	rpc CreatePaymentCall(CreatePaymentProtoReq) returns (PaymentProtoModel);
+
     // Normal user calls
 
     rpc GetUsersCall(UserQuery)                   returns (UserList);
