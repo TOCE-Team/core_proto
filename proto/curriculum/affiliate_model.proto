@@ -22,7 +22,12 @@ message AffiliateProtoModel {
 }
 
 message GetAffiliateByIdProtoReq {
-    string affiliate_id                     = 1;
+    string affiliate_id   = 1;
+}
+
+message GetAffiliateByUserProtoReq {
+    string user_id  = 1;
+    string course_id = 2;
 }
 
 message GetAffiliateListProtoReq {
@@ -51,6 +56,7 @@ message CreateAffiliateProtoReq {
     int64 started_at                        = 7;
     int64 expired_time                      = 8;
     optional string agency                  = 9;
+    bool is_instructor                      = 10; 
 }
 
 message UpdateAffiliateProtoReq  {
