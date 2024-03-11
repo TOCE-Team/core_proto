@@ -725,7 +725,7 @@ enum PaymentType {
   Fiat = 1;
 }
 
-message PaymentProtoModel {
+message PaymentInfoProtoModel {
   string paymentId = 1; 
   string userId = 2; 
   PaymentType paymentType = 3;
@@ -738,7 +738,7 @@ message PaymentProtoModel {
   int64 updatedAt = 10;
 }
 
-message CreatePaymentProtoReq {
+message CreatePaymentInfoProtoReq {
   string userId = 1; 
   PaymentType paymentType = 2;
   string title = 3;
@@ -748,7 +748,7 @@ message CreatePaymentProtoReq {
   optional string notes = 7; 
 }
 
-message PaymentQuery {
+message PaymentInfoQuery {
     optional int64  offset      = 1;
     optional int32  limit       = 2;
     optional string userId      = 3;
@@ -762,15 +762,15 @@ message PaymentQuery {
     optional int64  updatedAt   = 11;
 }
 
-message GetPaymentIdProtoReq{
+message GetPaymentInfoIdProtoReq{
 	string paymentId = 1;
 }
 
-message DeletePaymentProtoReq{
+message DeletePaymentInfoProtoReq{
 	string paymentId = 1;
 }
 
-message UpdatePaymentProtoReq {
+message UpdatePaymentInfoProtoReq {
   string paymentId = 1; 
   optional string userId = 2; 
   optional PaymentType paymentType = 3;
@@ -781,20 +781,17 @@ message UpdatePaymentProtoReq {
   optional string notes = 8; 
 }
 
-message ListPayment {
-	repeated PaymentProtoModel payments = 1;
+message ListPaymentInfo {
+	repeated PaymentInfoProtoModel payments = 1;
 }
-
-
-
 
 service UserServiceProtocol {
 	// Payment 
-	rpc GetPaymentListCall(PaymentQuery)         returns (ListPayment);
-	rpc UpdatePaymentCall(UpdatePaymentProtoReq) returns (PaymentProtoModel);
-	rpc GetPaymentByIdCall(GetPaymentIdProtoReq) returns (PaymentProtoModel);
-	rpc DeletePaymentCall(DeletePaymentProtoReq) returns (Empty);
-	rpc CreatePaymentCall(CreatePaymentProtoReq) returns (PaymentProtoModel);
+	rpc GetPaymentInfoListCall(PaymentInfoQuery)         returns (ListPaymentInfo);
+	rpc UpdatePaymentInfoCall(UpdatePaymentInfoProtoReq) returns (PaymentInfoProtoModel);
+	rpc GetPaymentInfoByIdCall(GetPaymentInfoIdProtoReq) returns (PaymentInfoProtoModel);
+	rpc DeletePaymentInfoCall(DeletePaymentInfoProtoReq) returns (Empty);
+	rpc CreatePaymentInfoCall(CreatePaymentInfoProtoReq) returns (PaymentInfoProtoModel);
 
     // Normal user calls
 
