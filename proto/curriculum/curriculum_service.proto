@@ -9,6 +9,7 @@ import "assignments_model.proto";
 import "quiz_model.proto";
 import "comment_model.proto";
 import "affiliate_model.proto";
+import "course_payment_model.proto";
 
 message Empty {}
 
@@ -186,4 +187,12 @@ service CurriculumServiceProto {
   // Coupon used
   rpc GetAffiliateCouponUsedByIdCall(GetAffiliateCouponUsedByIdProtoReq) returns(GetAffiliateCouponUsedByIdProtoRes);
   rpc CreateAffiliateCouponUsedCall(CreateAffiliateCouponUsedProtoReq) returns(AffiliateCouponUsedProtoModel);
+
+
+  // Course Payment
+  rpc GetCoursePaymentCall(GetCoursePaymentProtoReq) returns(CoursePaymentProtoModel);
+  rpc GetListCoursePaymentCall(GetListCoursePaymentProtoReq) returns(GetListCoursePaymentProtoRes);
+  rpc CreateCoursePaymentCall(CreateCoursePaymentProtoReq) returns(CoursePaymentProtoModel);
+  rpc UpdateCoursePaymentCall(UpdateCoursePaymentProtoReq) returns(CoursePaymentProtoModel);
+  rpc DeleteCoursePaymentCall(DeleteCoursePaymentProtoReq) returns(Empty);
 }
