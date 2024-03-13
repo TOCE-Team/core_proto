@@ -1,5 +1,5 @@
 syntax = "proto3";
-package  curriculum_service;
+package  payment_service;
 
 enum PaymentTypeProtoModel {
     _Fiat   = 0;
@@ -23,12 +23,11 @@ message CoursePaymentProtoModel {
     PaymentStateProtoModel  payment_state   = 5;
     string                  payment_info_id = 6;
     string                  notes           = 7;
-    int64                   expired_time    = 8;
-    bool                    isDeleted       = 9;
-    int64                   createdAt       = 10;
-    int64                   updatedAt       = 11;
-    optional string         image           = 12;
-    int64                   amount          = 13;
+    bool                    isDeleted       = 8;
+    int64                   createdAt       = 9;
+    int64                   updatedAt       = 10;
+    string                  image           = 11;
+    int64                   amount          = 12;
 }
 
 message GetCoursePaymentProtoReq {
@@ -42,7 +41,9 @@ message GetListCoursePaymentProtoReq {
     optional PaymentTypeProtoModel   payment_type   = 4;
     optional PaymentStateProtoModel  payment_state  = 5;
     optional int64  offset                          = 6;
-    optional int64  limit                           = 7;
+    optional int32  limit                           = 7;
+	optional int64  createdAt                       = 8;
+	optional int64  updatedAt                       = 9;
 }
 
 message GetListCoursePaymentProtoRes {
@@ -55,7 +56,8 @@ message CreateCoursePaymentProtoReq {
     PaymentTypeProtoModel   payment_type    = 3;
     string                  payment_info_id = 4;
     string                  notes           = 5;
-    int64                   amount          = 6;
+    string                  image           = 6;
+    int64                   amount          = 7;
 }
 
 message UpdateCoursePaymentProtoReq {
@@ -68,3 +70,13 @@ message DeleteCoursePaymentProtoReq {
     string payment_id = 1;
 }
 
+message Empty {}
+
+service PaymentServiceProto{
+  // Course Payment
+  rpc GetCoursePaymentCall(GetCoursePaymentProtoReq) returns(CoursePaymentProtoModel);
+  rpc GetListCoursePaymentCall(GetListCoursePaymentProtoReq) returns(GetListCoursePaymentProtoRes);
+  rpc CreateCoursePaymentCall(CreateCoursePaymentProtoReq) returns(CoursePaymentProtoModel);
+  rpc UpdateCoursePaymentCall(UpdateCoursePaymentProtoReq) returns(CoursePaymentProtoModel);
+  rpc DeleteCoursePaymentCall(DeleteCoursePaymentProtoReq) returns(Empty);
+}

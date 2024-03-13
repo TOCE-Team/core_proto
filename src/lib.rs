@@ -21,3 +21,6 @@ pub mod common_service;
 
 #[cfg(feature = "mail")]
 pub mod mail_service;
+
+#[cfg(feature = "payment")]
+pub mod payment_service;
