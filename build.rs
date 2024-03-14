@@ -50,6 +50,14 @@ fn main() {
         .compile(&["proto/user_service.proto"], &["proto"])
         .expect("Couldn't compile proto files");
 
+    #[cfg(feature = "payment")]
+    tonic_build::configure()
+        .out_dir("src")
+        .type_attribute(".", serde_impl)
+        .message_attribute(".", "#[derive(sqlx::FromRow)]")
+        .compile(&["proto/payment_service.proto"], &["proto"])
+        .expect("Couldn't compile proto files");
+
     #[cfg(feature = "common")]
     tonic_build::configure()
         .out_dir("src")
