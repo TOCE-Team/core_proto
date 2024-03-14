@@ -60,6 +60,7 @@ message LessonProtoModel {
   LessonTypeProto lesson_type = 13;
   optional string thumbnail = 14;
   optional string next_lesson = 15;
+  bool isFree                 = 16;
   //repeated QuizVideoProtoModel quiz_video  = 15;
 }
 
@@ -76,6 +77,7 @@ message CreateLessonProtoReq {
   LessonTypeProto lesson_type = 10;
   optional string thumbnail = 11;
   optional int32 lesson_index = 12;
+  optional bool is_free = 13;
 }
 
 message CreateLessonProtoRes {
@@ -96,6 +98,7 @@ message UpdateLessonProtoReq {
   string lessonId = 9;
   optional string thumbnail = 10;
   optional int32 lesson_index = 11;
+  optional bool is_free = 12;
 }
 
 message UpdateLessonProtoRes {
@@ -127,6 +130,10 @@ message GetAllLessonBySectionIdProtoReq {
 }
 
 message GetAllLessonByCourseIdProtoReq {
+  string  courseId = 1;
+}
+
+message GetAllLessonFreeByCourseIdProtoReq {
   string  courseId = 1;
 }
 
