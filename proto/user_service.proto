@@ -666,6 +666,7 @@ message UserAffiliateProtoModel {
     int64  paginationId             = 10;
     int64  createdAt                = 11;
     int64  updatedAt                = 12;
+    int64 commission                = 13;
 }
 
 message UserReferralDetailProtoRes {
@@ -683,6 +684,15 @@ message UserReferralDetailProtoRes {
 message GetUserAffiliateProtoReq {
     string id_or_code      = 1;
 }
+
+message GetCommissionUserAffiliateProtoReq {
+    string id_or_code      = 1;
+}
+
+message GetCommissionUserAffiliateProtoRes {
+    int64 points     = 1;
+}
+
 
 message GetUserReferralOfUserProtoReq {
     string id_or_code           = 1;
@@ -707,6 +717,11 @@ message CreateUserAffiliateProtoReq {
     string user_id                  = 1;
     bool is_referred                = 2;
     optional string referred_code   = 3;
+}
+
+message UpdateCommissionUserAffiliateProtoReq {
+    string user_id       = 1;
+    int64 commission     = 2;
 }
 
 message UpdateUserAffiliateProtoReq {
@@ -884,10 +899,10 @@ service UserServiceProtocol {
 	rpc ViewModeratorCall(ViewModeratorProtoReq) returns (UserList);
 
     // User Affiliate
-
     rpc GetUserAffiliateCall(GetUserAffiliateProtoReq) returns(UserAffiliateProtoModel);
     rpc GetUserReferralOfUserCall(GetUserReferralOfUserProtoReq) returns(GetUserReferralOfUserProtoRes);
     rpc GetTopUserReferralCall(GetTopUserReferralProtoReq) returns(GetTopUserReferralProtoRes);
     rpc CreateUserAffiliateCall(CreateUserAffiliateProtoReq) returns(UserAffiliateProtoModel);
     rpc UpdateUserAffiliateCall(UpdateUserAffiliateProtoReq) returns(UserAffiliateProtoModel);
+    rpc UpdateCommissionUserAffiliateCall(UpdateCommissionUserAffiliateProtoReq) returns(UserAffiliateProtoModel);
 }
