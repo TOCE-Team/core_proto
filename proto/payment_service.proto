@@ -1,0 +1,82 @@
+syntax = "proto3";
+package  payment_service;
+
+enum PaymentTypeProtoModel {
+    _Fiat   = 0;
+    _Crypto = 1;
+}
+
+enum PaymentStateProtoModel {
+    _Pending     = 0;
+    _Confirming  = 1;
+    _Successful  = 2;
+    _Failed      = 3;
+    _Canceled    = 4;
+
+}
+
+message CoursePaymentProtoModel {
+    string                  payment_id      = 1;
+    string                  course_id       = 2;
+    string                  user_id         = 3;
+    PaymentTypeProtoModel   payment_type    = 4;
+    PaymentStateProtoModel  payment_state   = 5;
+    string                  payment_info_id = 6;
+    string                  notes           = 7;
+    bool                    isDeleted       = 8;
+    int64                   createdAt       = 9;
+    int64                   updatedAt       = 10;
+    string                  image           = 11;
+    int64                   amount          = 12;
+}
+
+message GetCoursePaymentProtoReq {
+    string payment_id        = 1;
+}
+
+message GetListCoursePaymentProtoReq {
+    optional string payment_id                      = 1;
+    optional string user_id                         = 2;
+    optional string course_id                       = 3;
+    optional PaymentTypeProtoModel   payment_type   = 4;
+    optional PaymentStateProtoModel  payment_state  = 5;
+    optional int64  offset                          = 6;
+    optional int32  limit                           = 7;
+	optional int64  createdAt                       = 8;
+	optional int64  updatedAt                       = 9;
+}
+
+message GetListCoursePaymentProtoRes {
+    repeated CoursePaymentProtoModel course_payments = 1;
+}
+
+message CreateCoursePaymentProtoReq {
+    string                  course_id       = 1;
+    string                  user_id         = 2;
+    PaymentTypeProtoModel   payment_type    = 3;
+    string                  payment_info_id = 4;
+    string                  notes           = 5;
+    string                  image           = 6;
+    int64                   amount          = 7;
+}
+
+message UpdateCoursePaymentProtoReq {
+    string                           payment_id      = 1;
+    optional PaymentStateProtoModel  payment_state   = 2;
+    optional string                  image           = 3;
+}
+
+message DeleteCoursePaymentProtoReq {
+    string payment_id = 1;
+}
+
+message Empty {}
+
+service PaymentServiceProto{
+  // Course Payment
+  rpc GetCoursePaymentCall(GetCoursePaymentProtoReq) returns(CoursePaymentProtoModel);
+  rpc GetListCoursePaymentCall(GetListCoursePaymentProtoReq) returns(GetListCoursePaymentProtoRes);
+  rpc CreateCoursePaymentCall(CreateCoursePaymentProtoReq) returns(CoursePaymentProtoModel);
+  rpc UpdateCoursePaymentCall(UpdateCoursePaymentProtoReq) returns(CoursePaymentProtoModel);
+  rpc DeleteCoursePaymentCall(DeleteCoursePaymentProtoReq) returns(Empty);
+}
