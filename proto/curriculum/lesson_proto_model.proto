@@ -141,10 +141,11 @@ message LessonProtoList {
   repeated LessonProtoModel lessonList = 1;
 }
 
-message DeleteLessonProtoReq {
+message RestoreLessonProtoReq {
   string lesson_id = 1;
 }
 
-message RestoreLessonProtoReq {
-  string lesson_id = 1;
+message DeleteLessonProtoReq {
+  string section_id = 1;
+  string lesson_id = 2;
 }
