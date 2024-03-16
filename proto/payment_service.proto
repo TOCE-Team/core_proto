@@ -64,6 +64,7 @@ message UpdateCoursePaymentProtoReq {
     string                           payment_id      = 1;
     optional PaymentStateProtoModel  payment_state   = 2;
     optional string                  image           = 3;
+	optional string                  approveBy       = 4;
 }
 
 message DeleteCoursePaymentProtoReq {
