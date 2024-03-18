@@ -162,8 +162,6 @@ message UpdateUserProtoReq {
     optional string phone             = 6;
     optional string introductionBrief = 7;
     optional string image             = 8;
-    string          password          = 9;
-    optional string newPassword       = 10;
     optional string thumbnail         = 11;
     optional bool   official          = 12;
     optional bool   is_active         = 13; 
