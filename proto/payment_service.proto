@@ -44,6 +44,7 @@ message GetListCoursePaymentProtoReq {
     optional int32  limit                           = 7;
 	optional int64  createdAt                       = 8;
 	optional int64  updatedAt                       = 9;
+	optional string notes                           = 10;
 }
 
 message GetListCoursePaymentProtoRes {
