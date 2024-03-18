@@ -78,6 +78,7 @@ message CreateLessonProtoReq {
   optional string thumbnail = 11;
   optional int32 lesson_index = 12;
   optional bool is_free = 13;
+  optional int32 video_duration = 14;
 }
 
 message CreateLessonProtoRes {
