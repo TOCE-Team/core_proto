@@ -162,8 +162,6 @@ message UpdateUserProtoReq {
     optional string phone             = 6;
     optional string introductionBrief = 7;
     optional string image             = 8;
-    string          password          = 9;
-    optional string newPassword       = 10;
     optional string thumbnail         = 11;
     optional bool   official          = 12;
     optional bool   is_active         = 13; 
@@ -749,8 +747,9 @@ message PaymentInfoProtoModel {
   string qrCode = 6;
   string address = 7;
   string notes = 8; 
-  int64 createdAt = 9;
-  int64 updatedAt = 10;
+  bool   isAdmin = 9; 
+  int64 createdAt = 10;
+  int64 updatedAt = 11;
 }
 
 message CreatePaymentInfoProtoReq {
@@ -761,6 +760,7 @@ message CreatePaymentInfoProtoReq {
   string qrCode = 5;
   string address = 6;
   optional string notes = 7; 
+  bool is_admin = 8; 
 }
 
 message PaymentInfoQuery {
@@ -807,6 +807,7 @@ service UserServiceProtocol {
 	rpc GetPaymentInfoByIdCall(GetPaymentInfoIdProtoReq) returns (PaymentInfoProtoModel);
 	rpc DeletePaymentInfoCall(DeletePaymentInfoProtoReq) returns (Empty);
 	rpc CreatePaymentInfoCall(CreatePaymentInfoProtoReq) returns (PaymentInfoProtoModel);
+	rpc GetAdminPaymentInfoCall(Empty)                   returns (ListPaymentInfo);
 
     // Normal user calls
 
