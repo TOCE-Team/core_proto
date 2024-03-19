@@ -27,6 +27,12 @@ enum CourseTypeProto {
   Bootcamp = 1;
 }
 
+enum AdvertisingType {
+  Advertised = 0;
+  Sponsored = 1;
+  Recommended = 2;
+}
+
 message CourseProtoModel {
   string courseId = 1;
   ObjectStateProtoModel courseState = 2;
@@ -323,4 +329,32 @@ message CreateCourseProtoRes {
   string courseTitle = 1;
   string courseId = 2;
   bool successfull = 3;
+}
+
+message NotificationBarProto {
+  string content = 1;
+  string link = 2;
+  int32 notificationBarIndex = 3;
+}
+
+message CourseAdvertisingProtoRes {
+  string courseId = 1;
+  string courseTitle = 2;
+  string thumbnail = 3;
+  AdvertisingType advertisingType = 4;
+  int32 AdvertisingIndex = 5;
+  int32 members = 6;
+  int32 videos = 7;
+  int64 updatedAt = 8;
+}
+
+message CreateCourseAdvertisingProtoReq {
+  string courseId = 1;
+  AdvertisingType advertisingType = 2;
+  int32 AdvertisingIndex = 3;
+}
+
+message HomepageAdvertisingRes {
+  repeated NotificationBarProto notifications = 1;
+  repeated CourseAdvertisingProtoRes courseAdvertising = 2;
 }
