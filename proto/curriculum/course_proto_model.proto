@@ -38,10 +38,10 @@ message CourseProtoModel {
   ObjectStateProtoModel courseState = 2;
   string courseTitle = 3;
   string slug = 4;
-  int64 courseFee = 5;
+  optional int64 courseFee = 5;
   float rating = 6;
-  string difficultyLevel = 7;
-  int32 languages = 8;
+  optional string difficultyLevel = 7;
+  optional int32 languages = 8;
   string owner = 9;
   bool isDeleted = 10;
   optional bool publish = 11;
@@ -56,7 +56,7 @@ message CourseProtoModel {
   optional string courseBrief = 29;
   CourseTypeProto courseType = 21;
   optional string thumbnail = 22;
-  string network = 23;
+  optional string network = 23;
   optional int32 total_student = 24;
   optional int32 total_lesson = 25;
   optional int32 total_duration = 26;
@@ -67,9 +67,9 @@ message CourseProtoModel {
 
 message CreateCourseProtoReq {
   string courseTitle = 1;
-  int64 courseFee = 2;
-  string difficultyLevel = 3;
-  int32 languages = 4;
+  optional int64 courseFee = 2;
+  optional string difficultyLevel = 3;
+  optional int32 languages = 4;
   optional string courseBrief = 5;
   optional string whatInclude = 6;
   optional string expectedOutcomes = 7;
@@ -80,7 +80,7 @@ message CreateCourseProtoReq {
   CourseTypeProto courseType = 12;
   optional string thumbnail = 13;
   string courseId = 14;
-  string network = 15;
+  optional string network = 15;
   optional string overview = 16;
   optional string videoIntroduction = 17;
   optional string point = 18;
@@ -103,6 +103,7 @@ message UpdateCourseProtoReq {
   optional string overview = 14;
   optional string videoIntroduction = 15;
   optional string point = 16;
+  optional string thumbnail = 17;
 }
 
 message UpdateCourseProtoRes{
