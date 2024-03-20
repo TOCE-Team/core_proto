@@ -7,4 +7,5 @@ enum LessonTypeProto {
   CodeExercise = 2;
   Quiz = 3;
   Form = 4;
+  Text = 5;
 }
