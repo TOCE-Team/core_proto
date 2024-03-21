@@ -4,6 +4,7 @@ package  payment_service;
 enum PaymentTypeProtoModel {
     Crypto = 0;
     Fiat   = 1;
+	Other  = 2;
 }
 
 enum PaymentStateProtoModel {
@@ -54,18 +55,27 @@ message GetListCoursePaymentProtoRes {
 message CreateCoursePaymentProtoReq {
     string                  course_id       = 1;
     string                  user_id         = 2;
-    PaymentTypeProtoModel   payment_type    = 3;
-    string                  payment_info_id = 4;
-    string                  notes           = 5;
-    string                  image           = 6;
-    int64                   amount          = 7;
+	PaymentStateProtoModel  payment_state   = 3;
+    PaymentTypeProtoModel   payment_type    = 4;
+    string                  payment_info_id = 6;
+    string                  notes           = 7;
+    string                  image           = 8;
+    int64                   amount          = 9;
+}
+
+message GetIdAndStateCoursePaymentProtoReq {
+	string user_id = 1;
+	string course_id = 2;
 }
 
 message UpdateCoursePaymentProtoReq {
     string                           payment_id      = 1;
-    optional PaymentStateProtoModel  payment_state   = 2;
-    optional string                  image           = 3;
-	optional string                  approveBy       = 4;
+	optional PaymentTypeProtoModel   payment_type    = 2;
+    optional PaymentStateProtoModel  payment_state   = 3;
+    optional string                  image           = 4;
+	optional string                  approveBy       = 5;
+	optional string                  notes           = 6;
+	optional string                  payment_info_id = 7;
 }
 
 message DeleteCoursePaymentProtoReq {
@@ -81,4 +91,5 @@ service PaymentServiceProto{
   rpc CreateCoursePaymentCall(CreateCoursePaymentProtoReq) returns(CoursePaymentProtoModel);
   rpc UpdateCoursePaymentCall(UpdateCoursePaymentProtoReq) returns(CoursePaymentProtoModel);
   rpc DeleteCoursePaymentCall(DeleteCoursePaymentProtoReq) returns(Empty);
+  rpc GetIdStateCoursePaymentCall(GetIdAndStateCoursePaymentProtoReq) returns (CoursePaymentProtoModel);
 }
