@@ -860,6 +860,7 @@ message NoteProtoModel {
   NotePriority priority = 9 ;
   int64 created_at = 10;
   int64 updated_at = 11;
+  int64 timeInVideo = 12;
 }
 
 message CreateNoteProtoReq {
@@ -871,6 +872,7 @@ message CreateNoteProtoReq {
   string title = 7;
   string content = 8 ;
   optional NotePriority priority = 9 ;
+  int64 timeInVideo = 10;
 }
 
 message AddNoteToCollectionProtoReq {
