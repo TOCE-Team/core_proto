@@ -41,15 +41,23 @@ message GetListCoursePaymentProtoReq {
     optional string course_id                       = 3;
     optional PaymentTypeProtoModel   payment_type   = 4;
     optional PaymentStateProtoModel  payment_state  = 5;
-    optional int64  offset                          = 6;
+    optional int64  page                            = 6;
     optional int32  limit                           = 7;
 	optional int64  createdAt                       = 8;
 	optional int64  updatedAt                       = 9;
 	optional string notes                           = 10;
 }
 
+message Paging {
+	int32	limit         = 1;
+	int64   total         = 2;
+	int64	current_page  = 3;
+	int64	total_page    = 4;
+}
+
 message GetListCoursePaymentProtoRes {
     repeated CoursePaymentProtoModel course_payments = 1;
+	Paging paging = 2;
 }
 
 message CreateCoursePaymentProtoReq {
