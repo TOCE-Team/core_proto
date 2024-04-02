@@ -171,6 +171,7 @@ message CourseLessonsProto{
   bool lesson_completed = 7;
   int32 lesson_index = 8;
   ObjectStateProtoModel lesson_state = 9;
+  bool is_free = 10;
 }
 
 message GetCourseSectionsAndLessonsRes{
@@ -365,26 +366,26 @@ message GetOutlineByCourseIdReq {
   string course_id = 1;
 }
 
-message GetOutlineByCourseIdRes {
-  repeated OutlineSectionProto outline = 1;
-}
+// message GetOutlineByCourseIdRes {
+//   repeated OutlineSectionProto outline = 1;
+// }
 
-message OutlineSectionProto{
-  string section_id = 1;
-  string section_title = 2;
-  repeated OutlineLessonProto lesson_list = 3;
-  optional int64 start_at = 4;
-  int32 section_index = 5;
-  ObjectStateProtoModel section_state = 6;
-}
+// message OutlineSectionProto{
+//   string section_id = 1;
+//   string section_title = 2;
+//   repeated OutlineLessonProto lesson_list = 3;
+//   optional int64 start_at = 4;
+//   int32 section_index = 5;
+//   ObjectStateProtoModel section_state = 6;
+// }
 
-message OutlineLessonProto{
-  string lesson_id = 1;
-  string lesson_title = 2;
-  LessonTypeProto lesson_type = 3;
-  optional string materials = 4;
-  optional int32 video_duration = 5;
-  bool lesson_completed = 6;
-  int32 lesson_index = 7;
-  ObjectStateProtoModel lesson_state = 8;
-}
+// message OutlineLessonProto{
+//   string lesson_id = 1;
+//   string lesson_title = 2;
+//   LessonTypeProto lesson_type = 3;
+//   optional string materials = 4;
+//   optional int32 video_duration = 5;
+//   bool lesson_completed = 6;
+//   int32 lesson_index = 7;
+//   ObjectStateProtoModel lesson_state = 8;
+// }

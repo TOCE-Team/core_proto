@@ -748,8 +748,9 @@ message PaymentInfoProtoModel {
   string address = 7;
   string notes = 8; 
   bool   isAdmin = 9; 
-  int64 createdAt = 10;
-  int64 updatedAt = 11;
+  string accountName = 10;
+  int64 createdAt = 11;
+  int64 updatedAt = 12;
 }
 
 message CreatePaymentInfoProtoReq {
@@ -761,6 +762,7 @@ message CreatePaymentInfoProtoReq {
   string address = 6;
   optional string notes = 7; 
   bool is_admin = 8; 
+  string accountName = 9;
 }
 
 message PaymentInfoQuery {
@@ -773,8 +775,9 @@ message PaymentInfoQuery {
     optional string qrCode      = 7;
     optional string address     = 8;
     optional string notes       = 9;
-    optional int64  createdAt   = 10;
-    optional int64  updatedAt   = 11;
+    optional string accountName = 10;
+    optional int64  createdAt   = 11;
+    optional int64  updatedAt   = 12;
 }
 
 message GetPaymentInfoIdProtoReq{
@@ -842,6 +845,129 @@ message DeleteUserFollowsProtoReq {
     string follower_id      = 1;
     string followed_id      = 2;
 }
+enum NotePriority {
+  Low = 0;
+  Normal = 1;
+  High = 2;
+}
+
+message NoteProtoModel {
+  string note_id = 1; 
+  string course_id = 2;
+  string section_id = 3;
+  string lesson_id = 4;
+  string user_id = 5;
+  string collection_id = 6;
+  string title = 7;
+  string content = 8 ;
+  NotePriority priority = 9 ;
+  int64 created_at = 10;
+  int64 updated_at = 11;
+  int64 timeInVideo = 12;
+}
+
+message CreateNoteProtoReq {
+  string course_id = 2;
+  string section_id = 3;
+  string lesson_id = 4;
+  string user_id = 5;
+  optional string collection_id = 6;
+  string title = 7;
+  string content = 8 ;
+  optional NotePriority priority = 9 ;
+  int64 timeInVideo = 10;
+}
+
+message AddNoteToCollectionProtoReq {
+	string note_id = 1;
+	string collection_id = 2;
+}
+
+message UpdateNoteProtoReq {
+  string note_id               = 1;
+  optional string collection_id = 2;
+  optional string title = 3;
+  optional string content = 4 ;
+  optional NotePriority priority = 5;
+}
+
+message GetNotesProtoReq {
+  string user_id = 5;
+  optional string note_id = 1; 
+  optional string course_id = 2;
+  optional string section_id = 3;
+  optional string lesson_id = 4;
+  optional string collection_id = 6;
+  optional string title = 7;
+  optional NotePriority priority = 9 ;
+  optional int64 created_at = 10;
+  optional int64 updated_at = 11;
+  optional int64  			offset      = 12;
+  optional int32  			limit       = 13;
+
+}
+
+message NotesProtoList {
+	repeated NoteProtoModel notes = 1;
+}
+
+
+message GetNoteByIdProtoReq {
+	string note_id = 1;
+}
+
+message DeleteNoteProtoReq {
+	string note_id = 1;
+}
+
+
+message NoteCollectionProtoModel {
+  string collection_id = 1;
+  string user_id = 2;
+  string title = 3;
+  string description = 4;
+  int64 created_at = 6;
+  int64 updated_at = 7;
+}
+
+message NoteCollectionListProto {
+	repeated NoteCollectionProtoModel note_collections = 1;
+}
+
+message CreateCollectionProtoReq {
+  string user_id = 2;
+  string title = 3;
+  string description = 4;
+}
+
+message UpdateCollectionProtoReq {
+ string        collection_id = 1;
+ optional string title = 2;
+ optional string description = 3;
+
+}
+
+message GetCollectionByIdProtoReq {
+	string collection_id = 1;
+}
+
+message GetCollectionsProtoReq {
+  string user_id = 2;
+  optional string title = 3;
+  optional int64 created_at = 6;
+  optional int64 updated_at = 7;
+  optional int64  			offset      = 8;
+  optional int32  			limit       = 9;
+
+}
+message DeleteCollectionProtoReq {
+	string collection_id = 1;
+}
+
+message GetAdminPaymentInfoProtoReq {
+	PaymentType payment_type = 1;
+}
+
 
 service UserServiceProtocol {
 	// Payment 
@@ -850,7 +976,7 @@ service UserServiceProtocol {
 	rpc GetPaymentInfoByIdCall(GetPaymentInfoIdProtoReq) returns (PaymentInfoProtoModel);
 	rpc DeletePaymentInfoCall(DeletePaymentInfoProtoReq) returns (Empty);
 	rpc CreatePaymentInfoCall(CreatePaymentInfoProtoReq) returns (PaymentInfoProtoModel);
-	rpc GetAdminPaymentInfoCall(Empty)                   returns (ListPaymentInfo);
+	rpc GetAdminPaymentInfoCall(GetAdminPaymentInfoProtoReq)  returns (ListPaymentInfo);
 
     // Normal user calls
 
@@ -957,4 +1083,18 @@ service UserServiceProtocol {
     rpc CreateUserFollowsCall(CreateUserFollowsProtoReq) returns(UserFollowsProtoModel);
     rpc DeleteUserFollowsCall(DeleteUserFollowsProtoReq) returns(Empty);
     rpc RestoreUserFollowsCall(RestoreUserFollowsProtoReq) returns(Empty);
+
+	// Note 
+    rpc GetNoteByIdCall(GetNoteByIdProtoReq) returns (NoteProtoModel);
+	rpc GetListNoteCall(GetNotesProtoReq) returns (NotesProtoList);
+	rpc CreateNoteProtoCall(CreateNoteProtoReq) returns (NoteProtoModel);
+	rpc UpdateNoteProtoCall(UpdateNoteProtoReq) returns (NoteProtoModel);
+	rpc DeleteNoteProtoCall(DeleteNoteProtoReq) returns (Empty);
+	rpc AddNoteToCollectionCall(AddNoteToCollectionProtoReq) returns (NoteProtoModel);
+	// Collection
+	rpc GetCollectionByIdCall(GetCollectionByIdProtoReq) returns (NoteCollectionProtoModel);
+	rpc GetCollectionsCall(GetCollectionsProtoReq) returns (NoteCollectionListProto);
+	rpc CreateCollectionCall(CreateCollectionProtoReq) returns (NoteCollectionProtoModel);
+	rpc UpdateCollectionCall(UpdateCollectionProtoReq) returns (NoteCollectionProtoModel);
+	rpc DeleteCollectionCall(DeleteCollectionProtoReq) returns (Empty);
 }
