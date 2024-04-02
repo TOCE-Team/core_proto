@@ -192,4 +192,8 @@ service CurriculumServiceProto {
   rpc GetHomepageAvertisingCall(Empty) returns(HomepageAdvertisingRes);
   rpc CreateNotificationBarCall(NotificationBarProto) returns(Empty);
   rpc CreateCourseAdvertisingCall(CreateCourseAdvertisingProtoReq) returns(Empty);
+
+  // Get outline
+  rpc GetOutlineByCourseIdCall(GetOutlineByCourseIdReq) returns(GetOutlineByCourseIdReq);
+
 }
