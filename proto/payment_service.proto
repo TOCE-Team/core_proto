@@ -40,7 +40,7 @@ message GetListCoursePaymentProtoReq {
     optional string user_id                         = 2;
     optional string course_id                       = 3;
     optional PaymentTypeProtoModel   payment_type   = 4;
-    optional PaymentStateProtoModel  payment_state  = 5;
+    repeated PaymentStateProtoModel  payment_state  = 5;
     optional int64  page                            = 6;
     optional int32  limit                           = 7;
 	optional int64  createdAt                       = 8;
