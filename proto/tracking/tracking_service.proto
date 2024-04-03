@@ -75,4 +75,21 @@ service TrackingServiceProto {
 
     // Course process report
     rpc CourseProcessReportCall(CourseProcessReportReq) returns (CourseProcessReportRes);
+
+	/// View course
+	rpc UpViewCourseCall(UpViewCourseProtoReq) returns (TrackingViewCourseProtoModel);
+	rpc GetBestCourseViewCall(GetBestCourseViewProtoReq) returns (GetBestCourseViewProtoRes);
+	/// Like course
+	rpc ToggleTrackingCourseLikeCall(ToggleTrackingCourseLikeProtoReq) returns (TrackingLikeCourseProtoModel);
+	rpc GetTotalLikeCourseCall(GetTotalLikeCourseProtoReq) returns (GetTotalLikeCourseProtoRes);
+	/// View lesson
+	rpc UpViewLessonCall(UpViewLessonProtoReq) returns (TrackingViewLessonProtoModel);
+	rpc GetBestLessonViewCall(GetBestLessonViewProtoReq) returns (GetBestLessonViewProtoRes);
+	/// Like lesson
+	rpc ToggleTrackingLessonLikeCall(ToggleTrackingLessonLikeProtoReq) returns (TrackingLikeLessonProtoModel);
+	rpc GetTotalLikeLessonCall(GetTotalLikeLessonProtoReq) returns (GetTotalLikeLessonProtoRes);
+	// check state Like
+	rpc CheckStateLikeCourseCall(CheckStateLikeCourseProtoReq) returns (CheckCourseStateLikeProtoRes);
+	rpc CheckStateLikeLessonCall(CheckStateLikeLessonProtoReq) returns (CheckLessonStateLikeProtoRes);
+
 }
