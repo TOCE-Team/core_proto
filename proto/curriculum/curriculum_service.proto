@@ -9,11 +9,12 @@ import "assignments_model.proto";
 import "quiz_model.proto";
 import "comment_model.proto";
 import "affiliate_model.proto";
+import "course_event_model.proto";
 
 message Empty {}
 
 service CurriculumServiceProto {
-  // Coure
+  // Course
   rpc CreateCourseCall(CreateCourseProtoReq) returns (CreateCourseProtoRes);
   rpc GetCourseByCourseIdCall(GetCourseByCourseIdProtoReq) returns (CourseProtoModel);
   //rpc GetAllCourseByCategoryIdCall(GetAllCourseByCategoryIdProtoReq) returns (CourseProtoModel);
@@ -192,4 +193,14 @@ service CurriculumServiceProto {
   rpc GetHomepageAvertisingCall(Empty) returns(HomepageAdvertisingRes);
   rpc CreateNotificationBarCall(NotificationBarProto) returns(Empty);
   rpc CreateCourseAdvertisingCall(CreateCourseAdvertisingProtoReq) returns(Empty);
+
+  // Get outline
+  rpc GetOutlineByCourseIdCall(GetOutlineByCourseIdReq) returns(GetCourseSectionsAndLessonsRes);
+
+  // Course Event
+  rpc GetCourseEventByIdCall(GetCourseEventByIdProtoReq) returns(CourseEventProtoModel);
+  rpc GetCourseEventsCall(GetCourseEventsProtoReq) returns(GetCourseEventByCourseProtoRes);
+  rpc CreateCourseEventCall(CreateCourseEventProtoReq) returns(CourseEventProtoModel);
+  rpc UpdateCourseEventCall(UpdateCourseEventProtoReq) returns(CourseEventProtoModel);
+  rpc DeleteCourseEventCall(DeleteCourseEventProtoReq) returns(Empty);
 }
