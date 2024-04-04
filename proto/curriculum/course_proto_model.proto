@@ -349,6 +349,7 @@ message CourseAdvertisingProtoRes {
   int32 videos = 7;
   int64 updatedAt = 8;
   float rating = 9;
+  string slug = 10;
 }
 
 message CreateCourseAdvertisingProtoReq {
