@@ -1,0 +1,84 @@
+syntax = "proto3";
+package  curriculum_service;
+
+enum CourseEventTypeProtoModel {
+    Seminar           = 0; 
+    Webinar           = 1;
+}
+
+message CourseEventProtoModel {
+    string event_id                         = 1;
+    string course_id                        = 2;
+    CourseEventTypeProtoModel eventType     = 3;
+    string eventTitle                       = 4;
+    string description                      = 5;
+    optional string thumbnail               = 6;
+    optional string image                   = 7;
+    int64 started_at                        = 8;
+    int64 ended_at                          = 9;
+    optional string location                = 10;
+    optional string linkOnline              = 11;
+    repeated string hosts                   = 12;
+    repeated string speakers                = 13;
+    repeated string sponsors                = 14;
+    repeated string media_partners          = 15;
+    bool  isDeleted                         = 16;
+    int64 createdAt                         = 17;
+    int64 updatedAt                         = 18;
+}
+
+
+message GetCourseEventByIdProtoReq {
+    string event_id     = 1;
+}
+
+message GetCourseEventsProtoReq {
+    optional string event_id                        = 1;
+    optional string course_id                       = 2;
+    optional CourseEventTypeProtoModel eventType    = 3;
+    optional int64  offset                          = 4;
+    optional int64  limit                           = 5;
+
+}
+
+message GetCourseEventByCourseProtoRes {
+    repeated CourseEventProtoModel events   = 1;
+}
+
+message CreateCourseEventProtoReq {
+    string course_id                        = 1;
+    CourseEventTypeProtoModel eventType     = 2;
+    string eventTitle                       = 3;
+    string description                      = 4;
+    optional string thumbnail               = 5;
+    optional string image                   = 6;
+    int64 started_at                        = 7;
+    int64 ended_at                          = 8;
+    optional string location                = 9;
+    optional string linkOnline              = 10;
+    repeated string hosts                   = 11;
+    repeated string speakers                = 12;
+    repeated string sponsors                = 13;
+    repeated string media_partners          = 14;
+}
+
+message UpdateCourseEventProtoReq {
+    string event_id                                 = 1;
+    optional CourseEventTypeProtoModel eventType    = 2;
+    optional string eventTitle                      = 3;
+    optional string description                     = 4;
+    optional string thumbnail                       = 5;
+    optional string image                           = 6;
+    optional int64 started_at                       = 7;
+    optional int64 ended_at                         = 8;
+    optional string location                        = 9;
+    optional string linkOnline                      = 10;
+    repeated string hosts                           = 11;
+    repeated string speakers                        = 12;
+    repeated string sponsors                        = 13;
+    repeated string media_partners                  = 14;
+}
+
+message DeleteCourseEventProtoReq {
+    string event_id    = 1;
+}
