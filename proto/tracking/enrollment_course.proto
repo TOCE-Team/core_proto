@@ -374,5 +374,120 @@ message DeleteEnrollmentVideoProtoReq {
     string id = 1;
 }
 
+// view + like
+message TrackingViewCourseProtoModel {
+	string id = 1;
+	string course_id = 2;
+	int64 course_view = 3;
+	int64 updated_at = 4;
+}
 
+message UpViewCourseProtoReq {
+	string course_id = 1;
+}
+//lesson
+message TrackingViewLessonProtoModel {
+	string id = 1;
+	string lesson_id = 2;
+	int64 lesson_view = 3;
+	int64 updated_at = 4;
+}
 
+message UpViewLessonProtoReq {
+	string lesson_id = 1;
+}
+
+enum FilterBestCourseProto {
+	LastDay   = 0;
+	ThisWeek  = 1;
+	LastWeek  = 2;
+	ThisMonth = 3;
+	LastMonth = 4;
+	Quarter   = 5;
+	AllTime   = 6;
+}
+enum FilterBestLessonProto {
+	_LastDay   = 0;
+	_ThisWeek  = 1;
+	_LastWeek  = 2;
+	_ThisMonth = 3;
+	_LastMonth = 4;
+	_Quarter   = 5;
+	_AllTime   = 6;
+}
+
+// course
+message GetBestCourseViewProtoReq {
+	FilterBestCourseProto filter = 1;
+}
+
+message GetBestCourseViewProtoRes {
+	repeated string course_ids = 1;
+}
+//lesson
+message GetBestLessonViewProtoReq {
+	FilterBestCourseProto filter = 1;
+}
+
+message GetBestLessonViewProtoRes {
+	repeated string lesson_ids = 1;
+}
+
+// course
+message TrackingLikeCourseProtoModel {
+	string id = 1;
+	string course_id = 2;
+	string user_id = 3;
+	bool course_like = 4;
+}
+
+message ToggleTrackingCourseLikeProtoReq {
+	string course_id = 1;
+	string user_id = 2;
+}
+
+message GetTotalLikeCourseProtoReq {
+	string course_id = 1;
+}
+
+message GetTotalLikeCourseProtoRes {
+	int64 likes = 1;
+}
+/// lesson
+
+message TrackingLikeLessonProtoModel {
+	string id = 1;
+	string lesson_id = 2;
+	string user_id = 3;
+	bool lesson_like = 4;
+}
+
+message ToggleTrackingLessonLikeProtoReq {
+	string lesson_id = 1;
+	string user_id = 2;
+}
+
+message GetTotalLikeLessonProtoReq {
+	string lesson_id = 1;
+}
+
+message GetTotalLikeLessonProtoRes {
+	int64 likes = 1;
+}
+
+message CheckStateLikeCourseProtoReq {
+	string course_id = 1;
+	string user_id = 2;
+}
+message CheckStateLikeLessonProtoReq {
+	string lesson_id = 1;
+	string user_id = 2;
+}
+
+message CheckCourseStateLikeProtoRes {
+	bool is_like = 1;
+}
+
+message CheckLessonStateLikeProtoRes {
+	bool is_like = 1;
+}
