@@ -12,8 +12,9 @@ enum PaymentStateProtoModel {
     Confirming  = 1;
     Successful  = 2;
     Failed      = 3;
-    Canceled    = 4;
+    Cancelled    = 4;
 	Deactive    = 5;
+	Dispute     = 6;
 }
 
 message CoursePaymentProtoModel {
