@@ -969,7 +969,36 @@ message GetAdminPaymentInfoProtoReq {
 }
 
 
+message UpdateDesktopSessionProtoReq {
+	string user_id = 1;
+	string session_id = 2;
+}
+message UpdateMobileSessionProtoReq {
+	string user_id = 1;
+	string session_id = 2;
+}
+message GetUserByDesktopSessionProtoReq{
+	string session_id = 1;
+}
+message GetUserByMobileSessionProtoReq{
+	string session_id = 1;
+}
+message DeleteDesktopSessionProtoReq{
+	string user_id = 1;
+}
+message DeleteMobileSessionProtoReq{
+	string user_id = 1;
+}
+
+
 service UserServiceProtocol {
+	// Session 
+	rpc UpdateDesktopSessionCall(UpdateDesktopSessionProtoReq) returns (User);
+	rpc UpdateMobileSessionCall(UpdateMobileSessionProtoReq) returns (User);
+	rpc GetUserByDesktopSessionCall(GetUserByDesktopSessionProtoReq) returns (User);
+	rpc GetUserByMobileSessionCall(GetUserByMobileSessionProtoReq) returns (User);
+	rpc DeleteDesktopSessionCall(DeleteDesktopSessionProtoReq) returns (Empty);
+	rpc DeleteMobileSessionCall(DeleteMobileSessionProtoReq) returns (Empty);
 	// Payment 
 	rpc GetPaymentInfoListCall(PaymentInfoQuery)         returns (ListPaymentInfo);
 	rpc UpdatePaymentInfoCall(UpdatePaymentInfoProtoReq) returns (PaymentInfoProtoModel);
