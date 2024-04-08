@@ -30,6 +30,7 @@ message CoursePaymentProtoModel {
     int64                   updatedAt       = 10;
     string                  image           = 11;
     int64                   amount          = 12;
+	optional string         approve_by      = 13;
 }
 
 message GetCoursePaymentProtoReq {
@@ -47,6 +48,7 @@ message GetListCoursePaymentProtoReq {
 	optional int64  createdAt                       = 8;
 	optional int64  updatedAt                       = 9;
 	optional string notes                           = 10;
+	optional string approve_by                      = 11;
 }
 
 message Paging {
