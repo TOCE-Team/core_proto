@@ -172,6 +172,7 @@ message CourseLessonsProto{
   int32 lesson_index = 8;
   ObjectStateProtoModel lesson_state = 9;
   bool is_free = 10;
+  repeated string quizzes = 11;
 }
 
 message GetCourseSectionsAndLessonsRes{
