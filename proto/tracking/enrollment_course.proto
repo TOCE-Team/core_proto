@@ -439,6 +439,7 @@ message TrackingLikeCourseProtoModel {
 	string course_id = 2;
 	string user_id = 3;
 	bool course_like = 4;
+	int64 updated_at = 5;
 }
 
 message ToggleTrackingCourseLikeProtoReq {
@@ -460,6 +461,7 @@ message TrackingLikeLessonProtoModel {
 	string lesson_id = 2;
 	string user_id = 3;
 	bool lesson_like = 4;
+	int64 updated_at = 5;
 }
 
 message ToggleTrackingLessonLikeProtoReq {
