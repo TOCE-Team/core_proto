@@ -203,4 +203,7 @@ service CurriculumServiceProto {
   rpc CreateCourseEventCall(CreateCourseEventProtoReq) returns(CourseEventProtoModel);
   rpc UpdateCourseEventCall(UpdateCourseEventProtoReq) returns(CourseEventProtoModel);
   rpc DeleteCourseEventCall(DeleteCourseEventProtoReq) returns(Empty);
+
+  // Create multi coupon
+  rpc CreateMultiCouponCall(CreateMultiCouponProtoReq) returns(CreateMultiCouponProtoRes);
 }
