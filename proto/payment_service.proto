@@ -29,9 +29,11 @@ message CoursePaymentProtoModel {
     int64                   createdAt       = 9;
     int64                   updatedAt       = 10;
     string                  image           = 11;
-    int64                   amount          = 12;
+    double                  amount          = 12;
 	optional string         approve_by      = 13;
 	optional int64          confirmed_at    = 14;
+	optional string         coupon_id       = 15;
+	optional double         invoice         = 16;
 }
 
 message GetCoursePaymentProtoReq {
@@ -73,7 +75,7 @@ message CreateCoursePaymentProtoReq {
     string                  payment_info_id = 6;
     string                  notes           = 7;
     string                  image           = 8;
-    int64                   amount          = 9;
+    double                  amount         = 9;
 }
 
 message GetIdAndStateCoursePaymentProtoReq {
@@ -90,6 +92,8 @@ message UpdateCoursePaymentProtoReq {
 	optional string                  notes           = 6;
 	optional string                  payment_info_id = 7;
 	optional int64                   confirmed_at    = 8;
+	optional string                  coupon_id       = 9;
+	optional double                  invoice         = 10;
 }
 
 message DeleteCoursePaymentProtoReq {
