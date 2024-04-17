@@ -1,5 +1,6 @@
 syntax = "proto3";
 package  payment_service;
+import "google/protobuf/wrappers.proto";
 
 enum PaymentTypeProtoModel {
     Crypto = 0;
@@ -34,6 +35,7 @@ message CoursePaymentProtoModel {
 	optional int64          confirmed_at    = 14;
 	optional string         coupon_id       = 15;
 	optional double         invoice         = 16;
+	double                  fee_after_coupon   = 17;
 }
 
 message GetCoursePaymentProtoReq {
@@ -75,7 +77,9 @@ message CreateCoursePaymentProtoReq {
     string                  payment_info_id = 6;
     string                  notes           = 7;
     string                  image           = 8;
-    double                  amount         = 9;
+    double                  amount          = 9;
+	double                 fee_after_coupon   = 10;
+	optional string         coupon          = 11;
 }
 
 message GetIdAndStateCoursePaymentProtoReq {
@@ -100,6 +104,28 @@ message DeleteCoursePaymentProtoReq {
     string payment_id = 1;
 }
 
+message CreateApiKeyProtoReq {
+	string prefix = 1;
+	string shortToken = 2;
+	string hash    = 3;
+}
+
+message GetApiKeyProtoReq {
+	string prefix  = 1;
+	string shortToken = 2;
+}
+
+message ApiKeyProtoRes {
+	string longTokenHash = 1;
+}
+
+message CheckCodePaymentExistProtoReq {
+	string code = 1;
+}
+message GetCoursePaymentByCodeProtoReq {
+	string code = 1;
+}
+
 message Empty {}
 
 service PaymentServiceProto{
@@ -110,4 +136,8 @@ service PaymentServiceProto{
   rpc UpdateCoursePaymentCall(UpdateCoursePaymentProtoReq) returns(CoursePaymentProtoModel);
   rpc DeleteCoursePaymentCall(DeleteCoursePaymentProtoReq) returns(Empty);
   rpc GetIdStateCoursePaymentCall(GetIdAndStateCoursePaymentProtoReq) returns (CoursePaymentProtoModel);
+  rpc GetApiKeyCall(GetApiKeyProtoReq) returns (ApiKeyProtoRes);
+  rpc CreateApiKeyCall(CreateApiKeyProtoReq) returns (Empty);
+  rpc CheckCodePaymentExistCall(CheckCodePaymentExistProtoReq) returns (google.protobuf.BoolValue);
+  rpc GetCoursePaymentByCodeCall(GetCoursePaymentByCodeProtoReq) returns (CoursePaymentProtoModel);
 }
