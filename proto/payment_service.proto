@@ -13,7 +13,7 @@ enum PaymentStateProtoModel {
     Confirming  = 1;
     Successful  = 2;
     Failed      = 3;
-    Cancelled    = 4;
+    Cancelled   = 4;
 	Deactive    = 5;
 	Dispute     = 6;
 }
@@ -78,7 +78,7 @@ message CreateCoursePaymentProtoReq {
     string                  notes           = 7;
     string                  image           = 8;
     double                  amount          = 9;
-	double                 fee_after_coupon   = 10;
+	double                 fee_after_coupon = 10;
 	optional string         coupon          = 11;
 }
 
@@ -98,6 +98,17 @@ message UpdateCoursePaymentProtoReq {
 	optional int64                   confirmed_at    = 8;
 	optional string                  coupon_id       = 9;
 	optional double                  invoice         = 10;
+}
+message SepayCreateCoursePaymentProtoReq {
+	 PaymentTypeProtoModel   payment_type    = 2;
+     PaymentStateProtoModel  payment_state   = 3;
+     string                  image           = 4;
+	 string                  approveBy       = 5;
+	 string                  notes           = 6;
+	 string                  payment_info_id = 7;
+	 int64                   confirmed_at    = 8;
+	 string                  coupon_id       = 9;
+	 double                  invoice         = 10;
 }
 
 message DeleteCoursePaymentProtoReq {
@@ -126,6 +137,10 @@ message GetCoursePaymentByCodeProtoReq {
 	string code = 1;
 }
 
+message CheckCodePaymentExistsProtoRes {
+	bool exists = 1;
+}
+
 message Empty {}
 
 service PaymentServiceProto{
@@ -138,6 +153,6 @@ service PaymentServiceProto{
   rpc GetIdStateCoursePaymentCall(GetIdAndStateCoursePaymentProtoReq) returns (CoursePaymentProtoModel);
   rpc GetApiKeyCall(GetApiKeyProtoReq) returns (ApiKeyProtoRes);
   rpc CreateApiKeyCall(CreateApiKeyProtoReq) returns (Empty);
-  rpc CheckCodePaymentExistCall(CheckCodePaymentExistProtoReq) returns (google.protobuf.BoolValue);
+  rpc CheckCodePaymentExistCall(CheckCodePaymentExistProtoReq) returns (CheckCodePaymentExistsProtoRes);
   rpc GetCoursePaymentByCodeCall(GetCoursePaymentByCodeProtoReq) returns (CoursePaymentProtoModel);
 }
