@@ -1,6 +1,5 @@
 syntax = "proto3";
 package  payment_service;
-import "google/protobuf/wrappers.proto";
 
 enum PaymentTypeProtoModel {
     Crypto = 0;
