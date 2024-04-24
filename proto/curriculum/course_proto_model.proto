@@ -351,6 +351,12 @@ message CourseAdvertisingProtoRes {
   int64 updatedAt = 8;
   float rating = 9;
   string slug = 10;
+  repeated ContributeCourseAdvertising contributes = 11;
+}
+
+message ContributeCourseAdvertising {
+	string contribute_id = 1;
+	optional string  image =  2;
 }
 
 message CreateCourseAdvertisingProtoReq {
