@@ -385,6 +385,37 @@ message CreateMultiCouponProtoReq {
 message CreateMultiCouponProtoRes {
   repeated string coupons = 1;
 }
+/// banner homepage
+//message BannerHomePageProtoModel {
+//	string banner_id = 1;
+//	string image = 2;
+//	string event_name = 3;
+//	string url = 4;
+//}
+//
+//message CreateBannerHomePageProtoReq {
+//	string image = 1;
+//	string url = 2;
+//	string event_name = 3;
+//}
+//
+//message GetBannerHomePageProtoReq {
+//	string banner_id = 1;
+//	string event_name = 2;
+//	int64 created_at = 3;
+//	int64 updated_at = 4;
+//}
+//
+//message UpdateBannerHomePageProtoReq{
+//	string banner_id = 1;
+//	string event_name = 2;
+//	string url = 3;
+//	string image = 4;
+//}
+//
+//message GetBannerHomePageProtoRes {
+//	repeated BannerHomePageProtoModel = 1;
+//}
 
 // message GetOutlineByCourseIdRes {
 //   repeated OutlineSectionProto outline = 1;

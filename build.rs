@@ -1,5 +1,6 @@
 fn main() {
-    let serde_impl = "#[derive(serde::Serialize, serde::Deserialize)]";
+    //let serde_impl = "#[derive(serde::Serialize, serde::Deserialize, utoipa::ToSchema, redis_macros::FromRedisValue, redis_macros::ToRedisArgs)]";
+    let serde_impl = "#[derive(serde::Serialize, serde::Deserialize, utoipa::ToSchema)]";
 
     #[cfg(feature = "tracking")]
     tonic_build::configure()
@@ -36,6 +37,8 @@ fn main() {
     tonic_build::configure()
         .out_dir("src")
         .type_attribute(".", serde_impl)
+        .message_attribute(".", "#[derive(redis_macros::FromRedisValue)]")
+        .message_attribute(".", "#[derive(redis_macros::ToRedisArgs)]")
         .compile(
             &["proto/curriculum/curriculum_service.proto"],
             &["proto/curriculum"],
