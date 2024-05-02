@@ -190,7 +190,7 @@ service CurriculumServiceProto {
   rpc CreateAffiliateCouponUsedCall(CreateAffiliateCouponUsedProtoReq) returns(AffiliateCouponUsedProtoModel);
 
   // Homepage
-  rpc GetHomepageAvertisingCall(Empty) returns(HomepageAdvertisingRes);
+  rpc GetHomepageAdvertisingCall(Empty) returns(HomepageAdvertisingRes);
   rpc CreateNotificationBarCall(NotificationBarProto) returns(Empty);
   rpc CreateCourseAdvertisingCall(CreateCourseAdvertisingProtoReq) returns(Empty);
 
