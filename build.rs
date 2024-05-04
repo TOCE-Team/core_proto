@@ -6,10 +6,7 @@ fn main() {
     tonic_build::configure()
         .out_dir("src")
         .type_attribute(".", serde_impl)
-        .compile(
-            &["proto/tracking/tracking_service.proto"],
-            &["proto/tracking"],
-        )
+        .compile(&["proto/tracking_service.proto"], &["proto"])
         .expect("Couldn't compile proto files");
 
     #[cfg(feature = "hackathon")]
@@ -39,10 +36,7 @@ fn main() {
         .type_attribute(".", serde_impl)
         .message_attribute(".", "#[derive(redis_macros::FromRedisValue)]")
         .message_attribute(".", "#[derive(redis_macros::ToRedisArgs)]")
-        .compile(
-            &["proto/curriculum/curriculum_service.proto"],
-            &["proto/curriculum"],
-        )
+        .compile(&["proto/curriculum_service.proto"], &["proto"])
         .expect("Couldn't compile proto files");
 
     #[cfg(feature = "user")]
@@ -66,7 +60,7 @@ fn main() {
         .out_dir("src")
         .type_attribute(".", serde_impl)
         .message_attribute(".", "#[derive(sqlx::FromRow)]")
-        .compile(&["proto/common/form_service.proto"], &["proto"])
+        .compile(&["proto/form_service.proto"], &["proto"])
         .expect("Couldn't compile proto files");
 
     #[cfg(feature = "mail")]
@@ -74,6 +68,6 @@ fn main() {
         .out_dir("src")
         .type_attribute(".", serde_impl)
         .message_attribute(".", "#[derive(sqlx::FromRow)]")
-        .compile(&["proto/mail/mail_service.proto"], &["proto"])
+        .compile(&["proto/mail_service.proto"], &["proto"])
         .expect("Couldn't compile proto files");
 }

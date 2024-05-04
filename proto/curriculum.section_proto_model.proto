@@ -1,7 +1,7 @@
 syntax = "proto3";
 package  curriculum_service;
 
-import "course_proto_model.proto";
+import "curriculum.course_proto_model.proto";
 
 message SectionProtoModel {
   string sectionId = 1;

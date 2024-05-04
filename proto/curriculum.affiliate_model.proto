@@ -1,8 +1,6 @@
 syntax = "proto3";
 package  curriculum_service;
 
-
-
 message AffiliateProtoModel {
     string affiliate_id                     = 1;
     string user_id                          = 2;

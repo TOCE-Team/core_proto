@@ -1,15 +1,15 @@
 syntax = "proto3";
 package  curriculum_service;
 
-import "course_proto_model.proto";
-import "course_management_model.proto";
-import "section_proto_model.proto";
-import "lesson_proto_model.proto";
-import "assignments_model.proto";
-import "quiz_model.proto";
-import "comment_model.proto";
-import "affiliate_model.proto";
-import "course_event_model.proto";
+import "curriculum.course_proto_model.proto";
+import "curriculum.course_management_model.proto";
+import "curriculum.section_proto_model.proto";
+import "curriculum.lesson_proto_model.proto";
+import "curriculum.assignments_model.proto";
+import "curriculum.quiz_model.proto";
+import "curriculum.comment_model.proto";
+import "curriculum.affiliate_model.proto";
+import "curriculum.course_event_model.proto";
 
 message Empty {}
 
