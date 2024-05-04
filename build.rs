@@ -6,28 +6,28 @@ fn main() {
     tonic_build::configure()
         .out_dir("src")
         .type_attribute(".", serde_impl)
-        .compile(&["proto/tracking_service.proto"], &["proto"])
+        .compile(&["proto/service.tracking_service.proto"], &["proto"])
         .expect("Couldn't compile proto files");
 
     #[cfg(feature = "hackathon")]
     tonic_build::configure()
         .out_dir("src")
         .type_attribute(".", serde_impl)
-        .compile(&["proto/hackathon_service.proto"], &["proto"])
+        .compile(&["proto/service.hackathon_service.proto"], &["proto"])
         .expect("Couldn't compile proto files");
 
     #[cfg(feature = "category")]
     tonic_build::configure()
         .out_dir("src")
         .type_attribute(".", serde_impl)
-        .compile(&["proto/category_service.proto"], &["proto"])
+        .compile(&["proto/service.category_service.proto"], &["proto"])
         .expect("Couldn't compile proto files");
 
     #[cfg(feature = "category")]
     tonic_build::configure()
         .out_dir("src")
         .type_attribute(".", serde_impl)
-        .compile(&["proto/category_service.proto"], &["proto"])
+        .compile(&["proto/service.category_service.proto"], &["proto"])
         .expect("Couldn't compile proto files");
 
     #[cfg(feature = "curriculum")]
@@ -36,7 +36,7 @@ fn main() {
         .type_attribute(".", serde_impl)
         .message_attribute(".", "#[derive(redis_macros::FromRedisValue)]")
         .message_attribute(".", "#[derive(redis_macros::ToRedisArgs)]")
-        .compile(&["proto/curriculum_service.proto"], &["proto"])
+        .compile(&["proto/service.curriculum_service.proto"], &["proto"])
         .expect("Couldn't compile proto files");
 
     #[cfg(feature = "user")]
@@ -44,7 +44,7 @@ fn main() {
         .out_dir("src")
         .type_attribute(".", serde_impl)
         .message_attribute(".", "#[derive(sqlx::FromRow)]")
-        .compile(&["proto/user_service.proto"], &["proto"])
+        .compile(&["proto/service.user_service.proto"], &["proto"])
         .expect("Couldn't compile proto files");
 
     #[cfg(feature = "payment")]
@@ -52,7 +52,7 @@ fn main() {
         .out_dir("src")
         .type_attribute(".", serde_impl)
         .message_attribute(".", "#[derive(sqlx::FromRow)]")
-        .compile(&["proto/payment_service.proto"], &["proto"])
+        .compile(&["proto/service.payment_service.proto"], &["proto"])
         .expect("Couldn't compile proto files");
 
     #[cfg(feature = "common")]
@@ -60,7 +60,7 @@ fn main() {
         .out_dir("src")
         .type_attribute(".", serde_impl)
         .message_attribute(".", "#[derive(sqlx::FromRow)]")
-        .compile(&["proto/form_service.proto"], &["proto"])
+        .compile(&["proto/service.form_service.proto"], &["proto"])
         .expect("Couldn't compile proto files");
 
     #[cfg(feature = "mail")]
@@ -68,6 +68,6 @@ fn main() {
         .out_dir("src")
         .type_attribute(".", serde_impl)
         .message_attribute(".", "#[derive(sqlx::FromRow)]")
-        .compile(&["proto/mail_service.proto"], &["proto"])
+        .compile(&["proto/service.mail_service.proto"], &["proto"])
         .expect("Couldn't compile proto files");
 }

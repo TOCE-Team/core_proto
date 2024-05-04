@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package hackathon_service;
 
-import "user_service.proto";
+import "service.user_service.proto";
 
 /*paginate*/
 message PaginateProtoModel{
