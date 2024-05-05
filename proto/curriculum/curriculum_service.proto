@@ -10,8 +10,12 @@ import "quiz_model.proto";
 import "comment_model.proto";
 import "affiliate_model.proto";
 import "course_event_model.proto";
+import "referral_model.proto";
 
 message Empty {}
+message SuccessfullProto {
+  string res = 1;
+}
 
 service CurriculumServiceProto {
   // Course
@@ -206,4 +210,9 @@ service CurriculumServiceProto {
 
   // Create multi coupon
   rpc CreateMultiCouponCall(CreateMultiCouponProtoReq) returns(CreateMultiCouponProtoRes);
+
+  // Create referral term
+  rpc CreateReferralTermCall(CreateReferralTermsProtoReq) returns(SuccessfullProto);
+  //rpc CreateKolReferralCall(CreateReferralTermsProtoReq) returns(SuccessfullProto);
+
 }
