@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package builder_service;
 
-import "user_service.proto";
+import "service.user_service.proto";
 
 message BuilderProtoModel {
     string id = 1;

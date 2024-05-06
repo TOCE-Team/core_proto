@@ -19,7 +19,7 @@ message GetTrackingByIdProtoReq {
 
 message Empty{}
 
-service TrackingServiceProto {
+service TrackingServiceProto{
     rpc GetTrackingByIdCall(GetTrackingByIdProtoReq) returns (TrackingProtoModel);
 
     // Tracking Work
