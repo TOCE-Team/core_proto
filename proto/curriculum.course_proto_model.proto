@@ -1,7 +1,8 @@
 syntax = "proto3";
 package  curriculum_service;
 
-import "type.proto";
+import "curriculum.type.proto";
+import public "tracking.enrollment_course.proto";
 
 enum ObjectStateProtoModel {
   Pending = 0;
@@ -369,6 +370,21 @@ message HomepageAdvertisingRes {
   repeated NotificationBarProto notifications = 1;
   repeated CourseAdvertisingProtoRes courseAdvertising = 2;
 }
+
+message HomepageRes{
+	HomepageAdvertisingRes advertising = 1;
+	HomepagePopularCourses popular_courses = 2;
+}
+
+message HomepagePopularCourses {
+	repeated HomepagePopularCourse popular_courses = 1;
+}
+
+message HomepagePopularCourse {
+	CourseProtoModel course_info = 1;
+	int64 course_view = 2;
+}
+
 
 message GetOutlineByCourseIdReq {
   string course_id = 1;

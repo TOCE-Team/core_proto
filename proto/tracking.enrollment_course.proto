@@ -422,7 +422,7 @@ message GetBestCourseViewProtoReq {
 }
 
 message GetBestCourseViewProtoRes {
-	repeated string course_ids = 1;
+	repeated TrackingViewCourseProtoModel course_views = 1;
 }
 //lesson
 message GetBestLessonViewProtoReq {

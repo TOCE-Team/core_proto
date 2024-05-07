@@ -1,8 +1,8 @@
 syntax = "proto3";
 package  tracking_service;
 
-import "enrollment_course.proto";
-import "tracking_management.proto";
+import "tracking.enrollment_course.proto";
+import "tracking.tracking_management.proto";
 
 
 message TrackingProtoModel{
@@ -19,7 +19,7 @@ message GetTrackingByIdProtoReq {
 
 message Empty{}
 
-service TrackingServiceProto {
+service TrackingServiceProto{
     rpc GetTrackingByIdCall(GetTrackingByIdProtoReq) returns (TrackingProtoModel);
 
     // Tracking Work
