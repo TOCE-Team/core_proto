@@ -314,10 +314,17 @@ message DeleteCourseTeamProtoReq {
     string courseId     = 1;
     string teamId       = 2;
 }
+enum TeamRole {
+    _Owner      = 0;
+    _Admin      = 1;
+    _Moderator  = 2;
+    _Member     = 3;
+}
 
 message AddTeamMemberProtoReq{
-	string teamId = 1;
-	string userId = 2;
+	string      teamId  = 1;
+	string      userId  = 2;
+    TeamRole    role    = 3;
 } 
 
 message GetTeamMemberProtoReq {
@@ -335,6 +342,7 @@ message GetTeamMemberProtoReq {
     optional int32  			totalCredit = 12;
     optional int64  			createdAt   = 13;
     optional int64  			updatedAt   = 14;
+    optional TeamRole           team_role   = 15;
 
 }
 
