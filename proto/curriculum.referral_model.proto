@@ -35,14 +35,6 @@ message CreateUserReferralProtoRes {
   string referral_code = 3;
 }
 
-message CreateKolReferralProtoReq{
-  string course_id = 1;
-  string referral_owner = 2;
-  repeated CommissionSettingProto commission = 3;
-  float minimum_withdraw_allow = 4;
-  string course_owner = 5;
-}
-
 message CommissionSettingProto {
   int32 referral_cap = 1;
   float percent = 2;
@@ -56,4 +48,15 @@ message CreateReferralTermsProtoReq {
   float minimum_withdraw_allow = 5;
   string course_owner = 6;
   repeated CommissionSettingProto commission = 7;
+}
+
+message AddCoursePartnerProto {
+  string course_id = 1;
+  string user_id = 2;
+  string course_owner = 3;
+}
+
+message AddPlatformPartnerProto {
+  string user_id = 2;
+  string course_owner = 3;
 }
