@@ -215,6 +215,6 @@ service CurriculumServiceProto {
   // Create referral term
   rpc CreateReferralTermCall(CreateReferralTermsProtoReq) returns(SuccessfulProto);
 
-  rpc AddCoursePartnerCall(AddCoursePartnerProto) returns(SuccessfulProto);
+  //rpc AddCoursePartnerCall(AddCoursePartnerProto) returns(SuccessfulProto);
   //rpc AddPlatformPartnerCall(AddCoursePartnerProto) returns(SuccessfulProto);
 }
