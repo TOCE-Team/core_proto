@@ -373,8 +373,18 @@ message HomepageAdvertisingRes {
 
 message HomepageRes{
 	HomepageAdvertisingRes advertising = 1;
-	tracking_service.GetBestCourseViewProtoRes popular_course = 2;
+	HomepagePopularCourses popular_courses = 2;
 }
+
+message HomepagePopularCourses {
+	repeated HomepagePopularCourse popular_courses = 1;
+}
+
+message HomepagePopularCourse {
+	CourseProtoModel course_info = 1;
+	int64 course_view = 2;
+}
+
 
 message GetOutlineByCourseIdReq {
   string course_id = 1;

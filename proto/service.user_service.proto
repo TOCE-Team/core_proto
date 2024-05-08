@@ -990,6 +990,27 @@ message DeleteMobileSessionProtoReq{
 	string user_id = 1;
 }
 
+// User Ranking
+message UserRankingProtoRes {
+    int64                                       top     = 1;
+    User                                        user = 2;
+    GetNumberFollowerAndFollowingOfUserProtoRes follows = 3;
+}
+
+message TopUserRankingProtoRes {
+    repeated UserRankingProtoRes tops =  1;
+}
+message GetTopUserRankingProtoReq {
+    optional int64      top         = 1;
+    //optional int64      offset      = 2;
+    //optional int64      limit       = 3;
+}
+
+message GetMyRankingProtoReq {
+    string      user_id         = 1;
+}
+
+
 
 service UserServiceProtocol {
 	// Session 
@@ -1126,4 +1147,9 @@ service UserServiceProtocol {
 	rpc CreateCollectionCall(CreateCollectionProtoReq) returns (NoteCollectionProtoModel);
 	rpc UpdateCollectionCall(UpdateCollectionProtoReq) returns (NoteCollectionProtoModel);
 	rpc DeleteCollectionCall(DeleteCollectionProtoReq) returns (Empty);
+
+    // Ranking
+    rpc GetTopUserRankingCall(GetTopUserRankingProtoReq) returns (TopUserRankingProtoRes);
+    rpc GetMyRankingCall(GetMyRankingProtoReq) returns (UserRankingProtoRes);
+
 }
