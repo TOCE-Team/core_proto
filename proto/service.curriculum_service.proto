@@ -13,7 +13,7 @@ import "curriculum.course_event_model.proto";
 import "curriculum.referral_model.proto";
 
 message Empty {}
-message SuccessfullProto {
+message SuccessfulProto {
   string res = 1;
 }
 
@@ -213,6 +213,7 @@ service CurriculumServiceProto {
   rpc GetHomepageCall(Empty) returns (HomepageRes);
 
   // Create referral term
-  rpc CreateReferralTermCall(CreateReferralTermsProtoReq) returns(SuccessfullProto);
-  //rpc CreateKolReferralCall(CreateReferralTermsProtoReq) returns(SuccessfullProto);
+  rpc CreateReferralTermCall(CreateReferralTermsProtoReq) returns(SuccessfulProto);
+
+  rpc AddCoursePartnerCall(AddCoursePartnerProto) returns(SuccessfulProto);
 }
