@@ -9,6 +9,12 @@ enum Role {
     Admin      = 3;
 }
 
+enum PlatformPartnerRole {
+    Foundation = 0;
+    Sponsor = 1;
+    Partner = 2;
+}
+
 enum Level {
     Beginner     = 0;
     Junior       = 1;
@@ -27,7 +33,7 @@ enum Level {
 message UserBase {
     string          id                = 1;
     int64           paginationId      = 2;
-    optional string firstName         = 3; 
+    optional string firstName         = 3;
     optional string lastName          = 4;
     string          username          = 5;
     string email                      = 6;
@@ -42,7 +48,7 @@ message UserBase {
     int64           createdAt         = 15;
     int64           updatedAt         = 16;
     optional string thumbnail         = 17;
-    bool            official          = 18; 
+    bool            official          = 18;
     bool            is_active         = 19;
 }
 
@@ -53,7 +59,7 @@ message UserBase {
 message User {
     string          id                = 1;
     int64           paginationId      = 2;
-    optional string firstName         = 3; 
+    optional string firstName         = 3;
     optional string lastName          = 4;
     string          username          = 5;
     optional string email             = 6;
@@ -66,12 +72,12 @@ message User {
     int64           createdAt         = 13;
     int64           updatedAt         = 14;
     optional string thumbnail         = 15;
-    bool            official          = 16; 
+    bool            official          = 16;
     bool            is_active         = 17;
 }
 
 /*
-    No password + isDeleted + paginationId + introduction + image fields 
+    No password + isDeleted + paginationId + introduction + image fields
     since those fields are very large to query, not very efficient to search
     password and isDeleted is removed due to privacy
     Include new fields such as offset and limit to do pagination
@@ -91,8 +97,12 @@ message UserQuery {
     optional int32  totalCredit = 11;
     optional int64  createdAt   = 12;
     optional int64  updatedAt   = 13;
-    optional bool official      = 14; 
+    optional bool official      = 14;
     optional bool is_active     = 15;
+}
+
+message SuccessfulProto{
+  string res = 1;
 }
 
 message GetNumberOfUsersRoleRes {
@@ -135,9 +145,9 @@ message LoginUserProtoReq {
 }
 
 message LoginWalletUserProtoReq {
-	string walletId = 1;
-	string network = 2;
-	string accountId = 3;
+  string walletId = 1;
+  string network = 2;
+  string accountId = 3;
 }
 
 message GetUserByEmailProtoReq {
@@ -150,7 +160,7 @@ message CreateUserProtoReq {
     string password = 3;
 }
 message CreateWalletUserProtoReq {
-	string id = 1;
+  string id = 1;
 }
 
 message UpdateUserProtoReq {
@@ -164,7 +174,7 @@ message UpdateUserProtoReq {
     optional string image             = 8;
     optional string thumbnail         = 11;
     optional bool   official          = 12;
-    optional bool   is_active         = 13; 
+    optional bool   is_active         = 13;
 }
 
 message UpdateNewPasswordProtoReq {
@@ -193,7 +203,7 @@ message UserInformationBase {
     optional string job_title            = 2;
     optional string location             = 3;
     optional string company              = 4;
-    optional string bio                  = 5; 
+    optional string bio                  = 5;
     optional string job_type             = 6;
     optional int32 year_of_experience    = 7;
     optional string industry             = 8;
@@ -220,7 +230,7 @@ message UpdateUserInformationProtoReq{
     optional string job_title            = 2;
     optional string location             = 3;
     optional string company              = 4;
-    optional string bio                  = 5; 
+    optional string bio                  = 5;
     optional string job_type             = 6;
     optional int32 year_of_experience    = 7;
     optional string industry             = 8;
@@ -238,21 +248,21 @@ message UpdateUserInformationProtoReq{
 
 /*Team*/
 message TeamBase {
-    string 	    id 		  		= 1;
+    string      id          = 1;
     int64       paginationId    = 2;
-    string 		name 	   		= 3;
-	string 		description 	= 4;
-	string  	owner 			= 5;
-    int64  		createdAt   	= 6;
-    int64  		updatedAt   	= 7;
-	bool 		isDeleted 		= 8;
-    optional string logo        = 9;
+    string    name        = 3;
+  string    description   = 4;
+  string    owner       = 5;
+    int64     createdAt     = 6;
+    int64     updatedAt     = 7;
+  bool    isDeleted     = 8;
+  optional string logo = 9;
 }
 
 message TeamListProtoReq {
     optional int64  offset      = 1;
     optional int64  limit       = 2;
-    optional string name 	    = 3;
+    optional string name      = 3;
     optional string owner       = 4;
     optional int64  createdAt   = 5;
     optional int64  updatedAt   = 6;
@@ -271,21 +281,21 @@ message GetTeamOwnerByUserIdProtoReq {
 }
 message GetUserTeamParticipationsProtoReq{
   string user_id = 1;
-} 
+}
 
 message CreateTeamProtoReq {
   string team_id = 1;
-    string 	name 	   	= 2;
-    string 	description	= 3;
-	string 	owner 	    = 4;
+    string  name      = 2;
+    string  description	= 3;
+  string  owner       = 4;
   optional string logo = 5;
 }
 
 message UpdateTeamProtoReq {
-    string 			    id 			= 1;
-    optional string 	name 	   	= 2;
-	optional string 	description = 3;
-	optional string  	owner 		= 4;
+    string          id      = 1;
+    optional string   name      = 2;
+  optional string   description = 3;
+  optional string   owner     = 4;
   optional string logo = 5;
 }
 
@@ -340,32 +350,31 @@ message GetUserTeamParticipateListProtoRes {
 }
 
 message AddTeamMemberProtoReq{
-	string      teamId  = 1;
-	string      userId  = 2;
-    TeamRole    role    = 3;
-} 
+  string teamId = 1;
+  string userId = 2;
+}
 
 message GetTeamMemberProtoReq {
-	string          			teamId      = 1;
-	optional int64  			offset      = 2;
-    optional int32  			limit       = 3;
-    optional string 			id          = 4;
-    optional string 			firstName   = 5;
-    optional string 			lastName    = 6;
-    optional string 			username    = 7;
-    optional string 			email       = 8;
-    optional string 			phone       = 9;
+  string                teamId      = 1;
+  optional int64        offset      = 2;
+    optional int32        limit       = 3;
+    optional string       id          = 4;
+    optional string       firstName   = 5;
+    optional string       lastName    = 6;
+    optional string       username    = 7;
+    optional string       email       = 8;
+    optional string       phone       = 9;
     optional Role               role        = 10;
     optional Level              level       = 11;
-    optional int32  			totalCredit = 12;
-    optional int64  			createdAt   = 13;
-    optional int64  			updatedAt   = 14;
+    optional int32        totalCredit = 12;
+    optional int64        createdAt   = 13;
+    optional int64        updatedAt   = 14;
 
 }
 
 message DeleteTeamMemberProtoReq{
     string teamId = 1;
-	string userId = 2;
+  string userId = 2;
 }
 
 // Email
@@ -375,15 +384,15 @@ enum EmailType {
 }
 
 message EmailBase {
-    string 	    id 		  		= 1;
+    string      id          = 1;
     int64       paginationId    = 2;
-    EmailType 	email_type 	   	= 3;
-	string  	subject 		= 4;
+    EmailType   email_type      = 3;
+  string    subject     = 4;
     string      header          = 5;
     string      body            = 6;
-    int64  		createdAt   	= 7;
-    int64  		updatedAt   	= 8;
-	bool 		isDeleted 		= 9;
+    int64     createdAt     = 7;
+    int64     updatedAt     = 8;
+  bool    isDeleted     = 9;
 }
 
 message EmailListProtoReq {
@@ -403,16 +412,16 @@ message GetEmailByIdProtoReq {
 }
 
 message CreateEmailProtoReq {
-    EmailType 	email_type 	   	= 1;
-	string  	subject 		= 2;
+    EmailType   email_type      = 1;
+  string    subject     = 2;
     string      header          = 3;
     string      body            = 4;
 }
 
 message UpdateEmailProtoReq {
-    string 			    id 			    = 1;
-    optional EmailType  email_type 	   	= 2;
-	optional string  	subject 		= 3;
+    string          id          = 1;
+    optional EmailType  email_type      = 2;
+  optional string   subject     = 3;
     optional string     header          = 4;
     optional string     body            = 5;
 }
@@ -422,18 +431,18 @@ message DeleteEmailProtoReq {
 }
 
 message UpdateRoleUserProtoReq {
-	string id = 1;
-	Role role = 2;
+  string id = 1;
+  Role role = 2;
 }
 
 message GetUserByWalletIdProtoReq {
-	string walletId = 1;
+  string walletId = 1;
 }
 
 message WalletUser {
-	string Id   = 1;
-	string walletId = 2;
-	string network = 3;
+  string Id   = 1;
+  string walletId = 2;
+  string network = 3;
 }
 
 message CollectingFeedbackBase {
@@ -479,114 +488,114 @@ message DeleteCollectingFeedbackProtoReq {
 }
 
 message UpdateEmailUserProtoReq {
-	string id = 1;
-	string email = 2;
+  string id = 1;
+  string email = 2;
 }
 
 
 /* tbl_Invite */
 enum InvitationType {
-    _Judge    	= 0;
-    _Team     	= 1;
-	_Moderator 	= 2;
-	_Assistant	= 3;
-	_Mentor		= 4;
+    _Judge      = 0;
+    _Team       = 1;
+  _Moderator  = 2;
+  _Assistant	= 3;
+  _Mentor		= 4;
 }
 enum InvitationState {
-    _Waiting    	= 0;
-    _Accept     	= 1;
-	_Reject 		= 2;
+    _Waiting      = 0;
+    _Accept       = 1;
+  _Reject     = 2;
 }
 enum InvitationFor {
-	_Hackathon 		= 0;
-	_Organize  		= 1;
-	_Course 			= 2;
-	_BootCamp 		= 3;
+  _Hackathon    = 0;
+  _Organize     = 1;
+  _Course       = 2;
+  _BootCamp     = 3;
 }
 
 message InvitationBase {
-	string 			parentId 		= 1;
-	string 			userId 			= 2;
-	string 			inviteKey 		= 3;
-	string 			title 			= 4;
-	string 			message 		= 5;	
-	InvitationFor	inviteFor    	= 6;
-	InvitationType 	invitationType 	= 7;
-	InvitationState state 			= 8;
-	int64 			deadline		= 9;
+  string      parentId    = 1;
+  string      userId      = 2;
+  string      inviteKey     = 3;
+  string      title       = 4;
+  string      message     = 5;
+  InvitationFor	inviteFor     = 6;
+  InvitationType  invitationType  = 7;
+  InvitationState state       = 8;
+  int64       deadline		= 9;
 }
 
 message GetInvitationListReq {
-	optional string parentId 	= 1;   
-	optional string userId 		= 2;
+  optional string parentId  = 1;
+  optional string userId    = 2;
 }
 
 message GetInvitationByIdReq {
-	string parentId 	= 1;   
-	string userId 		= 2;
+  string parentId   = 1;
+  string userId     = 2;
 }
 
 message GetInvitationByKeyReq {
-	string inviteKey 	= 1;   
+  string inviteKey  = 1;
 }
 
 message InvitationListRes {
-	repeated InvitationBase invitations = 1;
+  repeated InvitationBase invitations = 1;
 }
 
 message CreateInvitationProtoReq {
-	string 			parentId 		= 1;
-	string 			userId 			= 2;
-	string 			title 			= 3;
-	string 			message 		= 4;			
-	InvitationType 	invitationType 	= 5;
-	InvitationFor	inviteFor    	= 6;
-	int64 			deadline		= 7;
+  string      parentId    = 1;
+  string      userId      = 2;
+  string      title       = 3;
+  string      message     = 4;
+  InvitationType  invitationType  = 5;
+  InvitationFor	inviteFor     = 6;
+  int64       deadline		= 7;
 }
 
 message UpdateInvitationProtoReq {
-	string 						parentId 		= 1;
-	string 						userId 			= 2;
-	optional string 			title 			= 3;
-	optional string 			message 		= 4;	
-	optional int64 				deadline		= 5;		
+  string            parentId    = 1;
+  string            userId      = 2;
+  optional string       title       = 3;
+  optional string       message     = 4;
+  optional int64        deadline		= 5;
 }
 
 message ResponseInvitationProtoReq {
-	string 	parentId 		= 1;
-	string 	userId 			= 2;
-	InvitationState state 	= 3;
+  string  parentId    = 1;
+  string  userId      = 2;
+  InvitationState state   = 3;
 }
 
 message DeleteInvitationProtoReq {
-	string 	parentId 		= 1;
-	string 	userId 			= 2;
+  string  parentId    = 1;
+  string  userId      = 2;
 }
 
 /*organize*/
 
 
 message OrganizeBase {
-	string          id                  = 1;
-	string          hostId              = 2; // FK to the id field of UserProtoModel
-	string          name                = 3;
-	string          shortName           = 4;
-	string          url                 = 5;
-	optional string  logo               = 6;
-	string          tagline             = 7;
-	string          description         = 9;
-	string          location            = 10;
-	OrganizeType    organizeType        = 11;
-	string          websiteOfficial     = 12;
-	bool            official            = 13;
-	bool            is_deleted          = 14;
-	int64           createdAt           = 15;
+  string          id                  = 1;
+  string          hostId              = 2; // FK to the id field of UserProtoModel
+  string          name                = 3;
+  string          shortName           = 4;
+  string          url                 = 5;
+  optional string  logo               = 6;
+  string          tagline             = 7;
+  string          description         = 9;
+  string          location            = 10;
+  OrganizeType    organizeType        = 11;
+  string          websiteOfficial     = 12;
+  bool            official            = 13;
+  bool            is_deleted          = 14;
+  int64           createdAt           = 15;
     int64           paginationId        = 16;
 }
 
 enum OrganizeType{
-	University      = 0;
-	Organization    = 1;
+  University      = 0;
+  Organization    = 1;
 }
 
 message OrgListProtoReq {
@@ -595,72 +604,72 @@ message OrgListProtoReq {
 }
 
 message OrganizeList {
-	repeated OrganizeBase orgs = 1;
+  repeated OrganizeBase orgs = 1;
 }
 
 message GetOrgByIdProtoReq{
-	string id = 1;
+  string id = 1;
 }
 
 message CreateOrgProtoReq {
-	string userId = 1; // FK to the id field of UserProtoModel
-	string name = 2;
-	optional string shortName = 3;
-	string url = 4;
-	optional string logo = 5;
-	optional string tagline = 6;
-	optional string description = 7;
-	optional string location = 8;
-	optional string websiteOfficial = 9;
-	OrganizeType organizeType = 10;
-	bool official = 11;
+  string userId = 1; // FK to the id field of UserProtoModel
+  string name = 2;
+  optional string shortName = 3;
+  string url = 4;
+  optional string logo = 5;
+  optional string tagline = 6;
+  optional string description = 7;
+  optional string location = 8;
+  optional string websiteOfficial = 9;
+  OrganizeType organizeType = 10;
+  bool official = 11;
 }
 
 message UpdateOrgProtoReq{
-	string id = 1;
-	optional string hostId = 2; // FK to the id field of UserProtoModel
-	optional string name = 3;
-	optional string shortName = 4;
-	optional string url = 5;
-	optional string logo = 6;
-	optional string tagline = 7;
-	optional string description = 8;
-	optional string location = 9;
-	optional string websiteOfficial = 10;
+  string id = 1;
+  optional string hostId = 2; // FK to the id field of UserProtoModel
+  optional string name = 3;
+  optional string shortName = 4;
+  optional string url = 5;
+  optional string logo = 6;
+  optional string tagline = 7;
+  optional string description = 8;
+  optional string location = 9;
+  optional string websiteOfficial = 10;
 }
 
 message DeleteOrgProtoReq {
-	string id = 1;
+  string id = 1;
 }
 
 message RemoveOrgProtoReq {
-	string id = 1;
+  string id = 1;
 }
 
 message RestoreOrgProtoReq {
-	string id = 1;
+  string id = 1;
 }
 
 message AddModeratorProtoReq{
-	string parentId = 1;
-	string moderatorId = 2;
-} 
+  string parentId = 1;
+  string moderatorId = 2;
+}
 
 message ViewModeratorProtoReq{
-	string          			parentId   = 1;
-	optional int64  			offset      = 2;
-    optional int32  			limit       = 3;
-    optional string 			id          = 4;
-    optional string 			firstName   = 5;
-    optional string 			lastName    = 6;
-    optional string 			nickname    = 7;
-    optional string 			email       = 8;
-    optional string 			phone       = 9;
+  string                parentId   = 1;
+  optional int64        offset      = 2;
+    optional int32        limit       = 3;
+    optional string       id          = 4;
+    optional string       firstName   = 5;
+    optional string       lastName    = 6;
+    optional string       nickname    = 7;
+    optional string       email       = 8;
+    optional string       phone       = 9;
     optional Role               role        = 10;
     optional Level              level       = 11;
-    optional int32  			totalCredit = 12;
-    optional int64  			createdAt   = 13;
-    optional int64  			updatedAt   = 14;
+    optional int32        totalCredit = 12;
+    optional int64        createdAt   = 13;
+    optional int64        updatedAt   = 14;
 
 }
 
@@ -670,11 +679,11 @@ message SendEmailForUserProtoReq{
 }
 
 message NumberOfUser{
-	int64 total = 1;
+  int64 total = 1;
 }
 
 
-// User Affiliate 
+// User Affiliate
 
 message UserAffiliateProtoModel {
     string user_id                  = 1;
@@ -695,12 +704,12 @@ message UserAffiliateProtoModel {
 message UserReferralDetailProtoRes {
     string user_id              = 1;
     string username             = 2;
-    optional string firstName   = 3; 
+    optional string firstName   = 3;
     optional string lastName    = 4;
     int64  points               = 5;
     int64 referral_l1           = 6;
     int64 referral_l2           = 7;
-    int64 referral_l3           = 8; 
+    int64 referral_l3           = 8;
     bool is_active              = 9;
 }
 
@@ -764,29 +773,29 @@ enum PaymentType {
 }
 
 message PaymentInfoProtoModel {
-  string paymentId = 1; 
-  string userId = 2; 
+  string paymentId = 1;
+  string userId = 2;
   PaymentType paymentType = 3;
   string title = 4;
-  string network = 5; 
+  string network = 5;
   string qrCode = 6;
   string address = 7;
-  string notes = 8; 
-  bool   isAdmin = 9; 
+  string notes = 8;
+  bool   isAdmin = 9;
   string accountName = 10;
   int64 createdAt = 11;
   int64 updatedAt = 12;
 }
 
 message CreatePaymentInfoProtoReq {
-  string userId = 1; 
+  string userId = 1;
   PaymentType paymentType = 2;
   string title = 3;
-  string network = 4; 
+  string network = 4;
   string qrCode = 5;
   string address = 6;
-  optional string notes = 7; 
-  bool is_admin = 8; 
+  optional string notes = 7;
+  bool is_admin = 8;
   string accountName = 9;
 }
 
@@ -806,26 +815,26 @@ message PaymentInfoQuery {
 }
 
 message GetPaymentInfoIdProtoReq{
-	string paymentId = 1;
+  string paymentId = 1;
 }
 
 message DeletePaymentInfoProtoReq{
-	string paymentId = 1;
+  string paymentId = 1;
 }
 
 message UpdatePaymentInfoProtoReq {
-  string paymentId = 1; 
-  optional string userId = 2; 
+  string paymentId = 1;
+  optional string userId = 2;
   optional PaymentType paymentType = 3;
   optional string title = 4;
-  optional string network = 5; 
+  optional string network = 5;
   optional string qrCode = 6;
   optional string address = 7;
-  optional string notes = 8; 
+  optional string notes = 8;
 }
 
 message ListPaymentInfo {
-	repeated PaymentInfoProtoModel payments = 1;
+  repeated PaymentInfoProtoModel payments = 1;
 }
 
 // Followers and Following
@@ -877,7 +886,7 @@ enum NotePriority {
 }
 
 message NoteProtoModel {
-  string note_id = 1; 
+  string note_id = 1;
   string course_id = 2;
   string section_id = 3;
   string lesson_id = 4;
@@ -904,8 +913,8 @@ message CreateNoteProtoReq {
 }
 
 message AddNoteToCollectionProtoReq {
-	string note_id = 1;
-	string collection_id = 2;
+  string note_id = 1;
+  string collection_id = 2;
 }
 
 message UpdateNoteProtoReq {
@@ -918,7 +927,7 @@ message UpdateNoteProtoReq {
 
 message GetNotesProtoReq {
   string user_id = 5;
-  optional string note_id = 1; 
+  optional string note_id = 1;
   optional string course_id = 2;
   optional string section_id = 3;
   optional string lesson_id = 4;
@@ -927,22 +936,22 @@ message GetNotesProtoReq {
   optional NotePriority priority = 9 ;
   optional int64 created_at = 10;
   optional int64 updated_at = 11;
-  optional int64  			offset      = 12;
-  optional int32  			limit       = 13;
+  optional int64        offset      = 12;
+  optional int32        limit       = 13;
 
 }
 
 message NotesProtoList {
-	repeated NoteProtoModel notes = 1;
+  repeated NoteProtoModel notes = 1;
 }
 
 
 message GetNoteByIdProtoReq {
-	string note_id = 1;
+  string note_id = 1;
 }
 
 message DeleteNoteProtoReq {
-	string note_id = 1;
+  string note_id = 1;
 }
 
 
@@ -956,7 +965,7 @@ message NoteCollectionProtoModel {
 }
 
 message NoteCollectionListProto {
-	repeated NoteCollectionProtoModel note_collections = 1;
+  repeated NoteCollectionProtoModel note_collections = 1;
 }
 
 message CreateCollectionProtoReq {
@@ -973,7 +982,7 @@ message UpdateCollectionProtoReq {
 }
 
 message GetCollectionByIdProtoReq {
-	string collection_id = 1;
+  string collection_id = 1;
 }
 
 message GetCollectionsProtoReq {
@@ -981,38 +990,38 @@ message GetCollectionsProtoReq {
   optional string title = 3;
   optional int64 created_at = 6;
   optional int64 updated_at = 7;
-  optional int64  			offset      = 8;
-  optional int32  			limit       = 9;
+  optional int64        offset      = 8;
+  optional int32        limit       = 9;
 
 }
 message DeleteCollectionProtoReq {
-	string collection_id = 1;
+  string collection_id = 1;
 }
 
 message GetAdminPaymentInfoProtoReq {
-	PaymentType payment_type = 1;
+  PaymentType payment_type = 1;
 }
 
 
 message UpdateDesktopSessionProtoReq {
-	string user_id = 1;
-	string session_id = 2;
+  string user_id = 1;
+  string session_id = 2;
 }
 message UpdateMobileSessionProtoReq {
-	string user_id = 1;
-	string session_id = 2;
+  string user_id = 1;
+  string session_id = 2;
 }
 message GetUserByDesktopSessionProtoReq{
-	string session_id = 1;
+  string session_id = 1;
 }
 message GetUserByMobileSessionProtoReq{
-	string session_id = 1;
+  string session_id = 1;
 }
 message DeleteDesktopSessionProtoReq{
-	string user_id = 1;
+  string user_id = 1;
 }
 message DeleteMobileSessionProtoReq{
-	string user_id = 1;
+  string user_id = 1;
 }
 
 // User Ranking
@@ -1035,23 +1044,27 @@ message GetMyRankingProtoReq {
     string      user_id         = 1;
 }
 
-
+message AddPlatformPartnerProto {
+  string partner_id = 1;
+  PlatformPartnerRole platform_partner_role = 2;
+  string description = 3;
+}
 
 service UserServiceProtocol {
-	// Session 
-	rpc UpdateDesktopSessionCall(UpdateDesktopSessionProtoReq) returns (User);
-	rpc UpdateMobileSessionCall(UpdateMobileSessionProtoReq) returns (User);
-	rpc GetUserByDesktopSessionCall(GetUserByDesktopSessionProtoReq) returns (User);
-	rpc GetUserByMobileSessionCall(GetUserByMobileSessionProtoReq) returns (User);
-	rpc DeleteDesktopSessionCall(DeleteDesktopSessionProtoReq) returns (Empty);
-	rpc DeleteMobileSessionCall(DeleteMobileSessionProtoReq) returns (Empty);
-	// Payment 
-	rpc GetPaymentInfoListCall(PaymentInfoQuery)         returns (ListPaymentInfo);
-	rpc UpdatePaymentInfoCall(UpdatePaymentInfoProtoReq) returns (PaymentInfoProtoModel);
-	rpc GetPaymentInfoByIdCall(GetPaymentInfoIdProtoReq) returns (PaymentInfoProtoModel);
-	rpc DeletePaymentInfoCall(DeletePaymentInfoProtoReq) returns (Empty);
-	rpc CreatePaymentInfoCall(CreatePaymentInfoProtoReq) returns (PaymentInfoProtoModel);
-	rpc GetAdminPaymentInfoCall(GetAdminPaymentInfoProtoReq)  returns (ListPaymentInfo);
+  // Session
+  rpc UpdateDesktopSessionCall(UpdateDesktopSessionProtoReq) returns (User);
+  rpc UpdateMobileSessionCall(UpdateMobileSessionProtoReq) returns (User);
+  rpc GetUserByDesktopSessionCall(GetUserByDesktopSessionProtoReq) returns (User);
+  rpc GetUserByMobileSessionCall(GetUserByMobileSessionProtoReq) returns (User);
+  rpc DeleteDesktopSessionCall(DeleteDesktopSessionProtoReq) returns (Empty);
+  rpc DeleteMobileSessionCall(DeleteMobileSessionProtoReq) returns (Empty);
+  // Payment
+  rpc GetPaymentInfoListCall(PaymentInfoQuery)         returns (ListPaymentInfo);
+  rpc UpdatePaymentInfoCall(UpdatePaymentInfoProtoReq) returns (PaymentInfoProtoModel);
+  rpc GetPaymentInfoByIdCall(GetPaymentInfoIdProtoReq) returns (PaymentInfoProtoModel);
+  rpc DeletePaymentInfoCall(DeletePaymentInfoProtoReq) returns (Empty);
+  rpc CreatePaymentInfoCall(CreatePaymentInfoProtoReq) returns (PaymentInfoProtoModel);
+  rpc GetAdminPaymentInfoCall(GetAdminPaymentInfoProtoReq)  returns (ListPaymentInfo);
 
     // Normal user calls
 
@@ -1061,14 +1074,14 @@ service UserServiceProtocol {
     rpc CreateUserCall(CreateUserProtoReq)        returns (User);
     rpc UpdateUserCall(UpdateUserProtoReq)        returns (User);
     rpc DeleteUserCall(DeleteUserProtoReq)        returns (Empty);
-	rpc CreateUserWalletLoginCall(LoginWalletUserProtoReq)    returns (WalletUser);
-	rpc GetUserByWalletIdCall(GetUserByWalletIdProtoReq) returns(WalletUser);
-	rpc GetWalletUserByIdCall(GetUserByIdProtoReq) returns(WalletUser);
+  rpc CreateUserWalletLoginCall(LoginWalletUserProtoReq)    returns (WalletUser);
+  rpc GetUserByWalletIdCall(GetUserByWalletIdProtoReq) returns(WalletUser);
+  rpc GetWalletUserByIdCall(GetUserByIdProtoReq) returns(WalletUser);
     rpc CreateUserWalletCall(CreateWalletUserProtoReq)        returns (User);
-	rpc UpdateEmailUserCall(UpdateEmailUserProtoReq) returns (User);
+  rpc UpdateEmailUserCall(UpdateEmailUserProtoReq) returns (User);
     rpc SendEmailForUserCall(SendEmailForUserProtoReq) returns (Empty);
     rpc UpdateNewPasswordCall(UpdateNewPasswordProtoReq) returns (Empty);
-    
+
     rpc GetNumberOfUsersCall(Empty) returns (GetNumberOfUsersProtoRes);
 
     // For google login
@@ -1100,48 +1113,48 @@ service UserServiceProtocol {
     rpc DeleteCourseTeamCall(DeleteCourseTeamProtoReq)          returns (Empty);
 
     rpc AddTeamMemberCall(AddTeamMemberProtoReq)            returns (Empty);
-	rpc GetTeamMemberCall(GetTeamMemberProtoReq)            returns (UserList);
+  rpc GetTeamMemberCall(GetTeamMemberProtoReq)            returns (UserList);
     rpc DeleteTeamMemberCall(DeleteTeamMemberProtoReq)      returns (Empty);
     rpc RemoveTeamMemberCall(DeleteTeamMemberProtoReq)      returns (Empty);
-	rpc RestoreTeamMemberCall(DeleteTeamMemberProtoReq)     returns (Empty);
+  rpc RestoreTeamMemberCall(DeleteTeamMemberProtoReq)     returns (Empty);
     rpc GetTeamOwnerByUserIdCall(GetTeamOwnerByUserIdProtoReq)     returns (TeamListProtoRes);
-    rpc GetUserTeamParticipationsCall(GetUserTeamParticipationsProtoReq)     returns (GetUserTeamParticipateListProtoRes);
-  
+    rpc GetUserTeamParticipationsCall(GetUserTeamParticipationsProtoReq)     returns (TeamListProtoRes);
+
     // Email
     rpc GetEmailsCall(EmailListProtoReq)                      returns (EmailListProtoRes);
     rpc GetEmailByIdCall(GetEmailByIdProtoReq)                returns (EmailBase);
     rpc CreateEmailCall(CreateEmailProtoReq)                  returns (EmailBase);
     rpc UpdateEmailCall(UpdateEmailProtoReq)                  returns (EmailBase);
     rpc DeleteEmailCall(DeleteEmailProtoReq)                  returns (Empty);
-	
-	rpc UpdateRoleUserCall(UpdateRoleUserProtoReq)            returns (User);
+
+  rpc UpdateRoleUserCall(UpdateRoleUserProtoReq)            returns (User);
 
 
-    // CollectingFeedback 
+    // CollectingFeedback
     rpc GetCollectingFeedbackByIdCall(GetCollectingFeedbackByIdProtoReq)    returns (CollectingFeedbackBase);
     rpc GetCollectingFeedbackListCall(GetCollectingFeedbackListProtoReq)    returns (GetCollectingFeedbackListProtoRes);
     rpc CreateCollectingFeedbackCall(CreateCollectingFeedbackProtoReq)      returns (CollectingFeedbackBase);
     rpc DeleteCollectingFeedbackCall(DeleteCollectingFeedbackProtoReq)      returns(Empty);
 
     // Invitation
-	rpc GetInvitationsCall(GetInvitationListReq) returns (InvitationListRes);
-	rpc GetInvitationByIdCall(GetInvitationByIdReq) returns (InvitationBase);
-	rpc GetInvitationByKeyCall(GetInvitationByKeyReq) returns (InvitationBase);
-	rpc CreateInvitationCall(CreateInvitationProtoReq) returns (InvitationBase);
-	rpc UpdateInvitationCall(UpdateInvitationProtoReq) returns (InvitationBase);
-	rpc ResponseInvitationCall(ResponseInvitationProtoReq) returns (InvitationBase);
-	rpc DeleteInvitationCall(DeleteInvitationProtoReq) returns (Empty);
+  rpc GetInvitationsCall(GetInvitationListReq) returns (InvitationListRes);
+  rpc GetInvitationByIdCall(GetInvitationByIdReq) returns (InvitationBase);
+  rpc GetInvitationByKeyCall(GetInvitationByKeyReq) returns (InvitationBase);
+  rpc CreateInvitationCall(CreateInvitationProtoReq) returns (InvitationBase);
+  rpc UpdateInvitationCall(UpdateInvitationProtoReq) returns (InvitationBase);
+  rpc ResponseInvitationCall(ResponseInvitationProtoReq) returns (InvitationBase);
+  rpc DeleteInvitationCall(DeleteInvitationProtoReq) returns (Empty);
 
     // Organize
-	rpc GetOrgsCall(OrgListProtoReq) 	   returns (OrganizeList);
-	rpc GetOrgByIdCall(GetOrgByIdProtoReq) returns (OrganizeBase);
-	rpc CreateOrgCall(CreateOrgProtoReq)   returns (OrganizeBase);
-	rpc UpdateOrgCall(UpdateOrgProtoReq)   returns (OrganizeBase);
-	rpc DeleteOrgCall(DeleteOrgProtoReq)   returns (Empty);
-	rpc RemoveOrgCall(RemoveOrgProtoReq)   returns (Empty);
-	rpc RestoreOrgCall(RestoreOrgProtoReq) returns (Empty);
-	rpc AddModeratorCall(AddModeratorProtoReq) returns (Empty);
-	rpc ViewModeratorCall(ViewModeratorProtoReq) returns (UserList);
+  rpc GetOrgsCall(OrgListProtoReq)     returns (OrganizeList);
+  rpc GetOrgByIdCall(GetOrgByIdProtoReq) returns (OrganizeBase);
+  rpc CreateOrgCall(CreateOrgProtoReq)   returns (OrganizeBase);
+  rpc UpdateOrgCall(UpdateOrgProtoReq)   returns (OrganizeBase);
+  rpc DeleteOrgCall(DeleteOrgProtoReq)   returns (Empty);
+  rpc RemoveOrgCall(RemoveOrgProtoReq)   returns (Empty);
+  rpc RestoreOrgCall(RestoreOrgProtoReq) returns (Empty);
+  rpc AddModeratorCall(AddModeratorProtoReq) returns (Empty);
+  rpc ViewModeratorCall(ViewModeratorProtoReq) returns (UserList);
 
     // User Affiliate
     rpc GetUserAffiliateCall(GetUserAffiliateProtoReq) returns(UserAffiliateProtoModel);
@@ -1159,22 +1172,25 @@ service UserServiceProtocol {
     rpc DeleteUserFollowsCall(DeleteUserFollowsProtoReq) returns(Empty);
     rpc RestoreUserFollowsCall(RestoreUserFollowsProtoReq) returns(Empty);
 
-	// Note 
+  // Note
     rpc GetNoteByIdCall(GetNoteByIdProtoReq) returns (NoteProtoModel);
-	rpc GetListNoteCall(GetNotesProtoReq) returns (NotesProtoList);
-	rpc CreateNoteProtoCall(CreateNoteProtoReq) returns (NoteProtoModel);
-	rpc UpdateNoteProtoCall(UpdateNoteProtoReq) returns (NoteProtoModel);
-	rpc DeleteNoteProtoCall(DeleteNoteProtoReq) returns (Empty);
-	rpc AddNoteToCollectionCall(AddNoteToCollectionProtoReq) returns (NoteProtoModel);
-	// Collection
-	rpc GetCollectionByIdCall(GetCollectionByIdProtoReq) returns (NoteCollectionProtoModel);
-	rpc GetCollectionsCall(GetCollectionsProtoReq) returns (NoteCollectionListProto);
-	rpc CreateCollectionCall(CreateCollectionProtoReq) returns (NoteCollectionProtoModel);
-	rpc UpdateCollectionCall(UpdateCollectionProtoReq) returns (NoteCollectionProtoModel);
-	rpc DeleteCollectionCall(DeleteCollectionProtoReq) returns (Empty);
+  rpc GetListNoteCall(GetNotesProtoReq) returns (NotesProtoList);
+  rpc CreateNoteProtoCall(CreateNoteProtoReq) returns (NoteProtoModel);
+  rpc UpdateNoteProtoCall(UpdateNoteProtoReq) returns (NoteProtoModel);
+  rpc DeleteNoteProtoCall(DeleteNoteProtoReq) returns (Empty);
+  rpc AddNoteToCollectionCall(AddNoteToCollectionProtoReq) returns (NoteProtoModel);
+  // Collection
+  rpc GetCollectionByIdCall(GetCollectionByIdProtoReq) returns (NoteCollectionProtoModel);
+  rpc GetCollectionsCall(GetCollectionsProtoReq) returns (NoteCollectionListProto);
+  rpc CreateCollectionCall(CreateCollectionProtoReq) returns (NoteCollectionProtoModel);
+  rpc UpdateCollectionCall(UpdateCollectionProtoReq) returns (NoteCollectionProtoModel);
+  rpc DeleteCollectionCall(DeleteCollectionProtoReq) returns (Empty);
 
     // Ranking
     rpc GetTopUserRankingCall(GetTopUserRankingProtoReq) returns (TopUserRankingProtoRes);
     rpc GetMyRankingCall(GetMyRankingProtoReq) returns (UserRankingProtoRes);
 
+  // add platform partner
+  rpc AddPlatformPartnerCall(AddPlatformPartnerProto) returns(SuccessfulProto);
+  rpc GetPlatformPartnerCall(Empty) returns(UserList);
 }
