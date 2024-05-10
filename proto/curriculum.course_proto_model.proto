@@ -65,6 +65,19 @@ message CourseProtoModel {
   optional string point = 28;
 }
 
+message GetCourseSupportProtoReq {
+	string course_id = 1;
+}
+
+message CourseSupportModel {
+	string course_id = 1;
+	string provider = 2;
+	string url = 3;
+}
+
+message CourseSupportProtoRes {
+	repeated CourseSupportModel course_support = 1;
+}
 
 message CreateCourseProtoReq {
   string courseTitle = 1;
