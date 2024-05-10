@@ -55,8 +55,3 @@ message AddCoursePartnerProto {
   string user_id = 2;
   string course_owner = 3;
 }
-
-message AddPlatformPartnerProto {
-  string user_id = 2;
-  string course_owner = 3;
-}

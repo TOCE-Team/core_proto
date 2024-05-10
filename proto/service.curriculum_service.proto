@@ -210,11 +210,13 @@ service CurriculumServiceProto {
 
   // Create multi coupon
   rpc CreateMultiCouponCall(CreateMultiCouponProtoReq) returns(CreateMultiCouponProtoRes);
-  rpc GetHomepageCall(Empty) returns (HomepageRes);
+///  rpc GetHomepageCall(Empty) returns (HomepageRes);
 
   // Create referral term
   rpc CreateReferralTermCall(CreateReferralTermsProtoReq) returns(SuccessfulProto);
 
   //rpc AddCoursePartnerCall(AddCoursePartnerProto) returns(SuccessfulProto);
   //rpc AddPlatformPartnerCall(AddCoursePartnerProto) returns(SuccessfulProto);
+  rpc AddCoursePartnerCall(AddCoursePartnerProto) returns(SuccessfulProto);
+  rpc GetCourseSupportByCourseIdCall(GetCourseSupportProtoReq) returns (CourseSupportProtoRes);
 }
