@@ -256,7 +256,7 @@ message TeamBase {
     int64     createdAt     = 6;
     int64     updatedAt     = 7;
   bool    isDeleted     = 8;
-  optional string logo = 9;
+    optional string logo        = 9;
 }
 
 message TeamListProtoReq {
@@ -324,10 +324,35 @@ message DeleteCourseTeamProtoReq {
     string courseId     = 1;
     string teamId       = 2;
 }
+enum TeamRole {
+    ___Owner      = 0;
+    ___Admin      = 1;
+    ___Moderator  = 2;
+    ___Member     = 3;
+}
+
+message GetUserTeamParticipateProtoRes {
+    string      id          = 1;
+    int64       paginationId    = 2;
+    string    name        = 3;
+  string    description   = 4;
+  string    owner       = 5;
+    int64     createdAt     = 6;
+    int64     updatedAt     = 7;
+  bool    isDeleted     = 8;
+    optional string logo        = 9;
+    TeamRole    my_role         = 10;
+    repeated User   members     = 11;
+}
+
+message GetUserTeamParticipateListProtoRes {
+    repeated GetUserTeamParticipateProtoRes teams = 1;
+}
 
 message AddTeamMemberProtoReq{
-  string teamId = 1;
-  string userId = 2;
+  string      teamId  = 1;
+  string      userId  = 2;
+    TeamRole    role    = 3;
 }
 
 message GetTeamMemberProtoReq {
@@ -1094,7 +1119,7 @@ service UserServiceProtocol {
     rpc RemoveTeamMemberCall(DeleteTeamMemberProtoReq)      returns (Empty);
   rpc RestoreTeamMemberCall(DeleteTeamMemberProtoReq)     returns (Empty);
     rpc GetTeamOwnerByUserIdCall(GetTeamOwnerByUserIdProtoReq)     returns (TeamListProtoRes);
-    rpc GetUserTeamParticipationsCall(GetUserTeamParticipationsProtoReq)     returns (TeamListProtoRes);
+    rpc GetUserTeamParticipationsCall(GetUserTeamParticipationsProtoReq)     returns (GetUserTeamParticipateListProtoRes);
 
     // Email
     rpc GetEmailsCall(EmailListProtoReq)                      returns (EmailListProtoRes);
