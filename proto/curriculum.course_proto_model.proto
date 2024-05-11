@@ -365,7 +365,8 @@ message CourseAdvertisingProtoRes {
   int64 updatedAt = 8;
   float rating = 9;
   string slug = 10;
-  repeated ContributeCourseAdvertising contributes = 11;
+  int64 courseFee = 11;
+  repeated ContributeCourseAdvertising contributes = 12;
 }
 
 message ContributeCourseAdvertising {
