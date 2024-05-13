@@ -1,6 +1,12 @@
 syntax = "proto3";
 package  curriculum_service;
 
+enum ReferralCreateType {
+  AllUser = 0;
+  Kol = 1;
+  PlatformPartner = 2;
+}
+
 message UserReferralProtoModel {
   string user_referral_id = 1;
   string referral_code = 2;
@@ -43,11 +49,14 @@ message CommissionSettingProto {
 message CreateReferralTermsProtoReq {
   string course_id = 1;
   float primary_percent = 2;
-  float upline_referrer_percent = 3;
-  float second_upline_referrer_percent = 4;
+  optional float upline_referrer_percent = 3;
+  optional float second_upline_referrer_percent = 4;
   float minimum_withdraw_allow = 5;
   string course_owner = 6;
   repeated CommissionSettingProto commission = 7;
+  optional int64 expire_time = 8;
+  ReferralCreateType  referrral_create_type = 9;
+  optional string referral_owner = 10;
 }
 
 message AddCoursePartnerProto {
