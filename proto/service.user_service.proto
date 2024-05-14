@@ -1203,6 +1203,7 @@ service UserServiceProtocol {
   // add platform partner
   rpc AddPlatformPartnerCall(AddPlatformPartnerProto) returns(SuccessfulProto);
   rpc GetPlatformPartnerCall(Empty) returns(UserList);
-  // Course Parner rpc GetCoursePartnerCall(GetCoursePartnerProtoReq) returns(UserList);
+  // Course Parner 
+  rpc GetCoursePartnerCall(GetCoursePartnerProtoReq) returns(UserList);
   rpc AddUserToCoursePartnerCall(AddUserToCoursePartnerProtoReq) returns(Empty);
 }
