@@ -64,3 +64,12 @@ message AddCoursePartnerProto {
   string user_id = 2;
   string course_owner = 3;
 }
+
+message GetUserReferralProtoReq {
+  string course_id = 1;
+  string referral_owner = 2;
+}
+
+message GetUserReferralProtoRes {
+  string referral_code = 1;
+}
