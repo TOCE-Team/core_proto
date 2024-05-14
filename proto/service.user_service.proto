@@ -1051,6 +1051,15 @@ message AddPlatformPartnerProto {
   string description = 3;
 }
 
+message GetCoursePartnerProtoReq {
+  string course_id = 1;
+}
+
+message AddUserToCoursePartnerProtoReq {
+  string user_id = 1;
+  string course_id = 2;
+}
+
 service UserServiceProtocol {
   // Session
   rpc UpdateDesktopSessionCall(UpdateDesktopSessionProtoReq) returns (User);
@@ -1069,73 +1078,73 @@ service UserServiceProtocol {
 
     // Normal user calls
 
-    rpc GetUsersCall(UserQuery)                   returns (UserList);
-    rpc GetUserByIdCall(GetUserByIdProtoReq)      returns (User);
-    rpc GetUserByLoginInfoCall(LoginUserProtoReq) returns (User);
-    rpc CreateUserCall(CreateUserProtoReq)        returns (User);
-    rpc UpdateUserCall(UpdateUserProtoReq)        returns (User);
-    rpc DeleteUserCall(DeleteUserProtoReq)        returns (Empty);
+  rpc GetUsersCall(UserQuery)                   returns (UserList);
+  rpc GetUserByIdCall(GetUserByIdProtoReq)      returns (User);
+  rpc GetUserByLoginInfoCall(LoginUserProtoReq) returns (User);
+  rpc CreateUserCall(CreateUserProtoReq)        returns (User);
+  rpc UpdateUserCall(UpdateUserProtoReq)        returns (User);
+  rpc DeleteUserCall(DeleteUserProtoReq)        returns (Empty);
   rpc CreateUserWalletLoginCall(LoginWalletUserProtoReq)    returns (WalletUser);
   rpc GetUserByWalletIdCall(GetUserByWalletIdProtoReq) returns(WalletUser);
   rpc GetWalletUserByIdCall(GetUserByIdProtoReq) returns(WalletUser);
-    rpc CreateUserWalletCall(CreateWalletUserProtoReq)        returns (User);
+  rpc CreateUserWalletCall(CreateWalletUserProtoReq)        returns (User);
   rpc UpdateEmailUserCall(UpdateEmailUserProtoReq) returns (User);
-    rpc SendEmailForUserCall(SendEmailForUserProtoReq) returns (Empty);
-    rpc UpdateNewPasswordCall(UpdateNewPasswordProtoReq) returns (Empty);
+  rpc SendEmailForUserCall(SendEmailForUserProtoReq) returns (Empty);
+  rpc UpdateNewPasswordCall(UpdateNewPasswordProtoReq) returns (Empty);
 
-    rpc GetNumberOfUsersCall(Empty) returns (GetNumberOfUsersProtoRes);
+  rpc GetNumberOfUsersCall(Empty) returns (GetNumberOfUsersProtoRes);
 
     // For google login
-    rpc CreateOAuthStateCall(OAuthState)               returns (OAuthState);
-    rpc GetUserByEmail(GetUserByEmailProtoReq)         returns (User);
-    rpc DeleteOAuthStateCall(DeleteOAuthStateProtoReq) returns (OAuthState);
+  rpc CreateOAuthStateCall(OAuthState)               returns (OAuthState);
+  rpc GetUserByEmail(GetUserByEmailProtoReq)         returns (User);
+  rpc DeleteOAuthStateCall(DeleteOAuthStateProtoReq) returns (OAuthState);
 
     // Admin user calls
 
     // This command overrides a certain user by id, however it doesn't change the user id
-    rpc OverrideUserCall(UserBase)               returns (UserBase);
-    rpc AdminDeleteUserCall(GetUserByIdProtoReq) returns (Empty);
-    rpc RestoreUserCall(GetUserByIdProtoReq) returns (Empty);
+  rpc OverrideUserCall(UserBase)               returns (UserBase);
+  rpc AdminDeleteUserCall(GetUserByIdProtoReq) returns (Empty);
+  rpc RestoreUserCall(GetUserByIdProtoReq) returns (Empty);
 
-    // User Information
-    //rpc CreateUserInformationCall(CreateUserInformationProtoReq)   returns (UserInformationBase);
-    rpc GetUserInformationCall(GetUserInformationProtoReq)         returns (UserInformationBase);
-    rpc UpdateUserInformationCall(UpdateUserInformationProtoReq)   returns (UserInformationBase);
+  // User Information
+  //rpc CreateUserInformationCall(CreateUserInformationProtoReq)   returns (UserInformationBase);
+  rpc GetUserInformationCall(GetUserInformationProtoReq)         returns (UserInformationBase);
+  rpc UpdateUserInformationCall(UpdateUserInformationProtoReq)   returns (UserInformationBase);
 
-    // For team
-    rpc GetTeamsCall(TeamListProtoReq)                      returns (TeamListProtoRes);
-    rpc GetTeamByIdCall(GetTeamByIdProtoReq)                returns (TeamBase);
-    rpc CreateTeamCall(CreateTeamProtoReq)                  returns (TeamBase);
-    rpc UpdateTeamCall(UpdateTeamProtoReq)                  returns (TeamBase);
-    rpc DeleteTeamCall(DeleteTeamProtoReq)                  returns (Empty);
+  // For team
+  rpc GetTeamsCall(TeamListProtoReq)                      returns (TeamListProtoRes);
+  rpc GetTeamByIdCall(GetTeamByIdProtoReq)                returns (TeamBase);
+  rpc CreateTeamCall(CreateTeamProtoReq)                  returns (TeamBase);
+  rpc UpdateTeamCall(UpdateTeamProtoReq)                  returns (TeamBase);
+  rpc DeleteTeamCall(DeleteTeamProtoReq)                  returns (Empty);
 
-    rpc GetCourseTeamCall(GetCourseTeamProtoReq)                returns (TeamListProtoRes);
-    rpc CreateCourseTeamCall(CreateCourseTeamProtoReq)          returns (CourseTeamBase);
-    rpc DeleteCourseTeamCall(DeleteCourseTeamProtoReq)          returns (Empty);
+  rpc GetCourseTeamCall(GetCourseTeamProtoReq)                returns (TeamListProtoRes);
+  rpc CreateCourseTeamCall(CreateCourseTeamProtoReq)          returns (CourseTeamBase);
+  rpc DeleteCourseTeamCall(DeleteCourseTeamProtoReq)          returns (Empty);
 
-    rpc AddTeamMemberCall(AddTeamMemberProtoReq)            returns (Empty);
+  rpc AddTeamMemberCall(AddTeamMemberProtoReq)            returns (Empty);
   rpc GetTeamMemberCall(GetTeamMemberProtoReq)            returns (UserList);
-    rpc DeleteTeamMemberCall(DeleteTeamMemberProtoReq)      returns (Empty);
-    rpc RemoveTeamMemberCall(DeleteTeamMemberProtoReq)      returns (Empty);
+  rpc DeleteTeamMemberCall(DeleteTeamMemberProtoReq)      returns (Empty);
+  rpc RemoveTeamMemberCall(DeleteTeamMemberProtoReq)      returns (Empty);
   rpc RestoreTeamMemberCall(DeleteTeamMemberProtoReq)     returns (Empty);
-    rpc GetTeamOwnerByUserIdCall(GetTeamOwnerByUserIdProtoReq)     returns (TeamListProtoRes);
-    rpc GetUserTeamParticipationsCall(GetUserTeamParticipationsProtoReq)     returns (GetUserTeamParticipateListProtoRes);
+  rpc GetTeamOwnerByUserIdCall(GetTeamOwnerByUserIdProtoReq)     returns (TeamListProtoRes);
+  rpc GetUserTeamParticipationsCall(GetUserTeamParticipationsProtoReq)     returns (GetUserTeamParticipateListProtoRes);
 
     // Email
-    rpc GetEmailsCall(EmailListProtoReq)                      returns (EmailListProtoRes);
-    rpc GetEmailByIdCall(GetEmailByIdProtoReq)                returns (EmailBase);
-    rpc CreateEmailCall(CreateEmailProtoReq)                  returns (EmailBase);
-    rpc UpdateEmailCall(UpdateEmailProtoReq)                  returns (EmailBase);
-    rpc DeleteEmailCall(DeleteEmailProtoReq)                  returns (Empty);
+  rpc GetEmailsCall(EmailListProtoReq)                      returns (EmailListProtoRes);
+  rpc GetEmailByIdCall(GetEmailByIdProtoReq)                returns (EmailBase);
+  rpc CreateEmailCall(CreateEmailProtoReq)                  returns (EmailBase);
+  rpc UpdateEmailCall(UpdateEmailProtoReq)                  returns (EmailBase);
+  rpc DeleteEmailCall(DeleteEmailProtoReq)                  returns (Empty);
 
   rpc UpdateRoleUserCall(UpdateRoleUserProtoReq)            returns (User);
 
 
     // CollectingFeedback
-    rpc GetCollectingFeedbackByIdCall(GetCollectingFeedbackByIdProtoReq)    returns (CollectingFeedbackBase);
-    rpc GetCollectingFeedbackListCall(GetCollectingFeedbackListProtoReq)    returns (GetCollectingFeedbackListProtoRes);
-    rpc CreateCollectingFeedbackCall(CreateCollectingFeedbackProtoReq)      returns (CollectingFeedbackBase);
-    rpc DeleteCollectingFeedbackCall(DeleteCollectingFeedbackProtoReq)      returns(Empty);
+  rpc GetCollectingFeedbackByIdCall(GetCollectingFeedbackByIdProtoReq)    returns (CollectingFeedbackBase);
+  rpc GetCollectingFeedbackListCall(GetCollectingFeedbackListProtoReq)    returns (GetCollectingFeedbackListProtoRes);
+  rpc CreateCollectingFeedbackCall(CreateCollectingFeedbackProtoReq)      returns (CollectingFeedbackBase);
+  rpc DeleteCollectingFeedbackCall(DeleteCollectingFeedbackProtoReq)      returns(Empty);
 
     // Invitation
   rpc GetInvitationsCall(GetInvitationListReq) returns (InvitationListRes);
@@ -1158,23 +1167,23 @@ service UserServiceProtocol {
   rpc ViewModeratorCall(ViewModeratorProtoReq) returns (UserList);
 
     // User Affiliate
-    rpc GetUserAffiliateCall(GetUserAffiliateProtoReq) returns(UserAffiliateProtoModel);
-    rpc GetUserReferralOfUserCall(GetUserReferralOfUserProtoReq) returns(GetUserReferralOfUserProtoRes);
-    rpc GetTopUserReferralCall(GetTopUserReferralProtoReq) returns(GetTopUserReferralProtoRes);
-    rpc CreateUserAffiliateCall(CreateUserAffiliateProtoReq) returns(UserAffiliateProtoModel);
-    rpc UpdateUserAffiliateCall(UpdateUserAffiliateProtoReq) returns(UserAffiliateProtoModel);
-    rpc UpdateCommissionUserAffiliateCall(UpdateCommissionUserAffiliateProtoReq) returns(UserAffiliateProtoModel);
+  rpc GetUserAffiliateCall(GetUserAffiliateProtoReq) returns(UserAffiliateProtoModel);
+  rpc GetUserReferralOfUserCall(GetUserReferralOfUserProtoReq) returns(GetUserReferralOfUserProtoRes);
+  rpc GetTopUserReferralCall(GetTopUserReferralProtoReq) returns(GetTopUserReferralProtoRes);
+  rpc CreateUserAffiliateCall(CreateUserAffiliateProtoReq) returns(UserAffiliateProtoModel);
+  rpc UpdateUserAffiliateCall(UpdateUserAffiliateProtoReq) returns(UserAffiliateProtoModel);
+  rpc UpdateCommissionUserAffiliateCall(UpdateCommissionUserAffiliateProtoReq) returns(UserAffiliateProtoModel);
 
     // Followers and Following
-    rpc GetFollowersOfUserCall(GetFollowersOfUserProtoReq) returns(UserList);
-    rpc GetFollowingOfUserCall(GetFollowingOfUserProtoReq) returns(UserList);
-    rpc GetNumberFollowerAndFollowingOfUserCall(GetNumberFollowerAndFollowingOfUserProtoReq) returns(GetNumberFollowerAndFollowingOfUserProtoRes);
-    rpc CreateUserFollowsCall(CreateUserFollowsProtoReq) returns(UserFollowsProtoModel);
-    rpc DeleteUserFollowsCall(DeleteUserFollowsProtoReq) returns(Empty);
-    rpc RestoreUserFollowsCall(RestoreUserFollowsProtoReq) returns(Empty);
+  rpc GetFollowersOfUserCall(GetFollowersOfUserProtoReq) returns(UserList);
+  rpc GetFollowingOfUserCall(GetFollowingOfUserProtoReq) returns(UserList);
+  rpc GetNumberFollowerAndFollowingOfUserCall(GetNumberFollowerAndFollowingOfUserProtoReq) returns(GetNumberFollowerAndFollowingOfUserProtoRes);
+  rpc CreateUserFollowsCall(CreateUserFollowsProtoReq) returns(UserFollowsProtoModel);
+  rpc DeleteUserFollowsCall(DeleteUserFollowsProtoReq) returns(Empty);
+  rpc RestoreUserFollowsCall(RestoreUserFollowsProtoReq) returns(Empty);
 
   // Note
-    rpc GetNoteByIdCall(GetNoteByIdProtoReq) returns (NoteProtoModel);
+  rpc GetNoteByIdCall(GetNoteByIdProtoReq) returns (NoteProtoModel);
   rpc GetListNoteCall(GetNotesProtoReq) returns (NotesProtoList);
   rpc CreateNoteProtoCall(CreateNoteProtoReq) returns (NoteProtoModel);
   rpc UpdateNoteProtoCall(UpdateNoteProtoReq) returns (NoteProtoModel);
@@ -1188,10 +1197,12 @@ service UserServiceProtocol {
   rpc DeleteCollectionCall(DeleteCollectionProtoReq) returns (Empty);
 
     // Ranking
-    rpc GetTopUserRankingCall(GetTopUserRankingProtoReq) returns (TopUserRankingProtoRes);
-    rpc GetMyRankingCall(GetMyRankingProtoReq) returns (UserRankingProtoRes);
+  rpc GetTopUserRankingCall(GetTopUserRankingProtoReq) returns (TopUserRankingProtoRes);
+  rpc GetMyRankingCall(GetMyRankingProtoReq) returns (UserRankingProtoRes);
 
   // add platform partner
   rpc AddPlatformPartnerCall(AddPlatformPartnerProto) returns(SuccessfulProto);
   rpc GetPlatformPartnerCall(Empty) returns(UserList);
+  // Course Parner rpc GetCoursePartnerCall(GetCoursePartnerProtoReq) returns(UserList);
+  rpc AddUserToCoursePartnerCall(AddUserToCoursePartnerProtoReq) returns(Empty);
 }
