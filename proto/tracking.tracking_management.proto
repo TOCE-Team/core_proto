@@ -21,3 +21,21 @@ message CourseProcessReportReq {
 message CourseProcessReportRes {
     repeated  CourseProcessReportProto report = 1;
 }
+
+message TrackingCurrentLearnUserProtoModel {
+	string user_id = 1;
+	string course_id = 2;
+	string section_id = 3;
+	string lesson_id = 4;
+}
+
+message RecordCurrentLearnUserProtoReq {
+	string user_id = 1;
+	string course_id = 2;
+	string section_id = 3;
+	string lesson_id = 4;
+}
+
+message GetCurrentLearnUserProtoReq {
+	string user_id = 1;
+}
