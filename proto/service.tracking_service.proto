@@ -20,6 +20,11 @@ message GetTrackingByIdProtoReq {
 message Empty{}
 
 service TrackingServiceProto{
+//// tracking learning progress
+	rpc RecordLastLearnUserCall(RecordCurrentLearnUserProtoReq) returns (TrackingCurrentLearnUserProtoModel);
+	rpc GetLastLearnUserCall(GetCurrentLearnUserProtoReq) returns (TrackingCurrentLearnUserProtoModel);
+	
+
     rpc GetTrackingByIdCall(GetTrackingByIdProtoReq) returns (TrackingProtoModel);
 
     // Tracking Work
