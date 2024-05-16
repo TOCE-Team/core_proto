@@ -20,6 +20,11 @@ message GetTrackingByIdProtoReq {
 message Empty{}
 
 service TrackingServiceProto{
+//// tracking learning progress
+	rpc RecordLastLearnUserCall(RecordCurrentLearnUserProtoReq) returns (TrackingCurrentLearnUserProtoModel);
+	rpc GetLastLearnUserCall(GetCurrentLearnUserProtoReq) returns (TrackingCurrentLearnUserProtoModel);
+	
+
     rpc GetTrackingByIdCall(GetTrackingByIdProtoReq) returns (TrackingProtoModel);
 
     // Tracking Work
@@ -28,6 +33,7 @@ service TrackingServiceProto{
     rpc DeleteTrackingWorkCall(DeleteTrackingWorkProtoReq) returns (Empty);
 
     // Course
+    rpc GetCourseStatisticsCall(GetCourseStatisticsProtoReq) returns (GetCourseStatisticsProtoRes);
     rpc GetEnrollmentCourseCall(GetEnrollmentCourseProtoReq) returns (GetEnrollmentCourseProtoRes);
     rpc CreateEnrollmentCourseCall(CreateEnrollmentCourseProtoReq) returns(EnrollmentCourseProtoModel);
     rpc UpdateEnrollmentCourseCall(UpdateEnrollmentCourseProtoReq) returns(EnrollmentCourseProtoModel);
