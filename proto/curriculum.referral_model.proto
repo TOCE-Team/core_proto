@@ -73,3 +73,11 @@ message GetUserReferralProtoReq {
 message GetUserReferralProtoRes {
   string referral_code = 1;
 }
+
+message CalculateReferralPointProtoReq {
+  string payer = 1;
+  float course_fee = 2;
+  float invoice = 3;
+  string referral_code = 4;
+  string course_id = 5;
+}
