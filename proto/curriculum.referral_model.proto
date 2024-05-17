@@ -56,7 +56,7 @@ message CreateReferralTermsProtoReq {
   repeated CommissionSettingProto commission = 7;
   optional int64 expire_time = 8;
   ReferralCreateType  referrral_create_type = 9;
-  optional string referral_owner = 10;
+  repeated string referral_owner = 10;
 }
 
 message AddCoursePartnerProto {
@@ -80,4 +80,7 @@ message CalculateReferralPointProtoReq {
   float invoice = 3;
   string referral_code = 4;
   string course_id = 5;
+  optional string dinos_click_id = 6;
+  optional string dinos_status = 7;
+  bool is_platform_partner_referral = 8;
 }
