@@ -33,6 +33,7 @@ service TrackingServiceProto{
     rpc DeleteTrackingWorkCall(DeleteTrackingWorkProtoReq) returns (Empty);
 
     // Course
+    rpc GetCourseStatisticsCall(GetCourseStatisticsProtoReq) returns (GetCourseStatisticsProtoRes);
     rpc GetEnrollmentCourseCall(GetEnrollmentCourseProtoReq) returns (GetEnrollmentCourseProtoRes);
     rpc CreateEnrollmentCourseCall(CreateEnrollmentCourseProtoReq) returns(EnrollmentCourseProtoModel);
     rpc UpdateEnrollmentCourseCall(UpdateEnrollmentCourseProtoReq) returns(EnrollmentCourseProtoModel);

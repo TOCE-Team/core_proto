@@ -36,6 +36,15 @@ message CourseProgressProtoModel {
     int64   total_done      = 6;
 }
 
+message GetCourseStatisticsProtoReq {
+    string user_id      = 1;
+}
+
+message GetCourseStatisticsProtoRes {
+    int64 all_course      = 1;
+    int64 active_course   = 2;
+}
+
 message GetCourseProgressByIdProtoReq {
     string  user_id         = 1;
     string  course_id       = 2;
