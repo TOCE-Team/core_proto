@@ -54,7 +54,7 @@ message CreateAffiliateProtoReq {
     int64 started_at                        = 7;
     int64 expired_time                      = 8;
     optional string agency                  = 9;
-    bool is_instructor                      = 10; 
+    bool is_instructor                      = 10;
 }
 
 message UpdateAffiliateProtoReq  {
@@ -213,7 +213,7 @@ message DeleteAffiliateCampaignProtoReq {
     string campaign_id               = 1;
 }
 
-// coupon used 
+// coupon used
 message AffiliateCouponUsedProtoModel {
     string user_id          = 1;
     string coupon_id     = 2;

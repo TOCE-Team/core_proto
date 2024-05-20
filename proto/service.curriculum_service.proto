@@ -220,4 +220,7 @@ service CurriculumServiceProto {
   //  Get ref link
   rpc GetUserReferralLinkCall(GetUserReferralProtoReq) returns (GetUserReferralProtoRes);
   rpc CalculateReferralPointCall(CalculateReferralPointProtoReq) returns (SuccessfulProto);
+
+  rpc GetReferralPartnerCall(GetReferralPartnerListProtoReq) returns (GetReferralPartnerListProtoRes);
+
 }
