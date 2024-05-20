@@ -99,9 +99,9 @@ message GetReferralPartnerListProtoRes {
 }
 
 message ReferralPartnerModelProto {
-  string fist_name = 1;
+  string first_name = 1;
   string last_name = 2;
-  string revenue = 3;
+  float revenue = 3;
   int32 quantity = 4;
   int32 total_records = 5;
   int32 total_pages = 6;
