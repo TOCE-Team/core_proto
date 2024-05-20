@@ -8,7 +8,6 @@ enum Role {
     Instructor = 2;
     Admin      = 3;
 }
-
 enum PlatformPartnerRole {
     Foundation = 0;
     Sponsor = 1;
@@ -1181,6 +1180,7 @@ service UserServiceProtocol {
   rpc CreateUserFollowsCall(CreateUserFollowsProtoReq) returns(UserFollowsProtoModel);
   rpc DeleteUserFollowsCall(DeleteUserFollowsProtoReq) returns(Empty);
   rpc RestoreUserFollowsCall(RestoreUserFollowsProtoReq) returns(Empty);
+  rpc GetPopularInstructorCall(Empty) returns(UserList);
 
   // Note
   rpc GetNoteByIdCall(GetNoteByIdProtoReq) returns (NoteProtoModel);
