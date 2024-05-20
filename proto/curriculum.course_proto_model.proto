@@ -3,6 +3,7 @@ package  curriculum_service;
 
 import "curriculum.type.proto";
 import public "tracking.enrollment_course.proto";
+import public "service.user_service.proto";
 
 enum ObjectStateProtoModel {
   Pending = 0;
@@ -388,7 +389,10 @@ message HomepageAdvertisingRes {
 message HomepageRes{
 	HomepageAdvertisingRes advertising = 1;
 	HomepagePopularCourses popular_courses = 2;
+	user_service.UserList  popular_instructors = 3;
 }
+
+
 
 message HomepagePopularCourses {
 	repeated HomepagePopularCourse popular_courses = 1;
