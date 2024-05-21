@@ -222,5 +222,5 @@ service CurriculumServiceProto {
   rpc CalculateReferralPointCall(CalculateReferralPointProtoReq) returns (SuccessfulProto);
 
   rpc GetReferralPartnerCall(GetReferralPartnerListProtoReq) returns (GetReferralPartnerListProtoRes);
-
+  rpc GetReferralReportCall(GetReferralReportProtoReq) returns (GetReferralReportProtoRes);
 }
