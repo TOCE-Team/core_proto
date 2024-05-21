@@ -219,4 +219,10 @@ service CurriculumServiceProto {
   //rpc AddPlatformPartnerCall(AddCoursePartnerProto) returns(SuccessfulProto);
   rpc AddCoursePartnerCall(AddCoursePartnerProto) returns(SuccessfulProto);
   rpc GetCourseSupportByCourseIdCall(GetCourseSupportProtoReq) returns (CourseSupportProtoRes);
+  //  Get ref link
+  rpc GetUserReferralLinkCall(GetUserReferralProtoReq) returns (GetUserReferralProtoRes);
+  rpc CalculateReferralPointCall(CalculateReferralPointProtoReq) returns (SuccessfulProto);
+
+  rpc GetReferralPartnerCall(GetReferralPartnerListProtoReq) returns (GetReferralPartnerListProtoRes);
+
 }

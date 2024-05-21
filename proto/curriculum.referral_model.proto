@@ -56,11 +56,54 @@ message CreateReferralTermsProtoReq {
   repeated CommissionSettingProto commission = 7;
   optional int64 expire_time = 8;
   ReferralCreateType  referrral_create_type = 9;
-  optional string referral_owner = 10;
+  repeated string referral_owner = 10;
 }
 
 message AddCoursePartnerProto {
   string course_id = 1;
   string user_id = 2;
   string course_owner = 3;
+}
+
+message GetUserReferralProtoReq {
+  string course_id = 1;
+  string referral_owner = 2;
+}
+
+message GetUserReferralProtoRes {
+  string referral_code = 1;
+}
+
+message CalculateReferralPointProtoReq {
+  string payer = 1;
+  float course_fee = 2;
+  float invoice = 3;
+  string referral_code = 4;
+  string course_id = 5;
+  optional string dinos_click_id = 6;
+  optional string dinos_status = 7;
+  bool is_platform_partner_referral = 8;
+}
+
+message GetReferralPartnerListProtoReq {
+  string course_owner = 1;
+  string course_id = 2;
+  int32 page = 3;
+  int32 limit = 4;
+  optional string revenue_order = 5;
+  optional string quantity_order = 6;
+}
+
+message GetReferralPartnerListProtoRes {
+  repeated ReferralPartnerModelProto partner_list = 1;
+}
+
+message ReferralPartnerModelProto {
+  string first_name = 1;
+  string last_name = 2;
+  float revenue = 3;
+  int32 quantity = 4;
+  int32 total_records = 5;
+  int32 total_pages = 6;
+  int32 current_page = 7;
 }
