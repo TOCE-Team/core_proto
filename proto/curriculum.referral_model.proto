@@ -129,3 +129,53 @@ message GetReferralReportModelProto{
 message GetReferralReportProtoRes{
   repeated GetReferralReportModelProto course_list = 1;
 }
+
+message GetPersonalReferralReportProtoReq{
+  string user_id = 1;
+  int32 page = 2;
+  int32 limit = 3;
+  optional string revenue_order = 4;
+  optional string quantity_order = 5;
+}
+
+message GetPersonalReferralReportProtoRes{
+  repeated GetPersonalReferralReportModelProto course_list = 1;
+}
+
+message GetPersonalReferralReportModelProto{
+  string course_title = 1;
+  string course_id = 2;
+  float revenue = 3;
+  int32 quantity = 4;
+  int32 total_records = 5;
+  int32 total_pages = 6;
+  int32 current_page = 7;
+  optional string course_owner_first_name = 8;
+  optional string course_owner_last_name = 9;
+  string referral_id = 10;
+  bool is_kol_referral = 11;
+}
+
+message GetReferralReportByCourseIdProtoReq{
+  string course_id = 1;
+  int32 page = 2;
+  int32 limit = 3;
+  optional string revenue_order = 4;
+  optional string quantity_order = 5;
+}
+
+message GetReferralReportByCourseIdModelProto{
+  optional string first_name = 1;
+  optional string last_name = 2;
+  float revenue = 3;
+  int32 quantity = 4;
+  int32 total_records = 5;
+  int32 total_pages = 6;
+  int32 current_page = 7;
+  string referral_id = 8;
+  bool is_kol_referral = 9;
+}
+
+message GetReferralReportByCourseIdProtoRes{
+  repeated GetReferralReportByCourseIdModelProto referral_report = 1;
+}
