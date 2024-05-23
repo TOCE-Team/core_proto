@@ -1224,6 +1224,7 @@ service UserServiceProtocol {
   rpc GetPlatformPartnerCall(Empty) returns(UserList);
   // Course Partner 
   rpc GetPartnerByUserCall(GetPartnerByUserProtoReq) returns(UserList);
+  rpc GetInvitationPartnerCall(GetPartnerByUserProtoReq) returns(UserList);
   rpc AddPartnerToUserCall(AddPartnerToUserProtoReq) returns(Empty);
   rpc DeletePartnerFromUserCall(DeletePartnerFromUserProtoReq) returns(Empty);
   rpc UpdatePartnerToUserCall(UpdatePartnerToUserProtoReq) returns(Empty);
