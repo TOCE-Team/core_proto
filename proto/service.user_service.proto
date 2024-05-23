@@ -1050,14 +1050,33 @@ message AddPlatformPartnerProto {
   string description = 3;
 }
 
-message GetCoursePartnerProtoReq {
-  string course_id = 1;
+enum UserPartnerInvitationState {
+	Pending = 0;
+	Accepted = 1;
+	Rejected = 2;
 }
 
-message AddUserToCoursePartnerProtoReq {
-  string user_id = 1;
-  string course_id = 2;
+message GetPartnerByUserProtoReq {
+  string user_id = 2;
+  optional UserPartnerInvitationState state  = 3;
 }
+
+message AddPartnerToUserProtoReq {
+  string user_id = 1;
+  string partner_id = 2;
+}
+
+message DeletePartnerFromUserProtoReq {
+  string user_id = 1;
+  string partner_id = 2;
+}
+
+message UpdatePartnerToUserProtoReq {
+  string user_id = 1;
+  string partner_id = 2;
+  UserPartnerInvitationState state  = 3;
+}
+
 
 service UserServiceProtocol {
   // Session
@@ -1203,7 +1222,10 @@ service UserServiceProtocol {
   // add platform partner
   rpc AddPlatformPartnerCall(AddPlatformPartnerProto) returns(SuccessfulProto);
   rpc GetPlatformPartnerCall(Empty) returns(UserList);
-  // Course Parner 
-  rpc GetCoursePartnerCall(GetCoursePartnerProtoReq) returns(UserList);
-  rpc AddUserToCoursePartnerCall(AddUserToCoursePartnerProtoReq) returns(Empty);
+  // Course Partner 
+  rpc GetPartnerByUserCall(GetPartnerByUserProtoReq) returns(UserList);
+  rpc GetInvitationPartnerCall(GetPartnerByUserProtoReq) returns(UserList);
+  rpc AddPartnerToUserCall(AddPartnerToUserProtoReq) returns(Empty);
+  rpc DeletePartnerFromUserCall(DeletePartnerFromUserProtoReq) returns(Empty);
+  rpc UpdatePartnerToUserCall(UpdatePartnerToUserProtoReq) returns(Empty);
 }
