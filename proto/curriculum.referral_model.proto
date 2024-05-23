@@ -181,10 +181,48 @@ message GetReferralReportByCourseIdProtoRes{
 }
 
 // get ref by ref id
-// message GetReferralReportByReferralIdProtoReq{
-//   string course_id = 1;
-//   int32 page = 2;
-//   int32 limit = 3;
-//   optional string revenue_order = 4;
-//   optional string quantity_order = 5;
-// }
+message GetUserReferralReportByReferralIdProtoReq{
+  string referral_id = 1;
+  int32 page = 2;
+  int32 limit = 3;
+  optional int64 start_date = 4;
+  optional int64 end_date = 5;
+}
+
+message GetUserReferralReportByReferralIdModelProto{
+  optional string learner_first_name = 1;
+  optional string learner_last_name = 2;
+  int64 created_at = 3;
+  string level = 4;
+  float commission = 5;
+  float amount = 6;
+}
+
+message GetUserReferralReportByReferralIdProtoRes {
+  repeated GetUserReferralReportByReferralIdModelProto ref_list = 1;
+}
+
+// get kol ref by ref id
+message GetKolReferralReportByReferralIdProtoReq{
+  string referral_id = 1;
+  int32 page = 2;
+  int32 limit = 3;
+  optional int64 start_date = 4;
+  optional int64 end_date = 5;
+}
+
+message GetKolReferralReportByReferralIdModelProto{
+  optional string learner_first_name = 1;
+  optional string learner_last_name = 2;
+  int64 created_at = 3;
+  string level = 4;
+  float commission = 5;
+  float amount = 6;
+  int32 total_records = 7;
+  int32 total_pages = 8;
+  int32 current_page = 9;
+}
+
+message GetKolReferralReportByReferralIdProtoRes {
+  repeated GetKolReferralReportByReferralIdModelProto ref_list = 1;
+}
