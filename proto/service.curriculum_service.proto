@@ -225,5 +225,5 @@ service CurriculumServiceProto {
   rpc GetReferralReportCall(GetReferralReportProtoReq) returns (GetReferralReportProtoRes);
 
   rpc GetPersonalReferralReportCall(GetPersonalReferralReportProtoReq) returns (GetPersonalReferralReportProtoRes);
-  //rpc GetReferralReportByCourseIdCall(GetReferralReportByCourseIdProtoReq) returns (GetReferralReportByCourseIdProtoRes);
+  rpc GetReferralReportByCourseIdCall(GetReferralReportByCourseIdProtoReq) returns (GetReferralReportByCourseIdProtoRes);
 }
