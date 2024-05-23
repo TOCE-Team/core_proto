@@ -179,3 +179,12 @@ message GetReferralReportByCourseIdModelProto{
 message GetReferralReportByCourseIdProtoRes{
   repeated GetReferralReportByCourseIdModelProto referral_report = 1;
 }
+
+// get ref by ref id
+// message GetReferralReportByReferralIdProtoReq{
+//   string course_id = 1;
+//   int32 page = 2;
+//   int32 limit = 3;
+//   optional string revenue_order = 4;
+//   optional string quantity_order = 5;
+// }
