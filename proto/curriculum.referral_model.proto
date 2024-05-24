@@ -226,3 +226,11 @@ message GetKolReferralReportByReferralIdModelProto{
 message GetKolReferralReportByReferralIdProtoRes {
   repeated GetKolReferralReportByReferralIdModelProto ref_list = 1;
 }
+
+message GetDiscountPercentByReferralCodeProtoReq {
+  string referral_code = 1;
+}
+
+message GetDiscountPercentByReferralCodeProtoRes {
+  optional float discount_percent = 1;
+}
