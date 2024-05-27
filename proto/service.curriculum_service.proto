@@ -226,8 +226,10 @@ service CurriculumServiceProto {
 
   rpc GetPersonalReferralReportCall(GetPersonalReferralReportProtoReq) returns (GetPersonalReferralReportProtoRes);
   rpc GetReferralReportByCourseIdCall(GetReferralReportByCourseIdProtoReq) returns (GetReferralReportByCourseIdProtoRes);
-  rpc GetUserReferralReportByReferralIdCall(GetUserReferralReportByReferralIdProtoReq) returns (GetUserReferralReportByReferralIdProtoRes);
-  rpc GetKolReferralReportByReferralIdCall(GetKolReferralReportByReferralIdProtoReq) returns (GetKolReferralReportByReferralIdProtoRes);
+
+  //rpc GetUserReferralReportByReferralIdCall(GetUserReferralReportByReferralIdProtoReq) returns (GetReferralDetailReportByReferralCodeProtoModel);
+  //rpc GetKolReferralReportByReferralIdCall(GetKolReferralReportByReferralIdProtoReq) returns (GetReferralDetailReportByReferralCodeProtoModel);
+
   rpc GetDiscountPercentByReferralCodeCall(GetDiscountPercentByReferralCodeProtoReq) returns (GetDiscountPercentByReferralCodeProtoRes);
-  //rpc GetReferralDetailReportByReferralCodeCall(GetReferralDetailReportByReferralCodeProtoReq) returns (GetReferralDetailReportByReferralCodeProtoRes);
+  rpc GetReferralDetailReportByReferralCodeCall(GetReferralDetailReportByReferralCodeProtoReq) returns (GetReferralDetailReportByReferralCodeProtoRes);
 }
