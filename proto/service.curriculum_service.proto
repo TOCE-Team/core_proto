@@ -232,4 +232,5 @@ service CurriculumServiceProto {
 
   rpc GetDiscountPercentByReferralCodeCall(GetDiscountPercentByReferralCodeProtoReq) returns (GetDiscountPercentByReferralCodeProtoRes);
   rpc GetReferralDetailReportByReferralCodeCall(GetReferralDetailReportByReferralCodeProtoReq) returns (GetReferralDetailReportByReferralCodeProtoRes);
+  rpc KolCreateDiscountCall(KolCreateDiscountProtoReq) returns (SuccessfulProto);
 }

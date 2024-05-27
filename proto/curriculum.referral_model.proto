@@ -263,3 +263,9 @@ message GetReferralDetailReportByReferralCodeProtoModel {
   int32 total_pages = 8;
   int32 current_page = 9;
 }
+
+message KolCreateDiscountProtoReq {
+  string referral_owner = 1;
+  string referral_code = 2;
+  float discount_percent = 3;
+}
