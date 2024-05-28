@@ -12,7 +12,7 @@ enum PaymentStateProtoModel {
     Confirming  = 1;
     Successful  = 2;
     Failed      = 3;
-    Cancelled    = 4;
+    Cancelled   = 4;
 	Deactive    = 5;
 	Dispute     = 6;
 }
@@ -34,6 +34,7 @@ message CoursePaymentProtoModel {
 	optional int64          confirmed_at    = 14;
 	optional string         coupon_id       = 15;
 	optional double         invoice         = 16;
+	double                  fee_after_coupon   = 17;
 }
 
 message GetCoursePaymentProtoReq {
@@ -75,7 +76,9 @@ message CreateCoursePaymentProtoReq {
     string                  payment_info_id = 6;
     string                  notes           = 7;
     string                  image           = 8;
-    double                  amount         = 9;
+    double                  amount          = 9;
+	double                 fee_after_coupon = 10;
+	optional string         coupon          = 11;
 }
 
 message GetIdAndStateCoursePaymentProtoReq {
@@ -94,10 +97,109 @@ message UpdateCoursePaymentProtoReq {
 	optional int64                   confirmed_at    = 8;
 	optional string                  coupon_id       = 9;
 	optional double                  invoice         = 10;
+	optional double                 fee_after_coupon = 11;
+}
+
+
+message CreateSepayCoursePaymentProtoReq {
+	 string                 course_id       = 1;
+     string                 user_id         = 2;
+	 PaymentTypeProtoModel  payment_type    = 3;
+     PaymentStateProtoModel payment_state   = 4;
+     string                 image           = 5;
+	 string                 approveBy       = 6;
+	 string                 notes           = 7;
+	 string                 payment_info_id = 8;
+	 int64                  confirmed_at    = 9;
+	 optional string        coupon          = 10;
+	 double                 invoice         = 11;
+	 double                 fee_after_coupon = 12;
+	 double                 amount           = 13;
+}
+message SepayTransactionProtoModel {
+	string id = 1;
+    string gateway = 2;
+    int64 transaction_date = 3;
+    string account_number = 4;
+    string sub_account = 5;
+    double amount_in = 6;
+    double amount_out = 7;
+    double accumulated = 8;
+    string code = 9;
+    string transaction_content = 10;
+    string reference_number = 11;
+    string body = 12;
+    int64 created_at = 13;
+}
+
+message GetListSepayTransactionProtoRes {
+	repeated SepayTransactionProtoModel transactions = 1;
+	Paging paging = 2;
+}
+
+message GetListSepayTransactionProtoReq {
+	optional string id = 1;
+	optional string gateway = 2;
+	optional int64 transaction_date = 3;
+	optional string account_number = 4;
+	optional string sub_account = 5;
+	optional double amount_in = 6;
+	optional double amount_out = 7;
+	optional double accumulated = 8;
+	optional string code = 9;
+	optional string transaction_content = 10;
+	optional string reference_number = 11;
+	optional string body = 12;
+	optional int64 created_at = 13;
+    optional int64  page  = 14;
+    optional int32  limit = 15;
+
+}
+
+message SaveSepayTransactionProtoReq {
+	string id = 1;
+    string gateway = 2;
+    int64 transaction_date = 3;
+    string account_number = 4;
+    string sub_account = 5;
+    double amount_in = 6;
+    double amount_out = 7;
+    double accumulated = 8;
+    string code = 9;
+    string transaction_content = 10;
+    string reference_number = 11;
+    string body = 12;
+    int64 created_at = 13;
 }
 
 message DeleteCoursePaymentProtoReq {
     string payment_id = 1;
+}
+
+message CreateApiKeyProtoReq {
+	string prefix = 1;
+	string shortToken = 2;
+	string hash    = 3;
+}
+
+message GetApiKeyProtoReq {
+	string prefix  = 1;
+	string shortToken = 2;
+}
+
+message ApiKeyProtoRes {
+	string longTokenHash = 1;
+}
+
+message CheckCodePaymentExistProtoReq {
+	string code = 1;
+}
+message GetCoursePaymentByCodeProtoReq {
+	string code = 1;
+}
+
+message CheckCodePaymentExistsProtoRes {
+	bool exists = 1;
 }
 
 message Empty {}
@@ -110,4 +212,11 @@ service PaymentServiceProto{
   rpc UpdateCoursePaymentCall(UpdateCoursePaymentProtoReq) returns(CoursePaymentProtoModel);
   rpc DeleteCoursePaymentCall(DeleteCoursePaymentProtoReq) returns(Empty);
   rpc GetIdStateCoursePaymentCall(GetIdAndStateCoursePaymentProtoReq) returns (CoursePaymentProtoModel);
-}
+  rpc GetApiKeyCall(GetApiKeyProtoReq) returns (ApiKeyProtoRes);
+  rpc CreateApiKeyCall(CreateApiKeyProtoReq) returns (Empty);
+  rpc CheckCodePaymentExistCall(CheckCodePaymentExistProtoReq) returns (CheckCodePaymentExistsProtoRes);
+  rpc GetCoursePaymentByCodeCall(GetCoursePaymentByCodeProtoReq) returns (CoursePaymentProtoModel);
+  rpc SaveSepayTransactionCall(SaveSepayTransactionProtoReq) returns (SepayTransactionProtoModel);
+  rpc GetSepayTransactionsCall(GetListSepayTransactionProtoReq) returns (GetListSepayTransactionProtoRes);
+  rpc CreateSepayCoursePaymentCall(CreateSepayCoursePaymentProtoReq) returns (CoursePaymentProtoModel);
+  }

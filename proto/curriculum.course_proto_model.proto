@@ -1,7 +1,9 @@
 syntax = "proto3";
 package  curriculum_service;
 
-import "type.proto";
+import "curriculum.type.proto";
+import public "tracking.enrollment_course.proto";
+import public "service.user_service.proto";
 
 enum ObjectStateProtoModel {
   Pending = 0;
@@ -64,6 +66,19 @@ message CourseProtoModel {
   optional string point = 28;
 }
 
+message GetCourseSupportProtoReq {
+	string course_id = 1;
+}
+
+message CourseSupportModel {
+	string course_id = 1;
+	string provider = 2;
+	string url = 3;
+}
+
+message CourseSupportProtoRes {
+	repeated CourseSupportModel course_support = 1;
+}
 
 message CreateCourseProtoReq {
   string courseTitle = 1;
@@ -351,6 +366,13 @@ message CourseAdvertisingProtoRes {
   int64 updatedAt = 8;
   float rating = 9;
   string slug = 10;
+  int64 courseFee = 11;
+  repeated ContributeCourseAdvertising contributes = 12;
+}
+
+message ContributeCourseAdvertising {
+	string contribute_id = 1;
+	optional string  image =  2;
 }
 
 message CreateCourseAdvertisingProtoReq {
@@ -363,6 +385,24 @@ message HomepageAdvertisingRes {
   repeated NotificationBarProto notifications = 1;
   repeated CourseAdvertisingProtoRes courseAdvertising = 2;
 }
+
+message HomepageRes{
+	HomepageAdvertisingRes advertising = 1;
+	HomepagePopularCourses popular_courses = 2;
+	user_service.UserList  popular_instructors = 3;
+}
+
+
+
+message HomepagePopularCourses {
+	repeated HomepagePopularCourse popular_courses = 1;
+}
+
+message HomepagePopularCourse {
+	CourseProtoModel course_info = 1;
+	int64 course_view = 2;
+}
+
 
 message GetOutlineByCourseIdReq {
   string course_id = 1;
@@ -379,6 +419,37 @@ message CreateMultiCouponProtoReq {
 message CreateMultiCouponProtoRes {
   repeated string coupons = 1;
 }
+/// banner homepage
+//message BannerHomePageProtoModel {
+//	string banner_id = 1;
+//	string image = 2;
+//	string event_name = 3;
+//	string url = 4;
+//}
+//
+//message CreateBannerHomePageProtoReq {
+//	string image = 1;
+//	string url = 2;
+//	string event_name = 3;
+//}
+//
+//message GetBannerHomePageProtoReq {
+//	string banner_id = 1;
+//	string event_name = 2;
+//	int64 created_at = 3;
+//	int64 updated_at = 4;
+//}
+//
+//message UpdateBannerHomePageProtoReq{
+//	string banner_id = 1;
+//	string event_name = 2;
+//	string url = 3;
+//	string image = 4;
+//}
+//
+//message GetBannerHomePageProtoRes {
+//	repeated BannerHomePageProtoModel = 1;
+//}
 
 // message GetOutlineByCourseIdRes {
 //   repeated OutlineSectionProto outline = 1;

@@ -1,8 +1,8 @@
 syntax = "proto3";
 package  curriculum_service;
 
-import "course_proto_model.proto";
-import "type.proto";
+import "curriculum.course_proto_model.proto";
+import "curriculum.type.proto";
 
 message QuizVideoProtoModel {
   string          quiz_video_id = 1;

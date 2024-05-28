@@ -1,0 +1,271 @@
+syntax = "proto3";
+package  curriculum_service;
+
+enum ReferralCreateType {
+  AllUser = 0;
+  Kol = 1;
+  PlatformPartner = 2;
+}
+
+message UserReferralProtoModel {
+  string user_referral_id = 1;
+  string referral_code = 2;
+  string referral_owner = 3;
+  float percent = 4;
+  int64 created_at = 5;
+  int64 updated_at = 6;
+  string course_id = 7;
+}
+
+message KolReferralProtoModel {
+  string kol_referral_id = 1;
+  string referral_code = 2;
+  string referral_owner = 3;
+  float percent = 4;
+  optional float custom_l2_percent = 5;
+  optional float custom_l3_percent = 6;
+  optional int64 expire_time = 7;
+  int64 created_at = 8;
+  int64 updated_at = 9;
+  string course_id = 10;
+}
+
+message CreateUserReferralProtoReq {
+  string referral_owner = 1;
+  string course_id = 2;
+}
+
+message CreateUserReferralProtoRes {
+  string referral_owner = 1;
+  string course_id = 2;
+  string referral_code = 3;
+}
+
+message CommissionSettingProto {
+  int32 referral_cap = 1;
+  float percent = 2;
+}
+
+message CreateReferralTermsProtoReq {
+  string course_id = 1;
+  float primary_percent = 2;
+  optional float upline_referrer_percent = 3;
+  optional float second_upline_referrer_percent = 4;
+  float minimum_withdraw_allow = 5;
+  string course_owner = 6;
+  repeated CommissionSettingProto commission = 7;
+  optional int64 expire_time = 8;
+  ReferralCreateType  referrral_create_type = 9;
+  repeated string referral_owner = 10;
+}
+
+message AddCoursePartnerProto {
+  string course_id = 1;
+  string user_id = 2;
+  string course_owner = 3;
+}
+
+message GetUserReferralProtoReq {
+  string course_id = 1;
+  string referral_owner = 2;
+}
+
+message GetUserReferralProtoRes {
+  string referral_code = 1;
+  string course_slug = 2;
+}
+
+message CalculateReferralPointProtoReq {
+  string payer = 1;
+  float course_fee = 2;
+  float invoice = 3;
+  string referral_code = 4;
+  string course_id = 5;
+  optional string dinos_click_id = 6;
+  optional string dinos_status = 7;
+  bool is_platform_partner_referral = 8;
+}
+
+message GetReferralPartnerListProtoReq {
+  string course_owner = 1;
+  string course_id = 2;
+  int32 page = 3;
+  int32 limit = 4;
+  optional string revenue_order = 5;
+  optional string quantity_order = 6;
+}
+
+message GetReferralPartnerListProtoRes {
+  repeated ReferralPartnerModelProto partner_list = 1;
+}
+
+message ReferralPartnerModelProto {
+  string first_name = 1;
+  string last_name = 2;
+  float revenue = 3;
+  int32 quantity = 4;
+  int32 total_records = 5;
+  int32 total_pages = 6;
+  int32 current_page = 7;
+}
+
+message GetReferralReportProtoReq{
+  string course_owner = 1;
+  int32 page = 2;
+  int32 limit = 3;
+  optional string revenue_order = 4;
+  optional string quantity_order = 5;
+}
+
+message GetReferralReportModelProto{
+  string course_title = 1;
+  string course_id = 2;
+  float revenue = 3;
+  int32 quantity = 4;
+  int32 total_records = 5;
+  int32 total_pages = 6;
+  int32 current_page = 7;
+}
+
+message GetReferralReportProtoRes{
+  repeated GetReferralReportModelProto course_list = 1;
+}
+
+message GetPersonalReferralReportProtoReq{
+  string user_id = 1;
+  int32 page = 2;
+  int32 limit = 3;
+  optional string revenue_order = 4;
+  optional string quantity_order = 5;
+}
+
+message GetPersonalReferralReportProtoRes{
+  repeated GetPersonalReferralReportModelProto course_list = 1;
+}
+
+message GetPersonalReferralReportModelProto{
+  string course_title = 1;
+  string course_id = 2;
+  float revenue = 3;
+  int32 quantity = 4;
+  int32 total_records = 5;
+  int32 total_pages = 6;
+  int32 current_page = 7;
+  optional string course_owner_first_name = 8;
+  optional string course_owner_last_name = 9;
+  string referral_id = 10;
+  bool is_kol_referral = 11;
+  string referral_code = 12;
+}
+
+message GetReferralReportByCourseIdProtoReq{
+  string course_id = 1;
+  int32 page = 2;
+  int32 limit = 3;
+  optional string revenue_order = 4;
+  optional string quantity_order = 5;
+}
+
+message GetReferralReportByCourseIdModelProto{
+  optional string first_name = 1;
+  optional string last_name = 2;
+  float revenue = 3;
+  int32 quantity = 4;
+  int32 total_records = 5;
+  int32 total_pages = 6;
+  int32 current_page = 7;
+  string referral_id = 8;
+  bool is_kol_referral = 9;
+}
+
+message GetReferralReportByCourseIdProtoRes{
+  repeated GetReferralReportByCourseIdModelProto referral_report = 1;
+}
+
+// get ref by ref id
+message GetUserReferralReportByReferralIdProtoReq{
+  string referral_id = 1;
+  int32 page = 2;
+  int32 limit = 3;
+  optional int64 start_date = 4;
+  optional int64 end_date = 5;
+}
+
+message GetUserReferralReportByReferralIdModelProto{
+  optional string learner_first_name = 1;
+  optional string learner_last_name = 2;
+  int64 created_at = 3;
+  string level = 4;
+  float commission = 5;
+  float amount = 6;
+  int32 total_records = 7;
+  int32 total_pages = 8;
+  int32 current_page = 9;
+}
+
+message GetUserReferralReportByReferralIdProtoRes {
+  repeated GetUserReferralReportByReferralIdModelProto ref_list = 1;
+}
+
+// get kol ref by ref id
+message GetKolReferralReportByReferralIdProtoReq{
+  string referral_id = 1;
+  int32 page = 2;
+  int32 limit = 3;
+  optional int64 start_date = 4;
+  optional int64 end_date = 5;
+}
+
+message GetKolReferralReportByReferralIdModelProto{
+  optional string learner_first_name = 1;
+  optional string learner_last_name = 2;
+  int64 created_at = 3;
+  string level = 4;
+  float commission = 5;
+  float amount = 6;
+  int32 total_records = 7;
+  int32 total_pages = 8;
+  int32 current_page = 9;
+}
+
+message GetKolReferralReportByReferralIdProtoRes {
+  repeated GetKolReferralReportByReferralIdModelProto ref_list = 1;
+}
+
+message GetDiscountPercentByReferralCodeProtoReq {
+  string referral_code = 1;
+}
+
+message GetDiscountPercentByReferralCodeProtoRes {
+  optional float discount_percent = 1;
+}
+
+message GetReferralDetailReportByReferralCodeProtoReq {
+  string referral_code = 1;
+  int32 page = 2;
+  int32 limit = 3;
+  optional int64 start_date = 4;
+  optional int64 end_date = 5;
+}
+
+message GetReferralDetailReportByReferralCodeProtoRes {
+  repeated GetReferralDetailReportByReferralCodeProtoModel list = 1;
+}
+
+message GetReferralDetailReportByReferralCodeProtoModel {
+  optional string learner_first_name = 1;
+  optional string learner_last_name = 2;
+  int64 created_at = 3;
+  string level = 4;
+  float commission = 5;
+  float amount = 6;
+  int32 total_records = 7;
+  int32 total_pages = 8;
+  int32 current_page = 9;
+}
+
+message KolCreateDiscountProtoReq {
+  string referral_owner = 1;
+  string referral_code = 2;
+  float discount_percent = 3;
+}
