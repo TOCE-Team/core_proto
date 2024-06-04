@@ -271,3 +271,31 @@ message KolCreateDiscountProtoReq {
   string referral_code = 2;
   float discount_percent = 3;
 }
+
+message AddReferralWithdrawBankProtoReq {
+  string user_id = 1;
+  string bank = 2;
+  string account_name = 3;
+  string account_number = 4;
+  string qr_code = 5;
+}
+
+message GetReferralWithdrawBankProtoReq {
+  string user_id = 1;
+}
+
+message GetReferralWithdrawBankProtoRes {
+  optional string user_id = 1;
+  optional string bank = 2;
+  optional string account_name = 3;
+  optional string account_number = 4;
+  optional string qr_code = 5;
+}
+
+message UpdateReferralWithdrawBankProtoReq {
+  string user_id = 1;
+  string bank = 2;
+  string account_name = 3;
+  string account_number = 4;
+  string qr_code = 5;
+}
