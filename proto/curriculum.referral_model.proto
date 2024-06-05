@@ -175,9 +175,10 @@ message GetReferralReportByCourseIdModelProto{
   int32 total_pages = 6;
   int32 current_page = 7;
   string referral_id = 8;
-  bool is_kol_referral = 9;
+ g bool is_kol_referral = 9;
   string referral_code = 10;
   optional string request_state = 11;
+  optional string pk_transaction_id = 12;
 }
 
 message GetReferralReportByCourseIdProtoRes{
