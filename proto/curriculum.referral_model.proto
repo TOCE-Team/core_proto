@@ -156,6 +156,8 @@ message GetPersonalReferralReportModelProto{
   string referral_id = 10;
   bool is_kol_referral = 11;
   string referral_code = 12;
+  optional string pk_transaction_id = 13;
+  optional string request_state = 14;
 }
 
 message GetReferralReportByCourseIdProtoReq{
