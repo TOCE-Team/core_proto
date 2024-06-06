@@ -238,4 +238,11 @@ service CurriculumServiceProto {
   rpc UpdateReferralWithdrawBankProtoReqCall(UpdateReferralWithdrawBankProtoReq) returns (SuccessfulProto);
 
   rpc RegisterBootcampFromExternalCall(RegisterBootcampProtoReq) returns (RegisterBootcampProtoRes);
+
+  rpc GetAvailableWithdrawByReferralIdCall(GetAvailableWithdrawByReferralIdProtoReq) returns (GetAvailableWithdrawByReferralIdProtoRes);
+
+  rpc SendReferralWithtdrawCall(SendReferralWithtdrawReq) returns (SuccessfulProto);
+
+  rpc ResponeReferralWithtdrawCall(WithdrawResponeProtoReq) returns (SuccessfulProto);
+  rpc GetReferralTransactionHistoryByTransactionIdCall(GetReferralTransactionHistoryByTransactionIdReq) returns (GetReferralTransactionHistoryByTransactionIdRes);
 }
