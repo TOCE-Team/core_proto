@@ -245,6 +245,7 @@ message GetDiscountPercentByReferralCodeProtoRes {
   optional float discount_percent = 1;
   optional float course_fee = 2;
   optional string course_id = 3;
+  optional string course_title = 4;
 }
 
 message GetReferralDetailReportByReferralCodeProtoReq {
