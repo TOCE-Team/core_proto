@@ -235,4 +235,16 @@ service CurriculumServiceProto {
   rpc GetDiscountPercentByReferralCodeCall(GetDiscountPercentByReferralCodeProtoReq) returns (GetDiscountPercentByReferralCodeProtoRes);
   rpc GetReferralDetailReportByReferralCodeCall(GetReferralDetailReportByReferralCodeProtoReq) returns (GetReferralDetailReportByReferralCodeProtoRes);
   rpc KolCreateDiscountCall(KolCreateDiscountProtoReq) returns (SuccessfulProto);
+  rpc AddReferralWithdrawBankProtoReqCall(AddReferralWithdrawBankProtoReq) returns (SuccessfulProto);
+  rpc GetReferralWithdrawBankProtoReqCall(GetReferralWithdrawBankProtoReq) returns (GetReferralWithdrawBankProtoRes);
+  rpc UpdateReferralWithdrawBankProtoReqCall(UpdateReferralWithdrawBankProtoReq) returns (SuccessfulProto);
+
+  rpc RegisterBootcampFromExternalCall(RegisterBootcampProtoReq) returns (RegisterBootcampProtoRes);
+
+  rpc GetAvailableWithdrawByReferralIdCall(GetAvailableWithdrawByReferralIdProtoReq) returns (GetAvailableWithdrawByReferralIdProtoRes);
+
+  rpc SendReferralWithtdrawCall(SendReferralWithtdrawReq) returns (SuccessfulProto);
+
+  rpc ResponeReferralWithtdrawCall(WithdrawResponeProtoReq) returns (SuccessfulProto);
+  rpc GetReferralTransactionHistoryByTransactionIdCall(GetReferralTransactionHistoryByTransactionIdReq) returns (GetReferralTransactionHistoryByTransactionIdRes);
 }
