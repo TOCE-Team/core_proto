@@ -366,3 +366,15 @@ message GetReferralTransactionHistoryByTransactionIdRes{
   optional string reject_message = 15;
   optional string approve_message = 16;
 }
+
+message GetReferralTermProtoReq{
+  string course_slug = 1;
+}
+
+message GetReferralTermProtoRes{
+  string course_id = 1;
+  optional float primary_percent = 2;
+  optional float minimum_withdraw_allow = 3;
+  optional float upline_referrer_percent = 4;
+  optional float second_upline_referrer_percent = 5;
+}

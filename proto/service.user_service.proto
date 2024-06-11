@@ -1051,9 +1051,9 @@ message AddPlatformPartnerProto {
 }
 
 enum UserPartnerInvitationState {
-	Pending = 0;
-	Accepted = 1;
-	Rejected = 2;
+  Pending = 0;
+  Accepted = 1;
+  Rejected = 2;
 }
 
 message GetPartnerByUserProtoReq {
@@ -1222,7 +1222,7 @@ service UserServiceProtocol {
   // add platform partner
   rpc AddPlatformPartnerCall(AddPlatformPartnerProto) returns(SuccessfulProto);
   rpc GetPlatformPartnerCall(Empty) returns(UserList);
-  // Course Partner 
+  // Course Partner
   rpc GetPartnerByUserCall(GetPartnerByUserProtoReq) returns(UserList);
   rpc GetInvitationPartnerCall(GetPartnerByUserProtoReq) returns(UserList);
   rpc AddPartnerToUserCall(AddPartnerToUserProtoReq) returns(Empty);
