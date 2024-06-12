@@ -386,6 +386,7 @@ message UpdateReferralTermProtoReq{
   optional float minimum_withdraw_allow = 3;
   optional float upline_referrer_percent = 4;
   optional float second_upline_referrer_percent = 5;
+  string course_owner = 6;
 }
 
 message DeleteReferralTermProtoReq{
