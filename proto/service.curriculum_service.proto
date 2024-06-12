@@ -246,6 +246,6 @@ service CurriculumServiceProto {
   rpc ResponeReferralWithtdrawCall(WithdrawResponeProtoReq) returns (SuccessfulProto);
   rpc GetReferralTransactionHistoryByTransactionIdCall(GetReferralTransactionHistoryByTransactionIdReq) returns (GetReferralTransactionHistoryByTransactionIdRes);
   rpc GetReferralTermBySlugCall(GetReferralTermProtoReq) returns (GetReferralTermProtoRes);
-  rpc UpdateReferralTermBySlugCall(UpdateReferralTermProtoReq) returns (SuccessfulProto);
+  rpc UpdateReferralTermCall(UpdateReferralTermProtoReq) returns (SuccessfulProto);
   //rpc DeleteReferralTermBySlugCall(DeleteReferralTermProtoReq) returns (SuccessfulProto);
 }
