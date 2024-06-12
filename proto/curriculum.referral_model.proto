@@ -368,7 +368,7 @@ message GetReferralTransactionHistoryByTransactionIdRes{
 }
 
 message GetReferralTermProtoReq{
-  string course_slug = 1;
+  string course_id = 1;
 }
 
 message GetReferralTermProtoRes{
@@ -377,4 +377,16 @@ message GetReferralTermProtoRes{
   optional float minimum_withdraw_allow = 3;
   optional float upline_referrer_percent = 4;
   optional float second_upline_referrer_percent = 5;
+}
+
+message UpdateReferralTermProtoReq{
+  string course_id = 1;
+  optional float primary_percent = 2;
+  optional float minimum_withdraw_allow = 3;
+  optional float upline_referrer_percent = 4;
+  optional float second_upline_referrer_percent = 5;
+}
+
+message DeleteReferralTermProtoReq{
+  string course_id = 1;
 }
