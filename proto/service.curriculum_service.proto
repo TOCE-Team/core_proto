@@ -248,4 +248,5 @@ service CurriculumServiceProto {
   rpc GetReferralTermBySlugCall(GetReferralTermProtoReq) returns (GetReferralTermProtoRes);
   rpc UpdateReferralTermCall(UpdateReferralTermProtoReq) returns (SuccessfulProto);
   //rpc DeleteReferralTermBySlugCall(DeleteReferralTermProtoReq) returns (SuccessfulProto);
+  rpc GetKolTermCall(GetKolTermProtoReq) returns (GetKolTermProtoRes);
 }
