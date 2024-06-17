@@ -392,3 +392,23 @@ message UpdateReferralTermProtoReq{
 message DeleteReferralTermProtoReq{
   string course_id = 1;
 }
+
+message KolReferralTerm {
+  string referral_id = 1;
+  string referral_code = 2;
+  repeated CommissionCap cap = 3;
+}
+
+message CommissionCap {
+  int32 from = 1;
+  optional int32 to = 2;
+  float percent = 3;
+}
+
+message GetKolTermProtoRes {
+  repeated KolReferralTerm list = 1;
+}
+
+message GetKolTermProtoReq {
+  string courseId = 1;
+}
