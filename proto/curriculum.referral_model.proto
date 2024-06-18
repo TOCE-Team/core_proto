@@ -412,3 +412,9 @@ message GetKolTermProtoRes {
 message GetKolTermProtoReq {
   string courseId = 1;
 }
+
+message ExternalFromName {
+  string course_id = 1;
+  string user_id = 2;
+  string from = 3;
+}
