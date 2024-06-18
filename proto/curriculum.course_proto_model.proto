@@ -67,17 +67,17 @@ message CourseProtoModel {
 }
 
 message GetCourseSupportProtoReq {
-	string course_id = 1;
+  string course_id = 1;
 }
 
 message CourseSupportModel {
-	string course_id = 1;
-	string provider = 2;
-	string url = 3;
+  string course_id = 1;
+  string provider = 2;
+  string url = 3;
 }
 
 message CourseSupportProtoRes {
-	repeated CourseSupportModel course_support = 1;
+  repeated CourseSupportModel course_support = 1;
 }
 
 message CreateCourseProtoReq {
@@ -203,6 +203,13 @@ message RegisterBootcampProtoReq{
   string course_id = 1;
   string student_id = 2;
   EnrollmentCourseProtoReq purchase_info = 3;
+}
+
+message ExternalRegisterBootcampProtoReq{
+  string course_id = 1;
+  string student_id = 2;
+  EnrollmentCourseProtoReq purchase_info = 3;
+  optional string from_name = 4;
 }
 
 message EnrollmentCourseProtoReq{
@@ -371,8 +378,8 @@ message CourseAdvertisingProtoRes {
 }
 
 message ContributeCourseAdvertising {
-	string contribute_id = 1;
-	optional string  image =  2;
+  string contribute_id = 1;
+  optional string  image =  2;
 }
 
 message CreateCourseAdvertisingProtoReq {
@@ -387,20 +394,20 @@ message HomepageAdvertisingRes {
 }
 
 message HomepageRes{
-	HomepageAdvertisingRes advertising = 1;
-	HomepagePopularCourses popular_courses = 2;
-	user_service.UserList  popular_instructors = 3;
+  HomepageAdvertisingRes advertising = 1;
+  HomepagePopularCourses popular_courses = 2;
+  user_service.UserList  popular_instructors = 3;
 }
 
 
 
 message HomepagePopularCourses {
-	repeated HomepagePopularCourse popular_courses = 1;
+  repeated HomepagePopularCourse popular_courses = 1;
 }
 
 message HomepagePopularCourse {
-	CourseProtoModel course_info = 1;
-	int64 course_view = 2;
+  CourseProtoModel course_info = 1;
+  int64 course_view = 2;
 }
 
 
