@@ -378,6 +378,7 @@ message GetReferralTermProtoRes{
   optional float upline_referrer_percent = 4;
   optional float second_upline_referrer_percent = 5;
   int64 updated_at = 6;
+  string course_title = 7;
 }
 
 message UpdateReferralTermProtoReq{
@@ -397,6 +398,9 @@ message KolReferralTerm {
   string referral_id = 1;
   string referral_code = 2;
   repeated CommissionCap cap = 3;
+  optional string first_name = 4;
+  optional string last_name = 5;
+  string user_id = 6;
 }
 
 message CommissionCap {
