@@ -246,6 +246,7 @@ message GetDiscountPercentByReferralCodeProtoRes {
   optional float course_fee = 2;
   optional string course_id = 3;
   optional string course_title = 4;
+  optional float primary_percent = 5;
 }
 
 message GetReferralDetailReportByReferralCodeProtoReq {
@@ -365,4 +366,60 @@ message GetReferralTransactionHistoryByTransactionIdRes{
   optional string request_message = 14;
   optional string reject_message = 15;
   optional string approve_message = 16;
+}
+
+message GetReferralTermProtoReq{
+  string course_id = 1;
+}
+
+message GetReferralTermProtoRes{
+  string course_id = 1;
+  optional float primary_percent = 2;
+  optional float minimum_withdraw_allow = 3;
+  optional float upline_referrer_percent = 4;
+  optional float second_upline_referrer_percent = 5;
+  int64 updated_at = 6;
+  string course_title = 7;
+}
+
+message UpdateReferralTermProtoReq{
+  string course_id = 1;
+  optional float primary_percent = 2;
+  optional float minimum_withdraw_allow = 3;
+  optional float upline_referrer_percent = 4;
+  optional float second_upline_referrer_percent = 5;
+  string course_owner = 6;
+}
+
+message DeleteReferralTermProtoReq{
+  string course_id = 1;
+}
+
+message KolReferralTerm {
+  string referral_id = 1;
+  string referral_code = 2;
+  repeated CommissionCap cap = 3;
+  optional string first_name = 4;
+  optional string last_name = 5;
+  string user_id = 6;
+}
+
+message CommissionCap {
+  int32 from = 1;
+  optional int32 to = 2;
+  float percent = 3;
+}
+
+message GetKolTermProtoRes {
+  repeated KolReferralTerm list = 1;
+}
+
+message GetKolTermProtoReq {
+  string courseId = 1;
+}
+
+message ExternalFromName {
+  string course_id = 1;
+  string user_id = 2;
+  string from = 3;
 }
