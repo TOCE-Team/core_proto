@@ -313,8 +313,8 @@ message  GetAvailableWithdrawByReferralIdProtoReq {
 }
 
 message  GetAvailableWithdrawByReferralIdProtoRes {
-  string course_id = 1;
-  string course_title = 2;
+  optional string course_id = 1;
+  optional string course_title = 2;
   optional string user_referral_id = 3;
   optional string kol_referral_id = 4;
   optional float revenue = 5;
@@ -424,4 +424,12 @@ message ExternalFromName {
   string course_id = 1;
   string user_id = 2;
   string from = 3;
+}
+
+message UpdateKolReferralTermsProtoReq {
+  string referral_id = 1;
+  optional float primary_percent = 2;
+  optional float minimum_withdraw_allow = 3;
+  repeated CommissionSettingProto commission = 4;
+  optional int64 expire_time = 5;
 }
