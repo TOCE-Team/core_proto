@@ -427,6 +427,16 @@ message CreateMultiCouponProtoReq {
 message CreateMultiCouponProtoRes {
   repeated string coupons = 1;
 }
+
+message CompletedList{
+  repeated UserCompleted list = 1;
+}
+
+message UserCompleted {
+  string user_id = 1;
+  string email = 2;
+}
+
 /// banner homepage
 //message BannerHomePageProtoModel {
 //	string banner_id = 1;
