@@ -253,4 +253,7 @@ service CurriculumServiceProto {
   rpc GetKolTermCall(GetKolTermProtoReq) returns (GetKolTermProtoRes);
   rpc ExternalFromNameCall(ExternalFromName) returns (SuccessfulProto);
   rpc CompletdCourseCall(Empty) returns (CompletedList);
+  rpc StoreFinalQuizCall(FinalQuiz) returns (SuccessfulProto);
+  rpc CreateCertCall(CreateCertificate) returns (SuccessfulProto);
+  rpc GetCertCall(GetCertificate) returns (Certificate);
 }
