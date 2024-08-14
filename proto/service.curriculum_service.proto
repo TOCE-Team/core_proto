@@ -256,4 +256,6 @@ service CurriculumServiceProto {
   rpc StoreFinalQuizCall(FinalQuiz) returns (SuccessfulProto);
   rpc CreateCertCall(CreateCertificate) returns (SuccessfulProto);
   rpc GetCertCall(GetCertificate) returns (Certificate);
+  rpc CreateSurveyCall(Survey) returns (SuccessfulProto);
+  rpc GetSurveyCall(GetSurvey) returns (Survey);
 }

@@ -465,6 +465,24 @@ message GetCertificate {
   string course_id = 2;
 }
 
+message Survey {
+  optional string survey_id = 1;
+  optional string user_id = 2;
+  optional string course_id = 3;
+  optional string first_name = 4;
+  optional string last_name = 5;
+  optional string phone_number = 6;
+  optional string programming_level = 7;
+  optional string web3_experience_years = 8;
+  optional string learning_goal = 9;
+  optional int64 created_at = 10;
+}
+
+message GetSurvey {
+  optional string user_id = 2;
+  optional string course_id = 3;
+}
+
 /// banner homepage
 //message BannerHomePageProtoModel {
 //	string banner_id = 1;
